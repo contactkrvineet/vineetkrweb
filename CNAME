@@ -1,1 +1,2 @@
-www.vineetkr.com
+echo "www.vineetkr.com" > CNAME
+
