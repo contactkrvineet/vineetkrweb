@@ -64,9 +64,10 @@ section {
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
-  display: block;
   margin: 20px auto;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .blog-button:hover {
@@ -144,4 +145,47 @@ form button:hover {
 
 .read-more-button:hover {
   background-color: darkgreen;
+}
+
+.book-cover {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Adjust the gap between buttons if needed */
+  justify-content: center; /* Centers the buttons horizontally */
+  margin: 20px 0; /* Adjust the margin if needed */
+}
+
+.blog-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#books {
+  padding: 20px;
+  text-align: center;
+}
+
+.book {
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+}
+
+.book-cover {
+  width: 200px; /* Adjust the width as needed */
+  height: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.book p {
+  margin-top: 10px;
+  font-size: 18px;
 }
