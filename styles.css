@@ -29,6 +29,12 @@ nav ul li a {
   text-decoration: none;
 }
 
+nav ul li button {
+  background-color: #28a745; /* Green background */
+  color: #fff;
+  cursor: pointer;
+}
+
 section {
   padding: 20px;
   margin: 20px;
@@ -123,4 +129,19 @@ form button {
 
 form button:hover {
   background-color: #777; /* Slightly lighter gray on hover */
+}
+
+.read-more-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.read-more-button:hover {
+  background-color: darkgreen;
 }
