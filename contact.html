@@ -14,7 +14,9 @@
 
         <h1>Vineet Kumar</h1>
         <div class="contact-info">
-            <span>contactkrvineet@gmail.com</span>
+            <span><strong>Email: </strong>contactkrvineet@gmail.com</span>
+            <span><strong>|| Cell: </strong> (+1) 437-428-2199</span>
+            <span><strong>|| WhatsApp:</strong> (+1) 991-162-0414</span>
         </div>
         <nav>
             <ul>
@@ -26,15 +28,16 @@
             </ul>
         </nav>
     </header>
-    <div class="container">
-        <strong>Email : contactkrvineet@gmail.com </strong><br>
-        <strong>Cell : (+1) 437-428-2199</strong><br>
-        <strong>whatsApp :(+1) 991-162-0414</strong>
-    </div>
 
+    <section id="barcode">
+        <div class="barcodes">
+            <img src="imgBarcode.png" alt="Img bar code" class="book-cover">
+
+        </div>
+    </section>
     <section id="contact">
         <h2>Contact</h2>
-        <form id="contact-form">
+        <form id="contact-form" onsubmit="sendEmail(event)">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -48,6 +51,7 @@
         </form>
     </section>
 
+
     <footer>
         <p>&copy; 2024 Vineet Kumar</p>
         <div class="social-links">
@@ -57,6 +61,8 @@
             <a href="https://github.com/contactkrvineet" target="_blank">GitHub</a>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
