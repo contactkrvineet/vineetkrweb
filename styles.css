@@ -1,10 +1,26 @@
 body {
   font-family: Arial, sans-serif;
+  max-width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #000; /* Set background to black */
   color: #fff; /* Set text color to white */
+  line-height: 1.45;
+
+}
+/* Layout & spacing improvements for readability and to avoid footer overlap */
+:root{
+  --container-max: 1100px;
+  --page-gutter: 20px;
+  --footer-height: 64px; /* adjust to match footer height */
+}
+
+/* center main content and constrain width */
+.container {
+  max-width: var(--container-max);
+  padding: 28px 0;
+  margin-bottom: 24px;
 }
 
 header {
@@ -12,6 +28,35 @@ header {
   color: #fff;
   padding: 10px 0;
   text-align: center;
+}
+
+
+/* consistent section spacing */
+section {
+  padding: 36px 0;
+}
+
+/* spacing for headings and lead paragraph */
+h1, h2, h3 { margin-top: 0; margin-bottom: 12px; }
+.lead { display: block; margin: 8px 0 16px; font-size: 1.03rem; }
+
+
+/* ensure footer doesn't overlap content (footer is fixed in other snippets) */
+footer {
+  height: var(--footer-height);
+  line-height: var(--footer-height);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+}
+
+/* friendly mobile padding */
+@media (max-width: 720px) {
+  :root { --page-gutter: 14px; }
+  section { padding: 24px 0; }
+  header { padding: 20px 0; margin-bottom: 18px; }
 }
 
 nav ul {
@@ -57,7 +102,7 @@ section {
   margin: 0 auto 20px;
 }
 
-.blog-button {
+.button-design {
   background-color: #28a745; /* Green background */
   color: #fff;
   border: none;
@@ -189,3 +234,484 @@ form button:hover {
   margin-top: 10px;
   font-size: 18px;
 }
+#image-banner {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.banner-image {
+  width: 60%;
+  height: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Add to `styles.css` */
+.contact-info > span:first-of-type {
+  color: #28a745; /* green color */
+}
+
+<!-- Add to `styles.css` -->
+.contact-summary .lead {
+  color: #28a745;
+  display: block;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+.contact-summary .profession-summary {
+  color: #222;
+  margin: 6px 0 10px;
+}
+.more-link {
+  background: #28a745;
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.more-link:hover {
+  opacity: 0.9;
+}
+
+  .info-section {
+    background: #f7fbf7;
+    border-left: 4px solid #28a745;
+    padding: 18px;
+    margin: 20px 0;
+    border-radius: 6px;
+    color: #073017;
+  }
+  .info-section h2 {
+    margin: 0 0 8px;
+    color: #106e2f;
+    font-size: 1.25rem;
+  }
+  .info-section .lead {
+    color: #28a745;
+    margin: 0 0 8px;
+    font-style: italic;
+  }
+  .ks-list {
+    margin: 8px 0 12px;
+    padding-left: 1.15rem;
+  }
+  .ks-list li {
+    margin: 6px 0;
+  }
+  .cta {
+    margin-top: 10px;
+  }
+  .info-link {
+    display: inline-block;
+    background: #28a745;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 8px;
+  }
+  .info-link--alt {
+    background: #0b6b3a;
+  }
+  .info-link:focus, .info-link:hover {
+    opacity: 0.95;
+  }
+
+
+
+  /* single, cleaned .info-section rule */
+  .info-section {
+    position: relative;        /* stays in normal flow */
+    z-index: 1;                /* ensure proper stacking without overlaying other elements */
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 18px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #072017 0%, #0a2a1b 100%);
+    border-left: 4px solid #28a745;
+    color: #e6f7ea;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    box-sizing: border-box;
+
+    /* prevent the section from growing past the viewport */
+    max-height: 60vh;         /* change to 50-70vh as needed */
+    overflow-y: auto;        /* enable internal scrolling */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on mobile */
+  }
+
+  /* optional: inner container padding */
+  .info-section .container {
+    padding: 0 12px;
+  }
+
+  /* visible custom scrollbar (optional) */
+  .info-section::-webkit-scrollbar {
+    width: 10px;
+  }
+  .info-section::-webkit-scrollbar-thumb {
+    background: rgba(40,167,69,0.25);
+    border-radius: 6px;
+  }
+  .info-section::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* ensure section layout rules don't conflict */
+  section.info-section {
+    width: auto;
+    margin-bottom: 20px;
+  }
+
+
+
+#about {
+  /* allow the section to span full width */
+  max-width: none;        /* override earlier constraint */
+  width: 100%;
+  margin: 32px 0;         /* vertical spacing only */
+  padding: 28px 20px;     /* keep comfortable side gutters */
+  background: linear-gradient(180deg, #ffffff 0%, #f6fbf6 100%);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(8, 30, 18, 0.08);
+  color: #073017;
+  box-sizing: border-box;
+  border-left: 6px solid rgba(40,167,69,0.12);
+}
+
+/* inner wrapper constrains content for readability */
+.about-inner {
+  max-width: 920px;       /* original readable width */
+  margin: 0 auto;         /* center content */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* keep typography and spacing consistent */
+#about h2 { margin-bottom: 12px; }
+#about p { margin-bottom: 14px; }
+
+/* responsive: reduce side padding on small screens */
+@media (max-width: 720px) {
+  #about { padding: 18px 12px; margin: 18px 0; }
+  .about-inner { padding: 0; }
+}
+
+  /* Roles/responsibilities list turned into readable cards */
+  #about ul {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 10px;
+  }
+
+  /* Individual list items */
+  #about li {
+    background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+    border-left: 4px solid #28a745;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #0a2a15;
+    font-weight: 500;
+    box-shadow: 0 6px 14px rgba(7, 32, 18, 0.03);
+  }
+
+  /* small helper for the scroll prompt */
+  #about p:last-of-type {
+    margin-top: 16px;
+    font-size: 0.95rem;
+    color: #2a5b3f;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 720px) {
+    #about {
+      margin: 18px;
+      padding: 18px;
+    }
+    #about h2 {
+      font-size: 1.35rem;
+    }
+    #about ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+<!-- add the following to `styles.css` -->
+<style>
+/* styles.css */
+.roles-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.roles-list li {
+  position: relative;
+  padding: 12px 14px 12px 52px; /* room for custom bullet */
+  background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+  border-left: 4px solid rgba(40,167,69,0.12);
+  border-radius: 8px;
+  color: #0a2a15;
+  font-weight: 500;
+  box-shadow: 0 6px 14px rgba(7,32,18,0.03);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+/
+.roles-list li {
+  --bullet-size: 18px;
+  --bullet-left: 14px;   /* distance from item left edge to bullet */
+  --bullet-gap: 14px;    /* gap between bullet and text */
+
+  position: relative;
+  padding: 12px 14px 12px calc(var(--bullet-left) + var(--bullet-size) + var(--bullet-gap));
+  background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+  border-left: 4px solid rgba(40,167,69,0.12);
+  border-radius: 8px;
+  color: #0a2a15;
+  font-weight: 500;
+  box-shadow: 0 6px 14px rgba(7,32,18,0.03);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  line-height: 1.45;     /* improve wrapping */
+  z-index: 1;            /* keep text above the bullet */
+  word-break: break-word;
+}
+
+/roles-list {
+   list-style: none;
+   margin: 12px 0 0;
+   padding: 0;
+   display: grid;
+   gap: 10px;
+ }
+
+ /* card-like list item and spacing for the custom bullet */
+ .roles-list li {
+   --bullet-size: 18px;
+   --bullet-left: 14px;
+   --bullet-gap: 14px;
+
+   position: relative;
+   padding: 12px 14px 12px calc(var(--bullet-left) + var(--bullet-size) + var(--bullet-gap));
+   background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+   border-left: 4px solid rgba(40,167,69,0.12);
+   border-radius: 8px;
+   color: #0a2a15;
+   font-weight: 500;
+   box-shadow: 0 6px 14px rgba(7,32,18,0.03);
+   transition: transform 160ms ease, box-shadow 160ms ease;
+   line-height: 1.45;
+   isolation: isolate; /* create a stacking context so pseudo is rendered properly */
+ }
+
+ .roles-list {
+   list-style: none;
+   margin: 12px 0 0;
+   padding: 0;
+   display: grid;
+   gap: 10px;
+   box-sizing: border-box;
+ }
+
+ .roles-list li {
+   --bullet-size: 18px;
+   --bullet-left: 14px;   /* distance from item left edge to bullet */
+   --bullet-gap: 14px;    /* gap between bullet and text */
+
+   position: relative;
+   isolation: isolate; /* create stacking context so pseudo renders correctly */
+   padding: 12px 14px 12px calc(var(--bullet-left) + var(--bullet-size) + var(--bullet-gap));
+   background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+   border-left: 4px solid rgba(40,167,69,0.12);
+   border-radius: 8px;
+   color: #0a2a15;
+   font-weight: 500;
+   box-shadow: 0 6px 14px rgba(7,32,18,0.03);
+   line-height: 1.45;
+   word-break: break-word;
+ }
+
+
+
+/* Ensure section has its own stacking context */
+#expertise {
+  position: relative;
+  z-index: 1;
+  padding: 12px 0;
+}
+
+/* Make the section header clearly visible and above other content */
+#expertise h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.98), rgba(240,255,245,0.95));
+  border-left: 6px solid rgba(40,167,69,0.22);
+  box-shadow: 0 6px 18px rgba(8,30,18,0.04);
+  color: #083018;              /* high contrast */
+  font-size: 1.18rem;
+  font-weight: 700;
+  line-height: 1;
+  position: relative;
+  z-index: 10;                 /* keep above tables/other content */
+}
+
+/* decorative badge stays behind text but above background */
+#expertise h2::before {
+  content: "";
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #6ef58a 0%, #28a745 100%);
+  box-shadow: 0 6px 14px rgba(8,30,18,0.12), inset 0 -6px 12px rgba(255,255,255,0.06);
+  position: relative;
+  z-index: 9;
+}
+
+/* Table container: provide scroll on small screens to avoid overlap */
+#expertise .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: transparent;
+  border-radius: 6px;
+}
+
+/* Table base rules */
+#expertise table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  background: #ffffff;
+  margin-top: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Visible, high-contrast table header */
+#expertise thead th {
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 700;
+  color: #052814; /* dark green for contrast */
+  background: linear-gradient(90deg, rgba(240,255,245,1), rgba(235,250,241,1));
+  border-bottom: 2px solid rgba(40,167,69,0.08);
+  white-space: normal;
+  word-break: break-word;
+  position: relative;
+  z-index: 5;
+}
+
+/* Optional: keep header visible when scrolling long tables */
+#expertise thead th {
+  position: sticky;
+  top: 0;      /* keeps the header pinned inside the .table-wrap */
+  backdrop-filter: saturate(1) blur(4px); /* subtle clarity when pinned */
+}
+
+/* Table cells */
+#expertise td {
+  padding: 10px 14px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(8,30,18,0.04);
+  color: #123622;
+  background: transparent;
+}
+
+
+
+        /* Scoped styles for the Certifications section */
+        #certifications {
+          position: relative;
+          z-index: 2;
+          padding: 14px 0 28px;
+        }
+
+        #certifications h2 {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          padding: 10px 14px;
+          margin: 12px 0;
+          border-radius: 10px;
+          background: linear-gradient(90deg, rgba(255,255,255,0.98), rgba(240,255,245,0.95));
+          border-left: 6px solid rgba(40,167,69,0.18);
+          box-shadow: 0 6px 18px rgba(8,30,18,0.03);
+          color: #083018;
+          font-size: 1.18rem;
+          font-weight: 700;
+          line-height: 1;
+          position: relative;
+          z-index: 20;
+        }
+
+        /* Reuse table-wrap pattern for horizontal scroll on small screens */
+        #certifications .table-wrap {
+          width: 100%;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          margin-top: 8px;
+          border-radius: 8px;
+          background: transparent;
+        }
+
+        /* Table styling scoped to certifications */
+        #certifications table {
+          width: 100%;
+          border-collapse: collapse;
+          table-layout: auto;
+          background: #fff;
+        }
+
+        #certifications thead th {
+          text-align: left;
+          padding: 12px 14px;
+          font-weight: 700;
+          color: #052814;
+          background: linear-gradient(90deg, rgba(245,255,248,1), rgba(235,250,241,1));
+          border-bottom: 2px solid rgba(40,167,69,0.06);
+          position: sticky;
+          top: 0;
+          z-index: 25;
+        }
+
+        #certifications tbody td {
+          padding: 10px 14px;
+          vertical-align: top;
+          border-bottom: 1px solid rgba(8,30,18,0.04);
+          color: #123622;
+          word-break: break-word;
+        }
+
+        /* small screen adjustments */
+        @media (max-width: 600px) {
+          #certifications h2 { font-size: 1rem; padding: 8px 10px; }
+          #certifications thead th, #certifications tbody td { padding: 8px; font-size: 0.95rem; }
+        }
