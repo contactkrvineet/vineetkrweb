@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Performance Framework — Gatling | Vineet Kumar</title>
+    <meta name="description" content="Gatling-based performance testing framework: setup, sample simulation, CI integration and best practices for scalable, CI-friendly load testing." />
+    <link rel="canonical" href="https://www.vineetkr.com/" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Performance Framework — Gatling | Vineet Kumar" />
+    <meta property="og:description" content="Gatling-based performance testing framework: setup, sample simulation, CI integration and best practices." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vineetkr.com/" />
+    <meta property="og:image" content="https://vineetkr.com/myPics.jpeg" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vineet Kumar — QE Manager & SDET Architect">
+    <meta name="twitter:description" content="Leading high-performing teams in automation, CI/CD, and AI model evaluation.">
+    <meta name="twitter: image" content="https://www.vineetkr.com/myPics.jpeg">  <!-- ✅ FIXED:  was /assets/og-image.png -->
+
+    <title>Vineet Kumar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+    <!-- JSON-LD structured data:  Organization / Person -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Vineet Kumar",
+            "url": "https://www.vineetkr.com/",
+            "sameAs": [
+                "https://www.linkedin.com/in/vineet2311/",
+                "https://github.com/contactkrvineet",
+                "https://www.facebook.com/contactvineet/"
+            ],
+            "jobTitle": "QE Manager & Full-Stack SDET Architect",
+            "description": "Leading high-performing teams in automation, CI/CD, and AI model evaluation.",
+            "email": "mailto:contactkrvineet@gmail.com"
+        }
+    </script>
+
+<body>
+<header role="banner" class="site-header">
+    <div class="container header-grid">
+        <div class="brand">
+            <h1>Vineet Kumar</h1>
+            <p class="tagline">Performance Frameworks & QE Engineering</p>
+        </div>
+
+        <nav role="navigation" aria-label="Main navigation" class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="about.html#expertise">Expertise</a></li>
+                <li><a href="performance.html" aria-current="page">Performance</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="contact-cta">
+            <a class="btn" href="https://github.com/contactkrvineet" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+    </div>
+</header>
+
+<main role="main" class="site-main container">
+    <section id="hero" class="hero" aria-labelledby="perf-hero-title">
+        <h2 id="perf-hero-title" class="sr-only">Gatling Performance Framework</h2>
+        <div class="hero-content">
+            <img
+                    src="assets/gatling-logo-200.webp"
+                    srcset="assets/gatling-logo-100.webp 100w, assets/gatling-logo-200.webp 200w"
+                    sizes="(max-width:600px) 100px, 200px"
+                    alt="Gatling logo"
+                    loading="lazy"
+                    width="120" height="120">
+            <div>
+                <p class="lead">Repeatable, CI-friendly load testing for APIs and web endpoints using Gatling. Generate actionable reports and integrate with CI for automated regression detection.</p>
+                <p class="cta">
+                    <a class="btn" href="#quick-start">Quick start</a>
+                    <a class="btn btn-outline" href="#samples">Sample simulation</a>
+                    <a class="btn btn-link" href="#ci">CI snippet</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="overview" aria-labelledby="overview-heading">
+        <h2 id="overview-heading">Overview</h2>
+        <p>Design the framework for maintainability and CI: separate simulations, use feeders for variable data, assert SLAs (p95/p99, error rates) and store artifacts for comparison.</p>
+        <ul class="ks-list">
+            <li><strong>Capabilities:</strong> CSV feeders, realistic pause/ramp profiles, checks & thresholds, HTML reports</li>
+            <li><strong>Artifacts:</strong> HTML reports under `target/gatling/`, raw metrics CSV/JSON for long-term storage</li>
+            <li><strong>Environments:</strong> Run locally for validation, in CI for regression checks, and in container clusters for scale</li>
+        </ul>
+    </section>
+
+    <section id="quick-start" aria-labelledby="qs-heading">
+        <h2 id="qs-heading">Quick start</h2>
+        <ol>
+            <li>Install JDK 11+ and Maven (or Gradle).</li>
+            <li>Create the project layout and add the Gatling plugin to `pom.xml` (example below).</li>
+            <li>Add simulations under `src/gatling/scala/simulations` and resources under `src/gatling/resources`.</li>
+            <li>Run `mvn gatling:test` and review `target/gatling/` report.</li>
+        </ol>
+    </section>
+
+    <section id="layout" aria-labelledby="layout-heading">
+        <h2 id="layout-heading">Recommended project layout</h2>
+        <pre><code class="language-text">/project-root
+├─ pom.xml
+├─ src
+│  ├─ gatling
+│  │  ├─ scala
+│  │  │  └─ simulations
+│  │  │     └─ BasicSimulation.scala
+│  │  └─ resources
+│  │     └─ feeders
+│  │        └─ users.csv
+│  └─ main
+│     └─ resources
+└─ reports
+      </code></pre>
+    </section>
+
+    <section id="plugin" aria-labelledby="plugin-heading">
+        <h2 id="plugin-heading">Maven plugin snippet</h2>
+        <p>Add to the `build/plugins` section of `pom.xml`:</p>
+        <pre><code class="language-xml">&lt;plugin&gt;
+  &lt;groupId&gt;io.gatling&lt;/groupId&gt;
+  &lt;artifactId&gt;gatling-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;3.10.0&lt;/version&gt;
+&lt;/plugin&gt;</code></pre>
+    </section>
+
+    <section id="samples" aria-labelledby="samples-heading">
+        <h2 id="samples-heading">Sample simulation</h2>
+        <p>Example placed at `src/gatling/scala/simulations/BasicSimulation.scala` — uses CSV feeder and assertions.</p>
+        <pre><code class="language-scala">package simulations
+
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
+import scala.concurrent.duration._
+
+class BasicSimulation extends Simulation {
+  val httpProtocol = http.baseUrl("https://api.example.com").acceptHeader("application/json")
+
+  val feeder = csv("feeders/users.csv").circular
+
+  val scn = scenario("API Load Scenario")
+    .feed(feeder)
+    .exec(http("Get user").get("/users/${userId}").check(status.is(200)))
+    .pause(1.second, 4.seconds)
+
+  setUp(
+    scn.inject(atOnceUsers(5), rampUsers(50) during (30.seconds))
+  ).protocols(httpProtocol)
+   .assertions(global.successfulRequests.percent.gte(95), global.responseTime.percentile4.lte(2000))
+}</code></pre>
+
+        <p class="note">Update `baseUrl` and endpoints to match your environment. Use feeders to avoid cache artifacts and to vary request parameters.</p>
+    </section>
+
+    <!-- html -->
+    <section id="run" aria-labelledby="run-heading">
+        <h2 id="run-heading">Run locally &amp; reports</h2>
+        <p>Run locally:</p>
+        <pre><code class="language-bash">mvn gatling:test</code></pre>
+        <p>Open <code>target/gatling/&lt;simulation-name&gt;-&lt;timestamp&gt;/index.html</code> for the HTML report. Upload sample reports to <code>reports/</code> and link them from this page for easy sharing.</p>
+        <p><a class="info-link" href="reports/" title="Open saved Gatling reports">View sample reports</a></p>
+    </section>
+
+
+    <section id="ci" aria-labelledby="ci-heading">
+        <h2 id="ci-heading">CI integration (GitHub Actions)</h2>
+        <pre><code class="language-yaml">name: perf-test
+
+on: [push]
+
+jobs:
+  gatling:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Run Gatling tests
+        run: mvn -B -q gatling:test
+      - name: Upload Gatling report
+        uses: actions/upload-artifact@v4
+        with:
+          name: gatling-report
+          path: target/gatling</code></pre>
+
+        <p class="note">Consider running lightweight smoke tests on each PR and heavier load runs on schedules or dedicated runners.</p>
+    </section>
+
+    <section id="tips" aria-labelledby="tips-heading">
+        <h2 id="tips-heading">Tips & best practices</h2>
+        <ul>
+            <li>Use realistic user journeys and think in business transactions (e.g., checkout flow).</li>
+            <li>Prefer programmatic feeders for complex synthetic data or use CSV for simple cases.</li>
+            <li>Assert SLOs (p95, error rate) and fail CI when thresholds are breached.</li>
+            <li>Store raw metrics to enable trend comparisons over time.</li>
+            <li>Run large scale tests from container clusters or distributed runners; use Docker images for reproducible environments.</li>
+        </ul>
+    </section>
+
+    <section id="resources" aria-labelledby="resources-heading">
+        <h2 id="resources-heading">Resources & examples</h2>
+        <ul>
+            <li><a href="https://gatling.io" target="_blank" rel="noopener noreferrer">Gatling official docs</a></li>
+            <li><a href="https://github.com/contactkrvineet/performance-test-framework" target="_blank" rel="noopener noreferrer">Repository — perfTest (examples)</a></li>
+            <li><a href="reports/" class="info-link">Sample HTML reports (uploaded)</a></li>
+        </ul>
+    </section>
+</main>
+
+<footer role="contentinfo" class="site-footer">
+    <div class="container footer-grid">
+        <p>&copy; 2026 Vineet Kumar</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/contactkrvineet" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    (function(){ document.documentElement.classList.remove('no-js'); })();
+</script>
+</body>
+</html>
