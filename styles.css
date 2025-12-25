@@ -715,3 +715,138 @@ th {
           #certifications h2 { font-size: 1rem; padding: 8px 10px; }
           #certifications thead th, #certifications tbody td { padding: 8px; font-size: 0.95rem; }
         }
+
+
+
+/* css */
+        /* Add to or replace in `styles.css` */
+
+        /* Theme variables */
+        :root{
+          --color-text: #111827;
+          --color-bg: #ffffff;
+          --color-link: #0a66c2;        /* primary link color */
+          --color-link-hover: #034f9a;  /* hover/darker */
+          --color-cta: #0b756d;         /* CTA bg (buttons) */
+          --color-cta-hover: #09594f;
+          --color-muted: #6b7280;
+          --focus-ring: rgba(10,102,194,0.18);
+          --transition-fast: 160ms;
+        }
+
+        /* Base link styles: clean, accessible and animated underline */
+        a {
+          color: var(--color-link);
+          text-decoration: none;
+          background-image: linear-gradient(currentColor, currentColor);
+          background-size: 0 2px;
+          background-repeat: no-repeat;
+          background-position: 0 100%;
+          transition: background-size var(--transition-fast) ease, color var(--transition-fast) ease;
+          word-break: break-word; /* wrap long URLs */
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        a:hover,
+        a:focus {
+          color: var(--color-link-hover);
+          background-size: 100% 2px;
+        }
+
+        /* Visible focus for keyboard users */
+        a:focus-visible {
+          outline: 4px solid var(--focus-ring);
+          outline-offset: 3px;
+          border-radius: 4px;
+        }
+
+        /* Navigation links */
+        .main-nav a {
+          color: var(--color-text);
+          padding: 8px 10px;
+          display: inline-block;
+          font-weight: 600;
+          border-radius: 6px;
+          transition: background-color var(--transition-fast) ease, color var(--transition-fast) ease;
+        }
+
+        .main-nav a:hover,
+        .main-nav a:focus {
+          background-color: rgba(11,117,109,0.06);
+          color: var(--color-cta);
+        }
+
+        /* Button-like links */
+        .btn {
+          display: inline-block;
+          background: var(--color-cta);
+          color: #fff;
+          padding: 8px 14px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: background-color var(--transition-fast) ease, transform 60ms ease;
+        }
+
+        .btn:hover,
+        .btn:focus {
+          background: var(--color-cta-hover);
+          transform: translateY(-1px);
+        }
+
+        .btn-outline {
+          background: transparent;
+          color: var(--color-cta);
+          border: 1px solid rgba(11,117,109,0.14);
+          padding: 7px 13px;
+        }
+
+        .btn-outline:hover,
+        .btn-outline:focus {
+          background: rgba(11,117,109,0.06);
+        }
+
+        /* Small link variant */
+        .btn-link {
+          background: transparent;
+          color: var(--color-link);
+          padding: 0;
+          font-weight: 600;
+        }
+
+        /* Info-style inline links (reports etc.) */
+        .info-link {
+          color: var(--color-cta);
+          border-bottom: 1px dashed rgba(11,117,109,0.18);
+          padding-bottom: 2px;
+        }
+
+        /* Footer / social links */
+        .site-footer a {
+          color: var(--color-muted);
+          margin-left: 10px;
+          transition: color var(--transition-fast) ease;
+        }
+
+        .site-footer a:hover,
+        .site-footer a:focus {
+          color: var(--color-link);
+        }
+
+        /* Improve readability of links inside code/pre blocks */
+        pre, pre code {
+          white-space: pre-wrap;
+          word-break: break-word;
+          overflow-wrap: anywhere;
+        }
+
+        /* Small utility: ensure images inside links look good */
+        a img {
+          vertical-align: middle;
+          border-style: none;
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+          a, .btn, .main-nav a { transition: none; }
+        }

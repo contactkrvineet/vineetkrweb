@@ -103,6 +103,29 @@
     <section id="projects">
         <h2>Frameworks</h2>
         <div class="project">
+            <h3>Gatling Performance Framework</h3>
+            <p>
+                A Gatling-based performance framework (Java) to create repeatable, CI-friendly load tests for APIs and web endpoints.
+                Designed for realistic user scenarios, configurable test data, pass/fail assertions and rich HTML reporting.
+            </p>
+            <ul>
+                <li>Realistic load: simulate user journeys with injected traffic (ramp, constant, spike profiles).</li>
+                <li>SLA assertions: fail CI on breaches (error rate, p95/p99, mean response time).</li>
+                <li>Reports & artifacts: rich HTML reports generated under <code>target/gatling/</code> for sharing and trend analysis.</li>
+                <li>CI friendly: run via <code>mvn gatling:test</code>, upload reports as artifacts and gate PRs with lightweight smoke runs.</li>
+                <li>Scalable execution: run from containers, distributed runners or dedicated load nodes for large-scale tests.</li>
+                <li>Observability: integrate with Prometheus/Grafana or APM tools to correlate app metrics with load.</li>
+                <li>Reusable assets: scenario templates, shared feeders and assertions to maintain consistency across tests.</li>
+            </ul>
+
+            <p class="note">
+                Quick start: add the Gatling Maven plugin, place simulations in <code>src/gatling/simulations</code>, provide feeders in <code>src/gatling/resources</code>, then run <code>mvn gatling:test</code>.
+            </p>
+            <p><i>Technology Used :</i> Java , Gradle . BDD ,TestNg, Gatling</p>
+            <p> <button class="read-more-button" onclick="window.location.href='performance.html'">Read
+                More</button></p>
+        </div>
+        <div class="project">
             <h3><strong>RestAssured Framework</strong></h3>
 
             <p>This framework is created to simplify the process to test API Use Case by using Rest Assured Libraries.
@@ -110,10 +133,6 @@
             <p>This framework can be utilized by cloning the repo url and just changing the Endopints and Payload of the
                 services under test </p>
             <p><i>Technology Used :</i> Java , Rest Assured , Maven ,Cucumber</p>
-            <p></p>
-            <p>Github Url : https://github.com/contactkrvineet/restAssuredFramework
-
-            </p>
             <p> <button class="read-more-button" onclick="window.location.href='restAssured.html'">Learn
                     More</button></p>
 
@@ -122,22 +141,13 @@
             <h3>UI Automation Framework</h3>
             <p>This Framework is created for UI Test Use Cases </p>
             <p><i>Technology Used :</i>Java , Selenium . BDD ,Maven</p>
-            <p>Github Url : https://github.com/contactkrvineet/vineetkr.com </p>
             <p> <button class="read-more-button" onclick="window.location.href='blog.html'">Read
                     More</button></p>
         </div>
-        <div class="project">
-            <h3>Performance Framework</h3>
-            <p>This Framework can measure performance of any API </p>
-            <p><i>Technology Used :</i> Java , Gradle . BDD ,TestNg, Gatlin</p>
-            <p>Github Url : https://github.com/contactkrvineet/perfTest</p>
-            <p> <button class="read-more-button" onclick="window.location.href='blog.html'">Read
-                    More</button></p>
-        </div>
+
         <div class="project">
             <h3>Shopping Cart Framework</h3>
             <p>This framework is created for any one who want to create a small shopping cart Framework </p>
-            <p>Comming Soon -Development in progress</p>
             <p><i>Technology Used :</i>React , JavaScript ,Node.js . Express , Axios</p>
             <p> <button class="read-more-button" onclick="window.location.href='blog.html'">Read
                     More</button></p>
