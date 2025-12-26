@@ -79,15 +79,16 @@
 
     </header>
 
+    <!-- file: index.html (replace the existing knowledge-sharing section with this) -->
     <section id="knowledge-sharing" class="info-section" aria-labelledby="ks-heading">
-        <div class="container">
+        <div class="ks-card container" role="region" aria-label="Knowledge sharing card">
             <h2 id="ks-heading">Knowledge sharing</h2>
 
             <p class="lead"><i><strong>Knowledge becomes truly powerful when we share what we know. Shared knowledge multiplies the power it holds.</strong></i></p>
 
-            <p>Below I'm sharing libraries and example projects to help the SDET community learn practical automation, CI/CD and AI-evaluation patterns.</p>
+            <p class="ks-intro">Below I'm sharing libraries and example projects to help the SDET community learn practical automation, CI/CD and AI-evaluation patterns.</p>
 
-            <ul class="ks-list">
+            <ul class="ks-list" aria-label="How to use knowledge sharing">
                 <li><strong>Purpose:</strong> Demonstrate reusable patterns that improve test quality and delivery speed.</li>
                 <li><strong>How to use:</strong> Clone or fork the repos, adapt examples, and apply patterns in your projects.</li>
                 <li><strong>Contribute:</strong> Found an improvement? Open a PR or contact me — contributions help everyone.</li>
@@ -100,40 +101,76 @@
         </div>
     </section>
 
+
     <section id="projects">
         <h2 id="projects-heading">Automation Projects & Frameworks</h2>
 
+        <!-- Example updated project markup -->
         <div class="project">
-            <!-- Replace the existing heading line in `index.html` with this -->
-            <h3 class="project-title">Playwright BDD Framework <span class="tag">Playwright • BDD</span></h3>
+            <div class="project-header">
+                <h3 class="project-title">
+                    <span class="title-text">Playwright BDD Framework</span>
+                    <span class="tag">Playwright•BDD</span>
+                </h3>
+            </div>
 
-            <p>
-                A comprehensive test automation framework combining Playwright with BDD (Cucumber) and multiple reporting options including Allure,
-                Cucumber HTML reports, and native Playwright reports.
-            </p>
-            <p>
-                <a href="https://contactkrvineet.github.io/playwright-bdd-framework/" class="info-link" target="_blank" rel="noopener noreferrer" aria-label="View sample live report">View Sample Live Report</a>
-            </p>
-            <p>
-                <a href="https://github.com/contactkrvineet/playwright-bdd-framework" class="info-link" target="_blank" rel="noopener noreferrer" aria-label="View Projects">View Project</a>
-            </p>
-            <ul>
-                <li>Dual Test Approach: Run tests via Playwright or BDD Cucumber</li>
-                <li>Multiple Reports: Allure, Cucumber HTML, Bootstrap, JSON, JUnit</li>
-                <li>Screenshot on Failure: Automatic screenshot capture for failed tests</li>
-                <li>Parallel Execution: Support for parallel test execution</li>
-                <li>Headed/Headless Mode: Configurable browser modes</li>
-                <li>CI/CD Ready: GitHub Actions integration included</li>
-                <li>Multi-Browser Support: Chrome, Firefox, Safari (WebKit)</li>
-            </ul>
+            <div class="project-body">
+                <p>A comprehensive test automation framework combining Playwright with BDD (Cucumber) and multiple reporting options.<br></p>
+                <p>Features :</p>
+                <ul class="tick-list" aria-label="Project features">
+                    <li><b>Dual Test Approach:</b> Playwright or BDD Cucumber</li>
+                    <li><b>Multiple Reports:</b> Allure, Cucumber HTML, Playwright reports</li>
+                    <li><b>Screenshot on Failure:</b>  Automatic screenshot capture for failed tests</li>
+                    <li><b>Parallel Execution:</b>  Support for parallel test execution</li>
+                    <li><b>Headed/Headless Mode:</b>  Configurable browser modes</li>
+                    <li><b>Multi-Browser Support:</b> Chrome, Firefox, Safari (WebKit)</li>
+                    <li><b>CI/CD Ready:</b> GitHub Actions included</li>
 
-            <p class="note">
-                Quick start: add the Gatling Maven plugin, place simulations in <code>src/gatling/simulations</code>, provide feeders in <code>src/gatling/resources</code>, then run <code>mvn gatling:test</code>.
-            </p>
-            <p><i>Technology Used :</i> Java , Gradle . BDD ,TestNg, Gatling</p>
-            <p> <button class="read-more-button" onclick="window.location.href='performance.html'">Read
-                More</button></p>
+                </ul>
+            </div>
+
+            <div class="project-footer">
+                <a href="playwright.html" class="read-more-button" target="_blank" rel="noopener noreferrer" aria-label="Read More">Read More</a>
+                <a href="https://contactkrvineet.github.io/playwright-bdd-framework/" class="read-more-button" target="_blank" rel="noopener noreferrer" aria-label="Live Report">Live Report</a>
+                <a href="https://github.com/contactkrvineet/playwright-bdd-framework" class="read-more-button" target="_blank" rel="noopener noreferrer" aria-label="View Project">View Project</a>
+
+            </div>
         </div>
+
+        <!-- Example updated project markup -->
+        <div class="project">
+            <div class="project-header">
+                <h3 class="project-title">
+                    <span class="title-text">REST API Development Framework</span>
+                    <span class="tag">a framework where anyone can spin up / bootstrap their own REST API quickly</span>
+                </h3>
+            </div>
+
+            <div class="project-body">
+                <p>A comprehensive test automation framework combining Playwright with BDD (Cucumber) and multiple reporting options.<br></p>
+                <p>Features :</p>
+                <ul class="tick-list" aria-label="Project features">
+                    <li><b>Dual Test Approach:</b> Playwright or BDD Cucumber</li>
+                    <li><b>Multiple Reports:</b> Allure, Cucumber HTML, Playwright reports</li>
+                    <li><b>Screenshot on Failure:</b>  Automatic screenshot capture for failed tests</li>
+                    <li><b>Parallel Execution:</b>  Support for parallel test execution</li>
+                    <li><b>Headed/Headless Mode:</b>  Configurable browser modes</li>
+                    <li><b>Multi-Browser Support:</b> Chrome, Firefox, Safari (WebKit)</li>
+                    <li><b>CI/CD Ready:</b> GitHub Actions included</li>
+
+                </ul>
+            </div>
+
+            <div class="project-footer">
+                <a href="playwright.html" class="read-more-button" target="_blank" rel="noopener noreferrer" aria-label="Read More">Read More</a>
+                <a href="https://contactkrvineet.github.io/playwright-bdd-framework/" class="read-more-button" target="_blank" rel="noopener noreferrer" aria-label="Live Report">Live Report</a>
+                <a href="https://github.com/contactkrvineet/playwright-bdd-framework" class="read-more-button" target="_blank" rel="noopener noreferrer" aria-label="View Project">View Project</a>
+
+            </div>
+        </div>
+
+
+
         <div class="project">
             <h3>Gatling Performance Framework</h3>
             <p>
