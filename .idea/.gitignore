@@ -3,3 +3,18 @@
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+# IntelliJ IDEA
+/.idea/
+/*.iml
+*.iws
+*.ipr
+workspace.xml
+tasks.xml
+usage.statistics.xml
+shelf/
+out/
+
+# Optional: macOS
+.DS_Store
+

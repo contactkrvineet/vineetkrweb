@@ -850,3 +850,74 @@ th {
         @media (prefers-reduced-motion: reduce) {
           a, .btn, .main-nav a { transition: none; }
         }
+
+
+<!-- `styles.css` -->
+:root{
+  --accent: #1f8fa7;
+  --accent-2: #2bb673;
+  --muted: #6b7280;
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(245,247,250,0.9));
+  --glass-border: rgba(31,143,167,0.12);
+}
+
+.project{
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  box-shadow: 0 6px 18px rgba(17,24,39,0.06);
+  transition: transform .18s ease, box-shadow .18s ease;
+  margin-bottom: 1rem;
+}
+
+.project:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(17,24,39,0.10);
+}
+
+/* Enhanced project title */
+.project-title{
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+/* small visual bar / icon */
+.project-title::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 2px 6px rgba(31,143,167,0.18);
+  flex: 0 0 auto;
+}
+
+/* right-side tag */
+.project-title .tag{
+  margin-left: auto;
+  background: rgba(43,182,115,0.12);
+  color: var(--accent-2);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(43,182,115,0.08);
+}
+
+/* small responsive tweak */
+@media (max-width: 560px){
+  .project-title{ font-size: 1.05rem; }
+  .project{ padding: 0.9rem; }
+}
+
+/* file: `styles.css` */
+#projects-heading {
+  color: #7c3aed; /* purple */
+}
