@@ -1,0 +1,1375 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #000; /* Set background to black */
+  color: #fff; /* Set text color to white */
+  line-height: 1.45;
+
+}
+/* Layout & spacing improvements for readability and to avoid footer overlap */
+:root{
+  --container-max: 1100px;
+  --page-gutter: 20px;
+  --footer-height: 64px; /* adjust to match footer height */
+}
+
+/* center main content and constrain width */
+.container {
+  max-width: var(--container-max);
+  padding: 28px 0;
+  margin-bottom: 24px;
+}
+
+header {
+  background-color: #111; /* Darker shade for the header */
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+
+/* consistent section spacing */
+section {
+  padding: 36px 0;
+}
+
+/* spacing for headings and lead paragraph */
+h1, h2, h3 { margin-top: 0; margin-bottom: 12px; }
+.lead { display: block; margin: 8px 0 16px; font-size: 1.03rem; }
+
+
+/* ensure footer doesn't overlap content (footer is fixed in other snippets) */
+footer {
+  height: var(--footer-height);
+  line-height: var(--footer-height);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+}
+
+/* friendly mobile padding */
+@media (max-width: 720px) {
+  :root { --page-gutter: 14px; }
+  section { padding: 24px 0; }
+  header { padding: 20px 0; margin-bottom: 18px; }
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li button {
+  background-color: #28a745; /* Green background */
+  color: #fff;
+  cursor: pointer;
+}
+
+section {
+  padding: 20px;
+  margin: 20px;
+  background-color: #222; /* Dark gray for section background */
+  border-radius: 8px; /* Optional: Add some rounded corners */
+}
+
+.project {
+  background-color: #333; /* Darker gray for project backgrounds */
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px; /* Optional: Add some rounded corners */
+}
+
+.profile-img {
+  width: 150px; /* Adjust size as needed */
+  height: auto;
+  border-radius: 50%; /* Make image circular */
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.button-design {
+  background-color: #28a745; /* Green background */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 20px auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.blog-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+footer {
+  background-color: #111; /* Darker shade for the footer */
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer .social-links {
+  margin-top: 10px;
+}
+
+footer .social-links a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+footer .social-links a:hover {
+  text-decoration: underline;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #555; /* Dark gray border */
+  border-radius: 5px;
+  background-color: #333; /* Dark gray input background */
+  color: #fff; /* White text for inputs */
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: #bbb; /* Lighter gray for placeholders */
+}
+
+form button {
+  background-color: #555; /* Medium gray for button */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+form button:hover {
+  background-color: #777; /* Slightly lighter gray on hover */
+}
+
+.read-more-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.read-more-button:hover {
+  background-color: darkgreen;
+}
+
+.book-cover {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Adjust the gap between buttons if needed */
+  justify-content: center; /* Centers the buttons horizontally */
+  margin: 20px 0; /* Adjust the margin if needed */
+}
+
+.blog-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#books {
+  padding: 20px;
+  text-align: center;
+}
+
+.book {
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+}
+
+.book-cover {
+  width: 200px; /* Adjust the width as needed */
+  height: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.book p {
+  margin-top: 10px;
+  font-size: 18px;
+}
+#image-banner {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.banner-image {
+  width: 60%;
+  height: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Add to `styles.css` */
+.contact-info > span:first-of-type {
+  color: #28a745; /* green color */
+}
+
+<!-- Add to `styles.css` -->
+.contact-summary .lead {
+  color: #28a745;
+  display: block;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+.contact-summary .profession-summary {
+  color: #222;
+  margin: 6px 0 10px;
+}
+.more-link {
+  background: #28a745;
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.more-link:hover {
+  opacity: 0.9;
+}
+
+  .info-section {
+    background: #f7fbf7;
+    border-left: 4px solid #28a745;
+    padding: 18px;
+    margin: 20px 0;
+    border-radius: 6px;
+    color: #073017;
+  }
+  .info-section h2 {
+    margin: 0 0 8px;
+    color: #106e2f;
+    font-size: 1.25rem;
+  }
+  .info-section .lead {
+    color: #28a745;
+    margin: 0 0 8px;
+    font-style: italic;
+  }
+  .ks-list {
+    margin: 8px 0 12px;
+    padding-left: 1.15rem;
+  }
+  .ks-list li {
+    margin: 6px 0;
+  }
+  .cta {
+    margin-top: 10px;
+  }
+  .info-link {
+    display: inline-block;
+    background: #28a745;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 8px;
+  }
+  .info-link--alt {
+    background: #0b6b3a;
+  }
+  .info-link:focus, .info-link:hover {
+    opacity: 0.95;
+  }
+
+
+
+  /* single, cleaned .info-section rule */
+  .info-section {
+    position: relative;        /* stays in normal flow */
+    z-index: 1;                /* ensure proper stacking without overlaying other elements */
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 18px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #072017 0%, #0a2a1b 100%);
+    border-left: 4px solid #28a745;
+    color: #e6f7ea;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    box-sizing: border-box;
+
+    /* prevent the section from growing past the viewport */
+    max-height: 60vh;         /* change to 50-70vh as needed */
+    overflow-y: auto;        /* enable internal scrolling */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on mobile */
+  }
+
+  /* optional: inner container padding */
+  .info-section .container {
+    padding: 0 12px;
+  }
+
+  /* visible custom scrollbar (optional) */
+  .info-section::-webkit-scrollbar {
+    width: 10px;
+  }
+  .info-section::-webkit-scrollbar-thumb {
+    background: rgba(40,167,69,0.25);
+    border-radius: 6px;
+  }
+  .info-section::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* ensure section layout rules don't conflict */
+  section.info-section {
+    width: auto;
+    margin-bottom: 20px;
+  }
+
+
+
+#about {
+  /* allow the section to span full width */
+  max-width: none;        /* override earlier constraint */
+  width: 100%;
+  margin: 32px 0;         /* vertical spacing only */
+  padding: 28px 20px;     /* keep comfortable side gutters */
+  background: linear-gradient(180deg, #ffffff 0%, #f6fbf6 100%);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(8, 30, 18, 0.08);
+  color: #073017;
+  box-sizing: border-box;
+  border-left: 6px solid rgba(40,167,69,0.12);
+}
+
+/* inner wrapper constrains content for readability */
+.about-inner {
+  max-width: 920px;       /* original readable width */
+  margin: 0 auto;         /* center content */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* keep typography and spacing consistent */
+#about h2 { margin-bottom: 12px; }
+#about p { margin-bottom: 14px; }
+
+/* responsive: reduce side padding on small screens */
+@media (max-width: 720px) {
+  #about { padding: 18px 12px; margin: 18px 0; }
+  .about-inner { padding: 0; }
+}
+
+  /* Roles/responsibilities list turned into readable cards */
+  #about ul {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 10px;
+  }
+
+  /* Individual list items */
+  #about li {
+    background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+    border-left: 4px solid #28a745;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #0a2a15;
+    font-weight: 500;
+    box-shadow: 0 6px 14px rgba(7, 32, 18, 0.03);
+  }
+
+  /* small helper for the scroll prompt */
+  #about p:last-of-type {
+    margin-top: 16px;
+    font-size: 0.95rem;
+    color: #2a5b3f;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 720px) {
+    #about {
+      margin: 18px;
+      padding: 18px;
+    }
+    #about h2 {
+      font-size: 1.35rem;
+    }
+    #about ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+<!-- add the following to `styles.css` -->
+<style>
+/* styles.css */
+.roles-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.roles-list li {
+  position: relative;
+  padding: 12px 14px 12px 52px; /* room for custom bullet */
+  background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+  border-left: 4px solid rgba(40,167,69,0.12);
+  border-radius: 8px;
+  color: #0a2a15;
+  font-weight: 500;
+  box-shadow: 0 6px 14px rgba(7,32,18,0.03);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+/
+.roles-list li {
+  --bullet-size: 18px;
+  --bullet-left: 14px;   /* distance from item left edge to bullet */
+  --bullet-gap: 14px;    /* gap between bullet and text */
+
+  position: relative;
+  padding: 12px 14px 12px calc(var(--bullet-left) + var(--bullet-size) + var(--bullet-gap));
+  background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+  border-left: 4px solid rgba(40,167,69,0.12);
+  border-radius: 8px;
+  color: #0a2a15;
+  font-weight: 500;
+  box-shadow: 0 6px 14px rgba(7,32,18,0.03);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  line-height: 1.45;     /* improve wrapping */
+  z-index: 1;            /* keep text above the bullet */
+  word-break: break-word;
+}
+
+/roles-list {
+   list-style: none;
+   margin: 12px 0 0;
+   padding: 0;
+   display: grid;
+   gap: 10px;
+ }
+
+ /* card-like list item and spacing for the custom bullet */
+ .roles-list li {
+   --bullet-size: 18px;
+   --bullet-left: 14px;
+   --bullet-gap: 14px;
+
+   position: relative;
+   padding: 12px 14px 12px calc(var(--bullet-left) + var(--bullet-size) + var(--bullet-gap));
+   background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+   border-left: 4px solid rgba(40,167,69,0.12);
+   border-radius: 8px;
+   color: #0a2a15;
+   font-weight: 500;
+   box-shadow: 0 6px 14px rgba(7,32,18,0.03);
+   transition: transform 160ms ease, box-shadow 160ms ease;
+   line-height: 1.45;
+   isolation: isolate; /* create a stacking context so pseudo is rendered properly */
+ }
+
+ .roles-list {
+   list-style: none;
+   margin: 12px 0 0;
+   padding: 0;
+   display: grid;
+   gap: 10px;
+   box-sizing: border-box;
+ }
+
+ .roles-list li {
+   --bullet-size: 18px;
+   --bullet-left: 14px;   /* distance from item left edge to bullet */
+   --bullet-gap: 14px;    /* gap between bullet and text */
+
+   position: relative;
+   isolation: isolate; /* create stacking context so pseudo renders correctly */
+   padding: 12px 14px 12px calc(var(--bullet-left) + var(--bullet-size) + var(--bullet-gap));
+   background: linear-gradient(180deg, rgba(40,167,69,0.03) 0%, rgba(40,167,69,0.01) 100%);
+   border-left: 4px solid rgba(40,167,69,0.12);
+   border-radius: 8px;
+   color: #0a2a15;
+   font-weight: 500;
+   box-shadow: 0 6px 14px rgba(7,32,18,0.03);
+   line-height: 1.45;
+   word-break: break-word;
+ }
+
+
+
+/* Ensure section has its own stacking context */
+#expertise {
+  position: relative;
+  z-index: 1;
+  padding: 12px 0;
+}
+
+/* Make the section header clearly visible and above other content */
+#expertise h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.98), rgba(240,255,245,0.95));
+  border-left: 6px solid rgba(40,167,69,0.22);
+  box-shadow: 0 6px 18px rgba(8,30,18,0.04);
+  color: #083018;              /* high contrast */
+  font-size: 1.18rem;
+  font-weight: 700;
+  line-height: 1;
+  position: relative;
+  z-index: 10;                 /* keep above tables/other content */
+}
+
+/* decorative badge stays behind text but above background */
+#expertise h2::before {
+  content: "";
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #6ef58a 0%, #28a745 100%);
+  box-shadow: 0 6px 14px rgba(8,30,18,0.12), inset 0 -6px 12px rgba(255,255,255,0.06);
+  position: relative;
+  z-index: 9;
+}
+
+/* Table container: provide scroll on small screens to avoid overlap */
+#expertise .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: transparent;
+  border-radius: 6px;
+}
+
+/* Table base rules */
+#expertise table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  background: #ffffff;
+  margin-top: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Visible, high-contrast table header */
+#expertise thead th {
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 700;
+  color: #052814; /* dark green for contrast */
+  background: linear-gradient(90deg, rgba(240,255,245,1), rgba(235,250,241,1));
+  border-bottom: 2px solid rgba(40,167,69,0.08);
+  white-space: normal;
+  word-break: break-word;
+  position: relative;
+  z-index: 5;
+}
+
+/* Optional: keep header visible when scrolling long tables */
+#expertise thead th {
+  position: sticky;
+  top: 0;      /* keeps the header pinned inside the .table-wrap */
+  backdrop-filter: saturate(1) blur(4px); /* subtle clarity when pinned */
+}
+
+/* Table cells */
+#expertise td {
+  padding: 10px 14px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(8,30,18,0.04);
+  color: #123622;
+  background: transparent;
+}
+
+
+
+        /* Scoped styles for the Certifications section */
+        #certifications {
+          position: relative;
+          z-index: 2;
+          padding: 14px 0 28px;
+        }
+
+        #certifications h2 {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          padding: 10px 14px;
+          margin: 12px 0;
+          border-radius: 10px;
+          background: linear-gradient(90deg, rgba(255,255,255,0.98), rgba(240,255,245,0.95));
+          border-left: 6px solid rgba(40,167,69,0.18);
+          box-shadow: 0 6px 18px rgba(8,30,18,0.03);
+          color: #083018;
+          font-size: 1.18rem;
+          font-weight: 700;
+          line-height: 1;
+          position: relative;
+          z-index: 20;
+        }
+
+        /* Reuse table-wrap pattern for horizontal scroll on small screens */
+        #certifications .table-wrap {
+          width: 100%;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          margin-top: 8px;
+          border-radius: 8px;
+          background: transparent;
+        }
+
+        /* Table styling scoped to certifications */
+        #certifications table {
+          width: 100%;
+          border-collapse: collapse;
+          table-layout: auto;
+          background: #fff;
+        }
+
+        #certifications thead th {
+          text-align: left;
+          padding: 12px 14px;
+          font-weight: 700;
+          color: #052814;
+          background: linear-gradient(90deg, rgba(245,255,248,1), rgba(235,250,241,1));
+          border-bottom: 2px solid rgba(40,167,69,0.06);
+          position: sticky;
+          top: 0;
+          z-index: 25;
+        }
+
+        #certifications tbody td {
+          padding: 10px 14px;
+          vertical-align: top;
+          border-bottom: 1px solid rgba(8,30,18,0.04);
+          color: #123622;
+          word-break: break-word;
+        }
+
+        /* small screen adjustments */
+        @media (max-width: 600px) {
+          #certifications h2 { font-size: 1rem; padding: 8px 10px; }
+          #certifications thead th, #certifications tbody td { padding: 8px; font-size: 0.95rem; }
+        }
+
+
+
+/* css */
+        /* Add to or replace in `styles.css` */
+
+        /* Theme variables */
+        :root{
+          --color-text: #111827;
+          --color-bg: #ffffff;
+          --color-link: #0a66c2;        /* primary link color */
+          --color-link-hover: #034f9a;  /* hover/darker */
+          --color-cta: #0b756d;         /* CTA bg (buttons) */
+          --color-cta-hover: #09594f;
+          --color-muted: #6b7280;
+          --focus-ring: rgba(10,102,194,0.18);
+          --transition-fast: 160ms;
+        }
+
+        /* Base link styles: clean, accessible and animated underline */
+        a {
+          color: var(--color-link);
+          text-decoration: none;
+          background-image: linear-gradient(currentColor, currentColor);
+          background-size: 0 2px;
+          background-repeat: no-repeat;
+          background-position: 0 100%;
+          transition: background-size var(--transition-fast) ease, color var(--transition-fast) ease;
+          word-break: break-word; /* wrap long URLs */
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        a:hover,
+        a:focus {
+          color: var(--color-link-hover);
+          background-size: 100% 2px;
+        }
+
+        /* Visible focus for keyboard users */
+        a:focus-visible {
+          outline: 4px solid var(--focus-ring);
+          outline-offset: 3px;
+          border-radius: 4px;
+        }
+
+        /* Navigation links */
+        .main-nav a {
+          color: var(--color-text);
+          padding: 8px 10px;
+          display: inline-block;
+          font-weight: 600;
+          border-radius: 6px;
+          transition: background-color var(--transition-fast) ease, color var(--transition-fast) ease;
+        }
+
+        .main-nav a:hover,
+        .main-nav a:focus {
+          background-color: rgba(11,117,109,0.06);
+          color: var(--color-cta);
+        }
+
+        /* Button-like links */
+        .btn {
+          display: inline-block;
+          background: var(--color-cta);
+          color: #fff;
+          padding: 8px 14px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: background-color var(--transition-fast) ease, transform 60ms ease;
+        }
+
+        .btn:hover,
+        .btn:focus {
+          background: var(--color-cta-hover);
+          transform: translateY(-1px);
+        }
+
+        .btn-outline {
+          background: transparent;
+          color: var(--color-cta);
+          border: 1px solid rgba(11,117,109,0.14);
+          padding: 7px 13px;
+        }
+
+        .btn-outline:hover,
+        .btn-outline:focus {
+          background: rgba(11,117,109,0.06);
+        }
+
+        /* Small link variant */
+        .btn-link {
+          background: transparent;
+          color: var(--color-link);
+          padding: 0;
+          font-weight: 600;
+        }
+
+        /* Info-style inline links (reports etc.) */
+        .info-link {
+          color: var(--color-cta);
+          border-bottom: 1px dashed rgba(11,117,109,0.18);
+          padding-bottom: 2px;
+        }
+
+        /* Footer / social links */
+        .site-footer a {
+          color: var(--color-muted);
+          margin-left: 10px;
+          transition: color var(--transition-fast) ease;
+        }
+
+        .site-footer a:hover,
+        .site-footer a:focus {
+          color: var(--color-link);
+        }
+
+        /* Improve readability of links inside code/pre blocks */
+        pre, pre code {
+          white-space: pre-wrap;
+          word-break: break-word;
+          overflow-wrap: anywhere;
+        }
+
+        /* Small utility: ensure images inside links look good */
+        a img {
+          vertical-align: middle;
+          border-style: none;
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+          a, .btn, .main-nav a { transition: none; }
+        }
+
+
+<!-- `styles.css` -->
+:root{
+  --accent: #1f8fa7;
+  --accent-2: #2bb673;
+  --muted: #6b7280;
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(245,247,250,0.9));
+  --glass-border: rgba(31,143,167,0.12);
+}
+
+.project{
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  box-shadow: 0 6px 18px rgba(17,24,39,0.06);
+  transition: transform .18s ease, box-shadow .18s ease;
+  margin-bottom: 1rem;
+}
+
+.project:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(17,24,39,0.10);
+}
+
+/* Enhanced project title */
+.project-title{
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+/* small visual bar / icon */
+.project-title::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 2px 6px rgba(31,143,167,0.18);
+  flex: 0 0 auto;
+}
+
+/* right-side tag */
+.project-title .tag{
+  margin-left: auto;
+  background: rgba(43,182,115,0.12);
+  color: var(--accent-2);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(43,182,115,0.08);
+}
+
+/* small responsive tweak */
+@media (max-width: 560px){
+  .project-title{ font-size: 1.05rem; }
+  .project{ padding: 0.9rem; }
+}
+
+/* file: `styles.css` */
+#projects-heading {
+  color: #7c3aed; /* purple */
+}
+/* file: `styles.css` */
+/* Enhanced styling for the section heading */
+#projects-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.05;
+  padding: 0.18rem 0.5rem;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 45%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* gradient text */
+  position: relative;
+  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
+  margin-bottom: 0.8rem;
+}
+
+/* small colored marker to the left */
+#projects-heading::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, #ff9a8b 0%, #ffd166 100%);
+  box-shadow: 0 6px 14px rgba(167, 139, 250, 0.12);
+  transform: translateY(-1px);
+}
+
+/* subtle underline / accent bar */
+#projects-heading::after {
+  content: "";
+  display: block;
+  width: 140px;
+  max-width: 36%;
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(124,58,237,0.18), rgba(6,182,212,0.12));
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  transform-origin: left center;
+  transition: transform 220ms ease, opacity 220ms ease;
+  opacity: 0.95;
+}
+
+/* hover / focus affordance */
+#projects-heading:hover,
+#projects-heading:focus {
+  transform: translateY(-3px);
+  filter: saturate(1.05);
+  text-decoration: none;
+}
+#projects-heading:hover::after,
+#projects-heading:focus::after {
+  transform: scaleX(1.06);
+  opacity: 1;
+  box-shadow: 0 10px 30px rgba(99,102,241,0.08);
+}
+
+/* optional small descriptor to the right using data attribute (if added later) */
+#projects-heading[data-subtitle] {
+  padding-right: 0.9rem;
+}
+#projects-heading[data-subtitle]::before { margin-left: 0; }
+
+/* responsive tweaks */
+@media (max-width: 520px) {
+  #projects-heading {
+    font-size: 1.1rem;
+    gap: 0.45rem;
+    padding: 0.12rem 0.35rem;
+  }
+  #projects-heading::after {
+    width: 100px;
+    bottom: -10px;
+    height: 5px;
+  }
+}
+
+
+.project-header { display: flex; align-items: center; }
+
+.project-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.08rem 0;
+  line-height: 1.05;
+}
+
+/* visual marker on the left for spacing */
+.project-title::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  box-shadow: 0 6px 14px rgba(124,58,237,0.08);
+  flex: 0 0 auto;
+  margin-left: 0.25rem;
+}
+
+/* main text: allow shrinking and show ellipsis instead of wrapping */
+.project-title .title-text {
+  flex: 1 1 auto;
+  min-width: 0; /* allows flex child to truncate correctly */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 700;
+  color: #2b2f38;
+  padding-left: 0.35rem; /* added left gap for better spacing */
+}
+
+/* preserve tag on single line and anchor it to the right */
+.project-title .tag {
+  flex: 0 0 auto;
+  margin-left: 0.6rem;
+  background: linear-gradient(90deg, rgba(167,139,250,0.12), rgba(6,182,212,0.08));
+  color: #7c3aed;
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 0.18rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(124,58,237,0.06);
+  white-space: nowrap;
+}
+
+/* responsive: allow wrapping on narrow screens so text remains readable */
+@media (max-width: 520px) {
+  .project-title .title-text { white-space: normal; overflow: visible; text-overflow: clip; }
+  .project-title { gap: 0.5rem; }
+  .project-title::before { transform: translateY(-1px); }
+}
+
+/* css */
+/* Fix: make title visible on dark/black page */
+.project {
+  /* darker card that still contrasts with page black */
+  background: linear-gradient(180deg, #0f1113 0%, #151618 100%);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: #e6eef3; /* fall-back content color inside the card */
+}
+
+/* Ensure title text is light and legible (overrides earlier dark color) */
+.project-title .title-text {
+  color: #ffffff !important;
+  font-weight: 800;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  line-height: 1.05;
+}
+
+/* Brighten the left marker so it is visible on dark background */
+.project-title::before {
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%) !important;
+  box-shadow: 0 6px 18px rgba(124,58,237,0.18);
+}
+
+/* Adjust tag for better contrast on dark cards */
+.project-title .tag {
+  background: rgba(255,255,255,0.04);
+  color: #dbeafe; /* light purple */
+  border: 1px solid rgba(255,255,255,0.06);
+  font-weight: 700;
+}
+
+/* Optional: slightly lift card on hover to emphasize readable content */
+.project:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+}
+
+/* css - add to `styles.css` */
+/* Make title and tag sit together (smaller gap) and keep ellipsis */
+.project-header { display: flex; align-items: center; }
+
+/* Let the title container size to its content instead of forcing full width */
+.project-title {
+  display: flex;
+  align-items: center;
+  gap: 0.36rem;       /* smaller gap between marker / title / tag */
+  width: auto;        /* important: prevents the tag from being pushed far right */
+  padding: 0.04rem 0;
+}
+
+/* marker on the left stays the same */
+.project-title::before { margin-left: 0.25rem; }
+
+/* Title: allow shrinking, truncate long text, remove large left padding */
+.project-title .title-text {
+  flex: 0 1 auto;     /* do not grow to fill the row */
+  min-width: 0;       /* allow truncation inside flex */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 700;
+  color: inherit;
+  padding-left: 0.12rem; /* small left gap */
+}
+
+/* Tag: keep compact and immediately after title */
+.project-title .tag {
+  flex: 0 0 auto;
+  margin-left: 0;     /* ensure no extra automatic spacing */
+  padding: 0.18rem 0.4rem;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+/* Optional: if you want the tag to sit at the far right again, uncomment this */
+/*
+.project-title { width: 100%; }
+.project-title .tag { margin-left: auto; }
+*/
+
+/* Responsive: allow wrapping on narrow screens */
+@media (max-width: 520px) {
+  .project-title { gap: 0.5rem; }
+  .project-title .title-text { white-space: normal; overflow: visible; text-overflow: clip; }
+}
+
+
+.tick-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+/* Each item uses flex so the pseudo tick and content align */
+.tick-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-left: 0; /* no browser bullet space */
+  color: inherit;
+  line-height: 1.35;
+}
+
+/* Green tick before each li -- accessible and crisp */
+.tick-list li::before {
+  content: "✔";
+  color: #16a34a;              /* green tick */
+  font-weight: 700;
+  font-size: 1rem;
+  flex: 0 0 auto;
+  margin-top: 0.08rem;        /* vertically center with text */
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.05));
+}
+
+/* Optional: slightly dim tick on reduced-motion/hover state */
+.tick-list li:hover::before {
+  transform: translateY(-1px);
+  transition: transform 120ms ease;
+}
+
+/* If you prefer an SVG icon (crisper on all sizes), swap the ::before to use a data-URI background:
+.tick-list li::before {
+  content: "";
+  width: 18px; height: 18px; flex: 0 0 auto;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2316a34a'><path d='M20.285 5.709a1 1 0 0 1 0 1.414l-10 10a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L9 14.586l9.293-9.293a1 1 0 0 1 1.414 0z'/></svg>") center/contain no-repeat;
+}
+*/
+
+<style>
+/* Knowledge-sharing card: keep it above any page shadows and improve readability */
+#knowledge-sharing {
+  position: relative;
+  z-index: 10; /* ensure it's not hidden behind elevated elements */
+  padding: 1.25rem 1rem;
+}
+
+/* Inner card to improve contrast and spacing */
+.ks-card {
+  max-width: 980px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  padding: 1.05rem 1.1rem;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+  color: inherit;
+  backdrop-filter: blur(6px) saturate(115%); /* optional, modern browsers */
+}
+
+/* Heading inside the card */
+.ks-card > h2 {
+  margin: 0 0 0.45rem 0;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+/* Intro paragraph */
+.ks-card .lead,
+.ks-card .ks-intro {
+  margin: 0 0 0.6rem 0;
+  color: rgba(0,0,0,0.85);
+  font-size: 0.98rem;
+}
+
+/* List styling with better spacing and accessible contrast */
+.ks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.6rem 0;
+  display: grid;
+  gap: 0.45rem;
+}
+.ks-list li {
+  padding-left: 0;
+  line-height: 1.35;
+  color: rgba(0,0,0,0.8);
+}
+
+/* subtle left marker for list items (green check optional) */
+.ks-list li::before {
+  content: "✔";
+  color: #16a34a;
+  font-weight: 700;
+  margin-right: 0.6rem;
+  flex: 0 0 auto;
+}
+
+/* CTA links alignment and spacing */
+.cta {
+  margin-top: 0.6rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* reuse existing info-link styles where possible; add fallback */
+.info-link {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 0.45rem 0.85rem;
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* alternate CTA */
+.info-link--alt {
+  background: rgba(0,0,0,0.04);
+}
+
+/* Responsive: tighten padding on small screens */
+@media (max-width: 640px) {
+  #knowledge-sharing { padding: 0.85rem 0.6rem; }
+  .ks-card { padding: 0.8rem; }
+  .ks-card > h2 { font-size: 1.15rem; }
+}
+
+/* css - add to `styles.css` */
+
+/* Ensure the knowledge section sits above page shadows */
+#knowledge-sharing {
+  position: relative;
+  z-index: 60; /* higher than shadows/footers */
+  padding: 1.25rem 1rem;
+}
+
+/* Darker, higher-contrast card for readability on green backgrounds */
+#knowledge-sharing .ks-card {
+  background: linear-gradient(180deg, rgba(2,6,8,0.72), rgba(6,18,14,0.72));
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #e6f7ea; /* light text for high contrast */
+  box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+  padding: 1.05rem 1.1rem;
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* Headings and intro copy: force light color and good contrast */
+#knowledge-sharing .ks-card > h2,
+#knowledge-sharing .ks-card .lead,
+#knowledge-sharing .ks-card .ks-intro {
+  color: #e6f7ea;
+}
+
+/* List items readable on dark card */
+#knowledge-sharing .ks-list,
+#knowledge-sharing .ks-list li {
+  color: rgba(230,247,234,0.97);
+  background: transparent;
+}
+
+/* Green tick: brighter and more visible on dark card */
+#knowledge-sharing .ks-list li::before {
+  content: "✔";
+  color: #86efac; /* brighter mint green */
+  font-weight: 700;
+  margin-right: 0.6rem;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.6));
+}
+
+/* CTA links: visible buttons with subtle contrast */
+#knowledge-sharing .info-link {
+  background: rgba(255,255,255,0.06);
+  color: #e6f7ea;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+#knowledge-sharing .info-link--alt {
+  background: rgba(255,255,255,0.03);
+}
+
+/* Focus states for keyboard users */
+#knowledge-sharing .info-link:focus-visible {
+  outline: 3px solid rgba(134,239,172,0.22);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Improve contrast inside details/pre blocks */
+#knowledge-sharing .bdd-example summary,
+#knowledge-sharing .bdd-example pre {
+  color: #d9fbe6;
+}
+#knowledge-sharing .bdd-example pre {
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  padding: 0.6rem;
+}
+
+/* Optional: increase max-height so content isn't cramped */
+#knowledge-sharing .ks-card {
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+/* Visible custom scrollbar that matches theme */
+#knowledge-sharing .ks-card::-webkit-scrollbar { width: 10px; }
+#knowledge-sharing .ks-card::-webkit-scrollbar-thumb { background: rgba(134,239,172,0.14); border-radius: 8px; }
+#knowledge-sharing .ks-card::-webkit-scrollbar-track { background: transparent; }
+
+/* css */
+.project-body .tick-list {
+  margin-bottom: 0.75rem; /* creates visual space after the list */
+}
