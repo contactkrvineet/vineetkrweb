@@ -1,3 +1,71 @@
+/* Make the knowledge-sharing section visually bolder and more compact */
+#knowledge-sharing {
+  background: #f0f4fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem auto 1.5rem auto;
+  max-width: 700px;
+  color: #1a2233;
+}
+#knowledge-sharing h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.7rem;
+  color: #0a1a33;
+  font-weight: 700;
+}
+#knowledge-sharing .lead {
+  font-size: 1rem;
+  color: #2a3550;
+  margin-bottom: 0.5rem;
+}
+#knowledge-sharing .ks-intro {
+  font-size: 0.98rem;
+  color: #2a3550;
+  margin-bottom: 0.5rem;
+}
+#knowledge-sharing .ks-list {
+  font-size: 0.97rem;
+  margin-bottom: 0.5rem;
+}
+#knowledge-sharing .cta {
+  margin-top: 0.5rem;
+}
+#knowledge-sharing .info-link,
+#knowledge-sharing .info-link--alt {
+  font-size: 0.97rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 6px;
+  background: #e3eaf6;
+  color: #0066cc;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  transition: background 0.2s;
+}
+#knowledge-sharing .info-link:hover,
+#knowledge-sharing .info-link--alt:hover {
+  background: #d0e0f7;
+}
+/* Profile photo in case study header - small and left-aligned */
+.header-profile-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.profile-photo-main {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  margin-right: 1rem;
+}
+.header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 /* ========================================
    MODERN PROFESSIONAL STYLING
    Tech Portfolio for Vineet Kumar

@@ -12,40 +12,44 @@
 <body>
     <header>
 
-        <h1>Vineet Kumar</h1>
+        <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
+        <span>contactkrvineet@gmail.com</span>
+        <span>+1 437-428-2199 | +1 301-979-5562</span>
         <div class="contact-info">
-            <span><strong>Email: </strong><a href="mailto:contactkrvineet@gmail.com" style="color: #ffd700; text-decoration: none;">contactkrvineet@gmail.com</a></span>
-            <span><strong>|| Cell: </strong><a href="tel:+14374282199" style="color: #ffd700; text-decoration: none;">+1 437-428-2199</a></span>
-            <span><strong>|| WhatsApp: </strong><a href="https://wa.me/19911620414" target="_blank" style="color: #ffd700; text-decoration: none;">+1 991-162-0414</a></span>
+            <span><b>QE Manager & Full-Stack SDET Architect</b> | <b>AI Evaluation Specialist</b> | <b>16 Years of
+                    Quality Innovation</b></span><br>
         </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="techExpertise.html">Expertise</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-            </ul>
-        </nav>
+        <div class="button-container">
+            <button class="button-design" onclick="location.href='index.html#projects'">View My Portfolio</button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="#projects">Automation Frameworks</a></li>
+                    <li><a href="playwright.html">Playwright BDD</a></li>
+                    <li><a href="performance.html">Performance Testing</a></li>
+                    <li><a href="restAssured.html">API Testing</a></li>
+                    <li><a href="about.html#expertise">Technical Skills</a></li>
+                    <li><a href="https://github.com/contactkrvineet" target="_blank">GitHub Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="button-design" onclick="location.href='blog.html'">Case Study</button>
+        </div>
     </header>
 
-    <section id="barcode">
-        <div class="barcodes">
-            <img src="imgBarcode.png" alt="Img bar code" class="book-cover">
-
-        </div>
-    </section>
+    <!-- Barcode section removed -->
     <section id="contact">
         <h2>Contact</h2>
         <form id="contact-form" onsubmit="sendEmail(event)">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" required aria-required="true">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required aria-required="true">
 
             <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
+            <textarea id="message" name="message" required aria-required="true"></textarea>
 
             <button type="submit">Send</button>
         </form>
