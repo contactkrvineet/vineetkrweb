@@ -436,6 +436,122 @@ nav {
   box-shadow: var(--shadow-md);
 }
 
+/* --- Hamburger menu styles (fix visibility) --- */
+.nav-toggle {
+  display: inline-block !important;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  margin-left: auto;
+  z-index: 1101;
+  position: relative;
+}
+.hamburger {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: var(--primary-color, #0066cc);
+  position: relative;
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: var(--primary-color, #0066cc);
+  position: absolute;
+  border-radius: 2px;
+  transition: transform 0.3s;
+}
+.hamburger::before {
+  top: -9px;
+}
+.hamburger::after {
+  top: 9px;
+}
+
+@media (min-width: 901px) {
+  .nav-toggle {
+    display: none !important;
+  }
+}
+
+/* Responsive nav */
+@media (max-width: 900px) {
+  .main-nav {
+    position: relative;
+  }
+  .nav-toggle {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    z-index: 1100;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+  .nav-links.nav-open {
+    display: flex !important;
+  }
+  .nav-links li {
+    display: block;
+    text-align: left;
+    margin: 0;
+  }
+  .nav-links a {
+    color: #28a745 !important; /* green */
+    padding: 1rem 2rem;
+    display: block;
+    border-radius: 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #e9ecef;
+  }
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Optional: Hide nav-toggle on large screens */
+@media (min-width: 901px) {
+  .nav-toggle {
+    display: none !important;
+  }
+  .nav-links {
+    display: flex !important;
+    position: static !important;
+    flex-direction: row !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  .nav-links li {
+    display: inline-block;
+    text-align: center;
+  }
+  .nav-links a {
+    color: var(--text-light, #fff);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    border-bottom: none;
+    font-size: 1rem;
+    background: none;
+  }
+}
+
 /* Button Container */
 .button-container {
   display: flex;
