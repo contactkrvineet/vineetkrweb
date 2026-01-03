@@ -36,19 +36,424 @@
 
 
     <section>
-        <div>
-            <h2>Rest Assured Framework Architecture and Steps :</h2>
-            <p><u>Test framework Setup and Execution Steps :</u></p>
-            <p>Technology Stack : Maven , Java , Cucumber , Rest Assured , Junit </p>
-            <p>Step 1 : Clone the Repo , copy the URL from Home Page </p>
-            <p>Step 2 : Import the file and run Maven clean install to download all the dependencies</p>
-            <p>Step 3 :Change the End point URL under test in the feature file </p>
-            <p>Step 4: Change the Payload under Json File folder and paste your payload</p>
-            <p>Steps 5 : Navigate to runner Tab and change the tag name from feature file to the tag under test</p>
-            <p>Step 6: Execute through Runner - run as Junit test</p>
-            <p>Step 7: View the result in Test Folder </p>
+        <article class="api-doc">
+            <h2>Rest API</h2>
+            <img src="https://github.com/contactkrvineet/vineetkr-api/workflows/Deploy%20API/badge.svg"
+                alt="Deploy Status" style="height:24px;vertical-align:middle;">
+            <p>A RESTful API built with <b>Node.js</b>, <b>Express</b>, and <b>MongoDB Atlas</b> for managing user data.
+                This project demonstrates modern API development practices with proper validation, error handling, and
+                cloud
+                deployment.</p>
+            <p><b>Live API:</b> <a href="https://api.vineetkr.com" target="_blank">https://api.vineetkr.com</a></p>
+            <hr>
+            <h3>📚 Table of Contents</h3>
+            <ul>
+                <li><a href="#technology-stack">Technology Stack</a></li>
+                <li><a href="#what-is-expressjs">What is Express.js?</a></li>
+                <li><a href="#project-features">Project Features</a></li>
+                <li><a href="#project-structure">Project Structure</a></li>
+                <li><a href="#api-endpoints">API Endpoints</a></li>
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#environment-variables">Environment Variables</a></li>
+                <li><a href="#deployment">Deployment</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#contributing">Contributing</a></li>
+            </ul>
+            <hr>
+            <h3 id="technology-stack">🛠️ Technology Stack</h3>
+            <b>Backend Framework</b>
+            <ul>
+                <li><a href="https://nodejs.org/" target="_blank">Node.js</a> (v18+)</li>
+                <li><a href="https://expressjs.com/" target="_blank">Express.js</a> (v4.18.2)</li>
+            </ul>
+            <b>Database</b>
+            <ul>
+                <li><a href="https://www.mongodb.com/cloud/atlas" target="_blank">MongoDB Atlas</a></li>
+                <li><a href="https://mongoosejs.com/" target="_blank">Mongoose</a> (v8.0.3)</li>
+            </ul>
+            <b>Validation & Security</b>
+            <ul>
+                <li><a href="https://zod.dev/" target="_blank">Zod</a> (v3.22.4)</li>
+                <li><a href="https://www.npmjs.com/package/cors" target="_blank">CORS</a> (v2.8.5)</li>
+                <li><a href="https://www.npmjs.com/package/dotenv" target="_blank">dotenv</a> (v16.3.1)</li>
+            </ul>
+            <b>Development Tools</b>
+            <ul>
+                <li><a href="https://nodemon.io/" target="_blank">Nodemon</a> (v3.0.2)</li>
+                <li><a href="https://github.com/features/actions" target="_blank">GitHub Actions</a></li>
+            </ul>
+            <b>Deployment</b>
+            <ul>
+                <li><a href="https://vercel.com/" target="_blank">Vercel</a></li>
+            </ul>
+            <hr>
+            <h3 id="what-is-expressjs">🚀 What is Express.js?</h3>
+            <p><b>Express.js</b> is a minimal and flexible Node.js web application framework that provides a robust set
+                of
+                features for building web and mobile applications. It's the de facto standard server framework for
+                Node.js.
+            </p>
+            <b>Why Express.js?</b>
+            <ol>
+                <li>Fast & Lightweight - Minimal overhead with high performance</li>
+                <li>Easy to Learn - Simple, intuitive API design</li>
+                <li>Middleware Support - Extensible through middleware functions</li>
+                <li>Robust Routing - Powerful routing mechanism for handling HTTP requests</li>
+                <li>Large Ecosystem - Thousands of npm packages compatible with Express</li>
+            </ol>
+            <b>How Express Creates APIs</b>
+            <pre><code>// 1. Import Express
+import express from "express";
+const app = express();
 
-        </div>
+// 2. Define Routes (API Endpoints)
+app.get("/api/users", (req, res) => {
+  res.json({ message: "Get all users" });
+});
+
+app.post("/api/users", (req, res) => {
+  res.json({ message: "Create user" });
+});
+
+// 3. Start Server
+app.listen(3000, () => {
+  console.log("API running on port 3000");
+});
+</code></pre>
+            <b>Key Concepts:</b>
+            <ul>
+                <li>Routes - URL paths that handle specific HTTP methods (GET, POST, PUT, DELETE)</li>
+                <li>Middleware - Functions that process requests before reaching route handlers</li>
+                <li>Request/Response - Objects containing HTTP request data and methods to send responses</li>
+                <li>JSON Support - Built-in parsing and sending of JSON data</li>
+            </ul>
+            <hr>
+            <h3 id="project-features">✨ Project Features</h3>
+            <ul>
+                <li>✅ <b>RESTful API Design</b> - Follows REST principles for resource management</li>
+                <li>✅ <b>CRUD Operations</b> - Create, Read, Update operations for user data</li>
+                <li>✅ <b>Input Validation</b> - Schema validation using Zod</li>
+                <li>✅ <b>Error Handling</b> - Centralized error handling middleware</li>
+                <li>✅ <b>MongoDB Integration</b> - Cloud database with Mongoose ODM</li>
+                <li>✅ <b>Environment Configuration</b> - Secure secret management</li>
+                <li>✅ <b>CORS Support</b> - Cross-origin requests enabled</li>
+                <li>✅ <b>Serverless Deployment</b> - Auto-scaling on Vercel</li>
+                <li>✅ <b>CI/CD Pipeline</b> - Automated deployment with GitHub Actions</li>
+                <li>✅ <b>Production Ready</b> - Optimized for serverless environments</li>
+            </ul>
+            <hr>
+            <h3 id="project-structure">📁 Project Structure</h3>
+            <pre><code>vineetkr-api/
+├── src/
+│   ├── server.js              # Express app setup & entry point
+│   ├── config/
+│   │   └── database.js        # MongoDB connection config
+│   ├── controllers/
+│   │   └── userController.js  # Business logic for user operations
+│   ├── models/
+│   │   └── User.js            # Mongoose schema & model
+│   ├── routes/
+│   │   └── userRoutes.js      # API route definitions
+│   └── validators/
+│       └── userValidator.js   # Zod validation schemas
+├── .github/
+│   └── workflows/
+│       └── deploy.yml         # GitHub Actions CI/CD
+├── .env                       # Local environment variables (gitignored)
+├── .env.example               # Template for environment variables
+├── .gitignore                 # Git ignore rules
+├── vercel.json                # Vercel deployment config
+├── package.json               # Dependencies & scripts
+└── README.md                  # This file
+</code></pre>
+            <b>Architecture Flow</b>
+            <pre><code>Request → Express Middleware → Router → Controller → Model → Database
+                                                              ↓
+Response ← JSON Response ← Controller ← Model ← Database Query
+</code></pre>
+            <hr>
+            <h3 id="api-endpoints">🔌 API Endpoints</h3>
+            <p><b>Base URL:</b> <code>https://api.vineetkr.com</code></p>
+            <b>Get All Users</b>
+            <pre><code>GET /api/users
+</code></pre>
+            <b>Response:</b>
+            <pre><code>{
+  "success": true,
+  "count": 2,
+  "data": [
+    {
+      "_id": "507f1f77bcf86cd799439011",
+      "name": "Vineet Kumar",
+      "email": "vineet@vineetkr.com",
+      "age": 25,
+      "createdAt": "2025-12-25T10:30:00.000Z",
+      "updatedAt": "2025-12-25T10:30:00.000Z"
+    }
+  ]
+}
+</code></pre>
+            <b>Get Single User</b>
+            <pre><code>GET /api/users?id=507f1f77bcf86cd799439011
+</code></pre>
+            <b>Create User</b>
+            <pre><code>POST /api/users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "age": 30
+}
+</code></pre>
+            <b>Response:</b>
+            <pre><code>{
+  "success": true,
+  "message": "User created successfully",
+  "data": {
+    "_id": "507f1f77bcf86cd799439011",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "age": 30
+  }
+}
+</code></pre>
+            <b>Update User</b>
+            <pre><code>PUT /api/users/:id
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "age": 32
+}
+</code></pre>
+            <hr>
+            <h3 id="getting-started">🏁 Getting Started</h3>
+            <b>Prerequisites</b>
+            <ul>
+                <li>Node.js v18 or higher (<a href="https://nodejs.org/" target="_blank">Download</a>)</li>
+                <li>npm or yarn package manager</li>
+                <li>MongoDB Atlas Account (<a href="https://www.mongodb.com/cloud/atlas/register" target="_blank">Sign
+                        up</a>)</li>
+                <li>Git (<a href="https://git-scm.com/" target="_blank">Download</a>)</li>
+            </ul>
+            <b>Installation</b>
+            <ol>
+                <li>Clone the repository
+                    <pre><code>git clone https://github.com/contactkrvineet/vineetkr-api.git
+cd vineetkr-api
+</code></pre>
+                </li>
+                <li>Install dependencies
+                    <pre><code>npm install
+</code></pre>
+                </li>
+                <li>Set up environment variables
+                    <pre><code># Copy example file
+cp .env.example .env
+
+# Edit .env and add your credentials
+nano .env
+</code></pre>
+                </li>
+                <li>Configure MongoDB Atlas
+                    <ul>
+                        <li>Create a cluster at <a href="https://www.mongodb.com/cloud/atlas" target="_blank">MongoDB
+                                Atlas</a></li>
+                        <li>Get your connection string:</li>
+                        <ul>
+                            <li>Click <b>Connect</b> → <b>Connect your application</b></li>
+                            <li>Copy the connection string</li>
+                        </ul>
+                        <li>Update Network Access:</li>
+                        <ul>
+                            <li>Go to <b>Network Access</b> → <b>Add IP Address</b></li>
+                            <li>Allow access from anywhere: <code>0.0.0.0/0</code> (for development)</li>
+                        </ul>
+                    </ul>
+                </li>
+                <li>Update .env file
+                    <pre><code>PORT=3000
+MONGODB_URI=mongodb+srv://credluster0.xxxxx.mongodb.net/your_database
+NODE_ENV=development
+ALLOWED_ORIGINS=http://localhost:3000
+</code></pre>
+                </li>
+            </ol>
+            <b>Running the Application</b>
+            <ul>
+                <li>Development mode (with auto-restart):
+                    <pre><code>npm run dev
+</code></pre>
+                </li>
+                <li>Production mode:
+                    <pre><code>npm start
+</code></pre>
+                </li>
+            </ul>
+            <p>The API will be running at: <b>http://localhost:3000</b></p>
+            <b>Testing the API</b>
+            <ul>
+                <li>Using cURL:
+                    <pre><code># Get all users
+curl http://localhost:3000/api/users
+
+# Create a user
+curl -X POST http://localhost:3000/api/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Test User", "email": "test@example.com", "age": 25}'
+</code></pre>
+                </li>
+                <li>Using Browser:<br>Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> to
+                    see the welcome message</li>
+                <li>Using Postman:
+                    <ol>
+                        <li>Import the API endpoints</li>
+                        <li>Set base URL to <code>http://localhost:3000</code></li>
+                        <li>Test GET, POST, PUT operations</li>
+                    </ol>
+                </li>
+            </ul>
+            <hr>
+            <h3 id="environment-variables">🔐 Environment Variables</h3>
+            <b>Required Variables</b>
+            <table border="1" cellpadding="4" style="border-collapse:collapse;">
+                <tr>
+                    <th>Variable</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td>PORT</td>
+                    <td>Server port number</td>
+                    <td>3000</td>
+                </tr>
+                <tr>
+                    <td>MONGODB_URI</td>
+                    <td>MongoDB connection string</td>
+                    <td>mongodb+srv://@cluster.mongodb.net/db</td>
+                </tr>
+                <tr>
+                    <td>NODE_ENV</td>
+                    <td>Environment mode</td>
+                    <td>development or production</td>
+                </tr>
+                <tr>
+                    <td>ALLOWED_ORIGINS</td>
+                    <td>CORS allowed origins (comma-separated)</td>
+                    <td>https://vineetkr.com,http://localhost:3000</td>
+                </tr>
+            </table>
+            <b>Local Development</b>
+            <pre><code>PORT=3000
+MONGODB_URI=mongodb+srv://@cluster.mongodb.net/database
+NODE_ENV=development
+ALLOWED_ORIGINS=http://localhost:3000
+</code></pre>
+            <b>Production (Vercel)</b>
+            <ol>
+                <li>Go to <b>Project Settings</b> → <b>Environment Variables</b></li>
+                <li>Add each variable with production values</li>
+                <li>Redeploy the application</li>
+            </ol>
+            <hr>
+            <h3 id="deployment">🚢 Deployment</h3>
+            <b>Deploy to Vercel</b>
+            <ol>
+                <li>Install Vercel CLI
+                    <pre><code>npm install -g vercel
+</code></pre>
+                </li>
+                <li>Login to Vercel
+                    <pre><code>vercel login
+</code></pre>
+                </li>
+                <li>Deploy
+                    <pre><code>vercel --prod
+</code></pre>
+                </li>
+                <li>Set Environment Variables
+                    <ul>
+                        <li>Go to Vercel dashboard</li>
+                        <li>Navigate to <b>Settings</b> → <b>Environment Variables</b></li>
+                        <li>Add all required variables</li>
+                        <li>Redeploy</li>
+                    </ul>
+                </li>
+            </ol>
+            <b>Automatic Deployment (GitHub Actions)</b>
+            <p>This project includes a GitHub Actions workflow that automatically deploys to Vercel on every push to
+                <code>main</code> or <code>prac</code> branch.
+            </p>
+            <b>Setup:</b>
+            <ol>
+                <li>Add secrets to GitHub repository:
+                    <ul>
+                        <li><b>VERCEL_TOKEN</b> - Get from <a href="https://vercel.com/account/tokens"
+                                target="_blank">vercel.com/account/tokens</a></li>
+                        <li><b>VERCEL_ORG_ID</b> - Found in <code>.vercel/project.json</code></li>
+                        <li><b>VERCEL_PROJECT_ID</b> - Found in <code>.vercel/project.json</code></li>
+                    </ul>
+                </li>
+                <li>Push to <code>main</code> or <code>prac</code> branch - deployment happens automatically!</li>
+            </ol>
+            <hr>
+            <h3 id="security">🔒 Security</h3>
+            <b>Best Practices Implemented</b>
+            <ul>
+                <li>✅ <b>Environment Variables</b> - Secrets stored securely, never in code</li>
+                <li>✅ <b>Input Validation</b> - All inputs validated with Zod schemas</li>
+                <li>✅ <b>CORS Configuration</b> - Controlled cross-origin access</li>
+                <li>✅ <b>Error Handling</b> - No sensitive data leaked in error responses</li>
+                <li>✅ <b>MongoDB Atlas</b> - Database hosted securely in the cloud</li>
+                <li>✅ <b>.gitignore</b> - Sensitive files excluded from version control</li>
+            </ul>
+            <b>Security Checklist</b>
+            <ul>
+                <li>MongoDB Atlas Network Access configured</li>
+                <li>Strong database password used</li>
+                <li>Environment variables set in hosting platform</li>
+                <li>CORS origins restricted in production</li>
+                <li>HTTPS enabled (automatic with Vercel)</li>
+                <li>.env file never committed to git</li>
+            </ul>
+            <hr>
+            <h3 id="contributing">🤝 Contributing</h3>
+            <ol>
+                <li>Fork the repository</li>
+                <li>Create a feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+                <li>Commit your changes (<code>git commit -m 'Add amazing feature'</code>)</li>
+                <li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
+                <li>Open a Pull Request</li>
+            </ol>
+            <hr>
+            <h3>📝 License</h3>
+            <p>This project is licensed under the MIT License.</p>
+            <hr>
+            <h3>👨‍💻 Author</h3>
+            <p><b>Vineet Kumar</b><br>
+                Website: <a href="https://vineetkr.com" target="_blank">vineetkr.com</a><br>
+                GitHub: <a href="https://github.com/contactkrvineet" target="_blank">@contactkrvineet</a></p>
+            <hr>
+            <h3>📞 Support</h3>
+            <ul>
+                <li>Open an <a href="https://github.com/contactkrvineet/vineetkr-api/issues" target="_blank">Issue</a>
+                </li>
+                <li>Email: contactkrvineet, vineet@vineetkr.com</li>
+            </ul>
+            <hr>
+            <h3>🎓 Learning Resources</h3>
+            <ul>
+                <li><a href="https://expressjs.com/" target="_blank">Express.js Documentation</a></li>
+                <li><a href="https://docs.mongodb.com/" target="_blank">MongoDB Docs</a></li>
+                <li><a href="https://mongoosejs.com/docs/guide.html" target="_blank">Mongoose Guide</a></li>
+                <li><a href="https://zod.dev/" target="_blank">Zod Documentation</a></li>
+                <li><a href="https://restfulapi.net/" target="_blank">REST API Design Best Practices</a></li>
+                <li><a href="https://github.com/goldbergyoni/nodebestpractices" target="_blank">Node.js Best
+                        Practices</a></li>
+            </ul>
+            <p><b>Happy Coding! 🚀</b></p>
+        </article>
     </section>
 
 
