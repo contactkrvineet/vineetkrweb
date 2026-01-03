@@ -438,7 +438,8 @@ nav {
 
 /* --- Hamburger menu styles (fix visibility) --- */
 .nav-toggle {
-  display: inline-block !important;
+  display: inline-flex !important;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
@@ -447,26 +448,44 @@ nav {
   z-index: 1101;
   position: relative;
 }
-.hamburger {
-  display: block;
-  width: 28px;
-  height: 3px;
-  background: var(--primary-color, #0066cc);
-  position: relative;
-  border-radius: 2px;
-  transition: background 0.3s;
+
+/* Menu label for mobile hamburger */
+.menu-label {
+  display: none;
+  color: #222;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-right: 10px;
+  letter-spacing: 1px;
 }
-.hamburger::before,
-.hamburger::after {
-  content: "";
-  display: block;
-  width: 28px;
-  height: 3px;
-  background: var(--primary-color, #0066cc);
-  position: absolute;
-  border-radius: 2px;
-  transition: transform 0.3s;
+
+@media (max-width: 900px) {
+  .menu-label {
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
+}
+  .hamburger {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: red !important;
+    position: relative;
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+  .hamburger::before,
+  .hamburger::after {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: red !important;
+    position: absolute;
+    border-radius: 2px;
+    transition: transform 0.3s;
+  }
 .hamburger::before {
   top: -9px;
 }
