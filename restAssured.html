@@ -274,7 +274,7 @@ nano .env
                 </li>
                 <li>Update .env file
                     <pre><code>PORT=3000
-MONGODB_URI=mongodb+srv://your_username:your_password@cluster0.xxxxx.mongodb.net/your_database
+MONGODB_URI=mongodb+srv://credluster0.xxxxx.mongodb.net/your_database
 NODE_ENV=development
 ALLOWED_ORIGINS=http://localhost:3000
 </code></pre>
@@ -331,7 +331,7 @@ curl -X POST http://localhost:3000/api/users \
                 <tr>
                     <td>MONGODB_URI</td>
                     <td>MongoDB connection string</td>
-                    <td>mongodb+srv://user:pass@cluster.mongodb.net/db</td>
+                    <td>mongodb+srv://@cluster.mongodb.net/db</td>
                 </tr>
                 <tr>
                     <td>NODE_ENV</td>
@@ -346,7 +346,7 @@ curl -X POST http://localhost:3000/api/users \
             </table>
             <b>Local Development</b>
             <pre><code>PORT=3000
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
+MONGODB_URI=mongodb+srv://@cluster.mongodb.net/database
 NODE_ENV=development
 ALLOWED_ORIGINS=http://localhost:3000
 </code></pre>
