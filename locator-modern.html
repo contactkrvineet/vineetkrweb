@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locator Practice: Modern Locators</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Locator Practice: Modern Locators</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="locator-basic.html">Basic Locators</a>
+            <a href="locator-advanced.html">Advanced Locators</a>
+            <a href="locator-modern.html">Modern Locators</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Modern Locator Elements</h2>
+            <div class="data-attributes-demo">
+                <button data-testid="save-btn" data-qa="saveButton" data-automation="save-action">Save</button>
+                <button data-testid="cancel-btn" data-qa="cancelButton" data-automation="cancel-action">Cancel</button>
+            </div>
+            <div class="shadow-dom-demo">
+                <h3>Shadow DOM Example</h3>
+                <custom-shadow id="shadow-host"></custom-shadow>
+            </div>
+            <div class="iframe-demo">
+                <h3>iFrame Example</h3>
+                <iframe id="practice-iframe" src="iframe-content.html" title="Practice IFrame" width="350" height="200"
+                    style="border:1px solid #ccc;"></iframe>
+            </div>
+        </section>
+        <section>
+            <h3>Locator Types to Practice</h3>
+            <ul>
+                <li>data-testid, data-qa, data-automation</li>
+                <li>Shadow DOM elements</li>
+                <li>iFrame inside page</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Locator Practice App</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Shadow DOM custom element
+        class CustomShadow extends HTMLElement {
+            constructor() {
+                super();
+                const shadow = this.attachShadow({ mode: 'open' });
+                const btn = document.createElement('button');
+                btn.textContent = 'Shadow DOM Button';
+                btn.setAttribute('id', 'shadowBtn');
+                btn.setAttribute('data-testid', 'shadow-btn');
+                shadow.appendChild(btn);
+            }
+        }
+        customElements.define('custom-shadow', CustomShadow);
+    </script>
+</body>
+
+</html>

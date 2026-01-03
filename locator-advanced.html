@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locator Practice: Advanced Locators</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Locator Practice: Advanced Locators</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="locator-basic.html">Basic Locators</a>
+            <a href="locator-advanced.html">Advanced Locators</a>
+            <a href="locator-modern.html">Modern Locators</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Advanced Locator Elements</h2>
+            <form id="searchForm">
+                <label for="search-input">Search (attribute, starts-with, contains):</label>
+                <input type="text" id="search-input" name="searchInput" placeholder="Search..." data-qa="search-box">
+                <button type="submit" class="btn" data-automation="search-btn">Search</button>
+            </form>
+            <div class="dynamic-list">
+                <button id="addRowBtn" class="btn">Add Row</button>
+                <table id="dynamicTable">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="row-1" class="row-item">
+                            <td>Row 1</td>
+                            <td><button class="delete-btn" data-id="1">Delete</button></td>
+                        </tr>
+                        <tr id="row-2" class="row-item">
+                            <td>Row 2</td>
+                            <td><button class="delete-btn" data-id="2">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="namespace-demo">
+                <input type="text" ns1:custom="true" placeholder="Namespace attribute" />
+            </div>
+            <div class="aria-demo">
+                <button aria-label="Close" role="button" class="aria-close">X</button>
+                <input aria-label="Email" role="textbox" placeholder="ARIA Email" />
+            </div>
+            <div class="xpath-demo">
+                <p id="xpath-abs">Absolute XPath Example</p>
+                <p class="xpath-rel">Relative XPath Example</p>
+                <p class="xpath-contains">XPath contains() Example</p>
+                <p class="xpath-starts">XPath starts-with() Example</p>
+                <p class="xpath-text">XPath text() Example</p>
+                <div id="dynamicIdContainer">
+                    <span id="dyn-12345" class="dynamic-id">Dynamic ID Example</span>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h3>Locator Types to Practice</h3>
+            <ul>
+                <li>CSS Selectors (attribute, starts-with, contains, nth-child)</li>
+                <li>XPath (absolute, relative, contains(), starts-with(), text())</li>
+                <li>Dynamic XPath (changing IDs)</li>
+                <li>Namespace-style attributes</li>
+                <li>ARIA roles & labels</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Locator Practice App</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
