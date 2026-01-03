@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Automation Playground | Vineet Kumar</title>
+    <meta name="description"
+        content="Practice automation scenarios, API validation, and UI locator strategies. By Vineet Kumar, Senior QE Manager & SDET Architect.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="vineet.png" alt="Vineet Kumar profile picture"
+                style="width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
+                <span>+1 437-428-2199 | +1 301-979-5562 &nbsp;|&nbsp; contactkrvineet@gmail.com</span>
+            </div>
+        </div>
+        <div class="button-container">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="index.html#projects">Automation Frameworks</a></li>
+                    <li><a href="playwright.html">Playwright BDD</a></li>
+                    <li><a href="performance.html">Performance Testing</a></li>
+                    <li><a href="restAssured.html">API Testing</a></li>
+                    <li><a href="about.html#expertise">Technical Skills</a></li>
+                    <li><a href="https://github.com/contactkrvineet" target="_blank">GitHub Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Test Automation Playground</h2>
+        <p>Welcome! This page is designed for practicing automation scenarios, API validation, and UI locator
+            strategies. Use this as a playground for your automation scripts and experiments.</p>
+
+        <section style="margin-bottom:2.5em;">
+            <h2>API Validation Practice</h2>
+            <p>Use the following endpoints to practice API validation (POST,GET,PUT,DELETE):</p>
+            <div style="background:#f6f8fa;border-radius:8px;padding:1em 1.5em;margin-bottom:1em;">
+                <b>POST Create User</b><br>
+                <code>POST https://api.vineetkr.com/api/users</code>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "name": "Vineet Kumar",
+  "email": "contactkrvineet@gmail.com",
+  "age": 25
+}</pre>
+                <b>Sample Success Response:</b>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": true,
+  "message": "User created successfully",
+  "data": {
+    "name": "Vineet Kumar",
+    "email": "contactkrvineeting@gmail.com",
+    "age": 25,
+    "_id": "69591c36d284de6384c77007",
+    "createdAt": "2026-01-03T13:40:06.254Z",
+    "updatedAt": "2026-01-03T13:40:06.254Z",
+    "__v": 0
+  }
+}</pre>
+                <b>Sample Error Response (User Exists):</b>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": false,
+  "message": "User with this email already exists"
+}</pre>
+                <b>Sample Validation Error Response (Missing/Invalid Name or Email):</b>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": false,
+  "message": "Validation error",
+  "errors": [
+    {
+      "code": "too_small",
+      "minimum": 2,
+      "type": "string",
+      "inclusive": true,
+      "exact": false,
+      "message": "Name must be at least 2 characters",
+      "path": [
+        "name"
+      ]
+    },
+    {
+      "validation": "email",
+      "code": "invalid_string",
+      "message": "Invalid email format",
+      "path": [
+        "email"
+      ]
+    }
+  ]
+}
+</pre>
+                <b>GET All Users</b><br>
+                <code>GET https://api.vineetkr.com/api/users</code>
+                <b>Sample Response:</b>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": true,
+  "count": 9,
+  "data": [
+    {
+      "_id": "6954e1fad3ed40ae5daf44d6",
+      "name": "Vineet Kumar",
+      "email": "contactkrvineet@gmail.com",
+      "age": 25,
+      "createdAt": "2025-12-31T08:42:34.742Z",
+      "updatedAt": "2025-12-31T08:42:34.742Z",
+      "__v": 0
+    },
+    {
+      "_id": "694de9d1b0a4232fd2d92760",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "age": 25,
+      "createdAt": "2025-12-26T01:50:09.225Z",
+      "updatedAt": "2025-12-26T01:50:09.225Z",
+      "__v": 0
+    },
+    {
+      "_id": "694dd4b9a0bd164032f46390",
+      "name": "VineetTestnew",
+      "email": "Vineet@vineetkr.com",
+      "age": 25,
+      "createdAt": "2025-12-26T00:20:09.054Z",
+      "updatedAt": "2025-12-26T00:20:09.054Z"
+    },
+    {
+      "_id": "694dd2e25399f85ef6828e05",
+      "name": "VineetTest",
+      "email": "Vineet@vineetkr.com",
+      "age": 25,
+      "createdAt": "2025-12-26T00:12:18.054Z",
+      "updatedAt": "2025-12-26T00:12:18.054Z"
+    },
+    {
+      "_id": "694dd02b66cce89fbbdd066c",
+      "name": "VineetTest",
+      "email": "Vineet@vineetkr.com",
+      "age": 25,
+      "createdAt": "2025-12-26T00:00:43.105Z",
+      "updatedAt": "2025-12-26T00:00:43.105Z"
+    },
+    {
+      "_id": "694dcf4efea6b69d46b6ec2c",
+      "name": "Vineet",
+      "email": "Vineet@vineetkr.com",
+      "age": 25,
+      "createdAt": "2025-12-25T23:57:02.937Z",
+      "updatedAt": "2025-12-25T23:57:02.937Z"
+    },
+    {
+      "_id": "694dcf3e2bb515fee748fad4",
+      "name": "Vineet",
+      "email": "Vineet@vineetkr.com",
+      "age": 25,
+      "createdAt": "2025-12-25T23:56:46.624Z",
+      "updatedAt": "2025-12-25T23:56:46.624Z"
+    },
+    {
+      "_id": "694dcf1c4c5691ffe6aed238",
+      "name": "Vineet",
+      "email": "Vineet@vineetkr.com",
+      "age": 25,
+      "createdAt": "2025-12-25T23:56:12.761Z",
+      "updatedAt": "2025-12-25T23:56:12.761Z"
+    },
+    {
+      "_id": "694dcf05264e88e6e9c1587a",
+      "name": "Akshara",
+      "email": "akshara@vineetkr.com",
+      "age": 25,
+      "createdAt": "2025-12-25T23:55:49.084Z",
+      "updatedAt": "2025-12-25T23:55:49.084Z"
+    }
+  ]
+}
+
+</pre>
+                <b>PUT Update User</b><br>
+                <code>PUT https://api.vineetkr.com/api/users/69591c36d284de6384c77007</code>
+                <b>Request Body:</b>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+    "name": "vineetkumar",
+    "email": "contactk@gmail.com",
+    "age": 9
+}</pre>
+                <b>Sample Success Response:</b>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+    "success": true,
+    "message": "User updated successfully",
+    "data": {
+        "_id": "69591c36d284de6384c77007",
+        "name": "vineetkumar",
+        "email": "contactk@gmail.com",
+        "age": 9,
+        "createdAt": "2026-01-03T13:40:06.254Z",
+        "updatedAt": "2026-01-03T14:15:06.402Z",
+        "__v": 0
+    }
+}
+</pre>
+                <b>Sample Error Response (User Not Found):</b>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": false,
+  "message": "User not found"
+}</pre>
+            </div>
+        </section>
+
+        <section style="margin-bottom:2.5em;">
+            <h2>API Contract</h2>
+            <p>This contract describes the request and response structure for the <b>POST,</b> <b>GET,</b> <b>PUT</b>
+                and
+                <b>DELETE</b> endpoints
+                at <code>https://api.vineetkr.com/api/users</code>.
+            </p>
+            <h3>POST /api/users</h3>
+            <b>Request Body (application/json):</b>
+            <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "name": "string (min 2 chars, required)",
+  "email": "string (valid email, required)",
+  "age": "integer (optional)"
+}</pre>
+            <b>Success Response (201):</b>
+            <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": true,
+  "message": "User created successfully",
+  "data": {
+    "name": "Vineet Kumar",
+    "email": "contactkrvineeting@gmail.com",
+    "age": 25,
+    "_id": "ObjectId",
+    "createdAt": "ISODate",
+    "updatedAt": "ISODate",
+    "__v": 0
+  }
+}</pre>
+            <b>Error Response (User Exists):</b>
+            <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": false,
+  "message": "User with this email already exists"
+}</pre>
+            <b>Validation Error Response:</b>
+            <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": false,
+  "message": "Validation error",
+  "errors": [
+    {
+      "code": "too_small",
+      "minimum": 2,
+      "type": "string",
+      "inclusive": true,
+      "exact": false,
+      "message": "Name must be at least 2 characters",
+      "path": ["name"]
+    },
+    {
+      "validation": "email",
+      "code": "invalid_string",
+      "message": "Invalid email format",
+      "path": ["email"]
+    }
+  ]
+}</pre>
+            <h3>GET /api/users</h3>
+            <b>Success Response (200):</b>
+            <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": true,
+  "count": "integer",
+  "data": [
+    {
+      "_id": "ObjectId",
+      "name": "string",
+      "email": "string",
+      "age": "integer",
+      "createdAt": "ISODate",
+      "updatedAt": "ISODate",
+      "__v": 0
+    },
+    ...
+  ]
+}
+</pre>
+            <h3>PUT /api/users/{id}</h3>
+            <b>Request Body (application/json):</b>
+            <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+    "name": "vineetkumar",
+    "email": "contactk@gmail.com",
+    "age": 9
+}</pre>
+            <b>Sample Success Response:</b>
+            <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+    "success": true,
+    "message": "User updated successfully",
+    "data": {
+        "_id": "69591c36d284de6384c77007",
+        "name": "vineetkumar",
+        "email": "contactk@gmail.com",
+        "age": 9,
+        "createdAt": "2026-01-03T13:40:06.254Z",
+        "updatedAt": "2026-01-03T14:15:06.402Z",
+        "__v": 0
+    }
+}
+</pre>
+        </section>
+
+        <section style="margin-bottom:2.5em;">
+            <h2>Locator Practice</h2>
+            <p>Locators are used in automation to identify and interact with elements on a web page. Common types
+                include:</p>
+            <ul>
+                <li><b>ID</b>: <code>id="elementId"</code> — Fastest and most reliable if unique.</li>
+                <li><b>Name</b>: <code>name="elementName"</code> — Useful for form fields.</li>
+                <li><b>Class Name</b>: <code>class="className"</code> — For elements with specific classes.</li>
+                <li><b>Tag Name</b>: <code>&lt;button&gt;, &lt;input&gt;</code> — For generic element types.</li>
+                <li><b>Link Text/Partial Link Text</b>: For anchor tags by visible text.</li>
+                <li><b>CSS Selector</b>: <code>.class, #id, div > span</code> — Very flexible, supports complex queries.
+                </li>
+                <li><b>XPath</b>: <code>//div[@id='main']</code> — Most powerful, supports complex DOM traversal.</li>
+                <li><b>Data/Test Attributes</b>: <code>data-testid, data-qa</code> — Best for automation, avoids UI
+                    changes.</li>
+                <li><b>ARIA Attributes</b>: <code>aria-label, role</code> — For accessibility and automation.</li>
+            </ul>
+            <p>For end-to-end scenario practice, use the Crafty Girls application:</p>
+            <button class="button-design" onclick="window.open('https://craftygirls.in', '_blank')">Go to Crafty Girls
+                Website</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Vineet Kumar</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/contactvineet/" target="_blank">Facebook</a>
+            <a href="https://www.linkedin.com/in/vineet2311/" target="_blank">LinkedIn</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="https://github.com/contactkrvineet" target="_blank">GitHub</a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
