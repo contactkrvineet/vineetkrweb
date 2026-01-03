@@ -145,21 +145,35 @@
 
 <body>
     <header>
-
-        <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
-        <span>contactkrvineet@gmail.com</span>
-        <span>+1 437-428-2199 | +1 301-979-5562</span>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="vineet.png" alt="Vineet Kumar profile picture"
+                    style="width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
+                <span>+1 437-428-2199 | +1 301-979-5562 &nbsp;|&nbsp; contactkrvineet@gmail.com</span>
+            </div>
+        </div>
 
         <div class="contact-info">
             <span><b>QE Manager & Full-Stack SDET Architect</b> | <b>AI Evaluation Specialist</b> | <b>16 Years of
                     Quality Innovation</b></span><br>
-            <div class="contact-summary">
-                <span class="lead">Leading high-performing teams in Python/Java test automation, CI/CD pipelines, and AI
-                    Model Evaluation. Expert in scaling Web, Mobile, and API quality engineering while driving strategic
-                    Functional and Non-Functional testing across the SDLC.</span>
-                <p>🚀 <strong>Specializing in:</strong> Selenium WebDriver | Playwright BDD | RestAssured API Testing |
-                    Gatling Performance Testing | Docker & Kubernetes | Jenkins CI/CD | Appium Mobile Testing | AI/ML
-                    Model Validation</p>
+            <div class="contact-summary" style="width:100vw;max-width:100%;margin-left:calc(-50vw + 50%);">
+                <span class="lead">Driving excellence in test automation and quality engineering for Web, Mobile, and
+                    API platforms. Proven leader in building and mentoring high-performing teams, implementing CI/CD
+                    pipelines, and advancing AI model evaluation. Specialized in strategic functional and non-functional
+                    testing throughout the SDLC.</span>
+                <p style="font-size:1.08em;line-height:1.7em;">
+                    <span style="font-weight:bold;">🚀 Key Skills :</span><br>
+                    <span style="display:inline-block;margin:2px 0;">💻 <b>Java</b> &nbsp;|&nbsp; 🐍 <b>Python</b>
+                        &nbsp;|&nbsp; 📜 <b>JavaScript</b></span><br>
+                    <span style="display:inline-block;margin:2px 0;">🧪 <b>Selenium WebDriver</b> &nbsp;|&nbsp; 🎭
+                        <b>Playwright</b> &nbsp;|&nbsp; 🔗 <b>RestAssured API Testing</b></span><br>
+                    <span style="display:inline-block;margin:2px 0;">⚡ <b>Gatling Performance Testing</b> &nbsp;|&nbsp;
+                        🐳 <b>Docker & Kubernetes</b></span><br>
+                    <span style="display:inline-block;margin:2px 0;">🔧 <b>Jenkins CI/CD</b> &nbsp;|&nbsp; 📱 <b>Appium
+                            Mobile Testing</b> &nbsp;|&nbsp; 🤖 <b>AI/ML Model Validation</b></span>
+                </p>
                 <p><a href="about.html#about" class="more-link"
                         aria-label="Read full professional summary on About Me page" target="_self">Discover My Journey
                         & Expertise →</a></p>
@@ -168,6 +182,7 @@
 
         <div class="button-container">
             <button class="button-design" onclick="location.href='#projects'">View My Portfolio</button>
+            <button class="button-design" onclick="location.href='blog.html'">Blog</button>
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -180,8 +195,8 @@
                     <li><a href="https://github.com/contactkrvineet" target="_blank">GitHub Portfolio</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
-            </nav>
-            <button class="button-design" onclick="location.href='blog.html'">Blog</button>
+            </nav><br>
+
         </div>
 
 
@@ -189,7 +204,8 @@
     </header>
 
     <!-- file: index.html (replace the existing knowledge-sharing section with this) -->
-    <section id="knowledge-sharing" class="info-section" aria-labelledby="ks-heading">
+    <section id="knowledge-sharing" class="info-section" aria-labelledby="ks-heading"
+        style="width:100vw;max-width:100%;margin-left:calc(-50vw + 50%);">
         <div class="ks-card container" role="region" aria-label="Knowledge sharing card">
             <h2 id="ks-heading">🎓 Free Test Automation Resources & Open Source Frameworks</h2>
 
@@ -200,7 +216,8 @@
                 engineers, SDETs, and DevOps teams master modern testing patterns including Selenium, Playwright, API
                 testing, CI/CD integration, and performance testing strategies.</p>
 
-            <ul class="ks-list" aria-label="How to use knowledge sharing">
+            <ul class="ks-list" aria-label="How to use knowledge sharing"
+                style="color:#fff;font-weight:500;background:#263159;border-radius:8px;padding:18px 24px;">
                 <li><strong>🎯 Purpose:</strong> Demonstrate battle-tested, reusable automation patterns that
                     significantly improve test quality, reduce execution time, and accelerate delivery pipelines.</li>
                 <li><strong>💡 How to use:</strong> Clone or fork repositories, explore real-world examples, adapt
@@ -231,9 +248,10 @@
         <!-- Example updated project markup -->
         <div class="project">
             <div class="project-header">
-                <h3 class="project-title">
-                    <span class="title-text">Playwright BDD Framework</span>
-                    <span class="tag">Playwright•BDD</span>
+                <br class="project-title">
+                <span class="title-text">Playwright With Behaviour Driven Development Framework</span><br></br>
+                <span class="tag" style="display:block;margin-top:2px;">Playwright BDD framework supporting multiple
+                    reporting options including Cucumber HTML, Allure, and Bootstrap</span>
                 </h3>
             </div>
 
@@ -269,7 +287,49 @@
             <div class="project-header">
                 <h3 class="project-title">
                     <span class="title-text">REST API Development Framework</span>
-                    <span class="tag">a framework where anyone can spin up / bootstrap their own REST API quickly</span>
+                    <span class="tag">A framework where anyone can spin up / bootstrap their own REST API quickly and is
+                        built with Node.js, Express, and MongoDB Atlas.</span>
+                </h3>
+            </div>
+
+            <div class="project-body">
+                <p>A RESTful API built with **Node.js**, **Express**, and **MongoDB Atlas** for managing user data. This
+                    project demonstrates modern API development practices with proper validation, error handling, and
+                    cloud deployment.<br></p>
+                <p>Features :</p>
+                <ul class="tick-list" aria-label="Project features">
+                    <li><b>RESTful API Design:</b> Follows REST principles for resource management</li>
+                    <li><b>CRUD Operations :</b> Create, Read, Update operations for user data</li>
+                    <li><b>Input Validation:</b> Schema validation using Zod</li>
+                    <li><b>Error Handling :</b> Centralized error handling middleware</li>
+                    <li><b>MongoDB Integration :</b> Cloud database with Mongoose ODM/li>
+                    <li><b>Environment Configuration </b> Secure secret management</li>
+                    <li><b>CORS Support :</b> Cross-origin requests enabled</li>
+                    <li><b>CI/CD Pipeline :</b> Automated deployment with GitHub Actions</li>
+                    <li><b>Production Ready :</b> Optimized for serverless environments</li>
+
+                </ul>
+            </div>
+
+            <div class="project-footer">
+                <a href="restAssured.html" class="read-more-button" target="_blank" rel="noopener noreferrer"
+                    aria-label="Read More">Read More</a>
+                <a href="https://github.com/contactkrvineet/vineetkr-api" class="read-more-button" target="_blank"
+                    rel="noopener noreferrer" aria-label="Live Report">Live Report</a>
+                <a href="https://github.com/contactkrvineet/vineetkr-api" class="read-more-button" target="_blank"
+                    rel="noopener noreferrer" aria-label="View Project">View Project</a>
+
+            </div>
+        </div>
+
+        <!-- Example updated project markup -->
+        <div class="project">
+            <div class="project-header">
+                <h3 class="project-title">
+                    <span class="title-text">REST API Testing Framework</span>
+                    <span class="tag">REST API Testing Framework
+                        A robust and user-friendly framework designed to help anyone quickly spin up and test REST
+                        APIs</span>
                 </h3>
             </div>
 
@@ -278,7 +338,7 @@
                     reporting options.<br></p>
                 <p>Features :</p>
                 <ul class="tick-list" aria-label="Project features">
-                    <li><b>Dual Test Approach:</b> Playwright or BDD Cucumber</li>
+                    <li><b>Dual Test Approach:</b> Playwright with BDD Cucumber</li>
                     <li><b>Multiple Reports:</b> Allure, Cucumber HTML, Playwright reports</li>
                     <li><b>Screenshot on Failure:</b> Automatic screenshot capture for failed tests</li>
                     <li><b>Parallel Execution:</b> Support for parallel test execution</li>
@@ -299,7 +359,6 @@
 
             </div>
         </div>
-
 
 
         <div class="project">
