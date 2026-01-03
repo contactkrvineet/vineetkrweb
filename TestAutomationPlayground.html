@@ -33,6 +33,7 @@
                     <li><a href="about.html#expertise">Technical Skills</a></li>
                     <li><a href="https://github.com/contactkrvineet" target="_blank">GitHub Portfolio</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="TestAutomationPlayground.html">Test Automation Playground</a></li>
                 </ul>
             </nav>
         </div>
@@ -104,86 +105,29 @@
                 <code>GET https://api.vineetkr.com/api/users</code>
                 <b>Sample Response:</b>
                 <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
-  "success": true,
-  "count": 9,
-  "data": [
-    {
-      "_id": "6954e1fad3ed40ae5daf44d6",
-      "name": "Vineet Kumar",
-      "email": "contactkrvineet@gmail.com",
-      "age": 25,
-      "createdAt": "2025-12-31T08:42:34.742Z",
-      "updatedAt": "2025-12-31T08:42:34.742Z",
-      "__v": 0
-    },
-    {
-      "_id": "694de9d1b0a4232fd2d92760",
-      "name": "John Doe",
-      "email": "john@example.com",
-      "age": 25,
-      "createdAt": "2025-12-26T01:50:09.225Z",
-      "updatedAt": "2025-12-26T01:50:09.225Z",
-      "__v": 0
-    },
-    {
-      "_id": "694dd4b9a0bd164032f46390",
-      "name": "VineetTestnew",
-      "email": "Vineet@vineetkr.com",
-      "age": 25,
-      "createdAt": "2025-12-26T00:20:09.054Z",
-      "updatedAt": "2025-12-26T00:20:09.054Z"
-    },
-    {
-      "_id": "694dd2e25399f85ef6828e05",
-      "name": "VineetTest",
-      "email": "Vineet@vineetkr.com",
-      "age": 25,
-      "createdAt": "2025-12-26T00:12:18.054Z",
-      "updatedAt": "2025-12-26T00:12:18.054Z"
-    },
-    {
-      "_id": "694dd02b66cce89fbbdd066c",
-      "name": "VineetTest",
-      "email": "Vineet@vineetkr.com",
-      "age": 25,
-      "createdAt": "2025-12-26T00:00:43.105Z",
-      "updatedAt": "2025-12-26T00:00:43.105Z"
-    },
-    {
-      "_id": "694dcf4efea6b69d46b6ec2c",
-      "name": "Vineet",
-      "email": "Vineet@vineetkr.com",
-      "age": 25,
-      "createdAt": "2025-12-25T23:57:02.937Z",
-      "updatedAt": "2025-12-25T23:57:02.937Z"
-    },
-    {
-      "_id": "694dcf3e2bb515fee748fad4",
-      "name": "Vineet",
-      "email": "Vineet@vineetkr.com",
-      "age": 25,
-      "createdAt": "2025-12-25T23:56:46.624Z",
-      "updatedAt": "2025-12-25T23:56:46.624Z"
-    },
-    {
-      "_id": "694dcf1c4c5691ffe6aed238",
-      "name": "Vineet",
-      "email": "Vineet@vineetkr.com",
-      "age": 25,
-      "createdAt": "2025-12-25T23:56:12.761Z",
-      "updatedAt": "2025-12-25T23:56:12.761Z"
-    },
-    {
-      "_id": "694dcf05264e88e6e9c1587a",
-      "name": "Akshara",
-      "email": "akshara@vineetkr.com",
-      "age": 25,
-      "createdAt": "2025-12-25T23:55:49.084Z",
-      "updatedAt": "2025-12-25T23:55:49.084Z"
-    }
-  ]
+    "success": true,
+    "count": 2,
+    "data": [
+        {
+            "_id": "69592c8410e9769f62ea55e3",
+            "name": "Akshara",
+            "email": "akshara.tiwari.2016@gmail.com",
+            "age": 9,
+            "createdAt": "2026-01-03T14:49:40.867Z",
+            "updatedAt": "2026-01-03T14:49:40.867Z",
+            "__v": 0
+        },
+        {
+            "_id": "6954e1fad3ed40ae5daf44d6",
+            "name": "Vineet Kumar",
+            "email": "contactkrvineet@gmail.com",
+            "age": 25,
+            "createdAt": "2025-12-31T08:42:34.742Z",
+            "updatedAt": "2025-12-31T08:42:34.742Z",
+            "__v": 0
+        }
+    ]
 }
-
 </pre>
                 <b>PUT Update User</b><br>
                 <code>PUT https://api.vineetkr.com/api/users/69591c36d284de6384c77007</code>
@@ -205,6 +149,27 @@
         "createdAt": "2026-01-03T13:40:06.254Z",
         "updatedAt": "2026-01-03T14:15:06.402Z",
         "__v": 0
+    }
+}
+</pre>
+                <b>Sample Error Response (User Not Found):</b>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+  "success": false,
+  "message": "User not found"
+}</pre>
+                <b>DELETE User</b><br>
+                <code>DELETE https://api.vineetkr.com/api/users/694dd2e25399f85ef6828e05</code>
+                <b>Sample Success Response:</b>
+                <pre style="background:#222;color:#fff;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+    "success": true,
+    "message": "User deleted successfully",
+    "data": {
+        "_id": "694dd2e25399f85ef6828e05",
+        "name": "VineetTest",
+        "email": "Vineet@vineetkr.com",
+        "age": 25,
+        "createdAt": "2025-12-26T00:12:18.054Z",
+        "updatedAt": "2025-12-26T00:12:18.054Z"
     }
 }
 </pre>
@@ -293,22 +258,37 @@
             <h3>PUT /api/users/{id}</h3>
             <b>Request Body (application/json):</b>
             <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
-    "name": "vineetkumar",
-    "email": "contactk@gmail.com",
-    "age": 9
+    "name": "string",
+    "email": "string",
+    "age": integer
 }</pre>
             <b>Sample Success Response:</b>
             <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
     "success": true,
     "message": "User updated successfully",
     "data": {
-        "_id": "69591c36d284de6384c77007",
-        "name": "vineetkumar",
-        "email": "contactk@gmail.com",
-        "age": 9,
-        "createdAt": "2026-01-03T13:40:06.254Z",
-        "updatedAt": "2026-01-03T14:15:06.402Z",
+        "_id": "ObjectId",
+        "name": "string",
+        "email": "string",
+        "age": integer,
+        "createdAt": "ISODate",
+        "updatedAt": "ISODate",
         "__v": 0
+    }
+}
+</pre>
+            <h3>DELETE /api/users/{id}</h3>
+            <b>Success Response (200):</b>
+            <pre style="background:#f6f8fa;padding:0.7em 1em;border-radius:6px;overflow-x:auto;">{
+    "success": true,
+    "message": "User deleted successfully",
+    "data": {
+        "_id": "ObjectId",
+        "name": "string",
+        "email": "string",
+        "age": integer,
+        "createdAt": "ISODate",
+        "updatedAt": "ISODate"
     }
 }
 </pre>
