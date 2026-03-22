@@ -69,7 +69,13 @@
 
 
     <section id="about">
-        <h2>About Me</h2>
+        <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
+            <h2 style="margin-bottom: 0.5rem;">About Me</h2>
+            <button class="button-design" style="margin-left: 8px;" onclick="location.href='#certifications'">View My
+                Certifications</button>
+            <button class="button-design" style="margin-left: 4px;" onclick="location.href='#speaker'">View My
+                Conferences</button>
+        </div>
         <p>Hello! I am Vineet Kumar, an SDET Manager with over 16 years of experience driving quality engineering and
             automation across finance, healthcare, e‑commerce, and enterprise products. I architect and deliver scalable
             test frameworks, CI/CD-integrated pipelines, and performance and reliability strategies that reduce
@@ -256,6 +262,42 @@
             </table>
         </div>
     </section>
+
+
+    <!-- HTML: paste into `about.html` (e.g., after the LearningTech section) -->
+    <section id="speaker">
+        <h2>Speaker And Conferences</h2>
+        <div style="text-align:center; margin: 8px 0 16px 0;">
+            <img src="speaker.png" alt="Speaker and Conferences"
+                style="width:56px;height:56px;border-radius:12px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:2px solid #263159;display:block;margin:0 auto 8px auto;">
+            <a href="SpeakerConferences.pdf" target="_blank"
+                style="font-weight:bold; color:#263159; text-decoration:underline;">View Conferences (PDF)</a>
+        </div>
+        <div class="table-wrap">
+            <div style="display: flex; flex-wrap: wrap; gap: 18px; justify-content: center;">
+                <div
+                    style="background: #f8f9fa; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 18px 24px; min-width: 260px; max-width: 320px; flex: 1 1 260px;">
+                    <h3 style="margin: 0 0 8px 0; color: #263159; font-size: 1.1rem;">BrowserStack Testing Meetup</h3>
+                    <div style="font-size: 0.98rem; margin-bottom: 4px;"><b>Role:</b> Speaker</div>
+                    <div style="font-size: 0.98rem;"><b>Date:</b> 2026-03-25</div>
+                </div>
+                <div
+                    style="background: #f8f9fa; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 18px 24px; min-width: 260px; max-width: 320px; flex: 1 1 260px;">
+                    <h3 style="margin: 0 0 8px 0; color: #263159; font-size: 1.1rem;">Agile Testing Alliance ATAGTR2025
+                    </h3>
+                    <div style="font-size: 0.98rem; margin-bottom: 4px;"><b>Role:</b> Speaker</div>
+                    <div style="font-size: 0.98rem;"><b>Date:</b> 2025-11-11</div>
+                </div>
+                <div
+                    style="background: #f8f9fa; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 18px 24px; min-width: 260px; max-width: 320px; flex: 1 1 260px;">
+                    <h3 style="margin: 0 0 8px 0; color: #263159; font-size: 1.1rem;">TestingMind TAS25 Toronto</h3>
+                    <div style="font-size: 0.98rem; margin-bottom: 4px;"><b>Role:</b> Speaker</div>
+                    <div style="font-size: 0.98rem;"><b>Date:</b> 2025-06-13</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- CSS: append to `styles.css` -->
 
