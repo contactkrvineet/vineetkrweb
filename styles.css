@@ -1,3 +1,46 @@
+/* Core skills — plain pill list (replaces the old emoji+gradient block) */
+.skill-block {
+  margin: 14px 0 6px 0;
+}
+.skill-heading {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+.skill-pills {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.skill-pills li {
+  background: rgba(255,255,255,0.12);
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(2px);
+  transition: background 0.15s ease;
+}
+.skill-pills li:hover { background: rgba(255,255,255,0.22); }
+
+/* Light-background variant for pages where header isn't blue */
+section .skill-pills li,
+.cv-paper .skill-pills li {
+  background: #eef3fa;
+  color: #263159;
+  border-color: #cfd6e4;
+}
+section .skill-pills li:hover,
+.cv-paper .skill-pills li:hover { background: #dbe5f3; }
+
 /* Make the knowledge-sharing section visually bolder and more compact */
 #knowledge-sharing {
   background: #f0f4fa;

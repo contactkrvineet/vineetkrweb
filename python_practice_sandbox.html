@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Practice Sandbox — SDET Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<style>
+  :root{
+    --bg:#0d1117; --panel-solid:#161b22; --line:#283039;
+    --text:#e6edf3; --muted:#8b949e; --accent:#ffd43b; --accent-dim:#e6be2e;
+    --blue:#58a6ff; --green:#3fb950; --red:#f85149; --num:#79c0ff;
+    --radius:10px; --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--sans);
+    background-image:radial-gradient(circle at 15% 0%,#2a240810,transparent 40%),
+      radial-gradient(circle at 85% 100%,#16203018,transparent 45%);
+    min-height:100vh; padding:22px; font-size:14px; line-height:1.5;
+  }
+  header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  header h1{font-size:20px;font-weight:700;letter-spacing:-.3px}
+  header .tag{font-family:var(--mono);font-size:11px;color:var(--accent);
+    border:1px solid var(--accent);padding:2px 8px;border-radius:20px}
+  header p{color:var(--muted);font-size:13px;width:100%;margin-top:2px}
+  .layout{display:grid;grid-template-columns:1fr 290px;gap:16px;margin-top:18px}
+  @media(max-width:880px){.layout{grid-template-columns:1fr}}
+  .card{background:var(--panel-solid);border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden}
+  .card-head{padding:10px 14px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+    display:flex;align-items:center;justify-content:space-between;background:#0f141b}
+  .card-head b{color:var(--text);font-weight:600}
+  textarea#editor{
+    width:100%;min-height:240px;resize:vertical;border:none;outline:none;
+    background:#0c1118;color:var(--text);font-family:var(--mono);font-size:13.5px;
+    padding:14px;line-height:1.6;tab-size:4;white-space:pre;
+  }
+  .toolbar{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line);
+    flex-wrap:wrap;align-items:center}
+  button{font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;
+    border-radius:7px;border:1px solid var(--line);background:#1c232c;color:var(--text);
+    padding:7px 14px;transition:.15s}
+  button:hover{border-color:#3d4754;background:#222a34}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  button.primary{background:var(--accent-dim);border-color:var(--accent);color:#1a1500}
+  button.primary:hover{background:var(--accent)}
+  button.test{background:#1f6feb;border-color:#388bfd;color:#fff}
+  button.test:hover{background:#388bfd}
+  button.ghost{background:transparent}
+  .hint{margin-left:auto;color:var(--muted);font-family:var(--mono);font-size:11px}
+  #console{font-family:var(--mono);font-size:12.5px;padding:14px;min-height:120px;
+    max-height:340px;overflow:auto;white-space:pre-wrap;background:#0c1118;line-height:1.55}
+  .out-err{color:var(--red)} .out-pass{color:var(--green)} .out-info{color:var(--muted)}
+  .side{display:flex;flex-direction:column;gap:16px}
+  .ex-group{padding:6px 0}
+  .ex-group .gname{font-family:var(--mono);font-size:11px;color:var(--accent);
+    padding:8px 14px 4px;text-transform:uppercase;letter-spacing:.5px}
+  .ex-btn{display:block;width:100%;text-align:left;background:transparent;border:none;
+    border-radius:0;padding:6px 14px;color:var(--text);font-size:12.5px;font-weight:500}
+  .ex-btn:hover{background:#1a212b;border:none}
+  .ex-btn small{color:var(--muted);font-weight:400}
+  #pill{font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:20px;
+    border:1px solid var(--line);color:var(--muted)}
+  #pill.loading{color:var(--accent);border-color:var(--accent)}
+  #pill.ready{color:var(--green);border-color:var(--green)}
+  .boot{padding:50px 20px;text-align:center;color:var(--muted);font-family:var(--mono)}
+  .boot .bar{width:220px;height:6px;background:#1c232c;border-radius:3px;margin:14px auto;overflow:hidden}
+  .boot .bar i{display:block;height:100%;width:30%;background:var(--accent);border-radius:3px;
+    animation:slide 1.1s ease-in-out infinite}
+  @keyframes slide{0%{margin-left:-30%}100%{margin-left:100%}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Python Practice Sandbox</h1>
+  <span class="tag">SDET PREP</span>
+  <span id="pill">booting…</span>
+  <p>Real CPython running in your browser via Pyodide. Run scripts, run <b>pytest</b> with live pass/fail, and use <b>Pandas / NumPy</b>. Nothing leaves your machine; refresh to reset.</p>
+</header>
+
+<div id="boot" class="boot">
+  Loading the Python interpreter…
+  <div class="bar"><i></i></div>
+  <div style="font-size:11px">First load pulls CPython + WASM (a few MB). One time per visit.</div>
+</div>
+
+<div class="layout" id="app" style="display:none">
+  <div>
+    <div class="card">
+      <div class="card-head"><b>Code Editor</b><span>Python 3</span></div>
+      <textarea id="editor" spellcheck="false"></textarea>
+      <div class="toolbar">
+        <button class="primary" id="runBtn" onclick="runScript()">▶ Run</button>
+        <button class="test" id="testBtn" onclick="runTests()">✓ Run as pytest</button>
+        <button class="ghost" onclick="clearConsole()">Clear output</button>
+        <span class="hint">Ctrl / ⌘ + Enter = Run</span>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card-head"><b>Output</b><span id="timing"></span></div>
+      <div id="console"><span class="out-info">Output will appear here.</span></div>
+    </div>
+  </div>
+
+  <div class="side">
+    <div class="card">
+      <div class="card-head"><b>Examples</b><span>click to load</span></div>
+      <div id="examples"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+let pyodide=null, pkgPromise=null, testCounter=0;
+
+const EXAMPLES = {
+  "General Python":[
+    {name:"FizzBuzz", desc:"classic warm-up", code:
+`for n in range(1, 21):
+    if n % 15 == 0:
+        print("FizzBuzz")
+    elif n % 3 == 0:
+        print("Fizz")
+    elif n % 5 == 0:
+        print("Buzz")
+    else:
+        print(n)`},
+    {name:"Find duplicates", desc:"in a list", code:
+`def find_duplicates(items):
+    seen, dupes = set(), set()
+    for x in items:
+        (dupes if x in seen else seen).add(x)
+    return sorted(dupes)
+
+data = [101, 102, 103, 102, 104, 101, 105]
+print("Duplicate account IDs:", find_duplicates(data))`},
+    {name:"Word frequency", desc:"dict + sorting", code:
+`from collections import Counter
+
+text = "test test pass fail test pass build test"
+counts = Counter(text.split())
+for word, n in counts.most_common():
+    print(f"{word:<6} {n}")`},
+    {name:"Palindrome check", desc:"string handling", code:
+`def is_palindrome(s):
+    s = "".join(c.lower() for c in s if c.isalnum())
+    return s == s[::-1]
+
+for sample in ["RaceCar", "A man, a plan, a canal: Panama", "hello"]:
+    print(f"{sample!r:45} -> {is_palindrome(sample)}")`},
+  ],
+  "pytest":[
+    {name:"Passing tests", desc:"green run", code:
+`# A function under test + its tests. Click "Run as pytest".
+def calculate_balance(transactions):
+    """Net of CREDIT (+) and DEBIT (-) amounts."""
+    total = 0
+    for txn_type, amount in transactions:
+        total += amount if txn_type == "CREDIT" else -amount
+    return total
+
+
+def test_simple_credit():
+    assert calculate_balance([("CREDIT", 100)]) == 100
+
+def test_credit_and_debit():
+    assert calculate_balance([("CREDIT", 200), ("DEBIT", 50)]) == 150
+
+def test_empty():
+    assert calculate_balance([]) == 0`},
+    {name:"Failing test", desc:"see a red failure", code:
+`# This one has a bug on purpose so you can read a failure report.
+def apply_interest(balance, rate):
+    return balance + rate          # BUG: should be balance * (1 + rate)
+
+
+def test_five_percent():
+    # expects 1050.0 but the buggy code returns 1000.05
+    assert apply_interest(1000, 0.05) == 1050.0`},
+    {name:"Parametrized", desc:"@pytest.mark.parametrize", code:
+`import pytest
+
+def is_valid_amount(x):
+    return isinstance(x, (int, float)) and x > 0
+
+@pytest.mark.parametrize("value, expected", [
+    (100,   True),
+    (0,     False),
+    (-5,    False),
+    (12.5,  True),
+    ("10",  False),
+])
+def test_amounts(value, expected):
+    assert is_valid_amount(value) is expected`},
+    {name:"Fixtures", desc:"setup/teardown", code:
+`import pytest
+
+class Account:
+    def __init__(self, balance=0):
+        self.balance = balance
+    def deposit(self, x):
+        self.balance += x
+
+@pytest.fixture
+def account():
+    # runs before each test that requests it
+    return Account(balance=500)
+
+def test_starts_at_500(account):
+    assert account.balance == 500
+
+def test_deposit(account):
+    account.deposit(250)
+    assert account.balance == 750`},
+  ],
+  "Pandas / NumPy":[
+    {name:"DataFrame basics", desc:"filter + groupby", code:
+`import pandas as pd
+
+df = pd.DataFrame({
+    "customer": ["Aarav","Priya","Liam","Emma","Noah"],
+    "province": ["ON","ON","BC","BC","AB"],
+    "balance":  [2450.75, 540.10, 76500.0, 9300.5, 330.0],
+})
+
+print("All rows:")
+print(df, "\\n")
+
+print("Balance > 1000:")
+print(df[df.balance > 1000], "\\n")
+
+print("Total balance by province:")
+print(df.groupby("province")["balance"].sum())`},
+    {name:"Data validation", desc:"nulls & dtypes", code:
+`import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({
+    "account_id": [5001, 5002, 5003, 5004],
+    "balance":    [100.0, np.nan, 250.0, -5.0],
+})
+
+print("Null counts per column:")
+print(df.isnull().sum(), "\\n")
+
+print("Rows with negative balance (regression flag):")
+print(df[df.balance < 0], "\\n")
+
+print("Describe:")
+print(df["balance"].describe())`},
+    {name:"NumPy stats", desc:"vectorized math", code:
+`import numpy as np
+
+amounts = np.array([120.0, 2000.0, 75.5, 300.0, 4500.0, 8000.0])
+
+print("sum     :", amounts.sum())
+print("mean    :", round(amounts.mean(), 2))
+print("std     :", round(amounts.std(), 2))
+print("max/min :", amounts.max(), amounts.min())
+print("> 1000  :", amounts[amounts > 1000])`},
+  ],
+};
+
+// ---------- boot ----------
+async function boot(){
+  try{
+    pyodide = await loadPyodide({indexURL:"https://cdn.jsdelivr.net/pyodide/v0.26.4/full/"});
+    pyodide.setStdout({batched:(s)=>append(s)});
+    pyodide.setStderr({batched:(s)=>append(s,'out-err')});
+    document.getElementById('boot').style.display='none';
+    document.getElementById('app').style.display='grid';
+    renderExamples();
+    loadExample("General Python",0);
+    setPill('ready','Python ready');
+    // warm up heavy packages in background
+    ensurePackages().then(()=>setPill('ready','Python + pandas + pytest ready'))
+                    .catch(()=>setPill('ready','Python ready (pkgs load on demand)'));
+  }catch(e){
+    document.getElementById('boot').innerHTML='Failed to load Pyodide: '+e.message+
+      '<br><small>Check your network / Content-Security-Policy allows cdn.jsdelivr.net.</small>';
+  }
+}
+
+function ensurePackages(){
+  if(!pkgPromise){
+    setPill('loading','loading pandas + pytest…');
+    pkgPromise = (async()=>{
+      await pyodide.loadPackage(["numpy","pandas","micropip"]);
+      const micropip = pyodide.pyimport("micropip");
+      await micropip.install("pytest");
+    })();
+  }
+  return pkgPromise;
+}
+
+// ---------- run ----------
+async function runScript(){
+  const code=document.getElementById('editor').value;
+  clearConsole(); busy(true); const t0=performance.now();
+  try{
+    if(/import\s+(pandas|numpy)|from\s+(pandas|numpy)/.test(code)) await ensurePackages();
+    await pyodide.runPythonAsync(code);
+    done(t0);
+  }catch(e){ append(String(e.message||e),'out-err'); }
+  finally{ busy(false); setPillReady(); }
+}
+
+async function runTests(){
+  const code=document.getElementById('editor').value;
+  clearConsole(); busy(true); const t0=performance.now();
+  append('Running pytest…\n','out-info');
+  try{
+    await ensurePackages();
+    testCounter++;
+    const path=`/home/pyodide/test_session_${testCounter}.py`;
+    pyodide.FS.writeFile(path, code);
+    const rc = await pyodide.runPythonAsync(
+      `import pytest\n` +
+      `pytest.main(["-v","--no-header","-p","no:cacheprovider","${path}"])`
+    );
+    const r = rc.toString ? rc.toString() : String(rc);
+    if(r==='0') append('\n✓ All tests passed.','out-pass');
+    else append('\n✗ Some tests failed (exit code '+r+'). Read the report above.','out-err');
+    done(t0);
+  }catch(e){ append(String(e.message||e),'out-err'); }
+  finally{ busy(false); setPillReady(); }
+}
+
+// ---------- helpers ----------
+function append(text,cls){
+  const c=document.getElementById('console');
+  if(c.querySelector('.out-info') && c.children.length===1 && c.textContent==='Output will appear here.') c.innerHTML='';
+  const span=document.createElement('span');
+  if(cls) span.className=cls;
+  span.textContent=text;
+  c.appendChild(span); c.scrollTop=c.scrollHeight;
+}
+function clearConsole(){ document.getElementById('console').innerHTML=''; document.getElementById('timing').textContent=''; }
+function done(t0){ document.getElementById('timing').textContent=((performance.now()-t0)/1000).toFixed(2)+' s'; }
+function busy(b){ document.getElementById('runBtn').disabled=b; document.getElementById('testBtn').disabled=b; }
+function setPill(cls,txt){ const p=document.getElementById('pill'); p.className=cls; p.textContent=txt; }
+function setPillReady(){ const p=document.getElementById('pill'); if(p.className!=='loading') setPill('ready', p.textContent.includes('pandas')?p.textContent:'Python ready'); }
+
+function renderExamples(){
+  let html='';
+  for(const [grp,items] of Object.entries(EXAMPLES)){
+    html+=`<div class="ex-group"><div class="gname">${grp}</div>`;
+    items.forEach((ex,i)=>{
+      html+=`<button class="ex-btn" onclick="loadExample('${grp}',${i})">${ex.name} <small>— ${ex.desc}</small></button>`;
+    });
+    html+='</div>';
+  }
+  document.getElementById('examples').innerHTML=html;
+}
+function loadExample(grp,i){
+  document.getElementById('editor').value=EXAMPLES[grp][i].code;
+}
+
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();runScript();}
+});
+boot();
+</script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Projects — Vineet Kumar</title>
+    <meta name="description"
+        content="Curated set of Vineet Kumar's open-source work: AI code review agent, AI-enabled test framework, Playwright BDD in Java, Python BDD, MERN shopping cart, Selenium Grid in Docker.">
+    <link rel="canonical" href="https://www.vineetkr.com/project/">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .proj-wrap {
+            max-width: 1100px;
+            margin: 24px auto 64px;
+            padding: 0 20px;
+            color: #1a2233;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .proj-intro {
+            background: #fff;
+            border: 1px solid #e3e7ef;
+            border-radius: 12px;
+            padding: 20px 24px;
+            box-shadow: 0 4px 18px rgba(38, 49, 89, 0.05);
+            margin-bottom: 22px;
+        }
+
+        .proj-intro h1 {
+            margin: 0 0 6px 0;
+            color: #0a1a33;
+            font-size: 1.65rem;
+        }
+
+        .proj-intro p {
+            margin: 0;
+            color: #4b5773;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0 22px 0;
+        }
+
+        .chip {
+            background: #fff;
+            border: 1px solid #cfd6e4;
+            color: #263159;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.15s ease;
+        }
+
+        .chip:hover {
+            background: #f1f4fa;
+        }
+
+        .chip.active {
+            background: #0066cc;
+            color: #fff;
+            border-color: #0066cc;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #e3e7ef;
+            border-radius: 12px;
+            padding: 18px 20px 16px 20px;
+            box-shadow: 0 2px 10px rgba(38, 49, 89, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(38, 49, 89, 0.10);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .card h3 {
+            margin: 0;
+            color: #0a1a33;
+            font-size: 1.08rem;
+            line-height: 1.3;
+        }
+
+        .badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: #eef3fa;
+            color: #263159;
+            white-space: nowrap;
+        }
+
+        .badge.flag {
+            background: #fff4d6;
+            color: #856404;
+        }
+
+        .badge.live {
+            background: #e7f5ea;
+            color: #1e7e34;
+        }
+
+        .card .lang {
+            display: inline-block;
+            font-size: 0.78rem;
+            color: #6c757d;
+            margin-bottom: 8px;
+        }
+
+        .card .lang span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #0066cc;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .lang.java span {
+            background: #b07219;
+        }
+
+        .lang.python span {
+            background: #3572A5;
+        }
+
+        .lang.javascript span {
+            background: #f1e05a;
+            border: 1px solid #ccc;
+        }
+
+        .lang.typescript span {
+            background: #2b7489;
+        }
+
+        .lang.html span {
+            background: #e34c26;
+        }
+
+        .card p.desc {
+            color: #2a3550;
+            font-size: 0.93rem;
+            line-height: 1.5;
+            margin: 0 0 10px 0;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 0 0 12px 0;
+        }
+
+        .tag {
+            background: #f1f4fa;
+            color: #4b5773;
+            font-size: 0.74rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .btn {
+            font-size: 0.85rem;
+            padding: 7px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #cfd6e4;
+            color: #263159;
+            background: #fff;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #f1f4fa;
+        }
+
+        .btn.primary {
+            background: #0066cc;
+            color: #fff;
+            border-color: #0066cc;
+        }
+
+        .btn.primary:hover {
+            background: #004f9e;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="../vineet.png" alt="Vineet Kumar"
+                style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom:0.25rem;">Vineet Kumar</h1>
+                <span>QE Manager &amp; SDET Lead</span>
+            </div>
+        </div>
+        <nav aria-label="Primary">
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About Me</a></li>
+                <li><a href="../index.html#knowledge-sharing">Featured Projects</a></li>
+                <li><a href="../agents.html">Agents</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="proj-wrap">
+        <section class="proj-intro">
+            <h1>Featured Projects</h1>
+            <p>A curated subset of my open-source work — AI agents, automation frameworks, and full-stack samples. Full
+                list on <a href="https://github.com/contactkrvineet" target="_blank" rel="noopener">GitHub</a>.</p>
+        </section>
+
+        <div class="filter-bar" role="tablist" aria-label="Filter projects by tag">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="ai">AI</button>
+            <button class="chip" data-filter="automation">Test Automation</button>
+            <button class="chip" data-filter="java">Java</button>
+            <button class="chip" data-filter="python">Python</button>
+            <button class="chip" data-filter="javascript">JavaScript</button>
+            <button class="chip" data-filter="fullstack">Full Stack</button>
+        </div>
+
+        <div class="grid" id="projGrid">
+
+            <!-- 1. AI Code Review Agent -->
+            <article class="card" data-tags="ai python automation">
+                <div class="card-top">
+                    <h3>AI Code Review Agent</h3>
+                    <span class="badge flag">Flagship</span>
+                </div>
+                <span class="lang python"><span></span>Python</span>
+                <p class="desc">Standalone LLM-based code review tool. Paste any GitHub or GitLab URL to flag style and
+                    convention violations. Pluggable LLM backends (Claude, Gemini, Ollama, OpenAI), structured JSON
+                    output, GitHub Actions integration.</p>
+                <div class="tags">
+                    <span class="tag">LLM</span><span class="tag">MCP</span><span class="tag">Claude</span>
+                    <span class="tag">GitHub Actions</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://codereview.vineetkr.com" target="_blank" rel="noopener">🔗 Live
+                        demo</a>
+                    <a class="btn" href="https://github.com/contactkrvineet/codereview-ai-agent" target="_blank"
+                        rel="noopener">Source</a>
+                </div>
+            </article>
+
+            <!-- 2. AI-test-framework -->
+            <article class="card" data-tags="ai automation java">
+                <div class="card-top">
+                    <h3>AI-Enabled Test Automation Framework</h3>
+                    <span class="badge">AI + Java</span>
+                </div>
+                <span class="lang java"><span></span>Java</span>
+                <p class="desc">End-to-end test automation framework with self-healing locators and LLM-driven test data
+                    generation. Selenium + Cucumber base; LLM analyzes selector failures and proposes fixes; generates
+                    valid, boundary and invalid datasets per field type.</p>
+                <div class="tags">
+                    <span class="tag">Selenium</span><span class="tag">Cucumber</span><span
+                        class="tag">Self-healing</span>
+                    <span class="tag">LLM</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://github.com/contactkrvineet/AI-test-framework" target="_blank"
+                        rel="noopener">View on GitHub</a>
+                </div>
+            </article>
+
+            <!-- 3. Playwright BDD (Java) -->
+            <article class="card" data-tags="automation java">
+                <div class="card-top">
+                    <h3>Playwright BDD Framework — Java</h3>
+                    <span class="badge">Java</span>
+                </div>
+                <span class="lang java"><span></span>Java</span>
+                <p class="desc">Test automation framework in Playwright using Java with BDD, parallel execution,
+                    multi-browser, and CI integration. Built as the Java counterpart to the TypeScript Playwright BDD
+                    project.</p>
+                <div class="tags">
+                    <span class="tag">Playwright</span><span class="tag">Cucumber</span><span class="tag">BDD</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://github.com/contactkrvineet/playwright-bdd-framework-java"
+                        target="_blank" rel="noopener">View on GitHub</a>
+                </div>
+            </article>
+
+            <!-- 4. Playwright BDD (TypeScript) -->
+            <article class="card" data-tags="automation javascript">
+                <div class="card-top">
+                    <h3>Playwright BDD Framework — TypeScript</h3>
+                    <span class="badge live">Live report</span>
+                </div>
+                <span class="lang typescript"><span></span>TypeScript</span>
+                <p class="desc">Production-grade Playwright framework with Cucumber HTML, Allure and Bootstrap reports,
+                    parallel execution, multi-browser (Chrome/Firefox/WebKit) and GitHub Actions CI.</p>
+                <div class="tags">
+                    <span class="tag">Playwright</span><span class="tag">Allure</span><span class="tag">GitHub
+                        Actions</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://contactkrvineet.github.io/playwright-bdd-framework/"
+                        target="_blank" rel="noopener">🔗 Live report</a>
+                    <a class="btn" href="https://github.com/contactkrvineet/playwright-bdd-framework" target="_blank"
+                        rel="noopener">Source</a>
+                </div>
+            </article>
+
+            <!-- 5. Python BDD -->
+            <article class="card" data-tags="automation python">
+                <div class="card-top">
+                    <h3>Python BDD Automation Framework</h3>
+                    <span class="badge live">Live report</span>
+                </div>
+                <span class="lang python"><span></span>Python</span>
+                <p class="desc">Behave + Selenium + Requests for UI &amp; API testing. Page Object Model, parallel
+                    execution, environment configurability, and Allure / Behave reports. Designed for clean BDD-first
+                    test authoring.</p>
+                <div class="tags">
+                    <span class="tag">Behave</span><span class="tag">Selenium</span><span class="tag">Requests</span>
+                    <span class="tag">Allure</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://contactkrvineet.github.io/python-bdd-automation-framework"
+                        target="_blank" rel="noopener">🔗 Live report</a>
+                    <a class="btn" href="https://github.com/contactkrvineet/python-bdd-automation-framework"
+                        target="_blank" rel="noopener">Source</a>
+                </div>
+            </article>
+
+            <!-- 6. Intelligent Automation Platform -->
+            <article class="card" data-tags="ai automation">
+                <div class="card-top">
+                    <h3>Intelligent Automation Platform</h3>
+                    <span class="badge">AI</span>
+                </div>
+                <span class="lang"><span></span>Multi-language</span>
+                <p class="desc">Self-healing automation platform that plugs in multiple LLM providers to recover from
+                    locator and step failures during test execution.</p>
+                <div class="tags">
+                    <span class="tag">Self-healing</span><span class="tag">LLM</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://github.com/contactkrvineet/Intelligent-Automation-Platform"
+                        target="_blank" rel="noopener">View on GitHub</a>
+                </div>
+            </article>
+
+            <!-- 7. Selenium Grid Docker -->
+            <article class="card" data-tags="automation java">
+                <div class="card-top">
+                    <h3>Selenium Grid on Docker</h3>
+                    <span class="badge">Infra</span>
+                </div>
+                <span class="lang java"><span></span>Java</span>
+                <p class="desc">Containerized Selenium Grid setup for scalable, parallel cross-browser test execution.
+                    Hub + node compose for fast local and CI runs.</p>
+                <div class="tags">
+                    <span class="tag">Docker</span><span class="tag">Selenium Grid</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://github.com/contactkrvineet/selenium-grid-setup-docker"
+                        target="_blank" rel="noopener">View on GitHub</a>
+                </div>
+            </article>
+
+            <!-- 8. Express API Boilerplate -->
+            <article class="card" data-tags="fullstack javascript">
+                <div class="card-top">
+                    <h3>Express API Boilerplate</h3>
+                    <span class="badge">Full Stack</span>
+                </div>
+                <span class="lang javascript"><span></span>JavaScript</span>
+                <p class="desc">Node.js + Express REST API with GET / POST / PUT / DELETE endpoints. Designed as a quick
+                    bootstrap for building and testing your own RESTful service.</p>
+                <div class="tags">
+                    <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">REST</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://github.com/contactkrvineet/express-api-boilerplate"
+                        target="_blank" rel="noopener">View on GitHub</a>
+                </div>
+            </article>
+
+            <!-- 9. Shopping Cart -->
+            <article class="card" data-tags="fullstack javascript">
+                <div class="card-top">
+                    <h3>MERN Shopping Cart</h3>
+                    <span class="badge live">Live demo</span>
+                </div>
+                <span class="lang javascript"><span></span>JavaScript</span>
+                <p class="desc">Shopping cart built on the MERN stack (MongoDB, Express, React, Node.js). Clone-and-run
+                    sample for learning end-to-end e-commerce flow.</p>
+                <div class="tags">
+                    <span class="tag">React</span><span class="tag">MongoDB</span><span class="tag">Express</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://shopping-cart-ten-rho-60.vercel.app" target="_blank"
+                        rel="noopener">🔗 Live demo</a>
+                    <a class="btn" href="https://github.com/contactkrvineet/shopping-cart" target="_blank"
+                        rel="noopener">Source</a>
+                </div>
+            </article>
+
+            <!-- 10. Build Your Own AI Agent -->
+            <article class="card" data-tags="ai python">
+                <div class="card-top">
+                    <h3>Build Your Own AI Agent</h3>
+                    <span class="badge">AI</span>
+                </div>
+                <span class="lang python"><span></span>Python</span>
+                <p class="desc">Starter project for creating a custom AI agent. Useful as a teaching baseline for prompt
+                    engineering, tool use, and agent loops.</p>
+                <div class="tags">
+                    <span class="tag">LLM</span><span class="tag">Agent</span>
+                </div>
+                <div class="card-actions">
+                    <a class="btn primary" href="https://github.com/contactkrvineet/build-your-own-ai-agent"
+                        target="_blank" rel="noopener">View on GitHub</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Vineet Kumar</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/contactkrvineet" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:contactkrvineet@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const chips = document.querySelectorAll('.chip');
+            const cards = document.querySelectorAll('#projGrid .card');
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    chips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    const f = chip.dataset.filter;
+                    cards.forEach(card => {
+                        if (f === 'all') {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.toggle('hidden',
+                                !card.dataset.tags.split(' ').includes(f));
+                        }
+                    });
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

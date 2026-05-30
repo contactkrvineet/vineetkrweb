@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV — Vineet Kumar | QE Manager & SDET Lead</title>
+    <meta name="description"
+        content="CV of Vineet Kumar — QE Manager and SDET Lead. 16+ years building test automation in banking and digital commerce. Currently architecting AI-driven QE workflows at Goldman Sachs via Publicis Sapient.">
+    <link rel="canonical" href="https://www.vineetkr.com/cv">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ---- CV page (scoped) ---- */
+        .cv-wrap {
+            max-width: 920px;
+            margin: 24px auto 64px;
+            padding: 0 20px;
+            color: #1a2233;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.55;
+        }
+
+        .cv-toolbar {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            border: 1px solid #cfd6e4;
+            color: #263159;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .cv-btn:hover {
+            background: #f1f4fa;
+        }
+
+        .cv-btn.primary {
+            background: #0066cc;
+            color: #fff;
+            border-color: #0066cc;
+        }
+
+        .cv-btn.primary:hover {
+            background: #004f9e;
+        }
+
+        .cv-paper {
+            background: #ffffff;
+            border: 1px solid #e3e7ef;
+            border-radius: 12px;
+            padding: 40px 48px;
+            box-shadow: 0 4px 22px rgba(38, 49, 89, 0.06);
+        }
+
+        /* Force a light surface for the header block so any global
+           header styles in styles.css cannot bleed in. */
+        .cv-hdr {
+            background: #ffffff !important;
+            color: #1a2233 !important;
+            padding: 0 0 6px 0;
+            border-bottom: 1px solid #eef1f7;
+            margin-bottom: 10px;
+            text-align: left !important;
+            text-transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .cv-hdr h1 {
+            margin: 0 0 4px 0 !important;
+            font-size: 2rem !important;
+            color: #0a1a33 !important;
+            letter-spacing: -0.3px !important;
+            font-weight: 700 !important;
+            text-transform: none !important;
+            background: none !important;
+            -webkit-text-fill-color: #0a1a33 !important;
+            border: 0 !important;
+            padding: 0 !important;
+            filter: none !important;
+            text-shadow: none !important;
+            display: block !important;
+        }
+
+        .cv-hdr .title {
+            color: #1a2233 !important;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            font-size: 1.02rem;
+        }
+
+        .cv-hdr .meta {
+            color: #2a3550 !important;
+            font-size: 0.92rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .cv-hdr .meta a {
+            color: #0a4d99 !important;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .cv-hdr .meta a:hover {
+            text-decoration: underline;
+        }
+
+        .cv-hdr .status {
+            display: inline-block;
+            margin-top: 10px;
+            background: #e7f5ea;
+            color: #1e6a2f;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .cv-section {
+            margin-top: 28px;
+        }
+
+        .cv-section>h2 {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #4b5773;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 6px;
+            margin: 0 0 14px 0;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .hl {
+            background: #f5f8fc;
+            border-left: 3px solid #0066cc;
+            border-radius: 6px;
+            padding: 12px 14px;
+        }
+
+        .hl .num {
+            display: block;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0a1a33;
+            line-height: 1.1;
+        }
+
+        .hl .lbl {
+            font-size: 0.85rem;
+            color: #4b5773;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .summary {
+            color: #2a3550;
+        }
+
+        .skills dl {
+            margin: 0;
+        }
+
+        .skills dt {
+            font-weight: 700;
+            color: #0a1a33;
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        .skills dd {
+            margin: 2px 0 0 0;
+            color: #2a3550;
+            font-size: 0.94rem;
+        }
+
+        .role {
+            padding: 14px 0;
+            border-top: 1px solid #eef1f7;
+        }
+
+        .role:first-of-type {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .role-head {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: baseline;
+        }
+
+        .role-head h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #0a1a33;
+        }
+
+        .role-head .when {
+            font-size: 0.88rem;
+            color: #6c757d;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .role-sub {
+            color: #4b5773;
+            font-size: 0.9rem;
+            margin: 2px 0 8px 0;
+        }
+
+        .role ul {
+            margin: 8px 0 0 18px;
+            padding: 0;
+        }
+
+        .role li {
+            margin-bottom: 4px;
+            color: #2a3550;
+        }
+
+        .agents {
+            margin: 12px 0 0 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .agent {
+            background: #f8faff;
+            border: 1px solid #e3e9f5;
+            border-radius: 8px;
+            padding: 10px 14px;
+        }
+
+        .agent b {
+            color: #0a1a33;
+        }
+
+        .proj-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .proj-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e3e7ef;
+        }
+
+        .proj-list li:last-child {
+            border-bottom: 0;
+        }
+
+        .proj-list b {
+            color: #0a1a33;
+        }
+
+        .talks li {
+            color: #2a3550;
+        }
+
+        .certs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .cert {
+            background: #eef3fa;
+            color: #263159;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .cv-paper {
+                padding: 24px 18px;
+            }
+
+            .cv-hdr h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Print: clean A4-friendly output */
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            header,
+            footer,
+            .cv-toolbar {
+                display: none !important;
+            }
+
+            .cv-wrap {
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+            }
+
+            .cv-paper {
+                border: 0;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            a {
+                color: #0a1a33 !important;
+                text-decoration: none;
+            }
+
+            .cv-section>h2 {
+                color: #000;
+                border-color: #000;
+            }
+
+            .hl {
+                background: transparent;
+                border-left-color: #000;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="vineet.png" alt="Vineet Kumar profile picture"
+                style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom: 0.25rem;">Vineet Kumar</h1>
+                <span>QE Manager &amp; SDET Lead</span>
+            </div>
+        </div>
+        <nav aria-label="Primary">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="index.html#knowledge-sharing">Featured Projects</a></li>
+                <li><a href="agents.html">Agents</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="cv-wrap">
+        <div class="cv-toolbar">
+            <a class="cv-btn primary" href="Vineet_Kumar_Resume.pdf" target="_blank" rel="noopener"
+                download="Vineet_Kumar_Resume.pdf">⬇ Download PDF</a>
+            <a class="cv-btn" href="Vineet_Kumar_Resume.pdf" target="_blank" rel="noopener">👁 View PDF</a>
+            <button class="cv-btn" onclick="window.print()" type="button">🖨 Print</button>
+        </div>
+
+        <article class="cv-paper">
+            <div class="cv-hdr">
+                <h1>Vineet Kumar</h1>
+                <p class="title">QE Manager · SDET Lead · AI Test Automation Architect</p>
+                <p class="meta">
+                    Toronto, ON, Canada · +1 437-428-2199 ·
+                    <a href="mailto:contactkrvineet@gmail.com">contactkrvineet@gmail.com</a><br>
+                    <a href="https://linkedin.com/in/vineet2311" target="_blank"
+                        rel="noopener">linkedin.com/in/vineet2311</a> ·
+                    <a href="https://github.com/contactkrvineet" target="_blank"
+                        rel="noopener">github.com/contactkrvineet</a> ·
+                    <a href="https://www.vineetkr.com" target="_blank" rel="noopener">vineetkr.com</a>
+                </p>
+                <span class="status">Permanent Resident, Canada · No sponsorship required</span>
+            </div>
+
+            <section class="cv-section">
+                <h2>Career Highlights</h2>
+                <div class="highlights">
+                    <div class="hl"><span class="num">78%</span><span class="lbl">Regression cycle cut (5 days → 11 hrs)
+                            at Goldman Sachs</span></div>
+                    <div class="hl"><span class="num">3,000+</span><span class="lbl">Tests across 12 banking
+                            microservices</span></div>
+                    <div class="hl"><span class="num">5 AI agents</span><span class="lbl">Shipped to the Goldman Sachs
+                            QE team</span></div>
+                    <div class="hl"><span class="num">12 engineers</span><span class="lbl">SDET team led across CA, US,
+                            IN</span></div>
+                    <div class="hl"><span class="num">16+ years</span><span class="lbl">Regulated banking and digital
+                            commerce</span></div>
+                </div>
+            </section>
+
+            <section class="cv-section">
+                <h2>Professional Summary</h2>
+                <p class="summary">
+                    QE Manager and SDET Lead with 16+ years building test automation for regulated banking and digital
+                    commerce. Currently architecting AI-driven QE workflows at Goldman Sachs through Publicis Sapient,
+                    including code review, requirements-to-test generation, and self-healing automation agents. Lead a
+                    12-engineer global SDET team and have shipped frameworks covering 3,000+ tests across 12 banking
+                    microservices.
+                </p>
+            </section>
+
+            <section class="cv-section skills">
+                <h2>Technical Skills</h2>
+                <dl>
+                    <dt>Languages</dt>
+                    <dd>Java, Python, TypeScript, JavaScript, SQL</dd>
+                    <dt>Test Automation</dt>
+                    <dd>Selenium WebDriver, Playwright, Appium, REST Assured, Pact (contract testing), Cucumber (BDD),
+                        TestNG, Postman, WireMock, JMeter, Gatling</dd>
+                    <dt>AI / LLM Engineering</dt>
+                    <dd>LangChain, RAG pipelines, prompt engineering for QE workflows, MCP servers (including Playwright
+                        MCP), Claude Code for agentic development, multi-provider LLM integration (Anthropic, OpenAI,
+                        Groq, Ollama)</dd>
+                    <dt>CI/CD, Cloud, DevOps</dt>
+                    <dd>Jenkins, GitLab CI/CD, GitHub Actions, Docker, AWS (CodePipeline, EC2, Device Farm), Maven,
+                        Gradle, SonarQube, Allure, Extent Reports, Jira, Zephyr</dd>
+                    <dt>Practices</dt>
+                    <dd>Shift-left testing, TDD, BDD, Page Object Model, contract testing, flaky test management, test
+                        data management, performance engineering</dd>
+                    <dt>Domain</dt>
+                    <dd>Banking, Wealth Management, Payments, Salesforce CRM, Digital Commerce, Retail</dd>
+                </dl>
+            </section>
+
+            <section class="cv-section">
+                <h2>Professional Experience</h2>
+
+                <div class="role">
+                    <div class="role-head">
+                        <h3>QE Manager — Publicis Sapient <span style="color:#6c757d;font-weight:500;">(Global delivery:
+                                CA, US, IN)</span></h3>
+                        <span class="when">Nov 2015 — Present</span>
+                    </div>
+                    <p class="role-sub">Progression: SDET → SDET Lead → QE Manager · Client: Goldman Sachs (Wealth
+                        Management &amp; Banking)</p>
+                    <ul>
+                        <li>Architected the BDD framework (Selenium WebDriver + Java + TestNG + Cucumber) covering
+                            3,000+
+                            test cases across 12 banking microservices including Salesforce CRM and financial
+                            transaction processing. Cut regression from 5 days to 11 hours (<b>78%</b>).</li>
+                        <li>Ran integration testing across 12 banking microservices and 4 downstream systems during
+                            weekly release cycles; partnered with dev leads on hotfix validation. Achieved 6
+                            consecutive zero-rollback production deployments.</li>
+                        <li>Shifted testing into PR pipelines on 12 banking repos with PR-gated unit/contract tests and
+                            pre-merge static checks. Reduced production defects by <b>25%</b> and MTTD on critical
+                            issues by <b>60%</b>.</li>
+                        <li>Built REST Assured API automation with Pact contract testing across 12+ microservices;
+                            integrated into Jenkins/GitLab CI/CD with parallel execution, Allure reporting, Slack
+                            alerts.</li>
+                        <li>Built a dynamic test data service (Java + REST) replacing shared QA databases; enabled
+                            isolated parallel test runs across 8 feature suites.</li>
+                        <li>Designed enterprise load and performance testing strategy (JMeter, Gatling) validating
+                            5,000+ concurrent users; identified bottlenecks that improved API response time by
+                            <b>30%</b>
+                            under peak transaction volumes.</li>
+                        <li>Built a weekly quality dashboard (Allure + executive scorecard) used by 4 engineering
+                            directors; release-readiness scorecard gated 30+ production deployments.</li>
+                    </ul>
+
+                    <h4 style="margin:14px 0 6px 0;color:#0a1a33;">AI Agents shipped to the Goldman Sachs QE team</h4>
+                    <p style="font-size:0.9rem;color:#4b5773;margin:0 0 8px 0;">Agents run in QA environments with
+                        outputs
+                        validated through banking compliance gates before promotion.</p>
+                    <div class="agents">
+                        <div class="agent"><b>AI Code Review Agent</b> (Python + Claude via MCP server) — scans GitLab
+                            MR
+                            diffs against POM &amp; framework standards, posts inline comments. Adopted across 4 active
+                            QE repos.</div>
+                        <div class="agent"><b>AI Requirements-to-Acceptance-Criteria Agent</b> — reads Confluence
+                            business requirements, pushes compliance-format acceptance criteria into Jira. Cuts
+                            BA-to-QE handoff time.</div>
+                        <div class="agent"><b>AI Feature File &amp; Step Reuse Agent</b> — generates Gherkin from Jira
+                            AC
+                            and detects existing step definitions to prevent duplication. Reduced feature authoring
+                            cycle from 3 days to 18 hours.</div>
+                        <div class="agent"><b>AI Component &amp; Locator Reuse Agent</b> — analyzes DOM, reuses Page
+                            Object components/locators or generates framework-conformant new ones; auto-maps feature
+                            files to glue and step definitions.</div>
+                        <div class="agent"><b>AI Smart Test Impact Agent</b> (Python + LLM) — analyzes commit diffs for
+                            impacted Salesforce modules (<code>@opp</code>, <code>@lead</code>, <code>@pardot</code>),
+                            triggers a targeted subset for fast feedback, then runs full <code>@regression</code> as
+                            second-pass safety.</div>
+                    </div>
+
+                    <h4 style="margin:14px 0 6px 0;color:#0a1a33;">Leadership</h4>
+                    <ul>
+                        <li>Managed and mentored a 12-engineer SDET team across CA, US, IN; owned hiring, structured
+                            onboarding, 1:1s, performance reviews.</li>
+                        <li>Partnered with engineering and product leadership on quarterly quality OKRs and release
+                            readiness.</li>
+                        <li>Authored QE coding standards (POM patterns, naming, linting, SonarQube gates) adopted by 4
+                            squads; reduced code review iteration by ~35% and SDET onboarding from 3 weeks to 10 days.
+                        </li>
+                    </ul>
+
+                    <h4 style="margin:14px 0 6px 0;color:#0a1a33;">Prior clients (Retail &amp; Digital Commerce)</h4>
+                    <p style="margin:0 0 6px 0;color:#4b5773;">Marriott International · Lowe's · Bed Bath &amp; Beyond
+                    </p>
+                    <ul>
+                        <li>Built cross-platform Appium + Selenium frameworks (iOS, Android, responsive web) covering
+                            1,200+ test cases for cart, payments, order management and account workflows with dynamic
+                            test data generation.</li>
+                        <li>Built CI/CD pipelines on AWS (CodePipeline, EC2) with Report Portal dashboards; led flaky
+                            test remediation reducing suite instability from 18% to under 3%.</li>
+                    </ul>
+                </div>
+
+                <div class="role">
+                    <div class="role-head">
+                        <h3>Senior Test Engineer — NIIT Technologies</h3>
+                        <span class="when">Mar 2015 — Nov 2015</span>
+                    </div>
+                    <ul>
+                        <li>Built Selenium + TestNG automation and reusable utilities for the SITA aviation system;
+                            reduced test development time by 30%.</li>
+                    </ul>
+                </div>
+
+                <div class="role">
+                    <div class="role-head">
+                        <h3>Senior Test Engineer — Aptara Inc. (acquired iServices)</h3>
+                        <span class="when">May 2014 — Mar 2015</span>
+                    </div>
+                    <ul>
+                        <li>Led API test automation (REST Assured + Postman) for a content management platform with 60+
+                            endpoints across 4 microservices.</li>
+                        <li>Jenkins integration reduced manual regression effort by 50%.</li>
+                        <li>Mentored 3 junior QA engineers.</li>
+                    </ul>
+                </div>
+
+                <div class="role">
+                    <div class="role-head">
+                        <h3>QA Analyst — iServices (Client: BancTec)</h3>
+                        <span class="when">Dec 2013 — Apr 2014</span>
+                    </div>
+                    <ul>
+                        <li>Functional and regression testing for the BancTec document capture and workflow processing
+                            platform.</li>
+                        <li>Authored test cases for enterprise document workflows.</li>
+                    </ul>
+                </div>
+
+                <div class="role">
+                    <div class="role-head">
+                        <h3>QA Analyst — Toluna</h3>
+                        <span class="when">Jul 2010 — Nov 2013</span>
+                    </div>
+                    <ul>
+                        <li>Functional, regression, and UAT testing for a survey and panel SaaS platform serving 4M+
+                            users.</li>
+                        <li>Introduced Selenium IDE automation that reduced manual regression cycles from 3 days to 8
+                            hours.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="cv-section">
+                <h2>Selected Projects &amp; Open Source</h2>
+                <ul class="proj-list">
+                    <li><b>AI Code Review Agent</b> — standalone LLM-based code review tool built in personal time.
+                        Paste any GitHub/GitLab URL to flag style and convention violations. Pluggable LLM backends
+                        (Claude, Gemini, Ollama, OpenAI), structured JSON output, GitHub Actions integration.<br>
+                        Live: <a href="https://codereview.vineetkr.com" target="_blank"
+                            rel="noopener">codereview.vineetkr.com</a>
+                    </li>
+                    <li><b>Playwright BDD Framework (TypeScript)</b> — production-grade framework with multi-reporter
+                        support (Cucumber HTML, Allure, Bootstrap), parallel execution, multi-browser, and GitHub
+                        Actions CI.<br>
+                        Live report: <a href="https://contactkrvineet.github.io/playwright-bdd-framework"
+                            target="_blank" rel="noopener">contactkrvineet.github.io/playwright-bdd-framework</a>
+                    </li>
+                    <li><b>Python BDD Automation Framework</b> — Behave + Selenium + Requests with dual UI/API testing,
+                        Page Object Model, parallel execution, environment configurability, multiple report formats.<br>
+                        GitHub: <a href="https://github.com/contactkrvineet/python-bdd-automation-framework"
+                            target="_blank"
+                            rel="noopener">github.com/contactkrvineet/python-bdd-automation-framework</a>
+                    </li>
+                </ul>
+                <p style="margin-top:10px;font-size:0.95rem;">
+                    Curated showcase: <a href="project/">vineetkr.com/project</a>
+                </p>
+            </section>
+
+            <section class="cv-section">
+                <h2>Speaking &amp; Community</h2>
+                <ul class="talks">
+                    <li><b>BrowserStack</b> — Speaker, <i>Transforming Test Automation with AI</i> · Toronto · Mar 2026
+                        (upcoming)</li>
+                    <li><b>Agile Testing Alliance (ATAGTR2025)</b> — Speaker, <i>Smart Test Execution with AI</i> ·
+                        Virtual · Nov 2025</li>
+                    <li><b>Testing Mind TAS25</b> — Speaker, <i>AI in Test Automation</i> · Toronto · Jun 2025</li>
+                </ul>
+                <p style="margin-top:6px;font-size:0.9rem;color:#4b5773;">All sessions:
+                    <a href="about.html#speaker">vineetkr.com/about#speaker</a>
+                </p>
+            </section>
+
+            <section class="cv-section">
+                <h2>Education</h2>
+                <p style="margin:0;"><b>B.Tech, Computer Science</b> — Uttar Pradesh Technical University, India · 2008
+                </p>
+            </section>
+
+            <section class="cv-section">
+                <h2>Certifications</h2>
+                <div class="certs">
+                    <span class="cert">SAFe POPM</span>
+                    <span class="cert">AWS GenAI Essentials</span>
+                    <span class="cert">Azure Fundamentals (AZ-900)</span>
+                    <span class="cert">ISTQB Foundation</span>
+                    <span class="cert">PCEP — Python</span>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Vineet Kumar</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/contactkrvineet" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:contactkrvineet@gmail.com">Email</a>
+        </div>
+    </footer>
+</body>
+
+</html>
