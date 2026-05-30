@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL Practice Sandbox — Banking Regression</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#13192180; --panel-solid:#161b22; --line:#283039;
+    --text:#e6edf3; --muted:#8b949e; --accent:#3fb950; --accent-dim:#2ea043;
+    --blue:#58a6ff; --amber:#d29922; --red:#f85149; --kw:#ff7b72; --num:#79c0ff;
+    --radius:10px; --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--sans);
+    background-image:radial-gradient(circle at 15% 0%,#16203010,transparent 40%),
+      radial-gradient(circle at 85% 100%,#1a2a3a18,transparent 45%);
+    min-height:100vh; padding:22px; font-size:14px; line-height:1.5;
+  }
+  header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  header h1{font-size:20px;font-weight:700;letter-spacing:-.3px}
+  header .tag{font-family:var(--mono);font-size:11px;color:var(--accent);
+    border:1px solid var(--accent);padding:2px 8px;border-radius:20px}
+  header p{color:var(--muted);font-size:13px;width:100%;margin-top:2px}
+  .layout{display:grid;grid-template-columns:1fr 300px;gap:16px;margin-top:18px}
+  @media(max-width:880px){.layout{grid-template-columns:1fr}}
+  .card{background:var(--panel-solid);border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden}
+  .card-head{padding:10px 14px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+    display:flex;align-items:center;justify-content:space-between;background:#0f141b}
+  .card-head b{color:var(--text);font-weight:600}
+  /* editor */
+  .editor-wrap{position:relative}
+  textarea#editor{
+    width:100%;min-height:170px;resize:vertical;border:none;outline:none;
+    background:#0c1118;color:var(--text);font-family:var(--mono);font-size:13.5px;
+    padding:14px;line-height:1.6;tab-size:2;
+  }
+  .toolbar{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line);
+    flex-wrap:wrap;align-items:center}
+  button{font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;
+    border-radius:7px;border:1px solid var(--line);background:#1c232c;color:var(--text);
+    padding:7px 14px;transition:.15s}
+  button:hover{border-color:#3d4754;background:#222a34}
+  button.primary{background:var(--accent-dim);border-color:var(--accent);color:#03110a}
+  button.primary:hover{background:var(--accent)}
+  button.ghost{background:transparent}
+  .hint{margin-left:auto;color:var(--muted);font-family:var(--mono);font-size:11px}
+  /* results */
+  #status{padding:8px 14px;font-family:var(--mono);font-size:12px;border-top:1px solid var(--line)}
+  #status.ok{color:var(--accent)} #status.err{color:var(--red);white-space:pre-wrap}
+  .result-scroll{max-height:340px;overflow:auto}
+  table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:12.5px}
+  th,td{padding:7px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{position:sticky;top:0;background:#1a212b;color:var(--blue);font-weight:600;
+    border-bottom:2px solid var(--line)}
+  tbody tr:hover{background:#161d27}
+  td.num{color:var(--num)} td.null{color:var(--muted);font-style:italic}
+  /* sidebar */
+  .side{display:flex;flex-direction:column;gap:16px}
+  .schema-tbl{padding:8px 0}
+  .schema-tbl .tname{font-family:var(--mono);font-size:12.5px;color:var(--amber);
+    padding:6px 14px 2px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between}
+  .schema-tbl .tname:hover{color:var(--blue)}
+  .schema-tbl .cols{padding:0 14px 8px 26px;color:var(--muted);
+    font-family:var(--mono);font-size:11.5px;line-height:1.7}
+  .schema-tbl .cols span{color:var(--text)} .schema-tbl .cols .pk{color:var(--accent)}
+  /* challenges */
+  .chal{border-bottom:1px solid var(--line);padding:12px 14px}
+  .chal:last-child{border-bottom:none}
+  .chal .q{font-size:12.5px;margin-bottom:8px}
+  .chal .q b{color:var(--blue);font-family:var(--mono);font-size:11px;margin-right:4px}
+  .chal .row{display:flex;gap:6px}
+  .chal button{padding:4px 10px;font-size:11.5px}
+  .sol{display:none;margin-top:8px;background:#0c1118;border:1px solid var(--line);
+    border-radius:6px;padding:10px;font-family:var(--mono);font-size:11.5px;
+    color:var(--accent);white-space:pre-wrap}
+  .loading{padding:40px;text-align:center;color:var(--muted);font-family:var(--mono)}
+</style>
+</head>
+<body>
+<header>
+  <h1>SQL Practice Sandbox</h1>
+  <span class="tag">RBC REGRESSION PREP</span>
+  <p>A live SQLite database running in your browser. Edit, run, and break things freely — click <b>Reset DB</b> anytime to restore. Schema and 8 practice challenges are on the right.</p>
+</header>
+
+<div id="boot" class="loading">Loading database engine…</div>
+
+<div class="layout" id="app" style="display:none">
+  <div>
+    <div class="card">
+      <div class="card-head"><b>Query Editor</b><span>SQLite</span></div>
+      <div class="editor-wrap">
+        <textarea id="editor" spellcheck="false">SELECT c.first_name, c.last_name, a.account_type, a.balance
+FROM customers c
+JOIN accounts a ON c.customer_id = a.customer_id
+ORDER BY a.balance DESC;</textarea>
+      </div>
+      <div class="toolbar">
+        <button class="primary" onclick="runQuery()">▶ Run</button>
+        <button class="ghost" onclick="clearEditor()">Clear</button>
+        <button class="ghost" onclick="resetDB()">↺ Reset DB</button>
+        <span class="hint">Ctrl / ⌘ + Enter to run</span>
+      </div>
+      <div id="status" class="ok">Ready.</div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="card-head"><b>Results</b><span id="rowcount"></span></div>
+      <div class="result-scroll"><div id="results"></div></div>
+    </div>
+  </div>
+
+  <div class="side">
+    <div class="card">
+      <div class="card-head"><b>Schema</b><span>click to query</span></div>
+      <div id="schema"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><b>Practice Challenges</b></div>
+      <div id="challenges"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ---------- Schema + seed data (deliberately includes dupes, orphans, varied values) ----------
+const SCHEMA_SQL = `
+CREATE TABLE branches (
+  branch_id INTEGER PRIMARY KEY,
+  branch_name TEXT, city TEXT, province TEXT
+);
+CREATE TABLE customers (
+  customer_id INTEGER PRIMARY KEY,
+  first_name TEXT, last_name TEXT, email TEXT,
+  branch_id INTEGER, join_date TEXT
+);
+CREATE TABLE accounts (
+  account_id INTEGER PRIMARY KEY,
+  customer_id INTEGER, account_type TEXT,
+  balance REAL, opened_date TEXT, status TEXT
+);
+CREATE TABLE transactions (
+  txn_id INTEGER PRIMARY KEY,
+  account_id INTEGER, txn_type TEXT,
+  amount REAL, txn_date TEXT
+);
+
+INSERT INTO branches VALUES
+ (1,'Bay Street','Toronto','ON'),
+ (2,'Burrard','Vancouver','BC'),
+ (3,'Jasper Ave','Edmonton','AB'),
+ (4,'George St','Prince George','BC');
+
+INSERT INTO customers VALUES
+ (101,'Aarav','Sharma','aarav.s@mail.com',1,'2021-03-12'),
+ (102,'Priya','Patel','priya.p@mail.com',1,'2022-07-01'),
+ (103,'Liam','Tremblay','liam.t@mail.com',2,'2020-11-23'),
+ (104,'Emma','Nguyen','emma.n@mail.com',2,'2023-01-15'),
+ (105,'Noah','Singh','priya.p@mail.com',3,'2022-07-01'),   -- duplicate email
+ (106,'Saroj','Kaur','saroj.k@mail.com',4,'2024-05-30'),
+ (107,'Vikram','Rao','vikram.r@mail.com',NULL,'2019-08-08'),-- no branch
+ (108,'Olivia','Brown','olivia.b@mail.com',3,'2023-09-19'); -- no accounts (orphan)
+
+INSERT INTO accounts VALUES
+ (5001,101,'Chequing',2450.75,'2021-03-12','ACTIVE'),
+ (5002,101,'Savings',18200.00,'2021-04-01','ACTIVE'),
+ (5003,102,'Chequing',540.10,'2022-07-05','ACTIVE'),
+ (5004,103,'Savings',76500.00,'2020-12-01','ACTIVE'),
+ (5005,103,'Chequing',1200.00,'2021-01-10','DORMANT'),
+ (5006,104,'Savings',9300.50,'2023-02-01','ACTIVE'),
+ (5007,105,'Chequing',330.00,'2022-08-01','ACTIVE'),
+ (5008,106,'Savings',45000.00,'2024-06-01','ACTIVE'),
+ (5009,107,'Chequing',0.00,'2019-09-01','CLOSED');
+
+INSERT INTO transactions VALUES
+ (9001,5001,'DEBIT',120.00,'2024-01-05'),
+ (9002,5001,'CREDIT',2000.00,'2024-01-15'),
+ (9003,5002,'CREDIT',5000.00,'2024-02-01'),
+ (9004,5003,'DEBIT',75.50,'2024-02-10'),
+ (9005,5003,'DEBIT',300.00,'2024-03-01'),
+ (9006,5004,'CREDIT',12000.00,'2024-01-20'),
+ (9007,5004,'DEBIT',4500.00,'2024-02-22'),
+ (9008,5006,'CREDIT',900.00,'2024-03-15'),
+ (9009,5006,'DEBIT',150.00,'2024-03-18'),
+ (9010,5008,'CREDIT',15000.00,'2024-04-01'),
+ (9011,5008,'DEBIT',3000.00,'2024-04-10'),
+ (9012,5001,'DEBIT',45.25,'2024-04-12'),
+ (9013,5007,'DEBIT',30.00,'2024-04-20'),
+ (9014,5004,'CREDIT',8000.00,'2024-05-02');
+`;
+
+const CHALLENGES = [
+  {q:"Return the 2nd-highest account balance (no LIMIT/TOP).",
+   sol:"SELECT MAX(balance) AS second_highest\nFROM accounts\nWHERE balance < (SELECT MAX(balance) FROM accounts);"},
+  {q:"Find duplicate email addresses among customers.",
+   sol:"SELECT email, COUNT(*) AS cnt\nFROM customers\nGROUP BY email\nHAVING COUNT(*) > 1;"},
+  {q:"List customers who have NO accounts (orphaned records).",
+   sol:"SELECT c.customer_id, c.first_name, c.last_name\nFROM customers c\nLEFT JOIN accounts a ON c.customer_id = a.customer_id\nWHERE a.account_id IS NULL;"},
+  {q:"Total transaction amount per account, only accounts over $5000 total.",
+   sol:"SELECT account_id, SUM(amount) AS total\nFROM transactions\nGROUP BY account_id\nHAVING SUM(amount) > 5000\nORDER BY total DESC;"},
+  {q:"Join customers + branches: name, email, branch city. Include customers with no branch.",
+   sol:"SELECT c.first_name, c.last_name, c.email, b.city, b.province\nFROM customers c\nLEFT JOIN branches b ON c.branch_id = b.branch_id;"},
+  {q:"Rank accounts by balance within each account_type (window function).",
+   sol:"SELECT account_id, account_type, balance,\n  DENSE_RANK() OVER (PARTITION BY account_type ORDER BY balance DESC) AS rnk\nFROM accounts;"},
+  {q:"All transactions between 2024-02-01 and 2024-03-31 inclusive.",
+   sol:"SELECT *\nFROM transactions\nWHERE txn_date BETWEEN '2024-02-01' AND '2024-03-31'\nORDER BY txn_date;"},
+  {q:"Reconciliation check: every account's stored balance vs net of its transactions.",
+   sol:"SELECT a.account_id, a.balance AS stored,\n  COALESCE(SUM(CASE WHEN t.txn_type='CREDIT' THEN t.amount\n                    ELSE -t.amount END),0) AS txn_net\nFROM accounts a\nLEFT JOIN transactions t ON a.account_id = t.account_id\nGROUP BY a.account_id, a.balance;"}
+];
+
+let SQL, db;
+
+async function boot(){
+  try{
+    SQL = await initSqlJs({locateFile: f => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/${f}`});
+    buildDB();
+    document.getElementById('boot').style.display='none';
+    document.getElementById('app').style.display='grid';
+    renderSchema(); renderChallenges();
+    runQuery();
+  }catch(e){
+    document.getElementById('boot').innerHTML='Failed to load engine: '+e.message;
+  }
+}
+function buildDB(){ db = new SQL.Database(); db.run(SCHEMA_SQL); }
+
+function resetDB(){
+  buildDB(); renderSchema();
+  setStatus('ok','Database reset to original state.');
+}
+function clearEditor(){ document.getElementById('editor').value=''; }
+
+function setStatus(cls,msg){
+  const s=document.getElementById('status'); s.className=cls; s.textContent=msg;
+}
+
+function runQuery(){
+  const sql=document.getElementById('editor').value.trim();
+  const out=document.getElementById('results');
+  const rc=document.getElementById('rowcount');
+  out.innerHTML=''; rc.textContent='';
+  if(!sql){ setStatus('ok','Ready.'); return; }
+  const t0=performance.now();
+  try{
+    const res=db.exec(sql);
+    const ms=(performance.now()-t0).toFixed(1);
+    // detect write statements
+    if(res.length===0){
+      const changes=db.getRowsModified();
+      setStatus('ok',`Statement OK — ${changes} row(s) affected · ${ms} ms`);
+      renderSchema(); return;
+    }
+    const {columns,values}=res[res.length-1];
+    let html='<table><thead><tr>'+columns.map(c=>`<th>${esc(c)}</th>`).join('')+'</tr></thead><tbody>';
+    for(const row of values){
+      html+='<tr>'+row.map(v=>{
+        if(v===null) return '<td class="null">NULL</td>';
+        if(typeof v==='number') return `<td class="num">${v}</td>`;
+        return `<td>${esc(String(v))}</td>`;
+      }).join('')+'</tr>';
+    }
+    html+='</tbody></table>';
+    out.innerHTML=html;
+    rc.textContent=`${values.length} row(s)`;
+    setStatus('ok',`Success · ${values.length} row(s) · ${ms} ms`);
+  }catch(e){
+    setStatus('err','SQL error: '+e.message);
+  }
+}
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+function renderSchema(){
+  const meta={
+    customers:['customer_id PK','first_name','last_name','email','branch_id FK','join_date'],
+    accounts:['account_id PK','customer_id FK','account_type','balance','opened_date','status'],
+    transactions:['txn_id PK','account_id FK','txn_type','amount','txn_date'],
+    branches:['branch_id PK','branch_name','city','province']
+  };
+  let html='';
+  for(const [t,cols] of Object.entries(meta)){
+    let cnt=0; try{cnt=db.exec(`SELECT COUNT(*) FROM ${t}`)[0].values[0][0];}catch(e){}
+    html+=`<div class="schema-tbl"><div class="tname" onclick="loadQuery('SELECT * FROM ${t};')">`+
+      `${t}<span style="color:var(--muted)">${cnt} rows</span></div><div class="cols">`+
+      cols.map(c=>{
+        const pk=c.includes('PK'); const fk=c.includes('FK');
+        const name=c.replace(/ (PK|FK)/,'');
+        return `<span class="${pk?'pk':''}">${name}</span>${pk?' 🔑':fk?' ↗':''}`;
+      }).join('<br>')+'</div></div>';
+  }
+  document.getElementById('schema').innerHTML=html;
+}
+
+function renderChallenges(){
+  let html='';
+  CHALLENGES.forEach((c,i)=>{
+    html+=`<div class="chal"><div class="q"><b>Q${i+1}</b>${esc(c.q)}</div>`+
+      `<div class="row"><button onclick="toggleSol(${i})" id="sb${i}">Show solution</button>`+
+      `<button onclick="loadQuery(SOL[${i}])">Load into editor</button></div>`+
+      `<div class="sol" id="sol${i}">${esc(c.sol)}</div></div>`;
+  });
+  document.getElementById('challenges').innerHTML=html;
+  window.SOL=CHALLENGES.map(c=>c.sol);
+}
+function toggleSol(i){
+  const el=document.getElementById('sol'+i); const btn=document.getElementById('sb'+i);
+  const open=el.style.display==='block';
+  el.style.display=open?'none':'block'; btn.textContent=open?'Show solution':'Hide solution';
+}
+function loadQuery(sql){
+  document.getElementById('editor').value=sql;
+  runQuery();
+  document.getElementById('editor').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();runQuery();}
+});
+boot();
+</script>
+</body>
+</html>
