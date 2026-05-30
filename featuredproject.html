@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Projects Repository Catalog | Vineet Kumar</title>
+    <meta name="description"
+        content="Repository catalog of featured projects, including AI agents, automation frameworks, and engineering projects.">
+    <link rel="canonical" href="https://www.vineetkr.com/featuredproject.html">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --surface: #ffffff;
+            --surface-soft: #f8fbff;
+            --text: #0f1c33;
+            --muted: #4b5d7a;
+            --brand: #005fcc;
+            --brand-dark: #084898;
+            --border: #d7e2f0;
+            --chip: #e9f2ff;
+            --shadow: 0 16px 45px rgba(9, 34, 72, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", "Trebuchet MS", Arial, sans-serif;
+            background:
+                radial-gradient(circle at 8% 0%, #dfeeff 0%, rgba(223, 238, 255, 0) 38%),
+                radial-gradient(circle at 88% 10%, #e6f7ee 0%, rgba(230, 247, 238, 0) 30%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.55;
+        }
+
+        .wrap {
+            max-width: 1260px;
+            margin: 42px auto 72px;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0b2b52 0%, #0f4a89 45%, #067d69 100%);
+            color: #fff;
+            border-radius: 20px;
+            padding: 30px 28px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: clamp(1.4rem, 2.3vw, 2.1rem);
+            line-height: 1.2;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 920px;
+            color: #e6f1ff;
+            font-size: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .pill {
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .table-shell {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(14, 37, 73, 0.08);
+        }
+
+        .scroll {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1020px;
+        }
+
+        thead th {
+            text-align: left;
+            background: #f0f6ff;
+            color: #0d2952;
+            font-size: 0.83rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 14px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e7edf6;
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--surface-soft);
+        }
+
+        tbody tr:hover {
+            background: #eef6ff;
+        }
+
+        td {
+            vertical-align: top;
+            padding: 14px;
+            color: #1d2f4f;
+            font-size: 0.93rem;
+        }
+
+        .order {
+            width: 52px;
+            text-align: center;
+            font-weight: 800;
+            color: #0b4f99;
+        }
+
+        .name {
+            font-weight: 700;
+            color: #0f2d57;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #0a4c90;
+            background: var(--chip);
+            border: 1px solid #cbe1ff;
+        }
+
+        .badge.agent {
+            color: #1c6a2f;
+            background: #e9f8ee;
+            border-color: #caedd6;
+        }
+
+        .repo,
+        .project-link {
+            word-break: break-word;
+        }
+
+        a {
+            color: var(--brand);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--brand-dark);
+            text-decoration: underline;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .foot {
+            margin-top: 12px;
+            color: #5a6d8a;
+            font-size: 0.84rem;
+        }
+
+        @media (max-width: 760px) {
+            .wrap {
+                margin-top: 28px;
+                padding: 0 12px;
+            }
+
+            .hero {
+                border-radius: 14px;
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="vineet.png" alt="Vineet Kumar"
+                style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom:0.25rem;">Vineet Kumar</h1>
+                <span>QE Manager &amp; SDET Lead</span>
+            </div>
+        </div>
+        <nav aria-label="Primary">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="featuredproject.html">Featured Projects</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="python_practice_sandbox.html">Python Sandbox</a></li>
+                <li><a href="sql_practice_sandbox.html">SQL Sandbox</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="wrap">
+        <section class="hero" aria-labelledby="catalog-heading">
+            <h1 id="catalog-heading">Featured Projects Repository Catalog</h1>
+        </section>
+
+        <section class="table-shell" aria-label="Featured repositories in tabular format">
+            <div class="scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Project</th>
+                            <th>Project Description</th>
+                            <th>Overview</th>
+                            <th>Project Link</th>
+                            <th>Repository URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="order">1</td>
+                            <td>
+                                <div class="name">Code Review Agent</div>
+                                <span class="badge agent">Agent Repo</span>
+                            </td>
+                            <td>LLM-based review assistant for scanning code diffs and highlighting style and framework
+                                convention issues.</td>
+                            <td>Primary public AI agent focused on quality gates, automated review guidance, and faster
+                                PR feedback loops.</td>
+                            <td class="project-link"><a href="https://codereview.vineetkr.com" target="_blank"
+                                    rel="noopener noreferrer">Live Agent</a></td>
+                            <td class="repo"><a href="https://github.com/contactkrvineet/codereview-ai-agent"
+                                    target="_blank"
+                                    rel="noopener noreferrer">github.com/contactkrvineet/codereview-ai-agent</a></td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">2</td>
+                            <td>
+                                <div class="name">Build Your AI Agent Framework</div>
+                                <span class="badge">AI Automation</span>
+                            </td>
+                            <td>AI-enabled test automation framework with self-healing locators, AI data generation,
+                                BDD patterns, and CI/CD readiness.</td>
+                            <td>Represents the AI-first automation direction from the homepage, designed for practical
+                                enterprise QE workflows.</td>
+                            <td class="project-link"><a href="index.html#ai-automation-framework">AI Automation Section
+                                    (Homepage)</a></td>
+                            <td class="repo"><a href="https://github.com/contactkrvineet/AI-test-framework"
+                                    target="_blank"
+                                    rel="noopener noreferrer">github.com/contactkrvineet/AI-test-framework</a></td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">3</td>
+                            <td>
+                                <div class="name">Playwright with BDD Framework</div>
+                                <span class="badge">TypeScript</span>
+                            </td>
+                            <td>Playwright + Cucumber BDD framework with multi-reporter setup and CI/CD integration.
+                            </td>
+                            <td>Production-grade cross-browser automation stack with parallel execution and rich
+                                reporting options.</td>
+                            <td class="project-link"><a href="playwright.html" target="_blank"
+                                    rel="noopener noreferrer">Project Details</a></td>
+                            <td class="repo"><a href="https://github.com/contactkrvineet/playwright-bdd-framework"
+                                    target="_blank"
+                                    rel="noopener noreferrer">github.com/contactkrvineet/playwright-bdd-framework</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">4</td>
+                            <td>
+                                <div class="name">REST API Development Framework (Express Service Boilerplate)</div>
+                                <span class="badge">Node.js</span>
+                            </td>
+                            <td>Express + MongoDB-based API boilerplate with validation, error handling, and deployment
+                                readiness.</td>
+                            <td>Reusable backend starter aimed at quickly bootstrapping production-friendly REST
+                                services.</td>
+                            <td class="project-link"><a href="restAssured.html" target="_blank"
+                                    rel="noopener noreferrer">Project Details</a></td>
+                            <td class="repo"><a href="https://github.com/contactkrvineet/vineetkr-api" target="_blank"
+                                    rel="noopener noreferrer">github.com/contactkrvineet/vineetkr-api</a></td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">5</td>
+                            <td>
+                                <div class="name">Python BDD Test Automation Framework</div>
+                                <span class="badge">Python</span>
+                            </td>
+                            <td>Behave + Selenium + Requests framework for UI and API testing with reporting support.
+                            </td>
+                            <td>Human-readable BDD approach with scalable architecture and CI-friendly execution
+                                patterns.</td>
+                            <td class="project-link"><a href="pythonBDD.html" target="_blank"
+                                    rel="noopener noreferrer">Project Details</a></td>
+                            <td class="repo"><a
+                                    href="https://github.com/contactkrvineet/python-bdd-automation-framework"
+                                    target="_blank"
+                                    rel="noopener noreferrer">github.com/contactkrvineet/python-bdd-automation-framework</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">6</td>
+                            <td>
+                                <div class="name">Gatling Performance Framework</div>
+                                <span class="badge">Performance</span>
+                            </td>
+                            <td>Java-based Gatling framework for repeatable load and performance validation with SLA
+                                assertions.</td>
+                            <td>Focused on realistic traffic profiles, CI gating, and performance visibility for web/API
+                                workloads.</td>
+                            <td class="project-link"><a href="performance.html" target="_blank"
+                                    rel="noopener noreferrer">Project Details</a></td>
+                            <td class="repo"><span class="muted">Repository URL not listed in index.html</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">7</td>
+                            <td>
+                                <div class="name">RestAssured Framework</div>
+                                <span class="badge">API Testing</span>
+                            </td>
+                            <td>Framework focused on simplifying API test-case authoring and execution using Rest
+                                Assured libraries.</td>
+                            <td>Supports rapid API test onboarding and easy adaptation for new service endpoints and
+                                payloads.</td>
+                            <td class="project-link"><a href="restAssured.html" target="_blank"
+                                    rel="noopener noreferrer">Project Details</a></td>
+                            <td class="repo"><span class="muted">Repository URL not listed in index.html</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">8</td>
+                            <td>
+                                <div class="name">UI Automation Framework</div>
+                                <span class="badge">UI Testing</span>
+                            </td>
+                            <td>UI test framework created for end-to-end user flow validation.</td>
+                            <td>General Selenium/BDD-style UI automation initiative highlighted in project listings.
+                            </td>
+                            <td class="project-link"><a href="blog.html" target="_blank"
+                                    rel="noopener noreferrer">Project Entry</a></td>
+                            <td class="repo"><span class="muted">Repository URL not listed in index.html</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">9</td>
+                            <td>
+                                <div class="name">Shopping Cart Framework</div>
+                                <span class="badge">Web App</span>
+                            </td>
+                            <td>Small shopping cart framework built with React, Node.js, Express, and Axios.</td>
+                            <td>Demonstrates full-stack app architecture and commerce flow foundations.</td>
+                            <td class="project-link"><a href="blog.html" target="_blank"
+                                    rel="noopener noreferrer">Project Entry</a></td>
+                            <td class="repo"><span class="muted">Repository URL not listed in index.html</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">10</td>
+                            <td>
+                                <div class="name">Mobile Framework Android</div>
+                                <span class="badge">Mobile</span>
+                            </td>
+                            <td>Mobile automation framework focused on Android testing using Java and Appium patterns.
+                            </td>
+                            <td>Targets mobile UI validation and cross-device testing workflows.</td>
+                            <td class="project-link"><a href="blog.html" target="_blank"
+                                    rel="noopener noreferrer">Project Entry</a></td>
+                            <td class="repo"><span class="muted">Repository URL not listed in index.html</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="order">11</td>
+                            <td>
+                                <div class="name">QR Code Generator</div>
+                                <span class="badge">Utility</span>
+                            </td>
+                            <td>Utility-style project listed on the homepage project collection.</td>
+                            <td>Included for completeness as part of the homepage project lineup.</td>
+                            <td class="project-link"><a href="blog.html" target="_blank"
+                                    rel="noopener noreferrer">Project Entry</a></td>
+                            <td class="repo"><span class="muted">Repository URL not listed in index.html</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <p class="foot">
+            Note: This page is intentionally standalone and not linked from navigation yet, as requested.
+        </p>
+    </main>
+</body>
+
+</html>
