@@ -1,0 +1,17 @@
+{
+  "name": "Vineet Kumar - Quality Engineering Portfolio",
+  "short_name": "Vineet Kumar",
+  "description": "QE Manager & Full-Stack SDET Architect. 16+ years in test automation, CI/CD, and AI test engineering.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e3c72",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
