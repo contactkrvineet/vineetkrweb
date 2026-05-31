@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technology Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Favicon & Web App Manifest -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- ============================================================
+         Google Analytics 4
+         ACTION REQUIRED: replace G-XXXXXXXXXX with your real GA4
+         Measurement ID (Admin -> Data Streams -> Web in analytics.google.com)
+         ============================================================ -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 
 <body>
@@ -23,7 +40,11 @@
             <button class="button-design" onclick="location.href='#projects'">View My Portfolio</button>
             <button class="button-design" onclick="location.href='blog.html'">Blog</button>
             <nav aria-label="Primary">
-                <ul class="nav-links">
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                    <span class="menu-label">Menu</span>
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-links" id="primary-nav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Me</a></li>
                     <li><a href="featuredproject.html">Featured Projects</a></li>

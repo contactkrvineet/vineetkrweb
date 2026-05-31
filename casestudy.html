@@ -32,6 +32,23 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <!-- Favicon & Web App Manifest -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- ============================================================
+         Google Analytics 4
+         ACTION REQUIRED: replace G-XXXXXXXXXX with your real GA4
+         Measurement ID (Admin -> Data Streams -> Web in analytics.google.com)
+         ============================================================ -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 
 <body>
@@ -55,7 +72,11 @@
 
         <div class="button-container">
             <nav aria-label="Primary">
-                <ul class="nav-links">
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                    <span class="menu-label">Menu</span>
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-links" id="primary-nav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Me</a></li>
                     <li><a href="featuredproject.html">Featured Projects</a></li>
