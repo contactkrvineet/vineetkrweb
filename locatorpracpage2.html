@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locator Practice Page 2 | Navigation + Window Clicks</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .lp-wrap {
+            max-width: 1080px;
+            margin: 24px auto 60px;
+            padding: 0 16px;
+        }
+
+        .lp-card {
+            background: #fff;
+            border: 1px solid #d6e2f0;
+            border-radius: 12px;
+            box-shadow: 0 8px 22px rgba(38, 49, 89, 0.08);
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        .lp-btn {
+            border: none;
+            background: #1e61c6;
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: 700;
+            margin: 4px 8px 4px 0;
+        }
+
+        .lp-btn.alt {
+            background: #0a6f52;
+        }
+
+        .lp-log {
+            background: #f8fbff;
+            border: 1px solid #dce8f9;
+            border-radius: 8px;
+            padding: 10px;
+            max-height: 260px;
+            overflow: auto;
+        }
+
+        .target-box {
+            border: 1px dashed #9ab4da;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            background: #f8fbff;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Locator Practice Page 2: Navigation + Window Actions</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="locator-basic.html">Locator Hub</a>
+            <a href="locator-advanced.html">Advanced Locators</a>
+            <a href="locator-modern.html">Modern Locators</a>
+            <a href="locatorpracpage1.html">Page 1</a>
+            <a href="locatorpracpage2.html">Page 2</a>
+        </nav>
+    </header>
+
+    <main class="lp-wrap">
+        <section class="lp-card">
+            <h2>Navigation Practice Targets</h2>
+            <div class="nav-grid">
+                <a id="nav-basic" href="locator-basic.html" data-testid="nav-basic">Go to Locator Hub</a>
+                <a id="nav-advanced" href="locator-advanced.html" data-testid="nav-advanced">Go to Advanced</a>
+                <a id="nav-modern" href="locator-modern.html" data-testid="nav-modern">Go to Modern</a>
+                <a id="nav-page1" href="locatorpracpage1.html" data-testid="nav-page1">Go to Page 1</a>
+            </div>
+            <p>Use Selenium or Playwright to click these links by <code>id</code>, <code>data-testid</code>, link text,
+                partial text, and css selectors.</p>
+        </section>
+
+        <section class="lp-card">
+            <h2>Window / Tab Click Practice</h2>
+            <button class="lp-btn" id="openPopupBtn" data-testid="open-popup">Open Practice Popup</button>
+            <button class="lp-btn alt" id="openNewTabBtn" data-testid="open-new-tab">Open Hub in New Tab</button>
+
+            <div class="target-box" id="clickTargetBox" role="region" aria-label="click target box">
+                <p id="targetText" class="click-text">Click targets for locator drills:</p>
+                <button id="saveScenarioBtn" class="lp-btn" data-action="save-scenario">Save Window Scenario</button>
+                <button id="clearWindowLogBtn" class="lp-btn alt" data-action="clear-window-log">Clear Window
+                    Log</button>
+            </div>
+
+            <iframe id="practiceFrame" src="iframe-content.html" title="Locator iframe practice" width="100%"
+                height="220" style="border:1px solid #ccd8ea;border-radius:8px;"></iframe>
+        </section>
+
+        <section class="lp-card">
+            <h3>Window Action Log (localStorage)</h3>
+            <div id="locatorRecords" class="lp-log" aria-live="polite"></div>
+            <button type="button" id="clearLocatorDataBtn" class="lp-btn" style="margin-top:10px;">Clear Saved
+                Data</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Locator Practice App</p>
+    </footer>
+
+    <script src="locator-practice.js"></script>
+</body>
+
+</html>
