@@ -4,66 +4,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locator Practice: Basic Locators</title>
+    <title>Locator Practice Hub | Selenium + Playwright</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .lp-wrap {
+            max-width: 1120px;
+            margin: 24px auto 60px;
+            padding: 0 16px;
+        }
+
+        .lp-card {
+            background: #fff;
+            border: 1px solid #d6e2f0;
+            border-radius: 12px;
+            box-shadow: 0 8px 22px rgba(38, 49, 89, 0.08);
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        .lp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+        }
+
+        .lp-chip {
+            display: inline-block;
+            background: #eef5ff;
+            color: #1e3a66;
+            border-radius: 999px;
+            padding: 4px 10px;
+            margin: 2px 4px 2px 0;
+            font-size: 0.83rem;
+            font-weight: 700;
+        }
+
+        .lp-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .lp-btn {
+            border: none;
+            background: #1e61c6;
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .lp-btn.alt {
+            background: #0a6f52;
+        }
+
+        .lp-btn.dark {
+            background: #263159;
+        }
+
+        .lp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.94rem;
+        }
+
+        .lp-table th,
+        .lp-table td {
+            border: 1px solid #dde6f2;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .lp-table th {
+            background: #edf4ff;
+        }
+
+        .lp-log {
+            background: #f8fbff;
+            border: 1px solid #dce8f9;
+            border-radius: 8px;
+            padding: 10px;
+            max-height: 220px;
+            overflow: auto;
+        }
+
+        .lp-record-item {
+            border-bottom: 1px dashed #c8d8ef;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .lp-record-item:last-child {
+            border-bottom: none;
+        }
+
+        code {
+            background: #f1f4f8;
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <h1>Locator Practice: Basic Locators</h1>
+        <h1>Locator Practice Hub: Selenium + Playwright</h1>
         <nav>
             <a href="index.html">Home</a>
-            <a href="locator-basic.html">Basic Locators</a>
+            <a href="locator-basic.html">Locator Hub</a>
             <a href="locator-advanced.html">Advanced Locators</a>
             <a href="locator-modern.html">Modern Locators</a>
+            <a href="locatorpracpage1.html">Locator Practice Page 1</a>
+            <a href="locatorpracpage2.html">Locator Practice Page 2</a>
         </nav>
     </header>
-    <main>
-        <section>
-            <h2>Practice Elements</h2>
-            <form id="loginForm">
-                <label for="username">Username (id, name):</label>
-                <input type="text" id="username" name="username" placeholder="Enter username">
-
-                <label for="password">Password (id, name):</label>
-                <input type="password" id="password" name="password" placeholder="Enter password">
-
-                <button type="submit" id="loginBtn" class="btn primary">Login</button>
-            </form>
-
-            <div class="links">
-                <a href="#" id="forgotLink">Forgot Password?</a>
-                <a href="#" class="help-link">Help Center</a>
-                <a href="#" class="external-link" name="externalLink">External Resource</a>
+    <main class="lp-wrap">
+        <section class="lp-card">
+            <h2>Practice all locator strategies in one flow</h2>
+            <p>
+                This hub helps you practice all common locator types used in Selenium and Playwright including login,
+                create account scenarios, dynamic elements, data-testid, ARIA, Shadow DOM, iframe handling, and
+                multi-window click/navigation.
+            </p>
+            <div>
+                <span class="lp-chip">Selenium: id, name, class, css, xpath</span>
+                <span class="lp-chip">Playwright: getByRole, getByLabel, getByTestId</span>
+                <span class="lp-chip">Dynamic/Realistic Scenarios</span>
+                <span class="lp-chip">Browser-only storage (localStorage)</span>
             </div>
-
-            <div class="info">
-                <p class="info-text">This is a <span id="infoSpan">sample</span> info text for <b>class</b> and
-                    <b>tagName</b> locators.
-                </p>
+            <div class="lp-actions">
+                <a class="lp-btn" href="locatorpracpage1.html">Open Practice Page 1 (Login/Create)</a>
+                <a class="lp-btn alt" href="locatorpracpage2.html">Open Practice Page 2 (Navigation/Windows)</a>
+                <a class="lp-btn dark" href="locator-advanced.html">Advanced Locator Elements</a>
+                <a class="lp-btn dark" href="locator-modern.html">Modern Locator Elements</a>
             </div>
-
-            <ul id="userList">
-                <li class="user-item">User One</li>
-                <li class="user-item">User Two</li>
-                <li class="user-item">User Three</li>
-            </ul>
         </section>
-        <section>
-            <h3>Locator Types to Practice</h3>
-            <ul>
-                <li>id</li>
-                <li>name</li>
-                <li>class</li>
-                <li>tagName</li>
-                <li>linkText</li>
-                <li>partialLinkText</li>
-            </ul>
+
+        <section class="lp-card">
+            <h3>Quick Scenario Creator (stored in browser)</h3>
+            <form id="scenarioForm">
+                <label for="scenarioName">Scenario Name</label>
+                <input id="scenarioName" name="scenarioName" type="text" placeholder="e.g. Successful login" required>
+
+                <label for="framework">Framework</label>
+                <select id="framework" name="framework" required>
+                    <option value="">Select framework</option>
+                    <option value="selenium">Selenium</option>
+                    <option value="playwright">Playwright</option>
+                    <option value="both">Both</option>
+                </select>
+
+                <label for="locatorType">Primary Locator Type</label>
+                <select id="locatorType" name="locatorType" required>
+                    <option value="id">id</option>
+                    <option value="name">name</option>
+                    <option value="class">class</option>
+                    <option value="css">css selector</option>
+                    <option value="xpath">xpath</option>
+                    <option value="testid">data-testid</option>
+                    <option value="role">ARIA role/label</option>
+                </select>
+
+                <label for="locatorValue">Locator Value</label>
+                <input id="locatorValue" name="locatorValue" type="text"
+                    placeholder="e.g. #username or //button[text()='Login']" required>
+
+                <button class="lp-btn" type="submit">Save Scenario</button>
+            </form>
+        </section>
+
+        <section class="lp-card">
+            <h3>Locator Type Map (Selenium + Playwright)</h3>
+            <table class="lp-table">
+                <thead>
+                    <tr>
+                        <th>Locator Type</th>
+                        <th>Selenium Example</th>
+                        <th>Playwright Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id / name</td>
+                        <td><code>By.id("username")</code>, <code>By.name("email")</code></td>
+                        <td><code>page.locator("#username")</code>, <code>page.locator("[name='email']")</code></td>
+                    </tr>
+                    <tr>
+                        <td>class / css</td>
+                        <td><code>By.cssSelector(".login-btn")</code></td>
+                        <td><code>page.locator(".login-btn")</code></td>
+                    </tr>
+                    <tr>
+                        <td>xpath</td>
+                        <td><code>By.xpath("//button[contains(text(),'Login')]")</code></td>
+                        <td><code>page.locator("xpath=//button[contains(text(),'Login')]")</code></td>
+                    </tr>
+                    <tr>
+                        <td>data-testid</td>
+                        <td><code>By.cssSelector("[data-testid='save-btn']")</code></td>
+                        <td><code>page.getByTestId("save-btn")</code></td>
+                    </tr>
+                    <tr>
+                        <td>ARIA / accessible</td>
+                        <td><code>By.cssSelector("[aria-label='Email']")</code></td>
+                        <td><code>page.getByLabel("Email")</code>,
+                            <code>page.getByRole("button", { name: "Login" })</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="lp-card">
+            <h3>Saved Practice Data (localStorage)</h3>
+            <div id="locatorRecords" class="lp-log" aria-live="polite"></div>
+            <div class="lp-actions">
+                <button type="button" id="clearLocatorDataBtn" class="lp-btn alt">Clear Saved Data</button>
+            </div>
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Locator Practice App</p>
+        <p>&copy; 2026 Locator Practice App</p>
     </footer>
+    <script src="locator-practice.js"></script>
 </body>
 
 </html>

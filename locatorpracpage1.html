@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locator Practice Page 1 | Login + Create Account</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .lp-wrap {
+            max-width: 1080px;
+            margin: 24px auto 60px;
+            padding: 0 16px;
+        }
+
+        .lp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+        }
+
+        .lp-card {
+            background: #fff;
+            border: 1px solid #d6e2f0;
+            border-radius: 12px;
+            box-shadow: 0 8px 22px rgba(38, 49, 89, 0.08);
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        .lp-btn {
+            border: none;
+            background: #1e61c6;
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .lp-log {
+            background: #f8fbff;
+            border: 1px solid #dce8f9;
+            border-radius: 8px;
+            padding: 10px;
+            max-height: 220px;
+            overflow: auto;
+        }
+
+        .lp-row {
+            border-bottom: 1px dashed #c8d8ef;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .lp-row:last-child {
+            border-bottom: none;
+        }
+
+        .helper {
+            color: #475c7b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Locator Practice Page 1: Login + Create Account</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="locator-basic.html">Locator Hub</a>
+            <a href="locator-advanced.html">Advanced Locators</a>
+            <a href="locator-modern.html">Modern Locators</a>
+            <a href="locatorpracpage1.html">Page 1</a>
+            <a href="locatorpracpage2.html">Page 2</a>
+        </nav>
+    </header>
+
+    <main class="lp-wrap">
+        <section class="lp-grid">
+            <article class="lp-card">
+                <h2>Login Scenario</h2>
+                <p class="helper">Practice with id, name, class, placeholder, role, aria-label, and data-testid.</p>
+                <form id="loginPracticeForm" data-testid="login-form" aria-label="login form">
+                    <label for="lp1-username">Username</label>
+                    <input id="lp1-username" name="username" class="field-user" placeholder="Enter username"
+                        data-testid="username-field" required>
+
+                    <label for="lp1-password">Password</label>
+                    <input id="lp1-password" name="password" type="password" class="field-pass"
+                        data-testid="password-field" aria-label="Password" required>
+
+                    <button type="submit" id="lp1-login-btn" class="lp-btn" data-testid="login-btn"
+                        aria-label="Login button">Login</button>
+                </form>
+            </article>
+
+            <article class="lp-card">
+                <h2>Create Account Scenario</h2>
+                <p class="helper">Practice with css/xpath using mixed attributes and dynamic rows.</p>
+                <form id="createAccountForm" data-qa="create-account-form">
+                    <label for="lp1-fullname">Full Name</label>
+                    <input id="lp1-fullname" name="fullName" placeholder="Jane Doe" data-testid="fullname-field"
+                        required>
+
+                    <label for="lp1-email">Email</label>
+                    <input id="lp1-email" name="email" type="email" aria-label="Email" placeholder="name@example.com"
+                        required>
+
+                    <label for="lp1-role">Role</label>
+                    <select id="lp1-role" name="role" data-testid="role-select" required>
+                        <option value="">Select role</option>
+                        <option value="tester">Tester</option>
+                        <option value="sdet">SDET</option>
+                        <option value="qa-lead">QA Lead</option>
+                    </select>
+
+                    <button type="submit" class="lp-btn" id="lp1-create-btn" data-automation="create-account">Create
+                        Account</button>
+                </form>
+            </article>
+        </section>
+
+        <section class="lp-card">
+            <h3>Created Accounts (browser localStorage)</h3>
+            <div id="accountTableWrap" class="lp-log" aria-live="polite"></div>
+        </section>
+
+        <section class="lp-card">
+            <h3>Scenario Activity Log</h3>
+            <div id="locatorRecords" class="lp-log" aria-live="polite"></div>
+            <button type="button" id="clearLocatorDataBtn" class="lp-btn" style="margin-top:10px;">Clear Saved
+                Data</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Locator Practice App</p>
+    </footer>
+
+    <script src="locator-practice.js"></script>
+</body>
+
+</html>
