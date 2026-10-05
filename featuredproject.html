@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Featured Projects Repository Catalog | Vineet Kumar</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vineetkr.com/featuredproject.html">
+    <meta property="og:title" content="Featured Projects | Vineet Kumar">
+    <meta property="og:description" content="Open-source QE projects by Vineet Kumar: AI agents, automation frameworks and engineering tools.">
+    <meta property="og:image" content="https://www.vineetkr.com/vineet.png">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="description"
         content="Repository catalog of featured projects, including AI agents, automation frameworks, and engineering projects.">
     <link rel="canonical" href="https://www.vineetkr.com/featuredproject.html">
@@ -201,6 +207,19 @@
                 padding: 20px 16px;
             }
         }
+
+        .sandbox-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .sandbox-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 20px; border-radius: 999px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: #fff !important; font-weight: 600; font-size: 0.95rem;
+            text-decoration: none; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+        .sandbox-btn:hover, .sandbox-btn:focus-visible {
+            transform: translateY(-2px); box-shadow: 0 8px 20px rgba(124, 58, 237, 0.45);
+        }
     </style>
     <!-- Favicon & Web App Manifest -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -221,7 +240,7 @@
     </script>
 </head>
 
-<body>
+<body class="portfolio-page">
     <header>
         <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
             <img src="vineet.png" alt="Vineet Kumar"
@@ -232,7 +251,7 @@
                 <span>QE Manager &amp; SDET Lead</span>
             </div>
         </div>
-        <nav aria-label="Primary">
+        <nav class="main-nav" aria-label="Primary">
             <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
                 aria-controls="primary-nav">
                 <span class="menu-label">Menu</span>
@@ -241,10 +260,12 @@
             <ul class="nav-links" id="primary-nav">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Me</a></li>
-                <li><a href="featuredproject.html">Featured Projects</a></li>
+                <li><a href="cv.html">Resume</a></li>
+                <li><a href="casestudy.html">Case Studies</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="featuredproject.html" aria-current="page">Featured Projects</a></li>
                 <li><a href="agents.html">Agents</a></li>
-                <li><a href="python_practice_sandbox.html">Python Sandbox</a></li>
-                <li><a href="sql_practice_sandbox.html">SQL Sandbox</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -252,6 +273,10 @@
     <main class="wrap">
         <section class="hero" aria-labelledby="catalog-heading">
             <h1 id="catalog-heading">Featured Projects Repository Catalog</h1>
+            <div class="sandbox-links" role="navigation" aria-label="Practice sandboxes">
+                <a class="sandbox-btn" href="python_practice_sandbox.html"><span aria-hidden="true">🐍</span> Python Sandbox</a>
+                <a class="sandbox-btn" href="sql_practice_sandbox.html"><span aria-hidden="true">🗄️</span> SQL Sandbox</a>
+            </div>
         </section>
 
         <section class="table-shell" aria-label="Featured repositories in tabular format">

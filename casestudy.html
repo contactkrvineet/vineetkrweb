@@ -9,9 +9,9 @@
     <title>Case Studies - Vineet Kumar | Enterprise QE Success Stories & Client Impact</title>
     <meta name="title" content="Case Studies - Vineet Kumar | Enterprise QE Success Stories">
     <meta name="description"
-        content="Real-world quality engineering case studies from Fortune 500 companies. Learn how I transformed testing for Goldman Sachs, Lowe's, Marriott, and more through test automation, AI model validation, and legacy system modernization.">
+        content="Real-world quality engineering case studies from enterprise clients across finance, retail, hospitality and aviation. Learn how I transformed testing through test automation, AI model validation, and legacy system modernization.">
     <meta name="keywords"
-        content="QE Case Studies, Test Automation Success Stories, AI Model Testing, Legacy System Testing, Goldman Sachs QA, Finance Domain Testing, Retail Testing, Hospitality Testing, Aviation Testing, Mobile App Testing">
+        content="QE Case Studies, Test Automation Success Stories, AI Model Testing, Legacy System Testing, Finance Domain Testing, Retail Testing, Hospitality Testing, Aviation Testing, Mobile App Testing">
     <meta name="author" content="Vineet Kumar">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.vineetkr.com/casestudy.html">
@@ -21,7 +21,7 @@
     <meta property="og:url" content="https://www.vineetkr.com/casestudy.html">
     <meta property="og:title" content="Client Success Stories - Vineet Kumar QE Portfolio">
     <meta property="og:description"
-        content="Proven quality engineering impact across Finance, Retail, Hospitality, and Aviation industries. Real results from Fortune 500 clients.">
+        content="Proven quality engineering impact across Finance, Retail, Hospitality, and Aviation industries. Real results from enterprise clients.">
     <meta property="og:image" content="https://www.vineetkr.com/vineet.png">
 
     <!-- Theme Color -->
@@ -51,7 +51,7 @@
     </script>
 </head>
 
-<body>
+<body class="portfolio-page casestudy-page">
     <header>
         <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
             <img src="vineet.png" alt="Vineet Kumar profile picture"
@@ -63,51 +63,46 @@
             </div>
         </div>
 
-        <div class="contact-info">
-            <span><b>QE Manager @ Publicis Sapient </b>| </span><b>Full-Stack SDET Architect</b> | <b>AI Evaluation
-                Specialist</b> |
-            <b>16 Years of
-                Quality Innovation</b></span><br>
-        </div>
-
-        <div class="button-container">
-            <nav aria-label="Primary">
-                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
-                    <span class="menu-label">Menu</span>
-                    <span class="hamburger"></span>
-                </button>
-                <ul class="nav-links" id="primary-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="featuredproject.html">Featured Projects</a></li>
-                    <li><a href="agents.html">Agents</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="main-nav" aria-label="Primary">
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="primary-nav">
+                <span class="menu-label">Menu</span>
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="casestudy.html" aria-current="page">Case Studies</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="featuredproject.html">Featured Projects</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="case-study-hero">
         <div class="container">
             <h1 class="hero-title">🏆 Client Success Stories & Real-World Impact</h1>
-            <p class="hero-subtitle">Transforming quality engineering across Fortune 500 companies through strategic
+            <p class="hero-subtitle">Transforming quality engineering across large enterprises through strategic
                 test automation, AI model validation, and legacy system modernization</p>
             <div class="stats-bar">
                 <div class="stat-item">
-                    <span class="stat-number">6+</span>
-                    <span class="stat-label">Fortune 500 Clients</span>
+                    <span class="stat-number">16+</span>
+                        <span class="stat-label">Years in Quality Engineering</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">4</span>
-                    <span class="stat-label">Industry Verticals</span>
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">SDETs Led Globally</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">$2M+</span>
-                    <span class="stat-label">Cost Savings Delivered</span>
+                        <span class="stat-number">3,000+</span>
+                        <span class="stat-label">Tests Across 12 Banking Microservices</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">95%+</span>
-                    <span class="stat-label">Test Coverage Achieved</span>
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">QE AI Agents Built</span>
                 </div>
             </div>
         </div>
@@ -117,11 +112,11 @@
     <section id="case-studies" class="case-studies-section">
         <div class="container">
 
-            <!-- Goldman Sachs Case Study -->
+            <!-- Case Study -->
             <div class="case-study-card featured">
                 <div class="case-study-header">
                     <div class="company-badge">
-                        <h3>🏦 Goldman Sachs</h3>
+                        <h3>🏦 Global Investment Bank</h3>
                         <span class="industry-tag">Finance • Wealth Management</span>
                     </div>
                     <span class="impact-badge">High Impact</span>
@@ -132,14 +127,13 @@
                 <div class="case-content">
                     <div class="challenge-section">
                         <h5>⚠️ Challenge</h5>
-                        <p>Goldman Sachs Wealth Management division faced critical challenges with their legacy testing
+                        <p>The wealth management division of a global investment bank faced critical challenges with their legacy testing
                             infrastructure:</p>
                         <ul class="challenge-list">
-                            <li>Legacy Selenium framework with 60% flaky test rate causing CI/CD pipeline failures</li>
-                            <li>Manual regression testing taking 2 weeks per release cycle</li>
-                            <li>No API test coverage for 50+ microservices</li>
-                            <li>Zero performance testing for client-facing wealth management applications</li>
-                            <li>Compliance testing gaps for financial regulations (SOX, FINRA)</li>
+                            <li>Legacy Selenium BDD automation needed modernization and broader coverage.</li>
+                            <li>Quality checks needed to run consistently across 12 banking repositories and services.</li>
+                            <li>Release readiness required clearer quality reporting for engineering leadership.</li>
+                            <li>Performance needed validation against high-volume transaction workloads.</li>
                         </ul>
                     </div>
 
@@ -149,16 +143,14 @@
                         <ul class="solution-list">
                             <li><strong>Rebuilt E2E Framework:</strong> Migrated from legacy Selenium to Playwright with
                                 TypeScript, implementing Page Object Model and component-based architecture</li>
-                            <li><strong>API Test Suite:</strong> Developed comprehensive RestAssured framework covering
-                                all wealth management APIs with contract testing</li>
-                            <li><strong>Performance Testing:</strong> Implemented Gatling-based load testing for
-                                portfolio management and trading applications</li>
-                            <li><strong>CI/CD Integration:</strong> Jenkins pipeline automation with parallel execution
-                                across 15 environments</li>
-                            <li><strong>Test Data Management:</strong> Created synthetic data generators for PII
-                                compliance while maintaining test data integrity</li>
-                            <li><strong>Compliance Automation:</strong> Built automated compliance validation for
-                                regulatory requirements</li>
+                            <li><strong>API and Contract Testing:</strong> Implemented REST Assured and Pact coverage
+                                across 12 banking microservices.</li>
+                            <li><strong>CI/CD Quality Gates:</strong> Integrated PR-gated unit and contract tests with
+                                pre-merge static checks across 12 repositories.</li>
+                            <li><strong>Performance Engineering:</strong> Designed JMeter and Gatling tests for
+                                workloads of 5,000+ concurrent users.</li>
+                            <li><strong>Release Readiness:</strong> Delivered an executive quality scorecard used by
+                                four engineering directors.</li>
                         </ul>
 
                         <p><strong>Technical Stack:</strong> Playwright, TypeScript, RestAssured, Gatling, Jenkins,
@@ -169,25 +161,25 @@
                         <h5>📊 Measurable Results</h5>
                         <div class="metrics-grid">
                             <div class="metric-card">
-                                <span class="metric-number">85%</span>
-                                <p class="metric-label">Reduction in test flakiness</p>
+                                <span class="metric-number">4 hours</span>
+                                <p class="metric-label">Regression run, down from 5 days</p>
                             </div>
                             <div class="metric-card">
-                                <span class="metric-number">70%</span>
-                                <p class="metric-label">Faster release cycles (14 days → 4 days)</p>
+                                <span class="metric-number">25%</span>
+                                <p class="metric-label">Fewer production defects after PR quality gates</p>
                             </div>
                             <div class="metric-card">
-                                <span class="metric-number">95%</span>
-                                <p class="metric-label">API test coverage achieved</p>
+                                <span class="metric-number">60%</span>
+                                <p class="metric-label">Improvement in MTTD for critical issues</p>
                             </div>
                             <div class="metric-card">
-                                <span class="metric-number">$800K</span>
-                                <p class="metric-label">Annual savings from automation</p>
+                                <span class="metric-number">30%</span>
+                                <p class="metric-label">API response-time improvement</p>
                             </div>
                         </div>
-                        <p class="impact-statement"><strong>Business Impact:</strong> Enabled bi-weekly releases instead
-                            of monthly, improved client satisfaction scores by 25%, and achieved 100% audit compliance
-                            with zero regulatory findings.</p>
+                        <p class="impact-statement"><strong>Business Impact:</strong> Scaled automation across 3,000+
+                            tests and 12 banking microservices. Performance testing validated 5,000+ concurrent users,
+                            while the release-readiness scorecard gated 30+ production deployments.</p>
                     </div>
                 </div>
 
@@ -205,11 +197,11 @@
                 </div>
             </div>
 
-            <!-- Lowe's Companies Case Study -->
+            <!-- Case Study -->
             <div class="case-study-card">
                 <div class="case-study-header">
                     <div class="company-badge">
-                        <h3>🏠 Lowe's Companies, Inc.</h3>
+                        <h3>🏠 Large Home-Improvement Retailer</h3>
                         <span class="industry-tag">Retail • E-commerce</span>
                     </div>
                     <span class="impact-badge">Transformational</span>
@@ -292,11 +284,11 @@
                 </div>
             </div>
 
-            <!-- Orangetheory Fitness Case Study -->
+            <!-- Case Study -->
             <div class="case-study-card">
                 <div class="case-study-header">
                     <div class="company-badge">
-                        <h3>🏃 Orangetheory Fitness</h3>
+                        <h3>🏃 Global Fitness Brand</h3>
                         <span class="industry-tag">Health & Fitness • Mobile App</span>
                     </div>
                     <span class="impact-badge">Mobile Excellence</span>
@@ -377,11 +369,11 @@
                 </div>
             </div>
 
-            <!-- Marriott International Case Study -->
+            <!-- Case Study -->
             <div class="case-study-card">
                 <div class="case-study-header">
                     <div class="company-badge">
-                        <h3>🏨 Marriott International</h3>
+                        <h3>🏨 Global Hospitality Company</h3>
                         <span class="industry-tag">Hospitality • Reservation Systems</span>
                     </div>
                     <span class="impact-badge">Legacy Modernization</span>
@@ -465,11 +457,11 @@
                 </div>
             </div>
 
-            <!-- Bed Bath & Beyond Case Study -->
+            <!-- Case Study -->
             <div class="case-study-card">
                 <div class="case-study-header">
                     <div class="company-badge">
-                        <h3>🛁 Bed Bath & Beyond</h3>
+                        <h3>🛁 National Home-Goods Retailer</h3>
                         <span class="industry-tag">Retail • Omnichannel Commerce</span>
                     </div>
                     <span class="impact-badge">Omnichannel Testing</span>
@@ -551,11 +543,11 @@
                 </div>
             </div>
 
-            <!-- SITA Aero Case Study -->
+            <!-- Case Study -->
             <div class="case-study-card">
                 <div class="case-study-header">
                     <div class="company-badge">
-                        <h3>✈️ SITA Aero</h3>
+                        <h3>✈️ Aviation Technology Provider</h3>
                         <span class="industry-tag">Aviation • Air Traffic Management</span>
                     </div>
                     <span class="impact-badge">Mission Critical</span>
@@ -707,21 +699,18 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Ready to Transform Your Quality Engineering?</h2>
-            <p class="cta-text">Let's discuss how I can bring similar results to your organization through strategic
-                test
-                automation, AI validation, and quality excellence.</p>
+            <h2>Interested in Quality Engineering?</h2>
+            <p class="cta-text">Let's talk about test automation, AI validation, and quality excellence.</p>
             <div class="cta-buttons">
-                <a href="contact.html" class="btn-primary-large">Schedule a Consultation →</a>
+                <a href="contact.html" class="btn-primary-large">Get in Touch →</a>
                 <a href="index.html#projects" class="btn-secondary-large">Explore My Frameworks</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Vineet Kumar - Senior QE Manager & Full-Stack SDET Architect</p>
+        <p>&copy; 2026 Vineet Kumar</p>
         <div class="social-links">
-            <a href="https://www.facebook.com/contactvineet/" target="_blank" rel="noopener noreferrer">Facebook</a>
             <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="https://github.com/contactkrvineet" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>

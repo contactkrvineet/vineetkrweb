@@ -8,7 +8,7 @@ Permanent Resident, Canada | No sponsorship required
 
 ## Career Highlights
 
-- 78% regression cycle reduction at Goldman Sachs (5 days to 11 hours) across 3,000+ tests on 12 banking microservices.
+- Reduced the Goldman Sachs regression run from 5 days to 4 hours across 3,000+ tests on 12 banking microservices.
 - Shipped 5 AI agents to enterprise QE workflows at Goldman Sachs (internal); architected the Selenium + Java + Cucumber framework underpinning them.
 - Led a 12-engineer SDET organization across Canada, USA, and India; 16+ years in regulated banking and digital commerce.
 - QE community contributor: built open-source AI tooling at [codereview.vineetkr.com](https://codereview.vineetkr.com); speaker at BrowserStack, ATAGTR2025, and Testing Mind.
@@ -34,7 +34,7 @@ QE Manager and SDET Lead with 16+ years building test automation for regulated b
 Progression: SDET -> SDET Lead -> QE Manager  
 Client: Goldman Sachs - Wealth Management and Banking Division
 
-- Architected the BDD automation framework (Selenium WebDriver + Java + TestNG + Cucumber) covering 3,000+ test cases across 12 banking microservices, including Salesforce CRM and financial transaction processing. Cut regression execution from 5 days to 11 hours (78% reduction).
+- Architected the BDD automation framework (Selenium WebDriver + Java + TestNG + Cucumber) covering 3,000+ test cases across 12 banking microservices, including Salesforce CRM and financial transaction processing. Reduced the regression run from 5 days to 4 hours.
 - Ran integration testing across 12 banking microservices and 4 downstream systems during weekly release cycles; partnered with development leads on hotfix validation, achieving 6 consecutive zero-rollback production deployments.
 - Shifted testing into PR pipelines on 12 banking repos with PR-gated unit and contract tests plus pre-merge static checks. Reduced production defects by 25% and mean time to detect critical issues by 60%.
 - Built REST Assured API automation with Pact contract testing across 12+ banking microservices; integrated into Jenkins and GitLab CI/CD with parallel execution, Allure reporting, and Slack alerts.

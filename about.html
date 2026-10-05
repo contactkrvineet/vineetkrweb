@@ -52,9 +52,52 @@
         gtag('js', new Date());
         gtag('config', 'G-XXXXXXXXXX');
     </script>
+    <style>
+        /* ---- About page visual refresh ---- */
+        .portfolio-page section { animation: none; position: relative; overflow: hidden; border: 1px solid #e3eaf6; }
+        .portfolio-page section::before {
+            content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px;
+            background: linear-gradient(90deg, #0066cc, #0b7285, #7048e8);
+        }
+        .portfolio-page section > h2, #about h2 {
+            font-size: 1.7rem; color: #0a1a33; background: none; box-shadow: none; padding: 0;
+            border: 0; -webkit-text-fill-color: #0a1a33;
+        }
+        #about > div:first-child { padding-bottom: 12px; border-bottom: 1px solid #e3eaf6; margin-bottom: 18px; }
+        #about > p { font-size: 1.02rem; line-height: 1.75; color: #2a3550; max-width: 980px; }
+        #about > p:nth-of-type(3) {
+            background: linear-gradient(135deg, #eaf3ff, #e6fbf5); border-left: 4px solid #0066cc;
+            padding: 14px 18px; border-radius: 10px; color: #0a1a33;
+        }
+        #about > p:empty { display: none; }
+        #about .button-design {
+            background: linear-gradient(135deg, #0066cc, #0b7285) !important; color: #fff !important;
+            border: 0; border-radius: 999px; padding: 9px 18px; font-weight: 600; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,102,204,.25); transition: transform .2s, box-shadow .2s;
+        }
+        #about .button-design:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,102,204,.35); }
+        .roles-grid .role-column { background: none; border: 0; box-shadow: none; padding: 0; }
+        .roles-grid h3 { color: #0066cc; font-size: 1.25rem; margin-bottom: 12px; }
+        .roles-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; padding: 0; list-style: none; }
+        .roles-list li {
+            background: #fff; border: 1px solid #dbe5f5; border-left: 4px solid #0066cc; border-radius: 10px;
+            padding: 12px 14px; margin: 0; box-shadow: 0 3px 10px rgba(10,26,51,.05); transition: transform .2s, box-shadow .2s;
+        }
+        .roles-list li:nth-child(3n+2) { border-left-color: #0b7285; }
+        .roles-list li:nth-child(3n) { border-left-color: #7048e8; }
+        .roles-list li:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,102,204,.15); }
+        .roles-list li::before { display: none; }
+        #expertise table tbody tr:nth-child(even) { background: #f4f8fe; }
+        #expertise table tbody tr:hover { background: #e6f0fd; }
+        #expertise table td:first-child { font-weight: 700; color: #0a4d99; }
+        #expertise table thead th { background: linear-gradient(90deg, #0a1a33, #123a7a, #0b7285) !important; color: #fff !important; }
+        #certifications table tbody tr:nth-child(even) { background: #fff8e6; }
+        #certifications table tbody tr:hover { background: #ffefc2; }
+        #speaker > div, #speaker .speaker-card { transition: transform .2s, box-shadow .2s; }
+    </style>
 </head>
 
-<body>
+<body class="portfolio-page">
     <header>
         <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
             <img src="vineet.png" alt="Vineet Kumar profile picture"
@@ -65,25 +108,22 @@
                 <span>+1 437-428-2199 &nbsp;&nbsp;|&nbsp;&nbsp; contactkrvineet@gmail.com</span>
             </div>
         </div>
-        <div class="button-container">
-            <button class="button-design" onclick="location.href='https://codereview-agent-piun.onrender.com/'">Code
-                Review Agent</button>
-            <button class="button-design" onclick="location.href='index.html#projects'">View My Portfolio</button>
-            <button class="button-design" onclick="location.href='blog.html'">Blog</button>
-            <nav aria-label="Primary">
-                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
-                    <span class="menu-label">Menu</span>
-                    <span class="hamburger"></span>
-                </button>
-                <ul class="nav-links" id="primary-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="featuredproject.html">Featured Projects</a></li>
-                    <li><a href="agents.html">Agents</a></li>
-                </ul>
-            </nav>
-
-        </div>
+        <nav class="main-nav" aria-label="Primary">
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="primary-nav">
+                <span class="menu-label">Menu</span>
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" aria-current="page">About Me</a></li>
+                <li><a href="casestudy.html">Case Studies</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="featuredproject.html">Featured Projects</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
 
@@ -95,15 +135,15 @@
             <button class="button-design" style="margin-left: 4px;" onclick="location.href='#speaker'">View My
                 Conferences</button>
         </div>
-        <p>Hello! I am Vineet Kumar, with over 16 years of experience driving quality engineering and
-            automation across finance, healthcare, e‑commerce, and enterprise products. I architect and deliver scalable
-            test frameworks, CI/CD-integrated pipelines, and performance and reliability strategies that reduce
-            time-to-market and improve product stability.</p>
+        <p>I lead quality engineering the way I'd want it led if I were the one depending on the software: catch problems early, automate the boring parts ruthlessly, and never let &ldquo;we'll test it later&rdquo; become the plan.</p>
 
-        <p>I combine hands-on engineering with people and process leadership: hiring and mentoring teams, defining QA
-            strategy and quality gates, and embedding shift-left practices across the delivery lifecycle. I also apply
-            AI\/ML to testing—building model evaluation suites, synthetic test data pipelines, and observability—to
-            accelerate delivery, detect regressions earlier, and improve decision-making.</p>
+        <p>Over the past several years on a large financial services platform, through <b>Publicis Sapient</b>, I've applied that approach at scale. I lead a 12-engineer SDET team across Canada, the US, and India, and I've helped transform quality engineering for wealth management and banking &mdash; not just running more tests but rethinking how quality is built into the delivery pipeline. That included migrating automation from Selenium to Playwright and building an AI-driven CI/CD agent that classifies test failures and generates diagnostic summaries, so engineers spend less time triaging noise and more time fixing real problems.</p>
+
+        <p>The results have been measurable: regression cycles dropped from five days to four hours across 3,000+ tests spanning twelve banking microservices, while production defects fell by 25%. I've also led end-to-end quality engineering across Salesforce-integrated customer onboarding workflows, API and contract testing, CI/CD quality gates, and performance engineering.</p>
+
+        <p>What I'm proudest of isn't any single number, though. It's that I've consistently looked for opportunities to apply AI where it genuinely improves engineering workflows rather than simply adding AI to an existing process. I've built and deployed five AI agents supporting QE activities including code review, requirements handoff, test-impact analysis, and failure analysis. I also open-sourced one of these tools to explore how AI-assisted quality engineering could work beyond a single enterprise environment.</p>
+
+        <p><b>Currently:</b> QE Manager at <b>Publicis Sapient</b>, Toronto, Canada.</p>
 
         <p><b>Core strengths:</b> Automation Architecture, Test Data Engineering, Performance Testing, CI/CD
             optimization, Cloud-Native Testing, AI Model Evaluation and Modern Quality Engineering Practices.</p>
@@ -324,8 +364,8 @@
 
     <footer>
         <p>&copy; 2026 Vineet Kumar</p>
+        <p style="font-size:0.85rem;opacity:0.75;">Views and projects on this site are my own and do not represent my employer.</p>
         <div class="social-links">
-            <a href="https://www.facebook.com/contactvineet/" target="_blank">Facebook</a>
             <a href="https://www.linkedin.com/in/vineet2311/" target="_blank">LinkedIn</a>
             <a href="https://github.com/contactkrvineet" target="_blank">GitHub</a>
         </div>

@@ -4,76 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vineet Kumar</title>
+    <title>Contact | Vineet Kumar | SDET Lead &amp; QE Manager | Test Automation &amp; AI-Driven QE</title>
+    <meta name="description" content="Contact Vineet Kumar, QE Manager and SDET Lead based in Canada. Quality engineering, test automation and AI-driven QE.">
+    <link rel="canonical" href="https://www.vineetkr.com/contact.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vineetkr.com/contact.html">
+    <meta property="og:title" content="Contact | Vineet Kumar">
+    <meta property="og:description" content="Contact Vineet Kumar, QE Manager and SDET Lead based in Canada. Quality engineering, test automation and AI-driven QE.">
+    <meta property="og:image" content="https://www.vineetkr.com/vineet.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="styles.css">
     <!-- Favicon & Web App Manifest -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="manifest" href="site.webmanifest">
-
-    <!-- ============================================================
-         Google Analytics 4
-         ACTION REQUIRED: replace G-XXXXXXXXXX with your real GA4
-         Measurement ID (Admin -> Data Streams -> Web in analytics.google.com)
-         ============================================================ -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
 </head>
 
 
-<body>
+<body class="portfolio-page">
     <header>
-        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+    <nav class="main-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+            <span class="menu-label">Menu</span>
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-links" id="primary-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="cv.html">Resume</a></li>
+            <li><a href="casestudy.html">Case Studies</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li><a href="featuredproject.html">Featured Projects</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
             <img src="vineet.png" alt="Vineet Kumar profile picture"
                 style="width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:2px solid #263159;"
                 loading="lazy">
             <div>
                 <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
-                <span>+1 437-428-2199 &nbsp;&nbsp;|&nbsp;&nbsp; contactkrvineet@gmail.com</span>
+                <span>QE Manager, SDET Lead, Test Automation &amp; AI-Driven Quality Engineering</span>
             </div>
-        </div>
-        <div class="contact-info">
-            <span><b>QE Manager & Full-Stack SDET Architect</b> | <b>AI Evaluation Specialist</b> | <b>16 Years of
-                    Quality Innovation</b></span><br>
-        </div>
-        <div class="button-container">
-            <button class="button-design" onclick="location.href='index.html#projects'">View My Portfolio</button>
-            <button class="button-design" onclick="location.href='blog.html'">Blog</button>
-            <nav aria-label="Primary">
-                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
-                    <span class="menu-label">Menu</span>
-                    <span class="hamburger"></span>
-                </button>
-                <ul class="nav-links" id="primary-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Me</a></li>
-                    <li><a href="featuredproject.html">Featured Projects</a></li>
-                    <li><a href="agents.html">Agents</a></li>
-                </ul>
-            </nav>
-
         </div>
     </header>
 
     <!-- Barcode section removed -->
     <section id="contact">
-        <h2>Contact</h2>
+        <h2>Get in Touch</h2>
         <form id="contact-form" onsubmit="sendEmail(event)">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required aria-required="true">
+            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required aria-required="true">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required aria-required="true">
+            <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required aria-required="true">
 
             <label for="message">Message:</label>
-            <textarea id="message" name="message" required aria-required="true"></textarea>
+            <textarea id="message" name="message" rows="6" placeholder="Role or team, what you&rsquo;d like to discuss, and timing" required aria-required="true"></textarea>
 
-            <button type="submit">Send</button>
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+
+            <button type="submit">Send Message</button>
+            <p id="form-status" role="status" aria-live="polite"></p>
         </form>
     </section>
 
@@ -81,7 +74,6 @@
     <footer>
         <p>&copy; 2026 Vineet Kumar</p>
         <div class="social-links">
-            <a href="https://www.facebook.com/contactvineet/" target="_blank">Facebook</a>
             <a href="https://www.linkedin.com/in/vineet2311/" target="_blank">LinkedIn</a>
             <a href="https://github.com/contactkrvineet" target="_blank">GitHub</a>
         </div>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Test Automation Architecture | Vineet Kumar</title>
+    <meta name="title" content="About Vineet Kumar - QE Manager & SDET Architect | Test Automation Expert">
+    <meta name="description" content="How I architect AI-enabled test automation frameworks: layered design, tool-selection rationale, self-healing locators and CI/CD quality gates.">
+    <meta name="keywords"
+        content="QE Manager Biography, SDET Expert Profile, Test Automation Leader, Quality Engineering Experience, Automation Framework Architect, CI/CD Expert, Selenium Expert, Playwright Specialist, API Testing Professional">
+    <meta name="author" content="Vineet Kumar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.vineetkr.com/architecture.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://www.vineetkr.com/architecture.html">
+    <meta property="og:title" content="About Vineet Kumar - QE Manager & SDET Architect">
+    <meta property="og:description"
+        content="16+ years driving quality innovation in test automation, CI/CD, and quality engineering leadership across global enterprises.">
+    <meta property="og:image" content="https://www.vineetkr.com/vineet.png">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800">
+    <meta name="twitter:image" content="https://www.vineetkr.com/vineet.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.vineetkr.com/architecture.html">
+    <meta name="twitter:title" content="About Vineet Kumar - QE Manager & SDET Architect">
+    <meta name="twitter:description"
+        content="Quality engineering leader with deep expertise in automation frameworks, CI/CD, and team leadership.">
+
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon & Web App Manifest -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- ============================================================
+         Google Analytics 4
+         ACTION REQUIRED: replace G-XXXXXXXXXX with your real GA4
+         Measurement ID (Admin -> Data Streams -> Web in analytics.google.com)
+         ============================================================ -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+
+<body class="portfolio-page">
+    <header>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="vineet.png" alt="Vineet Kumar profile picture"
+                style="width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
+                <span>+1 437-428-2199 &nbsp;&nbsp;|&nbsp;&nbsp; contactkrvineet@gmail.com</span>
+            </div>
+        </div>
+        <nav class="main-nav" aria-label="Primary">
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="primary-nav">
+                <span class="menu-label">Menu</span>
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="casestudy.html">Case Studies</a></li>
+                <li><a href="architecture.html" aria-current="page">Architecture</a></li>
+                <li><a href="featuredproject.html">Featured Projects</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <style>
+.arch-stack{display:grid;gap:10px;margin:1.2rem 0}
+.arch-layer{border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:14px 18px;background:rgba(255,255,255,.04)}
+.arch-layer b{display:block;margin-bottom:4px}
+.arch-layer span{font-size:.95rem;opacity:.85}
+.arch-table{width:100%;border-collapse:collapse;margin:1rem 0}
+.arch-table th,.arch-table td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.14);vertical-align:top}
+.ai-flow{display:grid;gap:0;margin:1.4rem 0}
+.ai-core{border:1px solid rgba(120,160,255,.5);border-radius:14px;padding:14px 18px;text-align:center;background:linear-gradient(135deg,rgba(80,120,255,.18),rgba(160,90,255,.18));box-shadow:0 0 24px rgba(100,140,255,.18)}
+.ai-core b{display:block;font-size:1.05rem}
+.ai-core span{font-size:.9rem;opacity:.85}
+.ai-arrow{text-align:center;font-size:1.3rem;line-height:1.4;opacity:.7}
+.ai-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.ai-agent{border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:14px;background:rgba(255,255,255,.05);position:relative}
+.ai-agent .n{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:linear-gradient(135deg,#5b8cff,#a05bff);font-weight:700;font-size:.85rem;margin-bottom:6px}
+.ai-agent b{display:block;margin-bottom:4px}
+.ai-agent span{font-size:.88rem;opacity:.85;display:block}
+.ai-agent em{display:block;margin-top:8px;font-style:normal;font-size:.82rem;color:#8fb0ff}
+.live-wrap{border:1px solid rgba(120,160,255,.35);border-radius:14px;padding:16px;margin:1.2rem 0;background:rgba(255,255,255,.03)}
+.live-steps{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.live-step{cursor:pointer;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:inherit;border-radius:999px;padding:7px 13px;font-size:.85rem;font:inherit;font-size:.85rem}
+.live-step.on{background:linear-gradient(135deg,#4f7cff,#8a5cff);border-color:transparent;color:#fff;box-shadow:0 0 14px rgba(110,130,255,.6)}
+.live-io{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.live-io{grid-template-columns:1fr}}
+.live-io div{border-radius:10px;padding:12px;background:rgba(0,0,0,.25);font-size:.86rem;min-height:90px}
+.live-io h5{margin:0 0 6px;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:#8fb0ff}
+.live-ctl{margin-top:10px;font-size:.8rem;opacity:.75}
+.perf{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:1rem 0}
+.perf div{border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px;background:rgba(255,255,255,.05);font-size:.85rem;position:relative}
+.perf b{display:block;margin-bottom:4px}
+.perf div:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:42%;opacity:.6}
+@media(max-width:640px){.perf div::after{display:none}}
+.perf .gate{border-color:#4fd38a}
+.arch-layer{position:relative;padding-left:22px;border-left:3px solid #6f8cff}
+.arch-layer .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.arch-layer .chips i{font-style:normal;font-size:.75rem;padding:2px 9px;border-radius:999px;background:rgba(111,140,255,.15);border:1px solid rgba(111,140,255,.4)}
+.arch-layer .guar{margin-top:8px;font-size:.82rem;color:#7fe0a8}
+</style>
+<section id="architecture">
+<h2>Test Automation Architecture</h2>
+<p>How I design automation frameworks so they stay maintainable at scale. The same principles guided the enterprise work described in the <a href="casestudy.html">case studies</a>.</p>
+
+<h3>Layered design</h3>
+<div class="arch-stack">
+<div class="arch-layer"><b>1. Scenarios (BDD)</b><span>Business-readable feature files. No locators, no waits.</span><div class="chips"><i>Gherkin</i><i>Cucumber</i></div><div class="guar">✔ Non-engineers can review coverage.</div></div>
+<div class="arch-layer"><b>2. Step definitions</b><span>Thin glue mapping steps to page and API actions. Reusable, no logic.</span><div class="chips"><i>Steps</i><i>Hooks</i><i>Tags</i></div><div class="guar">✔ Steps are reused instead of duplicated.</div></div>
+<div class="arch-layer"><b>3. Page objects and API clients</b><span>Single home for locators and endpoints, so a UI change is a one-file fix.</span><div class="chips"><i>Page Object Model</i><i>REST clients</i></div><div class="guar">✔ UI churn never reaches test logic.</div></div>
+<div class="arch-layer"><b>4. Core services</b><span>Driver lifecycle, environment config, AI self-healing locators, LLM test-data generation, logging and screenshots.</span><div class="chips"><i>Config</i><i>Self-healing</i><i>LLM data</i><i>Logging</i></div><div class="guar">✔ Cross-cutting concerns live in one place.</div></div>
+<div class="arch-layer"><b>5. CI/CD and smart test execution</b><span>On each commit or pull request, the pipeline diffs the change against the base branch, maps changed files to impacted tests and runs that set first. Shared code or config changes, or low-confidence mapping, fall back to the full suite.</span><div class="chips"><i>Jenkins</i><i>GitHub Actions</i><i>GitLab CI</i></div><div class="guar">✔ Faster feedback without silently skipping coverage.</div></div>
+<div class="arch-layer"><b>6. Execution and reporting</b><span>Parallel, sharded runs with Allure and HTML dashboards. Quality gates block the merge on failure.</span><div class="chips"><i>Parallel</i><i>Sharding</i><i>Allure</i></div><div class="guar">✔ Every run is auditable and gated.</div></div>
+</div>
+
+<h3>AI agents that speed up script development</h3>
+<p>Five agents sit around the framework and remove the slow, repetitive steps between a business requirement and a merged, running test. Each one hands its output to the next.</p>
+<div class="ai-flow" aria-label="AI agent pipeline">
+<div class="ai-core"><b>LLM reasoning layer</b><span>Prompted with team standards, existing repo context and the change at hand; outputs are reviewed by engineers</span></div>
+<div class="ai-arrow">&#9660;</div>
+<div class="ai-row">
+<div class="ai-agent"><div class="n">1</div><b>Requirements to Acceptance Criteria</b><span>Reads requirements from Confluence and writes compliance-format acceptance criteria into the Jira ticket.</span><em>Faster BA to QE handoff</em></div>
+<div class="ai-agent"><div class="n">2</div><b>Feature File and Step Reuse</b><span>Turns the criteria into Gherkin and detects existing step definitions so nothing is duplicated.</span><em>Authoring cycle: 3 days to 18 hours</em></div>
+<div class="ai-agent"><div class="n">3</div><b>Component and Locator Reuse</b><span>Inspects the DOM, reuses existing page objects and locators, and generates framework-conformant new ones only when needed.</span><em>Less duplicate code, faster scripting</em></div>
+<div class="ai-agent"><div class="n">4</div><b>Code Review</b><span>Reviews the merge-request diff against POM and framework standards and posts inline comments.</span><em>Adopted across 4 active QE repos</em></div>
+<div class="ai-agent"><div class="n">5</div><b>Smart Test Impact</b><span>Analyses commit diffs, runs the impacted subset for fast PR feedback, then the full regression as a safety pass.</span><em>Fast feedback without losing coverage</em></div>
+</div>
+<div class="ai-arrow">&#9660;</div>
+<div class="ai-core"><b>Framework and CI/CD</b><span>Reviewed scripts merge, run in the pipeline and report back; failures and flaky results feed the next cycle</span></div>
+</div>
+<p>Combined impact across the agents: regression cut from 5 days to 4 hours, 25% fewer production defects, and SDET onboarding reduced from 3 weeks to 10 days. <a href="agents.html">See each agent in detail</a>.</p>
+
+<h3>Live view: how the 5 agents plug into the framework</h3>
+<p>Click a stage, or let it auto-play. Each agent takes an input from the delivery flow and hands a reviewed output to the framework and CI/CD.</p>
+<div class="live-wrap" id="liveAgents">
+<div class="live-steps" id="liveSteps"></div>
+<div class="live-io"><div><h5>Input</h5><span id="liveIn"></span></div><div><h5>Output into the framework</h5><span id="liveOut"></span></div></div>
+<div class="live-ctl"><span id="liveFw"></span></div>
+</div>
+<script>
+(function(){
+var A=[
+["1 Requirements to AC","User story and notes from the ticket","Testable acceptance criteria and edge cases","Feeds: BDD feature layer"],
+["2 Feature file and step reuse","Acceptance criteria","Gherkin scenarios that reuse existing steps","Feeds: BDD feature layer and step definitions"],
+["3 Component and locator reuse","New scenarios and page context","Page objects and locators reused or extended","Feeds: page object and component layer"],
+["4 Code review","Draft scripts and pull request","Review comments on standards, flakiness and duplication","Feeds: pull request quality gate"],
+["5 Smart test impact","Commit diff against the base branch","Impacted tests to run first, full-suite fallback","Feeds: CI/CD execution layer"]];
+var box=document.getElementById('liveSteps'),i=0,t,hold=false;
+A.forEach(function(a,k){var b=document.createElement('button');b.className='live-step';b.textContent=a[0];b.onclick=function(){hold=true;show(k)};box.appendChild(b)});
+function show(k){i=k;[].forEach.call(box.children,function(b,j){b.classList.toggle('on',j===k)});
+document.getElementById('liveIn').textContent=A[k][1];document.getElementById('liveOut').textContent=A[k][2];document.getElementById('liveFw').textContent=A[k][3]}
+show(0);
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(function(){if(!hold)show((i+1)%A.length)},2800)}
+})();
+</script>
+
+<h3>Performance testing architecture</h3>
+<p>Performance checks run as a pipeline stage, with the same pass or fail discipline as functional tests.</p>
+<div class="perf">
+<div><b>Load model</b>Workload profiles from real traffic: baseline, load, stress, soak.</div>
+<div><b>Load generators</b>Gatling or JMeter scripts in the repo, run from CI agents.</div>
+<div><b>System under test</b>Services in a production-like environment with seeded test data.</div>
+<div><b>Observability</b>Latency, errors, CPU and memory from APM and dashboards, correlated to the run.</div>
+<div class="gate"><b>SLO gate</b>Build fails if p95 latency, error rate or throughput breach the budget.</div>
+</div>
+<p>Results are compared with the previous baseline so regressions are caught at the commit that caused them.</p>
+
+<h3>Key design decisions</h3>
+<table class="arch-table">
+<tr><th>Decision</th><th>Why</th></tr>
+<tr><td>BDD over raw scripts</td><td>Scenarios double as living documentation and keep product, dev and QE aligned.</td></tr>
+<tr><td>Page Object Model</td><td>Isolates UI churn from test logic and keeps maintenance cost low.</td></tr>
+<tr><td>Self-healing only as a fallback</td><td>The LLM proposes a locator when one fails, and the fix is logged for review. Silent healing hides real regressions.</td></tr>
+<tr><td>Environment-driven config</td><td>The same suite runs in dev, QA and staging; production gets read-only smoke checks.</td></tr>
+<tr><td>Parallel by default</td><td>Independent tests and isolated data keep feedback fast; this is how a 5-day regression became 4 hours.</td></tr>
+<tr><td>Test pyramid, not UI-only</td><td>API and contract tests carry most coverage; UI covers critical journeys.</td></tr>
+</table>
+
+<h3>Smart Test Execution: architecture requirements</h3>
+<p>Running everything on every commit does not scale. Smart test execution selects the tests that matter for each change, without trading away safety.</p>
+<table class="arch-table">
+<tr><th>Requirement</th><th>What it means</th></tr>
+<tr><td>Change-to-test mapping</td><td>Tests are tagged by feature, service and risk; the commit diff (changed files versus the base branch) is mapped to the impacted tests through that traceability layer.</td></tr>
+<tr><td>Risk-based prioritization</td><td>Critical-path and historically flaky or failing tests run first, so the fastest feedback goes to the highest risk.</td></tr>
+<tr><td>Safe fallback</td><td>If the impact analysis has low confidence, or the change touches shared code or config, it falls back to the full suite. Selection must never silently skip coverage.</td></tr>
+<tr><td>Tiered pipeline</td><td>Smoke on every commit, impacted tests on pull requests, full regression nightly and before release.</td></tr>
+<tr><td>Explainable selection</td><td>Every run records why each test was included or excluded, so engineers can audit and trust it.</td></tr>
+<tr><td>Isolated, parallel execution</td><td>Independent tests, isolated data and sharding across workers keep the selected set fast.</td></tr>
+<tr><td>Feedback loop</td><td>Escaped defects and flaky results feed back into the mapping and priorities over time.</td></tr>
+<tr><td>Measurable outcomes</td><td>Track selection accuracy, escaped defects, pipeline time saved and flaky rate to prove the approach works.</td></tr>
+</table>
+
+<h3>Results this approach delivered</h3>
+<ul class="tick-list">
+<li>Regression cycle cut from 5 days to 4 hours across 3,000+ tests and 12 microservices</li>
+<li>25% fewer production defects</li>
+<li>Selenium to Playwright migration with a 12-engineer, three-country SDET team</li>
+</ul>
+<p><a class="button-design" href="featuredproject.html">Browse the repositories</a></p>
+</section>
+
+<footer>
+        <p>&copy; 2026 Vineet Kumar</p>
+        <p style="font-size:0.85rem;opacity:0.75;">Views and projects on this site are my own and do not represent my employer.</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vineet2311/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/contactkrvineet" target="_blank">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

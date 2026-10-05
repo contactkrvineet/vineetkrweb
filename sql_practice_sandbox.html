@@ -82,6 +82,10 @@
     border-radius:6px;padding:10px;font-family:var(--mono);font-size:11.5px;
     color:var(--accent);white-space:pre-wrap}
   .loading{padding:40px;text-align:center;color:var(--muted);font-family:var(--mono)}
+  .site-nav{padding:12px 22px;background:#161b22;border-bottom:1px solid var(--line)}
+  .site-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:center}
+  .site-nav a{color:var(--text);text-decoration:none;font-size:14px;font-weight:600;padding:4px 2px;border-bottom:2px solid transparent}
+  .site-nav a:hover{color:var(--accent)}
 </style>
     <!-- Favicon & Web App Manifest -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -102,9 +106,21 @@
     </script>
 </head>
 <body>
+<nav class="site-nav" aria-label="Primary">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Me</a></li>
+    <li><a href="cv.html">Resume</a></li>
+    <li><a href="casestudy.html">Case Studies</a></li>
+    <li><a href="architecture.html">Architecture</a></li>
+    <li><a href="featuredproject.html">Featured Projects</a></li>
+    <li><a href="agents.html">Agents</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 <header>
   <h1>SQL Practice Sandbox</h1>
-  <span class="tag">RBC REGRESSION PREP</span>
+  <span class="tag">REGRESSION PREP</span>
   <p>A live SQLite database running in your browser. Edit, run, and break things freely — click <b>Reset DB</b> anytime to restore. Schema and 8 practice challenges are on the right.</p>
 </header>
 

@@ -219,7 +219,7 @@
     </script>
 </head>
 
-<body>
+<body class="portfolio-page">
     <header>
         <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
             <img src="vineet.png" alt="Vineet Kumar"
@@ -230,16 +230,21 @@
                 <span>QE Manager &amp; SDET Lead</span>
             </div>
         </div>
-        <nav aria-label="Primary">
-            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+        <nav class="main-nav" aria-label="Primary">
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="primary-nav">
                 <span class="menu-label">Menu</span>
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-links" id="primary-nav">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Me</a></li>
+                <li><a href="cv.html">Resume</a></li>
+                <li><a href="casestudy.html">Case Studies</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="featuredproject.html">Featured Projects</a></li>
-                <li><a href="agents.html">Agents</a></li>
+                <li><a href="agents.html" aria-current="page">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -275,12 +280,31 @@
                             rel="noopener">Source</a>
                     </div>
                 </article>
+
+                <article class="card">
+                    <div class="badges">
+                        <span class="b flag">Public</span>
+                        <span class="b live">Live</span>
+                    </div>
+                    <h3>Flaky Test Analyzer</h3>
+                    <p class="desc">Detects, ranks, and explains flaky tests from CI run history. Scores each test's
+                        flakiness, ranks tests by wasted CI time, and uses an LLM to suggest a likely root cause.</p>
+                    <div class="stack">
+                        <span>Python</span><span>LLM</span><span>CI analytics</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn primary" href="https://flakytest.vineetkr.com/" target="_blank"
+                            rel="noopener">Try it live</a>
+                        <a class="btn" href="https://github.com/contactkrvineet/flaky-analyzer" target="_blank"
+                            rel="noopener">Source</a>
+                    </div>
+                </article>
             </div>
         </div>
 
         <!-- INTERNAL / ENTERPRISE -->
         <div class="group">
-            <h2 class="group-label">Enterprise — shipped to the Goldman Sachs QE team</h2>
+            <h2 class="group-label">Enterprise — shipped to an enterprise QE team</h2>
             <div class="grid">
 
                 <article class="card">
@@ -332,7 +356,7 @@
 
         <div class="impact">
             <h3>Combined impact</h3>
-            <p>Across the agents above: 78% regression cycle reduction (5 days → 11 hrs), 25% drop in production
+            <p>Across the agents above: regression reduced from 5 days to 4 hours, 25% drop in production
                 defects, 60% improvement in MTTD for critical issues, and SDET onboarding time cut from 3 weeks to 10
                 days.</p>
         </div>
