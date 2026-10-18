@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Test Manager Release Dashboard — Sample Template | Vineet Kumar</title>
+    <meta name="title" content="Test Manager Release Dashboard — Sample Template | Vineet Kumar">
+    <meta name="description"
+        content="A sample Test Manager release dashboard — milestone roadmap, velocity, grooming & test metrics, defect aging, resource breakdown, and risk register — modeled on a fictional 11-sprint fintech delivery.">
+    <meta name="keywords"
+        content="Test Manager dashboard, QE reporting template, release readiness RAG, defect aging matrix, velocity chart, test metrics, sprint reporting, risk register, Test Manager interview, Confluence dashboard, GitLab wiki dashboard">
+    <meta name="author" content="Vineet Kumar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.vineetkr.com/test-manager-dashboard.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vineetkr.com/test-manager-dashboard.html">
+    <meta property="og:title" content="Test Manager Release Dashboard — Sample Template">
+    <meta property="og:description"
+        content="A sample Test Manager release dashboard with milestone roadmap, velocity, defect aging, and risk register — the way I present release status to a steering committee.">
+    <meta property="og:image" content="https://www.vineetkr.com/vineet.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Test Manager Release Dashboard — Sample Template">
+    <meta name="twitter:description"
+        content="A sample dashboard the way I present release status to a steering committee.">
+    <meta name="twitter:image" content="https://www.vineetkr.com/vineet.png">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0066cc">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <style>
+        /* ============================================================
+           Test Manager Dashboard — page-specific styles
+           Builds on the site's styles.css. Reuses --primary-color, etc.
+           ============================================================ */
+
+        /* Reset the global section styling from styles.css so the hero gradient
+           and the dashboard's own section layout can paint full-width.
+           Same pattern casestudy.html uses on line 2778. */
+        .tmd-page section {
+            background: transparent;
+            box-shadow: none;
+            border: 0;
+            border-radius: 0;
+            margin: 0 auto;
+            padding: 0;
+            max-width: none;
+            animation: none;
+        }
+
+        .tmd-page {
+            --tmd-accent: #0066cc;
+            --tmd-accent-dark: #004080;
+            --tmd-navy: #0f2a5c;
+            --tmd-ink: #1a2233;
+            --tmd-muted: #556078;
+            --tmd-faint: #8c93a8;
+            --tmd-surface: #ffffff;
+            --tmd-surface-alt: #f6f8fc;
+            --tmd-rule: #e2e8f0;
+            --tmd-rule-strong: #cbd5e1;
+            --tmd-good: #166534;
+            --tmd-good-soft: #dcfce7;
+            --tmd-warn: #a16207;
+            --tmd-warn-soft: #fef3c7;
+            --tmd-crit: #991b1b;
+            --tmd-crit-soft: #fee2e2;
+            --tmd-highlight: #c2410c;
+            --tmd-highlight-soft: #ffedd5;
+        }
+
+        /* Hero — selector made specific enough to win over the .tmd-page section reset above */
+        .tmd-page section.tmd-hero {
+            background: linear-gradient(135deg, #0f1b3d 0%, #1b3a6b 55%, #0f6b7a 100%);
+            color: #fff;
+            padding: 56px 24px 48px;
+            position: relative;
+            overflow: hidden;
+            max-width: none;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .tmd-hero .container { max-width: 1180px; margin: 0 auto; padding: 0; }
+        .tmd-hero .eyebrow {
+            font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+            color: #a7cce8; margin-bottom: 10px; font-weight: 600;
+        }
+        .tmd-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.15;
+            margin: 0 0 10px; color: #fff; font-weight: 700;
+        }
+        .tmd-hero .subhead {
+            font-size: 1.08rem; color: #ffffff; max-width: 70ch; margin: 0 0 16px;
+            line-height: 1.6; font-weight: 400;
+        }
+        .tmd-hero .byline {
+            display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap;
+            margin: 0 0 24px;
+            padding: 10px 18px;
+            background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(94,234,212,0.35);
+            border-radius: 999px;
+            font-size: 0.98rem; color: #ffffff; font-weight: 500;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+        }
+        .tmd-hero .byline .by-label {
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #ffffff;
+            opacity: 0.9;
+        }
+        .tmd-hero .byline strong {
+            color: #5eead4;
+            font-weight: 700;
+            font-size: 1.02rem;
+        }
+        .tmd-hero .byline a {
+            color: #c7e3f8; text-decoration: none;
+            border-bottom: 1px solid rgba(199,227,248,0.5);
+            padding-bottom: 1px; font-weight: 500;
+        }
+        .tmd-hero .byline a:hover { color: #fff; border-bottom-color: #fff; }
+        .tmd-hero .byline .dot { color: rgba(255,255,255,0.5); font-weight: 400; }
+        .tmd-sample-note {
+            display: block;
+            background: rgba(0,0,0,0.38);
+            border: 1px solid rgba(94,234,212,0.45);
+            border-left: 4px solid #5eead4;
+            padding: 14px 18px; border-radius: 10px;
+            font-size: 1rem; line-height: 1.6;
+            color: #ffffff; max-width: 72ch;
+            font-weight: 400;
+        }
+        .tmd-sample-note strong { color: #5eead4; font-weight: 700; }
+
+        .tmd-hero-meta {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1px; margin-top: 28px;
+            background: rgba(255,255,255,0.15);
+        }
+        .tmd-hero-meta .cell {
+            background: rgba(15, 27, 61, 0.6);
+            padding: 16px 18px;
+        }
+        .tmd-hero-meta .k {
+            font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase;
+            color: #a7cce8; margin-bottom: 6px; font-weight: 600;
+        }
+        .tmd-hero-meta .v {
+            font-size: 1.5rem; font-weight: 700; color: #fff; line-height: 1.1;
+        }
+        .tmd-hero-meta .v small {
+            display: block; margin-top: 4px; font-size: 0.78rem;
+            font-weight: 400; color: #c0d6ea;
+        }
+        @media (max-width: 720px) { .tmd-hero-meta { grid-template-columns: repeat(2, 1fr); } }
+
+        /* Main container */
+        .tmd-main { max-width: 1180px; margin: 0 auto; padding: 48px 24px 72px; color: var(--tmd-ink); }
+
+        /* RAG row */
+        .tmd-rag-row {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 14px; margin-bottom: 48px;
+        }
+        @media (max-width: 820px) { .tmd-rag-row { grid-template-columns: 1fr 1fr; } }
+        .tmd-rag {
+            background: var(--tmd-surface); border: 1px solid var(--tmd-rule);
+            border-left: 4px solid var(--tmd-rule-strong);
+            padding: 18px 20px; border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(15,42,74,0.06);
+        }
+        .tmd-rag.green { border-left-color: var(--tmd-good); }
+        .tmd-rag.amber { border-left-color: var(--tmd-warn); }
+        .tmd-rag.red { border-left-color: var(--tmd-crit); }
+        .tmd-rag .label {
+            font-size: 0.72rem; letter-spacing: 1.3px; text-transform: uppercase;
+            color: var(--tmd-muted); font-weight: 700; margin-bottom: 6px;
+        }
+        .tmd-rag .status { font-size: 1.25rem; font-weight: 700; }
+        .tmd-rag.green .status { color: var(--tmd-good); }
+        .tmd-rag.amber .status { color: var(--tmd-warn); }
+        .tmd-rag.red .status { color: var(--tmd-crit); }
+        .tmd-rag .note { font-size: 0.88rem; color: var(--tmd-muted); margin-top: 8px; line-height: 1.5; }
+
+        /* Section heading */
+        .tmd-sec { margin-bottom: 56px; }
+        .tmd-sec-head {
+            display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap;
+            padding-bottom: 10px; border-bottom: 2px solid var(--tmd-rule);
+            margin-bottom: 22px;
+        }
+        .tmd-sec-num {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
+            color: var(--tmd-highlight);
+        }
+        .tmd-sec h2 {
+            flex: 1; margin: 0; font-size: 1.5rem; color: var(--tmd-navy);
+            font-weight: 700; letter-spacing: -0.01em;
+        }
+        .tmd-sec-sub {
+            font-size: 0.82rem; color: var(--tmd-muted); font-style: italic;
+        }
+        .tmd-lede {
+            font-size: 1rem; color: var(--tmd-muted); max-width: 76ch;
+            margin: 0 0 20px; line-height: 1.6;
+        }
+
+        /* Executive summary */
+        .tmd-exec {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 20px;
+        }
+        @media (max-width: 820px) { .tmd-exec { grid-template-columns: 1fr; } }
+        .tmd-exec-copy {
+            background: var(--tmd-surface); border: 1px solid var(--tmd-rule);
+            padding: 22px 24px; border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(15,42,74,0.06);
+            line-height: 1.6;
+        }
+        .tmd-exec-copy p { margin: 0 0 12px; }
+        .tmd-exec-copy p:last-child { margin-bottom: 0; }
+        .tmd-exec-copy strong { color: var(--tmd-navy); }
+        .tmd-decisions {
+            background: var(--tmd-highlight-soft);
+            border: 1px solid var(--tmd-highlight);
+            padding: 18px 20px; border-radius: 10px;
+        }
+        .tmd-decisions h3 {
+            margin: 0 0 10px; color: var(--tmd-highlight);
+            font-size: 1.05rem; font-weight: 700;
+        }
+        .tmd-decisions ol {
+            margin: 0; padding-left: 22px; font-size: 0.92rem;
+            color: var(--tmd-ink);
+        }
+        .tmd-decisions li { margin-bottom: 6px; line-height: 1.5; }
+
+        /* Roadmap */
+        .tmd-roadmap {
+            background: var(--tmd-surface); border: 1px solid var(--tmd-rule);
+            padding: 24px; border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(15,42,74,0.06);
+            overflow-x: auto;
+        }
+        .tmd-roadmap-svg { width: 100%; min-width: 820px; height: auto; display: block; }
+        .tmd-legend {
+            display: flex; gap: 20px; flex-wrap: wrap;
+            margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--tmd-rule);
+            font-size: 0.82rem; color: var(--tmd-muted);
+        }
+        .tmd-legend .sw {
+            display: inline-block; width: 10px; height: 10px;
+            margin-right: 6px; vertical-align: middle;
+        }
+
+        /* Sprint grid */
+        .tmd-sprint-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+        }
+        @media (max-width: 820px) { .tmd-sprint-grid { grid-template-columns: 1fr; } }
+        .tmd-card {
+            background: var(--tmd-surface); border: 1px solid var(--tmd-rule);
+            padding: 20px 22px; border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(15,42,74,0.06);
+        }
+        .tmd-card h4 {
+            margin: 0 0 2px; font-size: 1rem; color: var(--tmd-navy); font-weight: 700;
+        }
+        .tmd-card .sub {
+            font-size: 0.72rem; letter-spacing: 1.2px; text-transform: uppercase;
+            color: var(--tmd-faint); font-weight: 600; margin-bottom: 14px;
+        }
+        .tmd-stat {
+            display: flex; justify-content: space-between; align-items: baseline;
+            padding: 7px 0; border-bottom: 1px dashed var(--tmd-rule);
+            font-size: 0.9rem;
+        }
+        .tmd-stat:last-child { border-bottom: none; }
+        .tmd-stat .k { color: var(--tmd-muted); }
+        .tmd-stat .v {
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-weight: 600; color: var(--tmd-ink);
+            font-variant-numeric: tabular-nums;
+        }
+        .tmd-stat .v.good { color: var(--tmd-good); }
+        .tmd-stat .v.warn { color: var(--tmd-warn); }
+        .tmd-stat .v.crit { color: var(--tmd-crit); }
+        .tmd-prog {
+            height: 8px; background: var(--tmd-rule); position: relative;
+            margin: 10px 0 4px; border-radius: 4px; overflow: hidden;
+        }
+        .tmd-prog .fill { position: absolute; inset: 0 auto 0 0; background: var(--tmd-accent); }
+        .tmd-prog .fill.good { background: var(--tmd-good); }
+        .tmd-prog .fill.warn { background: var(--tmd-warn); }
+        .tmd-prog .fill.crit { background: var(--tmd-crit); }
+        .tmd-prog-label {
+            display: flex; justify-content: space-between;
+            font-size: 0.78rem; color: var(--tmd-muted); margin-top: 2px;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+        }
+
+        /* Tables */
+        .tmd-table-wrap {
+            background: var(--tmd-surface); border: 1px solid var(--tmd-rule);
+            border-radius: 10px; overflow-x: auto;
+            box-shadow: 0 1px 3px rgba(15,42,74,0.06);
+        }
+        .tmd-table {
+            width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 760px;
+        }
+        .tmd-table th, .tmd-table td {
+            padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--tmd-rule);
+            vertical-align: middle;
+        }
+        .tmd-table thead th {
+            background: var(--tmd-surface-alt); font-size: 0.72rem;
+            letter-spacing: 1.2px; text-transform: uppercase;
+            color: var(--tmd-muted); font-weight: 700;
+            border-bottom: 2px solid var(--tmd-rule-strong);
+        }
+        .tmd-table tbody tr:last-child td { border-bottom: none; }
+        .tmd-table .num {
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-variant-numeric: tabular-nums; text-align: right;
+        }
+        .tmd-table .epic-key {
+            display: block; font-size: 0.7rem; font-weight: 700;
+            color: var(--tmd-highlight); letter-spacing: 1px;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+        }
+        .tmd-table .epic-name { font-weight: 600; color: var(--tmd-navy); }
+        .tmd-mini-prog {
+            width: 100%; max-width: 140px; height: 6px;
+            background: var(--tmd-rule); position: relative; border-radius: 3px;
+        }
+        .tmd-mini-prog .fill {
+            position: absolute; inset: 0 auto 0 0; background: var(--tmd-accent);
+            border-radius: 3px;
+        }
+        .tmd-mini-prog .fill.good { background: var(--tmd-good); }
+        .tmd-mini-prog .fill.warn { background: var(--tmd-warn); }
+        .tmd-pct {
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.78rem; color: var(--tmd-muted); margin-top: 4px;
+        }
+
+        /* Velocity */
+        .tmd-velocity {
+            background: var(--tmd-surface); border: 1px solid var(--tmd-rule);
+            padding: 24px; border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(15,42,74,0.06);
+            overflow-x: auto;
+        }
+        .tmd-velocity-svg { width: 100%; min-width: 740px; height: auto; display: block; }
+        .tmd-vel-stats {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1px; margin-top: 20px; background: var(--tmd-rule);
+            border-radius: 8px; overflow: hidden;
+        }
+        @media (max-width: 720px) { .tmd-vel-stats { grid-template-columns: 1fr 1fr; } }
+        .tmd-vel-stats .cell { background: var(--tmd-surface); padding: 14px 16px; }
+        .tmd-vel-stats .k {
+            font-size: 0.7rem; letter-spacing: 1.3px; text-transform: uppercase;
+            color: var(--tmd-muted); font-weight: 700; margin-bottom: 4px;
+        }
+        .tmd-vel-stats .v {
+            font-size: 1.4rem; font-weight: 700; color: var(--tmd-navy);
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-variant-numeric: tabular-nums;
+        }
+        .tmd-vel-stats .v small {
+            display: block; margin-top: 2px; font-size: 0.78rem;
+            font-weight: 400; color: var(--tmd-muted); font-family: inherit;
+        }
+
+        /* Sprint metrics grid */
+        .tmd-sprint-table {
+            min-width: 940px; font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.84rem; font-variant-numeric: tabular-nums;
+        }
+        .tmd-sprint-table td, .tmd-sprint-table th { text-align: right; padding: 10px 12px; }
+        .tmd-sprint-table th:first-child, .tmd-sprint-table td:first-child { text-align: left; }
+        .tmd-sprint-table tr.done td:first-child { color: var(--tmd-faint); }
+        .tmd-sprint-table tr.current { background: var(--tmd-highlight-soft); }
+        .tmd-sprint-table tr.current td:first-child { color: var(--tmd-highlight); font-weight: 700; }
+        .tmd-sprint-table tr.future td { color: var(--tmd-faint); }
+        .tmd-sprint-table tr.gate td:first-child { color: var(--tmd-navy); font-weight: 700; }
+
+        /* Defects grid */
+        .tmd-defects-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+        @media (max-width: 820px) { .tmd-defects-grid { grid-template-columns: 1fr; } }
+        .tmd-panel {
+            background: var(--tmd-surface); border: 1px solid var(--tmd-rule);
+            padding: 22px 24px; border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(15,42,74,0.06);
+        }
+        .tmd-panel h3 {
+            margin: 0 0 16px; font-size: 1.05rem; color: var(--tmd-navy); font-weight: 700;
+        }
+        .tmd-donut-wrap { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .tmd-donut-legend { flex: 1; min-width: 180px; font-size: 0.88rem; }
+        .tmd-donut-legend .item {
+            display: flex; justify-content: space-between; align-items: baseline;
+            padding: 6px 0; border-bottom: 1px dashed var(--tmd-rule);
+        }
+        .tmd-donut-legend .item:last-child { border-bottom: none; }
+        .tmd-donut-legend .sw {
+            display: inline-block; width: 10px; height: 10px;
+            margin-right: 8px; vertical-align: middle;
+        }
+        .tmd-donut-legend .num {
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-variant-numeric: tabular-nums; font-weight: 700;
+        }
+        .tmd-aging {
+            width: 100%; border-collapse: collapse;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.84rem; font-variant-numeric: tabular-nums;
+        }
+        .tmd-aging th, .tmd-aging td {
+            padding: 9px 10px; text-align: center;
+            border-bottom: 1px solid var(--tmd-rule);
+            border-right: 1px solid var(--tmd-rule);
+        }
+        .tmd-aging th:last-child, .tmd-aging td:last-child { border-right: none; }
+        .tmd-aging thead th {
+            background: var(--tmd-surface-alt);
+            font-size: 0.68rem; letter-spacing: 1.2px; text-transform: uppercase;
+            color: var(--tmd-muted); font-weight: 700;
+            border-bottom: 2px solid var(--tmd-rule-strong);
+        }
+        .tmd-aging tbody th { text-align: left; font-weight: 700; }
+        .cell-ok { color: var(--tmd-muted); }
+        .cell-warn { background: var(--tmd-warn-soft); color: var(--tmd-warn); font-weight: 700; }
+        .cell-crit { background: var(--tmd-crit-soft); color: var(--tmd-crit); font-weight: 700; }
+
+        .tmd-kpi-row {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1px; margin-top: 20px; background: var(--tmd-rule);
+            border-radius: 8px; overflow: hidden;
+        }
+        @media (max-width: 720px) { .tmd-kpi-row { grid-template-columns: 1fr 1fr; } }
+        .tmd-kpi { background: var(--tmd-surface); padding: 14px 16px; }
+        .tmd-kpi .k {
+            font-size: 0.7rem; letter-spacing: 1.3px; text-transform: uppercase;
+            color: var(--tmd-muted); font-weight: 700;
+        }
+        .tmd-kpi .v {
+            font-size: 1.4rem; font-weight: 700; color: var(--tmd-navy); margin-top: 4px;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-variant-numeric: tabular-nums;
+        }
+        .tmd-kpi .delta {
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.78rem; margin-top: 2px; color: var(--tmd-muted);
+        }
+        .tmd-kpi .delta.up { color: var(--tmd-good); }
+        .tmd-kpi .delta.down { color: var(--tmd-crit); }
+
+        /* Resources */
+        .tmd-res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 820px) { .tmd-res-grid { grid-template-columns: 1fr; } }
+        .tmd-team { list-style: none; padding: 0; margin: 0; }
+        .tmd-team li {
+            display: grid; grid-template-columns: 1fr 70px 120px;
+            gap: 14px; align-items: center;
+            padding: 11px 0; border-bottom: 1px dashed var(--tmd-rule);
+            font-size: 0.9rem;
+        }
+        .tmd-team li:last-child { border-bottom: none; }
+        .tmd-team .role { font-weight: 600; color: var(--tmd-navy); }
+        .tmd-team .role small {
+            display: block; font-size: 0.78rem; font-weight: 400;
+            color: var(--tmd-faint); margin-top: 1px;
+        }
+        .tmd-team .count {
+            text-align: right; font-weight: 700;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-variant-numeric: tabular-nums;
+        }
+        .tmd-util {
+            position: relative; height: 6px;
+            background: var(--tmd-rule); border-radius: 3px; overflow: hidden;
+        }
+        .tmd-util .fill {
+            position: absolute; inset: 0 auto 0 0;
+            background: var(--tmd-accent); border-radius: 3px;
+        }
+        .tmd-util .fill.hot { background: var(--tmd-warn); }
+        .tmd-util .fill.over { background: var(--tmd-crit); }
+
+        /* Risk pills */
+        .tmd-pill {
+            display: inline-block; padding: 3px 10px; border-radius: 4px;
+            font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase;
+            font-weight: 700; white-space: nowrap;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+        }
+        .tmd-pill.high { background: var(--tmd-crit-soft); color: var(--tmd-crit); }
+        .tmd-pill.med { background: var(--tmd-warn-soft); color: var(--tmd-warn); }
+        .tmd-pill.low { background: var(--tmd-good-soft); color: var(--tmd-good); }
+        .tmd-pill.mitigating { background: #dbeafe; color: #1e40af; }
+        .tmd-pill.open { background: var(--tmd-crit-soft); color: var(--tmd-crit); }
+
+        /* Close */
+        .tmd-close {
+            margin-top: 56px; padding: 32px 36px;
+            background: linear-gradient(135deg, #0f1b3d 0%, #1b3a6b 55%, #0f6b7a 100%);
+            color: #fff; border-radius: 12px;
+        }
+        .tmd-close h3 {
+            margin: 0 0 10px; font-size: 1.4rem; color: #fff;
+            font-weight: 700; letter-spacing: -0.005em;
+        }
+        .tmd-close p { margin: 0; max-width: 72ch; color: #d7e5f2; line-height: 1.6; }
+        .tmd-close .sig {
+            display: block; margin-top: 18px; font-size: 0.78rem;
+            letter-spacing: 1.3px; text-transform: uppercase;
+            color: #a7cce8; font-weight: 600;
+        }
+
+        /* Download / share bar */
+        .tmd-share {
+            display: flex; gap: 12px; flex-wrap: wrap;
+            margin-top: 32px; padding: 20px;
+            background: var(--tmd-surface-alt); border: 1px dashed var(--tmd-rule-strong);
+            border-radius: 10px;
+            font-size: 0.9rem; color: var(--tmd-muted);
+            align-items: center;
+        }
+        .tmd-share strong { color: var(--tmd-ink); }
+
+        @media print {
+            .tmd-hero, .tmd-close {
+                background: #0f1b3d !important; color: #fff !important;
+                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+            .tmd-sec, .tmd-roadmap, .tmd-velocity, .tmd-panel, .tmd-card { page-break-inside: avoid; }
+            .main-nav, .tmd-share { display: none; }
+        }
+    </style>
+</head>
+
+<body class="portfolio-page tmd-page">
+    <header>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="vineet.png" alt="Vineet Kumar profile picture"
+                style="width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
+                <span>+1 437-428-2199 &nbsp;&nbsp;|&nbsp;&nbsp; contactkrvineet@gmail.com</span>
+            </div>
+        </div>
+        <nav class="main-nav" aria-label="Primary">
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="primary-nav">
+                <span class="menu-label">Menu</span>
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="casestudy.html">Case Studies</a></li>
+                <li><a href="test-manager-dashboard.html" aria-current="page">QE Dashboard</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="featuredproject.html">Featured Projects</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="tmd-hero">
+        <div class="container">
+            <div class="eyebrow">Sample Template · Reporting Period 2026-10-18</div>
+            <h1>PayStream 3.0 — Digital Payments Modernization</h1>
+            <p class="subhead">A Test Manager release dashboard the way I present release status to a steering committee —
+                entering Sprint 3 of 11, with pilot (Jan 24, 2027) and GA (Feb 21, 2027) ahead.</p>
+
+            <p class="byline">
+                <span class="by-label">Created by</span>
+                <strong>Vineet Kumar</strong>
+                <span class="dot">·</span>
+                <a href="https://www.vineetkr.com/" target="_blank" rel="noopener">vineetkr.com</a>
+                <span class="dot">·</span>
+                <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="dot">·</span>
+                <span>&copy; 2026</span>
+            </p>
+
+            <div class="tmd-sample-note">
+                <strong>This is a sample template.</strong> PayStream 3.0 is a fictional fintech release used to demonstrate how I
+                structure Test Manager reporting — milestone roadmap, velocity, grooming &amp; test metrics, defect analytics,
+                resource breakdown, and risk register. Use it as a Confluence or GitLab wiki template.
+            </div>
+
+            <div class="tmd-hero-meta">
+                <div class="cell"><div class="k">Sprint</div><div class="v">3 / 11<small>Entering · 2-week cadence</small></div></div>
+                <div class="cell"><div class="k">Milestone progress</div><div class="v">18%<small>Target 2027-02-21</small></div></div>
+                <div class="cell"><div class="k">Open P1 / P2</div><div class="v">0 / 7<small>Within threshold</small></div></div>
+                <div class="cell"><div class="k">Automation coverage</div><div class="v">34%<small>Target 70% by S8</small></div></div>
+            </div>
+        </div>
+    </section>
+
+    <main class="tmd-main">
+
+        <!-- ===== RAG STATUS ===== -->
+        <div class="tmd-rag-row">
+            <div class="tmd-rag amber">
+                <div class="label">Release Readiness</div>
+                <div class="status">Amber</div>
+                <div class="note">On track for GA, but automation ramp &amp; environment stability need steering attention.</div>
+            </div>
+            <div class="tmd-rag green">
+                <div class="label">Scope &amp; Grooming</div>
+                <div class="status">Green</div>
+                <div class="note">87% of Sprint 3–5 stories groomed. Backlog healthy through Sprint 7.</div>
+            </div>
+            <div class="tmd-rag amber">
+                <div class="label">Quality Trend</div>
+                <div class="status">Amber</div>
+                <div class="note">Defect inflow trending up in fraud module. Early signal, mitigation in play.</div>
+            </div>
+            <div class="tmd-rag red">
+                <div class="label">Non-Prod Environments</div>
+                <div class="status">Red</div>
+                <div class="note">UAT environment unstable 2× in Sprint 2. Decision needed on dedicated env.</div>
+            </div>
+        </div>
+
+        <!-- ===== 01 EXECUTIVE SUMMARY ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">01</span>
+                <h2>Executive summary</h2>
+                <span class="tmd-sec-sub">For the CEO · 90-second read</span>
+            </div>
+            <div class="tmd-exec">
+                <div class="tmd-exec-copy">
+                    <p>We are entering <strong>Sprint 3 of 11</strong> on the PayStream 3.0 release. Sprints 1 and 2 closed on-plan:
+                        requirements and test design complete, Payment Gateway core delivered and smoke-tested. Current average
+                        velocity is <strong>38 points</strong> against a planned 42; we are tracking a 10% capacity gap driven by
+                        one open SDET position.</p>
+                    <p>Quality posture is <strong>Amber</strong>. Zero P1 defects open, seven P2 defects within the 7-day aging
+                        threshold. Fraud module shows an early rise in defect inflow — likely the complexity of the new
+                        risk-scoring rules — and is being front-loaded with exploratory testing in Sprint 3.</p>
+                    <p>The single material risk is <strong>UAT environment stability</strong>. Two outages in Sprint 2 cost ~1.5
+                        days of test execution. A dedicated test environment plus a weekly refresh is on the table and needs a
+                        decision this week to protect Sprint 8 regression.</p>
+                    <p>Pilot (Sprint 9, Jan 24) and GA (Sprint 11, Feb 21) dates remain achievable with the mitigations below.</p>
+                </div>
+                <div class="tmd-decisions">
+                    <h3>Decisions needed</h3>
+                    <ol>
+                        <li>Approve dedicated UAT environment ($18K / quarter)</li>
+                        <li>Confirm SDET backfill or accept 10% velocity gap</li>
+                        <li>Sign off on pilot customer list (5 enterprise clients)</li>
+                        <li>Approve PSD2 compliance audit scope for Sprint 7</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 02 ROADMAP ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">02</span>
+                <h2>Milestone roadmap</h2>
+                <span class="tmd-sec-sub">11 sprints · 22 weeks · 3 gates</span>
+            </div>
+            <p class="tmd-lede">Each sprint has a committed outcome mapped to the overall milestone. Three formal quality gates: full
+                regression at the end of Sprint 8, pilot entry at Sprint 9, and go-live decision at the end of Sprint 10.</p>
+            <div class="tmd-roadmap">
+                <svg class="tmd-roadmap-svg" viewBox="0 0 1120 240" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+                    <line x1="40" y1="130" x2="1080" y2="130" stroke="#cbd5e1" stroke-width="1.5"/>
+
+                    <g>
+                        <circle cx="40" cy="130" r="9" fill="#166534"/>
+                        <text x="40" y="110" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2233">S1</text>
+                        <text x="40" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Sep 21</text>
+                        <text x="40" y="186" text-anchor="middle" font-size="10.5" fill="#1a2233">Requirements</text>
+                        <text x="40" y="200" text-anchor="middle" font-size="10.5" fill="#1a2233">&amp; Test Design</text>
+
+                        <circle cx="144" cy="130" r="9" fill="#166534"/>
+                        <text x="144" y="110" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2233">S2</text>
+                        <text x="144" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Oct 5</text>
+                        <text x="144" y="186" text-anchor="middle" font-size="10.5" fill="#1a2233">Payment Gateway</text>
+                        <text x="144" y="200" text-anchor="middle" font-size="10.5" fill="#1a2233">Core</text>
+
+                        <circle cx="248" cy="130" r="12" fill="#c2410c" stroke="#ffffff" stroke-width="3"/>
+                        <text x="248" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#c2410c">S3 · NOW</text>
+                        <text x="248" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Oct 19</text>
+                        <text x="248" y="186" text-anchor="middle" font-size="10.5" fill="#1a2233">Fraud Detection</text>
+                        <text x="248" y="200" text-anchor="middle" font-size="10.5" fill="#1a2233">Engine</text>
+
+                        <circle cx="352" cy="130" r="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                        <text x="352" y="110" text-anchor="middle" font-size="11" fill="#556078">S4</text>
+                        <text x="352" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Nov 2</text>
+                        <text x="352" y="186" text-anchor="middle" font-size="10.5" fill="#556078">Multi-Currency</text>
+                        <text x="352" y="200" text-anchor="middle" font-size="10.5" fill="#556078">Settlement</text>
+
+                        <circle cx="456" cy="130" r="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                        <text x="456" y="110" text-anchor="middle" font-size="11" fill="#556078">S5</text>
+                        <text x="456" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Nov 16</text>
+                        <text x="456" y="186" text-anchor="middle" font-size="10.5" fill="#556078">FX &amp; Reconciliation</text>
+
+                        <circle cx="560" cy="130" r="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                        <text x="560" y="110" text-anchor="middle" font-size="11" fill="#556078">S6</text>
+                        <text x="560" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Nov 30</text>
+                        <text x="560" y="186" text-anchor="middle" font-size="10.5" fill="#556078">PCI-DSS 4.0</text>
+                        <text x="560" y="200" text-anchor="middle" font-size="10.5" fill="#556078">Compliance</text>
+
+                        <circle cx="664" cy="130" r="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                        <text x="664" y="110" text-anchor="middle" font-size="11" fill="#556078">S7</text>
+                        <text x="664" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Dec 14</text>
+                        <text x="664" y="186" text-anchor="middle" font-size="10.5" fill="#556078">PSD2 &amp; Analytics</text>
+
+                        <rect x="760" y="118" width="24" height="24" fill="#0f2a5c" transform="rotate(45 772 130)"/>
+                        <text x="772" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#0f2a5c">S8 · GATE</text>
+                        <text x="772" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Dec 28</text>
+                        <text x="772" y="186" text-anchor="middle" font-size="10.5" fill="#1a2233">Full Regression</text>
+                        <text x="772" y="200" text-anchor="middle" font-size="10.5" fill="#1a2233">&amp; Performance</text>
+
+                        <rect x="864" y="118" width="24" height="24" fill="#c2410c" transform="rotate(45 876 130)"/>
+                        <text x="876" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#c2410c">S9 · PILOT</text>
+                        <text x="876" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Jan 11</text>
+                        <text x="876" y="186" text-anchor="middle" font-size="10.5" fill="#1a2233">Pilot to 5</text>
+                        <text x="876" y="200" text-anchor="middle" font-size="10.5" fill="#1a2233">Enterprise Clients</text>
+
+                        <circle cx="976" cy="130" r="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                        <text x="976" y="110" text-anchor="middle" font-size="11" fill="#556078">S10</text>
+                        <text x="976" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Jan 25</text>
+                        <text x="976" y="186" text-anchor="middle" font-size="10.5" fill="#556078">Pilot Feedback</text>
+                        <text x="976" y="200" text-anchor="middle" font-size="10.5" fill="#556078">&amp; Hardening</text>
+
+                        <polygon points="1080,118 1092,130 1080,142 1068,130" fill="#166534"/>
+                        <text x="1080" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">S11 · GA</text>
+                        <text x="1080" y="160" text-anchor="middle" font-size="10" fill="#556078" font-family="SF Mono, monospace">Feb 8</text>
+                        <text x="1080" y="186" text-anchor="middle" font-size="10.5" fill="#1a2233">Production</text>
+                        <text x="1080" y="200" text-anchor="middle" font-size="10.5" fill="#1a2233">Release</text>
+                    </g>
+
+                    <g font-family="SF Mono, monospace" font-size="9.5" letter-spacing="1.5" fill="#556078">
+                        <text x="92" y="30" text-anchor="middle">BUILD &amp; TEST — ITERATIVE</text>
+                        <line x1="40" y1="40" x2="712" y2="40" stroke="#cbd5e1" stroke-width="1"/>
+                        <text x="876" y="30" text-anchor="middle">HARDEN · PILOT · RELEASE</text>
+                        <line x1="760" y1="40" x2="1080" y2="40" stroke="#c2410c" stroke-width="1.5"/>
+                    </g>
+                </svg>
+                <div class="tmd-legend">
+                    <span><span class="sw" style="background:#166534;border-radius:50%"></span>Completed</span>
+                    <span><span class="sw" style="background:#c2410c;border-radius:50%"></span>Current sprint</span>
+                    <span><span class="sw" style="background:#fff;border:2px solid #cbd5e1;border-radius:50%"></span>Planned</span>
+                    <span><span class="sw" style="background:#0f2a5c;transform:rotate(45deg)"></span>Quality gate</span>
+                    <span><span class="sw" style="background:#166534;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></span>GA release</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 03 CURRENT SPRINT ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">03</span>
+                <h2>Sprint 3 — entering state</h2>
+                <span class="tmd-sec-sub">Oct 19 – Nov 1 · Focus: Fraud Detection Engine</span>
+            </div>
+            <div class="tmd-sprint-grid">
+                <div class="tmd-card">
+                    <h4>Backlog &amp; grooming</h4>
+                    <div class="sub">Readiness for next 3 sprints</div>
+                    <div class="tmd-stat"><span class="k">Stories planned (S3)</span><span class="v">18</span></div>
+                    <div class="tmd-stat"><span class="k">Groomed · ready to pick</span><span class="v good">16</span></div>
+                    <div class="tmd-stat"><span class="k">Partially groomed</span><span class="v warn">2</span></div>
+                    <div class="tmd-stat"><span class="k">Dependencies open</span><span class="v">1</span></div>
+                    <div class="tmd-stat"><span class="k">Backlog depth (S4–S5)</span><span class="v">87%</span></div>
+                    <div class="tmd-prog"><div class="fill good" style="width:89%"></div></div>
+                    <div class="tmd-prog-label"><span>Grooming readiness</span><span>89% · ≥85% target</span></div>
+                </div>
+
+                <div class="tmd-card">
+                    <h4>Test case readiness</h4>
+                    <div class="sub">Planned, designed, automated</div>
+                    <div class="tmd-stat"><span class="k">Test cases planned</span><span class="v">142</span></div>
+                    <div class="tmd-stat"><span class="k">Designed &amp; peer-reviewed</span><span class="v good">128</span></div>
+                    <div class="tmd-stat"><span class="k">Pending design</span><span class="v warn">14</span></div>
+                    <div class="tmd-stat"><span class="k">Automation candidates</span><span class="v">76</span></div>
+                    <div class="tmd-stat"><span class="k">Automated in S3 scope</span><span class="v">22</span></div>
+                    <div class="tmd-prog"><div class="fill" style="width:90%"></div></div>
+                    <div class="tmd-prog-label"><span>Design completion</span><span>90%</span></div>
+                </div>
+
+                <div class="tmd-card">
+                    <h4>Team load</h4>
+                    <div class="sub">Capacity vs demand</div>
+                    <div class="tmd-stat"><span class="k">Story points committed</span><span class="v">42</span></div>
+                    <div class="tmd-stat"><span class="k">Capacity (available)</span><span class="v">40</span></div>
+                    <div class="tmd-stat"><span class="k">PTO this sprint</span><span class="v warn">3 days</span></div>
+                    <div class="tmd-stat"><span class="k">Blockers at start</span><span class="v">1</span></div>
+                    <div class="tmd-stat"><span class="k">Risk</span><span class="v warn">Slight over-commit</span></div>
+                    <div class="tmd-prog"><div class="fill warn" style="width:105%"></div></div>
+                    <div class="tmd-prog-label"><span>Load vs capacity</span><span>105% · tight</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 04 EPIC BREAKDOWN ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">04</span>
+                <h2>Epic breakdown</h2>
+                <span class="tmd-sec-sub">5 epics · 47 stories · 184 tasks · 312 subtasks</span>
+            </div>
+            <p class="tmd-lede">Each epic decomposes into stories, tasks, and subtasks mapped to the milestone. Progress percentage reflects
+                completed stories, not calendar time.</p>
+            <div class="tmd-table-wrap">
+                <table class="tmd-table">
+                    <thead>
+                        <tr>
+                            <th style="min-width:260px">Epic</th>
+                            <th class="num">Stories</th>
+                            <th class="num">Tasks</th>
+                            <th class="num">TCs</th>
+                            <th class="num">Open Bugs</th>
+                            <th style="min-width:160px">Progress</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="epic-key">PAY-GW · PAYMENT GATEWAY</span><span class="epic-name">Payment Gateway Modernization</span></td>
+                            <td class="num">12</td><td class="num">48</td><td class="num">196</td><td class="num">3</td>
+                            <td><div class="tmd-mini-prog"><div class="fill good" style="width:58%"></div></div><div class="tmd-pct">58%</div></td>
+                            <td>S5</td>
+                        </tr>
+                        <tr>
+                            <td><span class="epic-key">FRAUD · RISK ENGINE</span><span class="epic-name">Fraud Detection &amp; Risk Scoring</span></td>
+                            <td class="num">11</td><td class="num">46</td><td class="num">178</td><td class="num">4</td>
+                            <td><div class="tmd-mini-prog"><div class="fill warn" style="width:14%"></div></div><div class="tmd-pct">14%</div></td>
+                            <td>S4</td>
+                        </tr>
+                        <tr>
+                            <td><span class="epic-key">MULTI-CCY · SETTLEMENT</span><span class="epic-name">Multi-Currency &amp; FX Settlement</span></td>
+                            <td class="num">9</td><td class="num">34</td><td class="num">142</td><td class="num">0</td>
+                            <td><div class="tmd-mini-prog"><div class="fill" style="width:5%"></div></div><div class="tmd-pct">5%</div></td>
+                            <td>S6</td>
+                        </tr>
+                        <tr>
+                            <td><span class="epic-key">COMPLY · REGULATORY</span><span class="epic-name">PCI-DSS 4.0 &amp; PSD2 Compliance</span></td>
+                            <td class="num">8</td><td class="num">30</td><td class="num">98</td><td class="num">0</td>
+                            <td><div class="tmd-mini-prog"><div class="fill" style="width:8%"></div></div><div class="tmd-pct">8%</div></td>
+                            <td>S7</td>
+                        </tr>
+                        <tr>
+                            <td><span class="epic-key">ANALYTICS · DASHBOARDS</span><span class="epic-name">Executive Analytics &amp; Reporting</span></td>
+                            <td class="num">7</td><td class="num">26</td><td class="num">82</td><td class="num">0</td>
+                            <td><div class="tmd-mini-prog"><div class="fill" style="width:0%"></div></div><div class="tmd-pct">0%</div></td>
+                            <td>S7</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== 05 VELOCITY ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">05</span>
+                <h2>Velocity — planned vs achieved</h2>
+                <span class="tmd-sec-sub">Story points · forecast to Sprint 11</span>
+            </div>
+            <p class="tmd-lede">Rolling three-sprint average is tracking 10% below plan due to one open SDET position and the UAT environment
+                outages. Forecast assumes the backfill lands by Sprint 5.</p>
+            <div class="tmd-velocity">
+                <svg class="tmd-velocity-svg" viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+                    <g stroke="#e2e8f0" stroke-width="1">
+                        <line x1="50" y1="40" x2="730" y2="40"/>
+                        <line x1="50" y1="90" x2="730" y2="90"/>
+                        <line x1="50" y1="140" x2="730" y2="140"/>
+                        <line x1="50" y1="190" x2="730" y2="190"/>
+                        <line x1="50" y1="240" x2="730" y2="240"/>
+                    </g>
+                    <g font-family="SF Mono, monospace" font-size="10" fill="#556078">
+                        <text x="42" y="43" text-anchor="end">60</text>
+                        <text x="42" y="93" text-anchor="end">45</text>
+                        <text x="42" y="143" text-anchor="end">30</text>
+                        <text x="42" y="193" text-anchor="end">15</text>
+                        <text x="42" y="243" text-anchor="end">0</text>
+                    </g>
+
+                    <g>
+                        <rect x="60" y="123" width="18" height="117" fill="#cbd5e1"/>
+                        <rect x="80" y="120" width="18" height="120" fill="#166534"/>
+                        <text x="88" y="258" text-anchor="middle" font-size="11" fill="#556078">S1</text>
+                        <text x="88" y="113" text-anchor="middle" font-size="10" font-weight="700" fill="#166534" font-family="SF Mono, monospace">36</text>
+                    </g>
+                    <g>
+                        <rect x="120" y="100" width="18" height="140" fill="#cbd5e1"/>
+                        <rect x="140" y="113" width="18" height="127" fill="#166534"/>
+                        <text x="148" y="258" text-anchor="middle" font-size="11" fill="#556078">S2</text>
+                        <text x="148" y="106" text-anchor="middle" font-size="10" font-weight="700" fill="#a16207" font-family="SF Mono, monospace">38</text>
+                    </g>
+                    <g>
+                        <rect x="180" y="100" width="18" height="140" fill="#cbd5e1"/>
+                        <rect x="200" y="100" width="18" height="140" fill="none" stroke="#c2410c" stroke-width="2" stroke-dasharray="3,3"/>
+                        <text x="208" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="#c2410c">S3</text>
+                        <text x="208" y="93" text-anchor="middle" font-size="10" font-weight="700" fill="#c2410c" font-family="SF Mono, monospace">now</text>
+                    </g>
+                    <g>
+                        <rect x="240" y="97" width="18" height="143" fill="#cbd5e1"/>
+                        <rect x="260" y="107" width="18" height="133" fill="#0066cc" opacity="0.55"/>
+                        <text x="268" y="258" text-anchor="middle" font-size="11" fill="#556078">S4</text>
+                    </g>
+                    <g>
+                        <rect x="300" y="93" width="18" height="147" fill="#cbd5e1"/>
+                        <rect x="320" y="97" width="18" height="143" fill="#0066cc" opacity="0.55"/>
+                        <text x="328" y="258" text-anchor="middle" font-size="11" fill="#556078">S5</text>
+                    </g>
+                    <g>
+                        <rect x="360" y="93" width="18" height="147" fill="#cbd5e1"/>
+                        <rect x="380" y="93" width="18" height="147" fill="#0066cc" opacity="0.55"/>
+                        <text x="388" y="258" text-anchor="middle" font-size="11" fill="#556078">S6</text>
+                    </g>
+                    <g>
+                        <rect x="420" y="93" width="18" height="147" fill="#cbd5e1"/>
+                        <rect x="440" y="93" width="18" height="147" fill="#0066cc" opacity="0.55"/>
+                        <text x="448" y="258" text-anchor="middle" font-size="11" fill="#556078">S7</text>
+                    </g>
+                    <g>
+                        <rect x="480" y="80" width="18" height="160" fill="#cbd5e1"/>
+                        <rect x="500" y="80" width="18" height="160" fill="#0f2a5c" opacity="0.65"/>
+                        <text x="508" y="258" text-anchor="middle" font-size="11" fill="#0f2a5c" font-weight="700">S8</text>
+                        <text x="508" y="73" text-anchor="middle" font-size="9" fill="#0f2a5c" font-family="SF Mono, monospace">GATE</text>
+                    </g>
+                    <g>
+                        <rect x="540" y="113" width="18" height="127" fill="#cbd5e1"/>
+                        <rect x="560" y="113" width="18" height="127" fill="#c2410c" opacity="0.7"/>
+                        <text x="568" y="258" text-anchor="middle" font-size="11" fill="#c2410c" font-weight="700">S9</text>
+                        <text x="568" y="106" text-anchor="middle" font-size="9" fill="#c2410c" font-family="SF Mono, monospace">PILOT</text>
+                    </g>
+                    <g>
+                        <rect x="600" y="130" width="18" height="110" fill="#cbd5e1"/>
+                        <rect x="620" y="130" width="18" height="110" fill="#0066cc" opacity="0.55"/>
+                        <text x="628" y="258" text-anchor="middle" font-size="11" fill="#556078">S10</text>
+                    </g>
+                    <g>
+                        <rect x="660" y="153" width="18" height="87" fill="#cbd5e1"/>
+                        <rect x="680" y="153" width="18" height="87" fill="#166534" opacity="0.7"/>
+                        <text x="688" y="258" text-anchor="middle" font-size="11" fill="#166534" font-weight="700">S11</text>
+                        <text x="688" y="146" text-anchor="middle" font-size="9" fill="#166534" font-family="SF Mono, monospace">GA</text>
+                    </g>
+
+                    <polyline fill="none" stroke="#c2410c" stroke-width="2" stroke-dasharray="4,3"
+                        points="88,120 148,113 208,110 268,107 328,97 388,93 448,93 508,80 568,113 628,130 688,153"/>
+
+                    <g font-family="SF Mono, monospace" font-size="10.5" fill="#556078">
+                        <rect x="60" y="275" width="12" height="12" fill="#cbd5e1"/><text x="78" y="285">Planned</text>
+                        <rect x="150" y="275" width="12" height="12" fill="#166534"/><text x="168" y="285">Achieved · done</text>
+                        <rect x="280" y="275" width="12" height="12" fill="#0066cc" opacity="0.55"/><text x="298" y="285">Forecast</text>
+                        <line x1="370" y1="281" x2="390" y2="281" stroke="#c2410c" stroke-width="2" stroke-dasharray="4,3"/>
+                        <text x="396" y="285">Trend</text>
+                    </g>
+                    <text x="30" y="25" font-family="SF Mono, monospace" font-size="10" fill="#556078" letter-spacing="1">STORY POINTS</text>
+                </svg>
+
+                <div class="tmd-vel-stats">
+                    <div class="cell"><div class="k">Avg velocity (3-sprint)</div><div class="v">37.3<small>vs plan 39.5</small></div></div>
+                    <div class="cell"><div class="k">Capacity gap</div><div class="v">−10%<small>Open SDET role</small></div></div>
+                    <div class="cell"><div class="k">Points committed total</div><div class="v">434<small>GA by Sprint 11</small></div></div>
+                    <div class="cell"><div class="k">Forecast confidence</div><div class="v">Medium<small>With UAT fix</small></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 06 PER-SPRINT METRICS ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">06</span>
+                <h2>Per-sprint test metrics</h2>
+                <span class="tmd-sec-sub">The grid executive teams scan weekly</span>
+            </div>
+            <p class="tmd-lede">One row per sprint. Grooming readiness is measured at sprint start; test design, execution and automation
+                are measured at sprint end. Future rows show committed targets.</p>
+            <div class="tmd-table-wrap">
+                <table class="tmd-table tmd-sprint-table">
+                    <thead>
+                        <tr>
+                            <th>Sprint</th>
+                            <th>Dates</th>
+                            <th>Groomed</th>
+                            <th>Not groomed</th>
+                            <th>TCs planned</th>
+                            <th>TCs executed</th>
+                            <th>Pass %</th>
+                            <th>Auto %</th>
+                            <th>Bugs found</th>
+                            <th>Bugs closed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="done"><td>S1 · Requirements</td><td>Sep 21 – Oct 4</td><td>12</td><td>0</td><td>84</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+                        <tr class="done"><td>S2 · Payment Gateway</td><td>Oct 5 – Oct 18</td><td>15</td><td>1</td><td>124</td><td>108</td><td>93.5</td><td>22</td><td>14</td><td>11</td></tr>
+                        <tr class="current"><td>S3 · Fraud Engine ◀ NOW</td><td>Oct 19 – Nov 1</td><td>16</td><td>2</td><td>142</td><td>in flight</td><td>—</td><td>34 tgt</td><td>—</td><td>—</td></tr>
+                        <tr class="future"><td>S4 · Multi-Currency</td><td>Nov 2 – Nov 15</td><td>14</td><td>—</td><td>136</td><td>—</td><td>—</td><td>45</td><td>—</td><td>—</td></tr>
+                        <tr class="future"><td>S5 · FX &amp; Recon</td><td>Nov 16 – Nov 29</td><td>12</td><td>—</td><td>112</td><td>—</td><td>—</td><td>55</td><td>—</td><td>—</td></tr>
+                        <tr class="future"><td>S6 · PCI-DSS</td><td>Nov 30 – Dec 13</td><td>10</td><td>—</td><td>98</td><td>—</td><td>—</td><td>60</td><td>—</td><td>—</td></tr>
+                        <tr class="future"><td>S7 · PSD2 &amp; Analytics</td><td>Dec 14 – Dec 27</td><td>13</td><td>—</td><td>116</td><td>—</td><td>—</td><td>65</td><td>—</td><td>—</td></tr>
+                        <tr class="gate"><td>S8 · Full Regression</td><td>Dec 28 – Jan 10</td><td>—</td><td>—</td><td>820</td><td>—</td><td>—</td><td>70</td><td>—</td><td>—</td></tr>
+                        <tr class="gate"><td>S9 · Pilot</td><td>Jan 11 – Jan 24</td><td>—</td><td>—</td><td>Pilot UAT</td><td>—</td><td>—</td><td>72</td><td>—</td><td>—</td></tr>
+                        <tr class="future"><td>S10 · Feedback</td><td>Jan 25 – Feb 7</td><td>—</td><td>—</td><td>Feedback</td><td>—</td><td>—</td><td>75</td><td>—</td><td>—</td></tr>
+                        <tr class="gate"><td>S11 · GA Release</td><td>Feb 8 – Feb 21</td><td>—</td><td>—</td><td>Smoke+sanity</td><td>—</td><td>—</td><td>75</td><td>—</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== 07 DEFECT ANALYTICS ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">07</span>
+                <h2>Defect analytics</h2>
+                <span class="tmd-sec-sub">Severity · aging · effectiveness</span>
+            </div>
+            <div class="tmd-defects-grid">
+                <div class="tmd-panel">
+                    <h3>Open defects by severity</h3>
+                    <div class="tmd-donut-wrap">
+                        <svg width="140" height="140" viewBox="0 0 140 140">
+                            <g transform="rotate(-90 70 70)">
+                                <circle cx="70" cy="70" r="55" fill="none" stroke="#e2e8f0" stroke-width="18"/>
+                                <circle cx="70" cy="70" r="55" fill="none" stroke="#991b1b" stroke-width="18"
+                                    stroke-dasharray="100.9 345.6" stroke-dashoffset="0"/>
+                                <circle cx="70" cy="70" r="55" fill="none" stroke="#a16207" stroke-width="18"
+                                    stroke-dasharray="158.3 345.6" stroke-dashoffset="-100.9"/>
+                                <circle cx="70" cy="70" r="55" fill="none" stroke="#166534" stroke-width="18"
+                                    stroke-dasharray="86.4 345.6" stroke-dashoffset="-259.2"/>
+                            </g>
+                            <text x="70" y="68" text-anchor="middle" font-size="28" font-weight="700" fill="#0f2a5c" font-family="Segoe UI, sans-serif">24</text>
+                            <text x="70" y="85" text-anchor="middle" font-size="9" letter-spacing="1.5" fill="#556078" font-family="SF Mono, monospace">OPEN</text>
+                        </svg>
+                        <div class="tmd-donut-legend">
+                            <div class="item"><span><span class="sw" style="background:#991b1b"></span>P1 · Critical</span><span class="num" style="color:#166534;">0</span></div>
+                            <div class="item"><span><span class="sw" style="background:#991b1b"></span>P2 · High</span><span class="num" style="color:#991b1b;">7</span></div>
+                            <div class="item"><span><span class="sw" style="background:#a16207"></span>P3 · Medium</span><span class="num">11</span></div>
+                            <div class="item"><span><span class="sw" style="background:#166534"></span>P4 · Low</span><span class="num">6</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tmd-panel">
+                    <h3>Defect aging matrix</h3>
+                    <table class="tmd-aging">
+                        <thead>
+                            <tr><th>Severity</th><th>0–3 d</th><th>4–7 d</th><th>8–14 d</th><th>15–30 d</th><th>30+ d</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th>P1</th><td class="cell-ok">0</td><td class="cell-ok">0</td><td class="cell-ok">0</td><td class="cell-ok">0</td><td class="cell-ok">0</td></tr>
+                            <tr><th>P2</th><td class="cell-ok">4</td><td class="cell-ok">3</td><td class="cell-warn">0</td><td class="cell-crit">0</td><td class="cell-crit">0</td></tr>
+                            <tr><th>P3</th><td class="cell-ok">6</td><td class="cell-ok">3</td><td class="cell-warn">2</td><td class="cell-crit">0</td><td class="cell-crit">0</td></tr>
+                            <tr><th>P4</th><td class="cell-ok">3</td><td class="cell-ok">1</td><td class="cell-ok">1</td><td class="cell-ok">1</td><td class="cell-ok">0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tmd-kpi-row">
+                <div class="tmd-kpi"><div class="k">Defect Removal Efficiency</div><div class="v">92.4%</div><div class="delta up">▲ 1.8 pts vs S1</div></div>
+                <div class="tmd-kpi"><div class="k">MTTR · P1 / P2</div><div class="v">2.3 d</div><div class="delta up">▲ Better than 3d target</div></div>
+                <div class="tmd-kpi"><div class="k">Reopen rate</div><div class="v">4.1%</div><div class="delta down">▼ 1 zombie bug in fraud</div></div>
+                <div class="tmd-kpi"><div class="k">Defect leakage</div><div class="v">0</div><div class="delta up">Pre-release</div></div>
+            </div>
+        </section>
+
+        <!-- ===== 08 RESOURCES ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">08</span>
+                <h2>Resource breakdown</h2>
+                <span class="tmd-sec-sub">QE team · 9.5 FTE committed · 1 role open</span>
+            </div>
+            <div class="tmd-res-grid">
+                <div class="tmd-panel">
+                    <h3>Team composition</h3>
+                    <ul class="tmd-team">
+                        <li>
+                            <div class="role">Manual QE<small>Functional, exploratory, UAT</small></div>
+                            <div class="count">4.0</div>
+                            <div><div class="tmd-util"><div class="fill" style="width:88%"></div></div></div>
+                        </li>
+                        <li>
+                            <div class="role">SDET / Automation<small>API &amp; UI framework, CI</small></div>
+                            <div class="count">2.5<br><small style="font-size:0.7rem;color:#991b1b;">(1 open)</small></div>
+                            <div><div class="tmd-util"><div class="fill over" style="width:100%"></div></div></div>
+                        </li>
+                        <li>
+                            <div class="role">Performance<small>JMeter, Gatling, load profiles</small></div>
+                            <div class="count">1.0</div>
+                            <div><div class="tmd-util"><div class="fill" style="width:60%"></div></div></div>
+                        </li>
+                        <li>
+                            <div class="role">Security<small>DAST, SAST, pen-test coordination</small></div>
+                            <div class="count">1.0</div>
+                            <div><div class="tmd-util"><div class="fill hot" style="width:95%"></div></div></div>
+                        </li>
+                        <li>
+                            <div class="role">Test Lead / Manager<small>Reporting, strategy, stakeholders</small></div>
+                            <div class="count">1.0</div>
+                            <div><div class="tmd-util"><div class="fill" style="width:85%"></div></div></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tmd-panel">
+                    <h3>Allocation across epics</h3>
+                    <ul class="tmd-team">
+                        <li>
+                            <div class="role">Payment Gateway<small>PAY-GW · currently heaviest</small></div>
+                            <div class="count">3.0</div>
+                            <div><div class="tmd-util"><div class="fill" style="width:75%"></div></div></div>
+                        </li>
+                        <li>
+                            <div class="role">Fraud Detection<small>FRAUD · entering S3 focus</small></div>
+                            <div class="count">2.5</div>
+                            <div><div class="tmd-util"><div class="fill hot" style="width:92%"></div></div></div>
+                        </li>
+                        <li>
+                            <div class="role">Multi-Currency<small>MULTI-CCY · ramps from S4</small></div>
+                            <div class="count">1.5</div>
+                            <div><div class="tmd-util"><div class="fill" style="width:40%"></div></div></div>
+                        </li>
+                        <li>
+                            <div class="role">Compliance<small>COMPLY · dedicated security lead</small></div>
+                            <div class="count">1.5</div>
+                            <div><div class="tmd-util"><div class="fill" style="width:35%"></div></div></div>
+                        </li>
+                        <li>
+                            <div class="role">Analytics<small>ANALYTICS · reserved for S7</small></div>
+                            <div class="count">1.0</div>
+                            <div><div class="tmd-util"><div class="fill" style="width:15%"></div></div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 09 RISKS ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">09</span>
+                <h2>Risk register</h2>
+                <span class="tmd-sec-sub">Top 5 · owner-assigned · reviewed weekly</span>
+            </div>
+            <div class="tmd-table-wrap">
+                <table class="tmd-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th style="min-width:220px">Risk</th>
+                            <th>Impact</th>
+                            <th>Likelihood</th>
+                            <th>Status</th>
+                            <th style="min-width:240px">Mitigation</th>
+                            <th>Owner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="epic-key">R-01</span></td>
+                            <td><strong style="color:#0f2a5c;">UAT environment instability</strong> — 2 outages in S2 cost 1.5 days of execution</td>
+                            <td><span class="tmd-pill high">High</span></td>
+                            <td><span class="tmd-pill high">High</span></td>
+                            <td><span class="tmd-pill mitigating">In play</span></td>
+                            <td>Dedicated UAT env proposal with weekly refresh; decision this week.</td>
+                            <td>Test Mgr + DevOps</td>
+                        </tr>
+                        <tr>
+                            <td><span class="epic-key">R-02</span></td>
+                            <td><strong style="color:#0f2a5c;">Open SDET position</strong> — 10% capacity gap affecting automation ramp</td>
+                            <td><span class="tmd-pill med">Medium</span></td>
+                            <td><span class="tmd-pill high">High</span></td>
+                            <td><span class="tmd-pill mitigating">In play</span></td>
+                            <td>Contractor identified, start by S5; interim load-shedding on P3 scenarios.</td>
+                            <td>Test Mgr + HR</td>
+                        </tr>
+                        <tr>
+                            <td><span class="epic-key">R-03</span></td>
+                            <td><strong style="color:#0f2a5c;">Fraud module defect inflow</strong> trending up — complexity of risk-scoring rules</td>
+                            <td><span class="tmd-pill high">High</span></td>
+                            <td><span class="tmd-pill med">Medium</span></td>
+                            <td><span class="tmd-pill mitigating">In play</span></td>
+                            <td>Front-load exploratory testing in S3; +2 scenario-based TCs per rule.</td>
+                            <td>Test Lead</td>
+                        </tr>
+                        <tr>
+                            <td><span class="epic-key">R-04</span></td>
+                            <td><strong style="color:#0f2a5c;">PCI-DSS 4.0 audit scope</strong> not confirmed — may expand S6/S7 effort</td>
+                            <td><span class="tmd-pill high">High</span></td>
+                            <td><span class="tmd-pill med">Medium</span></td>
+                            <td><span class="tmd-pill open">Open</span></td>
+                            <td>Compliance workshop scheduled Oct 24; scope lock by end S3.</td>
+                            <td>Compliance Lead</td>
+                        </tr>
+                        <tr>
+                            <td><span class="epic-key">R-05</span></td>
+                            <td><strong style="color:#0f2a5c;">Pilot customer list unconfirmed</strong> — delays SOW signing and data provisioning</td>
+                            <td><span class="tmd-pill med">Medium</span></td>
+                            <td><span class="tmd-pill med">Medium</span></td>
+                            <td><span class="tmd-pill open">Open</span></td>
+                            <td>Shortlist of 7 clients circulated; CEO sign-off needed on top 5.</td>
+                            <td>CPO + CEO</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== 10 COVERAGE ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">10</span>
+                <h2>Test coverage — five dimensions</h2>
+                <span class="tmd-sec-sub">Not just &ldquo;cases executed&rdquo;</span>
+            </div>
+            <div class="tmd-table-wrap">
+                <table class="tmd-table">
+                    <thead>
+                        <tr><th>#</th><th>Dimension</th><th>Current state</th><th>Target by GA</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="num">1</td><td><strong style="color:#0f2a5c;">Requirements coverage</strong></td><td>100% of S1–S2 stories mapped to TCs</td><td>100% maintained</td></tr>
+                        <tr><td class="num">2</td><td><strong style="color:#0f2a5c;">Risk-based coverage</strong></td><td>High-risk modules (Fraud, PAY-GW) front-loaded</td><td>100% of HIGH-risk paths</td></tr>
+                        <tr><td class="num">3</td><td><strong style="color:#0f2a5c;">Code coverage</strong> (unit + integration)</td><td>68% (CI pipeline)</td><td>≥ 80%</td></tr>
+                        <tr><td class="num">4</td><td><strong style="color:#0f2a5c;">Environment coverage</strong></td><td>Chrome, Edge, Safari, iOS, Android · 1 FX pair</td><td>+FR/DE browsers, 5 FX pairs</td></tr>
+                        <tr><td class="num">5</td><td><strong style="color:#0f2a5c;">Test-type coverage</strong></td><td>Functional, API, early automation</td><td>+Perf, Security, Accessibility, UX</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="tmd-lede" style="margin-top:16px;"><strong style="color:#0f2a5c;">Honest disclosure to the committee:</strong>
+                Accessibility (WCAG 2.2) scans are not running yet — they begin in Sprint 6. Flagged explicitly rather than left implicit.</p>
+        </section>
+
+        <!-- ===== 11 CEO DECISIONS ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">11</span>
+                <h2>What steering needs to approve</h2>
+                <span class="tmd-sec-sub">4 decisions · 2 due this week</span>
+            </div>
+            <div class="tmd-table-wrap">
+                <table class="tmd-table">
+                    <thead>
+                        <tr><th>#</th><th>Decision</th><th>Deadline</th><th>Owner</th><th style="min-width:220px">Impact if deferred</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="num">1</td><td>Dedicated UAT environment ($18K/qtr)</td><td><strong>End S3</strong></td><td>CFO + CTO</td><td>Sprint 8 regression at risk</td></tr>
+                        <tr><td class="num">2</td><td>SDET backfill — contractor vs FTE</td><td><strong>End S3</strong></td><td>CTO + HR</td><td>10% velocity gap persists</td></tr>
+                        <tr><td class="num">3</td><td>Pilot client list sign-off (top 5 of 7)</td><td>End S4</td><td>CEO + CPO</td><td>SOW signing slips; pilot date slips</td></tr>
+                        <tr><td class="num">4</td><td>PSD2 audit scope confirmation</td><td>End S4</td><td>Compliance Lead</td><td>Sprint 6/7 scope creep</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== CLOSE ===== -->
+        <div class="tmd-close">
+            <h3>Where we are, where it hurts, what you decide</h3>
+            <p>GA on Feb 21, 2027 remains achievable. Two decisions this week — the UAT environment and the SDET backfill — determine
+                whether we stay Amber or slide to Red. All quality signals through Sprint 2 are within tolerance. Next review: Oct 25.</p>
+            <span class="sig">Template by Vineet Kumar &middot; vineetkr.com &middot; &copy; 2026 &middot; All rights reserved</span>
+        </div>
+
+        <!-- ===== SHARE / DOWNLOAD ===== -->
+        <div class="tmd-share">
+            <strong>About this template:</strong>
+            <span>Use it as a Confluence page, GitLab wiki, or steering-committee one-pager. Swap PayStream 3.0 content for your own release.</span>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Vineet Kumar</p>
+        <p style="font-size:0.85rem;opacity:0.75;">Views and projects on this site are my own and do not represent my employer. PayStream 3.0 is a fictional sample used for illustration only.</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/contactkrvineet" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
