@@ -554,8 +554,113 @@
         }
         .tmd-share strong { color: var(--tmd-ink); }
 
+        /* ============================================================
+           Release Decision panel (reviewer's suggested design)
+           ============================================================ */
+        .tmd-release-decision {
+            background: linear-gradient(135deg, #0f1b3d 0%, #1b3a6b 100%);
+            color: #fff;
+            padding: 24px 28px;
+            border-radius: 12px;
+            margin-bottom: 48px;
+            box-shadow: 0 6px 24px rgba(15,42,74,0.18);
+            border-top: 4px solid #5eead4;
+            position: relative;
+        }
+        .tmd-rd-header {
+            display: flex; justify-content: space-between; align-items: baseline;
+            flex-wrap: wrap; gap: 12px; margin-bottom: 20px;
+            padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.18);
+        }
+        .tmd-rd-label {
+            font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+            font-weight: 700; color: #5eead4;
+        }
+        .tmd-rd-verdict {
+            font-size: 1.5rem; font-weight: 700; color: #fbbf24;
+            letter-spacing: -0.005em;
+        }
+        .tmd-rd-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+            background: rgba(255,255,255,0.15); margin-bottom: 22px;
+            border-radius: 8px; overflow: hidden;
+        }
+        @media (max-width: 720px) { .tmd-rd-grid { grid-template-columns: 1fr 1fr; } }
+        .tmd-rd-stat {
+            background: rgba(15,27,61,0.75); padding: 14px 16px;
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .tmd-rd-stat .k {
+            font-size: 0.68rem; letter-spacing: 1.3px; text-transform: uppercase;
+            color: #a7cce8; font-weight: 700;
+        }
+        .tmd-rd-stat .v {
+            font-size: 1.5rem; font-weight: 700; color: #fff;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-variant-numeric: tabular-nums; line-height: 1.15;
+        }
+        .tmd-rd-stat .n {
+            font-size: 0.78rem; color: #d7e5f2; line-height: 1.4;
+        }
+        .tmd-rd-conditions strong {
+            display: block; font-size: 0.78rem; letter-spacing: 1.2px;
+            text-transform: uppercase; font-weight: 700; color: #5eead4;
+            margin-bottom: 10px;
+        }
+        .tmd-rd-conditions ul {
+            list-style: none; padding: 0; margin: 0;
+            display: grid; gap: 7px;
+        }
+        .tmd-rd-conditions li {
+            padding-left: 22px; position: relative; font-size: 0.94rem;
+            color: #e6f0ff; line-height: 1.5;
+        }
+        .tmd-rd-conditions li::before {
+            content: "✓"; position: absolute; left: 0; color: #5eead4; font-weight: 700;
+        }
+
+        /* Forecast assumptions grid */
+        .tmd-forecast-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+        }
+        @media (max-width: 820px) { .tmd-forecast-grid { grid-template-columns: 1fr; } }
+        .tmd-forecast-grid .tmd-panel ul {
+            list-style: none; padding: 0; margin: 0;
+            display: grid; gap: 8px;
+        }
+        .tmd-forecast-grid .tmd-panel li {
+            padding-left: 18px; position: relative;
+            font-size: 0.92rem; color: var(--tmd-ink); line-height: 1.5;
+        }
+        .tmd-forecast-grid .tmd-panel li::before {
+            content: "▸"; position: absolute; left: 0;
+            color: var(--tmd-accent); font-weight: 700;
+        }
+        .tmd-forecast-grid .tmd-panel.slip li::before { color: var(--tmd-crit); content: "▴"; }
+        .tmd-forecast-grid .tmd-panel.confidence li::before { color: var(--tmd-good); }
+        .tmd-conf-level {
+            font-size: 1.8rem; font-weight: 700; color: var(--tmd-warn);
+            margin: 0 0 6px;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            letter-spacing: -0.01em;
+        }
+        .tmd-conf-note {
+            font-size: 0.9rem; color: var(--tmd-muted); line-height: 1.55; margin: 0;
+        }
+
+        /* Footnote for metric reconciliation */
+        .tmd-footnote {
+            margin-top: 16px; padding: 12px 16px;
+            background: var(--tmd-surface-alt); border: 1px solid var(--tmd-rule);
+            border-left: 3px solid var(--tmd-accent);
+            border-radius: 6px; font-size: 0.88rem; color: var(--tmd-muted);
+            line-height: 1.55;
+        }
+        .tmd-footnote strong { color: var(--tmd-navy); }
+        .tmd-footnote em { color: var(--tmd-ink); font-style: normal; font-weight: 600; }
+
         @media print {
-            .tmd-hero, .tmd-close {
+            .tmd-hero, .tmd-close, .tmd-release-decision {
                 background: #0f1b3d !important; color: #fff !important;
                 -webkit-print-color-adjust: exact; print-color-adjust: exact;
             }
@@ -600,10 +705,10 @@
          ============================================================ -->
     <section class="tmd-hero">
         <div class="container">
-            <div class="eyebrow">Sample Template · Reporting Period 2026-10-18</div>
+            <div class="eyebrow">Illustrative Template · Pre-Sprint 3 Review · Data cutoff 2026-10-18 · Next review 2026-10-25</div>
             <h1>PayStream 3.0 — Digital Payments Modernization</h1>
             <p class="subhead">A Test Manager release dashboard the way I present release status to a steering committee —
-                entering Sprint 3 of 11, with pilot (Jan 24, 2027) and GA (Feb 21, 2027) ahead.</p>
+                closing Sprint 2 and planning Sprint 3 of 11, with pilot (Jan 24, 2027) and GA (Feb 21, 2027) ahead.</p>
 
             <p class="byline">
                 <span class="by-label">Created by</span>
@@ -617,16 +722,17 @@
             </p>
 
             <div class="tmd-sample-note">
-                <strong>This is a sample template.</strong> PayStream 3.0 is a fictional fintech release used to demonstrate how I
-                structure Test Manager reporting — milestone roadmap, velocity, grooming &amp; test metrics, defect analytics,
-                resource breakdown, and risk register. Use it as a Confluence or GitLab wiki template.
+                <strong>Illustrative only — no real project data.</strong> PayStream 3.0, the dates, every defect count, every
+                velocity point, every risk and every mitigation on this page are <em>fabricated</em> to demonstrate how I
+                structure Test Manager reporting. Nothing on this page should be read as a claim about any actual client,
+                employer or release. Use the layout as a Confluence / GitLab wiki template; replace the numbers with your own.
             </div>
 
             <div class="tmd-hero-meta">
-                <div class="cell"><div class="k">Sprint</div><div class="v">3 / 11<small>Entering · 2-week cadence</small></div></div>
-                <div class="cell"><div class="k">Milestone progress</div><div class="v">18%<small>Target 2027-02-21</small></div></div>
-                <div class="cell"><div class="k">Open P1 / P2</div><div class="v">0 / 7<small>Within threshold</small></div></div>
-                <div class="cell"><div class="k">Automation coverage</div><div class="v">34%<small>Target 70% by S8</small></div></div>
+                <div class="cell"><div class="k">Sprint</div><div class="v">3 / 11<small>Pre-sprint review · 2-week cadence</small></div></div>
+                <div class="cell"><div class="k">Milestone progress</div><div class="v">18%<small>Target GA 2027-02-21</small></div></div>
+                <div class="cell"><div class="k">Open defects</div><div class="v">0 P1 · 7 P2<small>All P2 inside 7-day aging threshold</small></div></div>
+                <div class="cell"><div class="k">Regression auto</div><div class="v">34%<small>170 of 500 TCs · target 70% by S8</small></div></div>
             </div>
         </div>
     </section>
@@ -657,6 +763,45 @@
             </div>
         </div>
 
+        <!-- ===== RELEASE DECISION PANEL (reviewer suggested) ===== -->
+        <section class="tmd-release-decision">
+            <div class="tmd-rd-header">
+                <span class="tmd-rd-label">Release Decision &mdash; Illustrative</span>
+                <span class="tmd-rd-verdict">Conditional Go</span>
+            </div>
+            <div class="tmd-rd-grid">
+                <div class="tmd-rd-stat">
+                    <span class="k">Critical blockers</span>
+                    <span class="v">0</span>
+                    <span class="n">No open P1 defects reported</span>
+                </div>
+                <div class="tmd-rd-stat">
+                    <span class="k">High-severity defects</span>
+                    <span class="v">7</span>
+                    <span class="n">Disposition &amp; acceptance required</span>
+                </div>
+                <div class="tmd-rd-stat">
+                    <span class="k">Environment risk</span>
+                    <span class="v">High</span>
+                    <span class="n">UAT stability action outstanding</span>
+                </div>
+                <div class="tmd-rd-stat">
+                    <span class="k">Decision owner</span>
+                    <span class="v">Release Board</span>
+                    <span class="n">Final authorization pending</span>
+                </div>
+            </div>
+            <div class="tmd-rd-conditions">
+                <strong>Conditions to proceed</strong>
+                <ul>
+                    <li>Validate all mandatory regression and security gates (Sprint 8 regression gate; PCI-DSS &amp; PSD2 scope lock)</li>
+                    <li>Resolve or formally accept outstanding risks: UAT environment, SDET backfill, PSD2 audit scope</li>
+                    <li>Confirm UAT stability through two clean sprints and secure business sign-off at pilot entry</li>
+                    <li>Record decision owner, evidence links, approval date and any accepted-risk waivers</li>
+                </ul>
+            </div>
+        </section>
+
         <!-- ===== 01 EXECUTIVE SUMMARY ===== -->
         <section class="tmd-sec">
             <div class="tmd-sec-head">
@@ -686,6 +831,46 @@
                         <li>Sign off on pilot customer list (5 enterprise clients)</li>
                         <li>Approve PSD2 compliance audit scope for Sprint 7</li>
                     </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 01B RELEASE FORECAST ASSUMPTIONS ===== -->
+        <section class="tmd-sec">
+            <div class="tmd-sec-head">
+                <span class="tmd-sec-num">01B</span>
+                <h2>Release forecast &mdash; what makes Feb 21 achievable</h2>
+                <span class="tmd-sec-sub">Assumptions · slip triggers · confidence</span>
+            </div>
+            <p class="tmd-lede">The "Conditional Go" above is contingent. Here are the explicit assumptions behind the forecast,
+                what would cause a date slip, and the latest confidence level — so the committee can challenge them individually.</p>
+            <div class="tmd-forecast-grid">
+                <div class="tmd-panel">
+                    <h3>Assumptions behind &ldquo;achievable&rdquo;</h3>
+                    <ul>
+                        <li>UAT environment stability resolved by end Sprint 3 (dedicated env approved)</li>
+                        <li>SDET backfill lands by Sprint 5 (contractor identified, in offer)</li>
+                        <li>PCI-DSS 4.0 audit scope locked by end Sprint 3 (workshop Oct 24)</li>
+                        <li>Fraud module defect inflow contained within exploratory window</li>
+                        <li>Pilot client list signed off by end Sprint 4</li>
+                    </ul>
+                </div>
+                <div class="tmd-panel slip">
+                    <h3>What would cause a slip</h3>
+                    <ul>
+                        <li>&ge; 3 open P1 defects after Sprint 7 exit</li>
+                        <li>Sprint 8 regression gate below 95% pass rate</li>
+                        <li>UAT environment outage during pilot window</li>
+                        <li>PSD2 compliance scope expands late in Sprint 7</li>
+                        <li>Two or more pilot clients withdraw or delay</li>
+                    </ul>
+                </div>
+                <div class="tmd-panel confidence">
+                    <h3>Latest forecast confidence</h3>
+                    <p class="tmd-conf-level">Medium</p>
+                    <p class="tmd-conf-note">Upgrades to <strong style="color:var(--tmd-good);">High</strong> once UAT and
+                        SDET backfill decisions are approved (both pending this week). Downgrades to
+                        <strong style="color:var(--tmd-crit);">Low</strong> if either is deferred past Sprint 4.</p>
                 </div>
             </div>
         </section>
@@ -1040,6 +1225,13 @@
                     </tbody>
                 </table>
             </div>
+            <p class="tmd-footnote">
+                <strong>Metric definitions.</strong> The hero&rsquo;s <em>Regression auto 34%</em> is cumulative regression-suite
+                automation (170 of 500 regression test cases automated). The sprint-level <em>Auto %</em> column above tracks
+                a different population — automation candidates <em>identified for that sprint</em> that are automated by sprint
+                end (e.g. 22 of 76 for Sprint 3 = 29%, rising to 34% by sprint end as the ramp accelerates). The two populations
+                are distinct and both are tracked weekly.
+            </p>
         </section>
 
         <!-- ===== 07 DEFECT ANALYTICS ===== -->
