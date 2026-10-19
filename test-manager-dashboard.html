@@ -1218,7 +1218,7 @@
                             <th class="num">Stories</th>
                             <th class="num">Tasks</th>
                             <th class="num">TCs</th>
-                            <th class="num">Open P1/P2 in epic</th>
+                            <th class="num">Open P1/P2 bugs in listed epics</th>
                             <th style="min-width:160px">Progress</th>
                             <th>Target</th>
                         </tr>
@@ -1382,8 +1382,9 @@
                 <h2>Per-sprint test metrics</h2>
                 <span class="tmd-sec-sub">The grid executive teams scan weekly</span>
             </div>
-            <p class="tmd-lede">One row per sprint. Grooming readiness is measured at sprint start; test design, execution and automation
-                are measured at sprint end. Future rows show committed targets.</p>
+            <p class="tmd-lede">One row per sprint. Rows for completed sprints (S1–S2) show <strong>actuals</strong>; the current
+                sprint (S3) is <strong>in flight</strong>; rows S4&ndash;S11 show <strong>planning assumptions / forecast targets</strong>,
+                not actual outcomes. Target cells are suffixed with <em>&ldquo;tgt&rdquo;</em> and the row is greyed out.</p>
             <div class="tmd-table-wrap">
                 <table class="tmd-table tmd-sprint-table">
                     <thead>
@@ -1394,24 +1395,24 @@
                             <th>Not groomed</th>
                             <th>TCs planned</th>
                             <th>TCs executed</th>
-                            <th>Pass %</th>
-                            <th>Auto %</th>
-                            <th>Bugs found</th>
-                            <th>Bugs closed</th>
+                            <th>Pass % (actual / tgt)</th>
+                            <th>Auto % (actual / tgt)</th>
+                            <th>Bugs found (actual / forecast)</th>
+                            <th>Bugs closed (actual / forecast)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="done"><td>S1 · Requirements</td><td>Sep 21 – Oct 4</td><td>12</td><td>0</td><td>84</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
                         <tr class="done"><td>S2 · Payment Gateway</td><td>Oct 5 – Oct 18</td><td>15</td><td>1</td><td>124</td><td>108</td><td>93.5</td><td>22</td><td>14</td><td>11</td></tr>
-                        <tr class="current"><td>S3 · Fraud Engine ◀ NOW</td><td>Oct 19 – Nov 1</td><td>16</td><td>2</td><td>142</td><td>in flight</td><td>—</td><td>34 tgt</td><td>—</td><td>—</td></tr>
-                        <tr class="future"><td>S4 · Multi-Currency</td><td>Nov 2 – Nov 15</td><td>14</td><td>—</td><td>136</td><td>—</td><td>—</td><td>45</td><td>—</td><td>—</td></tr>
-                        <tr class="future"><td>S5 · FX &amp; Recon</td><td>Nov 16 – Nov 29</td><td>12</td><td>—</td><td>112</td><td>—</td><td>—</td><td>55</td><td>—</td><td>—</td></tr>
-                        <tr class="future"><td>S6 · PCI-DSS</td><td>Nov 30 – Dec 13</td><td>10</td><td>—</td><td>98</td><td>—</td><td>—</td><td>60</td><td>—</td><td>—</td></tr>
-                        <tr class="future"><td>S7 · PSD2 &amp; Analytics</td><td>Dec 14 – Dec 27</td><td>13</td><td>—</td><td>116</td><td>—</td><td>—</td><td>65</td><td>—</td><td>—</td></tr>
-                        <tr class="gate"><td>S8 · Full Regression</td><td>Dec 28 – Jan 10</td><td>—</td><td>—</td><td>820</td><td>—</td><td>—</td><td>70</td><td>—</td><td>—</td></tr>
-                        <tr class="gate"><td>S9 · Pilot</td><td>Jan 11 – Jan 24</td><td>—</td><td>—</td><td>Pilot UAT</td><td>—</td><td>—</td><td>72</td><td>—</td><td>—</td></tr>
-                        <tr class="future"><td>S10 · Feedback</td><td>Jan 25 – Feb 7</td><td>—</td><td>—</td><td>Feedback</td><td>—</td><td>—</td><td>75</td><td>—</td><td>—</td></tr>
-                        <tr class="gate"><td>S11 · GA Release</td><td>Feb 8 – Feb 21</td><td>—</td><td>—</td><td>Smoke+sanity</td><td>—</td><td>—</td><td>75</td><td>—</td><td>—</td></tr>
+                        <tr class="current"><td>S3 · Fraud Engine ◀ NOW</td><td>Oct 19 – Nov 1</td><td>16</td><td>2</td><td>142</td><td>in flight</td><td>95% tgt</td><td>34% tgt</td><td>in flight</td><td>in flight</td></tr>
+                        <tr class="future"><td>S4 · Multi-Currency</td><td>Nov 2 – Nov 15</td><td>14</td><td>—</td><td>136 tgt</td><td>—</td><td>95% tgt</td><td>45% tgt</td><td>—</td><td>—</td></tr>
+                        <tr class="future"><td>S5 · FX &amp; Recon</td><td>Nov 16 – Nov 29</td><td>12</td><td>—</td><td>112 tgt</td><td>—</td><td>95% tgt</td><td>55% tgt</td><td>—</td><td>—</td></tr>
+                        <tr class="future"><td>S6 · PCI-DSS</td><td>Nov 30 – Dec 13</td><td>10</td><td>—</td><td>98 tgt</td><td>—</td><td>95% tgt</td><td>60% tgt</td><td>—</td><td>—</td></tr>
+                        <tr class="future"><td>S7 · PSD2 &amp; Analytics</td><td>Dec 14 – Dec 27</td><td>13</td><td>—</td><td>116 tgt</td><td>—</td><td>95% tgt</td><td>65% tgt</td><td>—</td><td>—</td></tr>
+                        <tr class="gate"><td>S8 · Full Regression</td><td>Dec 28 – Jan 10</td><td>—</td><td>—</td><td>820 tgt</td><td>—</td><td>97% tgt</td><td>70% tgt</td><td>—</td><td>—</td></tr>
+                        <tr class="gate"><td>S9 · Pilot</td><td>Jan 11 – Jan 24</td><td>—</td><td>—</td><td>Pilot UAT</td><td>—</td><td>98% tgt</td><td>72% tgt</td><td>—</td><td>—</td></tr>
+                        <tr class="future"><td>S10 · Feedback</td><td>Jan 25 – Feb 7</td><td>—</td><td>—</td><td>Feedback</td><td>—</td><td>99% tgt</td><td>75% tgt</td><td>—</td><td>—</td></tr>
+                        <tr class="gate"><td>S11 · GA Release</td><td>Feb 8 – Feb 21</td><td>—</td><td>—</td><td>Smoke+sanity</td><td>—</td><td>100% tgt</td><td>75% tgt</td><td>—</td><td>—</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -1433,7 +1434,7 @@
             </div>
             <div class="tmd-defects-grid">
                 <div class="tmd-panel">
-                    <h3>Open defects by severity</h3>
+                    <h3>All open release defects &mdash; by severity</h3>
                     <div class="tmd-donut-wrap">
                         <svg width="140" height="140" viewBox="0 0 140 140">
                             <g transform="rotate(-90 70 70)">
