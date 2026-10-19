@@ -516,6 +516,13 @@
         }
         .tmd-kpi .delta.up { color: var(--tmd-good); }
         .tmd-kpi .delta.down { color: var(--tmd-crit); }
+        .tmd-kpi .def {
+            font-size: 0.72rem;
+            color: var(--tmd-muted);
+            font-style: italic;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
 
         /* Resources */
         .tmd-res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -654,6 +661,91 @@
         .tmd-rd-conditions li::before {
             content: "✓"; position: absolute; left: 0; color: #5eead4; font-weight: 700;
         }
+
+        /* Release Decision — disclaimer, exit criteria, authority */
+        .tmd-rd-disclaimer {
+            margin-top: 20px; padding: 12px 16px;
+            background: rgba(251,191,36,0.15);
+            border-left: 3px solid #fbbf24;
+            border-radius: 6px;
+            font-size: 0.9rem; color: #fff6d8; line-height: 1.55;
+        }
+        .tmd-rd-disclaimer strong { color: #fbbf24; font-weight: 700; }
+        .tmd-rd-exit {
+            margin-top: 20px; padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+        .tmd-rd-exit strong {
+            display: block; font-size: 0.78rem; letter-spacing: 1.2px;
+            text-transform: uppercase; font-weight: 700; color: #fbbf24;
+            margin-bottom: 10px;
+        }
+        .tmd-rd-exit ul {
+            list-style: none; padding: 0; margin: 0;
+            display: grid; gap: 7px;
+        }
+        .tmd-rd-exit li {
+            padding-left: 22px; position: relative; font-size: 0.94rem;
+            color: #fff6d8; line-height: 1.5;
+        }
+        .tmd-rd-exit li::before {
+            content: "◆"; position: absolute; left: 0; color: #fbbf24; font-size: 0.8rem;
+        }
+        .tmd-rd-authority {
+            margin-top: 18px; padding: 12px 16px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 6px;
+            font-size: 0.9rem; color: #e6f0ff; line-height: 1.55;
+        }
+        .tmd-rd-authority strong { color: #5eead4; font-weight: 700; }
+        .tmd-rd-authority em {
+            color: #fca5a5; font-style: normal; font-weight: 700;
+        }
+
+        /* My Test Manager Assessment — 30-second read */
+        .tmd-assessment {
+            background: var(--tmd-surface);
+            border: 1px solid var(--tmd-rule);
+            border-left: 4px solid var(--tmd-highlight);
+            border-radius: 10px;
+            padding: 22px 26px;
+            margin-bottom: 48px;
+            box-shadow: 0 2px 10px rgba(15,42,74,0.06);
+        }
+        .tmd-assessment-head {
+            display: flex; justify-content: space-between; align-items: baseline;
+            flex-wrap: wrap; gap: 10px; margin-bottom: 14px;
+            padding-bottom: 10px; border-bottom: 1px solid var(--tmd-rule);
+        }
+        .tmd-assessment-label {
+            font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase;
+            font-weight: 700; color: var(--tmd-highlight);
+        }
+        .tmd-assessment-sub {
+            font-size: 0.82rem; color: var(--tmd-muted); font-style: italic;
+        }
+        .tmd-assessment-list {
+            list-style: none; padding: 0; margin: 0;
+            display: grid; gap: 10px;
+            counter-reset: ta-item;
+        }
+        .tmd-assessment-list li {
+            padding-left: 36px; position: relative;
+            font-size: 0.98rem; color: var(--tmd-ink); line-height: 1.55;
+            counter-increment: ta-item;
+        }
+        .tmd-assessment-list li::before {
+            content: counter(ta-item);
+            position: absolute; left: 0; top: 1px;
+            width: 26px; height: 26px;
+            background: var(--tmd-highlight-soft);
+            color: var(--tmd-highlight);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.82rem; font-weight: 700;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+        }
+        .tmd-assessment-list li strong { color: var(--tmd-navy); font-weight: 700; }
 
         /* Forecast assumptions grid */
         .tmd-forecast-grid {
@@ -832,11 +924,52 @@
                 <strong>Conditions to proceed</strong>
                 <ul>
                     <li>Validate all mandatory regression and security gates (Sprint 8 regression gate; PCI-DSS &amp; PSD2 scope lock)</li>
-                    <li>Resolve or formally accept outstanding risks: UAT environment, SDET backfill, PSD2 audit scope</li>
+                    <li>Resolve or formally accept outstanding risks: UAT environment, SDET backfill, PCI-DSS &amp; PSD2 scope</li>
                     <li>Confirm UAT stability through two clean sprints and secure business sign-off at pilot entry</li>
                     <li>Record decision owner, evidence links, approval date and any accepted-risk waivers</li>
                 </ul>
             </div>
+
+            <div class="tmd-rd-disclaimer">
+                <strong>Planning view, not final authorization.</strong> This &ldquo;Conditional Go&rdquo; is a provisional
+                Test Manager recommendation ahead of Sprint 3. Zero open P1 defects alone is <em>not</em> sufficient for a
+                real release decision; the mandatory exit criteria below must be met and formally signed off by the Release Board.
+            </div>
+
+            <div class="tmd-rd-exit">
+                <strong>Mandatory exit criteria (Sprint 8 → GA)</strong>
+                <ul>
+                    <li>Sprint 8 regression gate: &ge;95% pass rate across 820 regression TCs; zero regression failures in critical paths</li>
+                    <li>Defects: zero open P1; all open P2 within 7-day aging threshold and with documented disposition</li>
+                    <li>Compliance: PCI-DSS 4.0 and PSD2 audit evidence filed and signed off (both standards tested in S6–S7)</li>
+                    <li>Pilot: Sprint 9 UAT sign-off from all 5 enterprise clients, with issues logged and triaged</li>
+                    <li>Environment: non-prod stability demonstrated across two consecutive sprints (no P1/P2 outages)</li>
+                    <li>Security: DAST + SAST clean in S7; pen-test findings closed or formally accepted</li>
+                    <li>Accessibility: WCAG 2.2 critical-path scans run in S6–S7, no AA-level blockers</li>
+                </ul>
+            </div>
+
+            <div class="tmd-rd-authority">
+                <strong>Risk-acceptance authority:</strong> Release Board (CTO + Head of Compliance + QE Lead).
+                Recommendation flips to <em>No-Go</em> if any mandatory criterion is unmet at exit, or if risk R-01
+                (UAT instability) remains unresolved past end of Sprint 7.
+            </div>
+        </section>
+
+        <!-- ===== MY TEST MANAGER ASSESSMENT ===== -->
+        <section class="tmd-assessment">
+            <div class="tmd-assessment-head">
+                <span class="tmd-assessment-label">My Test Manager Assessment</span>
+                <span class="tmd-assessment-sub">The 30-second read</span>
+            </div>
+            <ol class="tmd-assessment-list">
+                <li><strong>Current status: Amber.</strong> Forecast remains achievable, subject to the named assumptions in §01B
+                    and signed-off exit criteria.</li>
+                <li><strong>Biggest exposure:</strong> UAT environment instability (risk R-01) and the resulting threat to
+                    Sprint 8 regression readiness. Secondary exposure: 10% headcount gap on SDET bench.</li>
+                <li><strong>Next actions:</strong> Resolve the UAT environment decision this week (end S3), close the SDET
+                    staffing gap by Sprint 5, and begin tracking measurable exit criteria from Sprint 7 onwards.</li>
+            </ol>
         </section>
 
         <!-- ===== 01 EXECUTIVE SUMMARY ===== -->
@@ -849,9 +982,10 @@
             <div class="tmd-exec">
                 <div class="tmd-exec-copy">
                     <p>We are entering <strong>Sprint 3 of 11</strong> on the PayStream 3.0 release. Sprints 1 and 2 closed on-plan:
-                        requirements and test design complete, Payment Gateway core delivered and smoke-tested. Current average
-                        velocity is <strong>38 points</strong> against a planned 42; we are tracking a 10% capacity gap driven by
-                        one open SDET position.</p>
+                        requirements and test design complete, Payment Gateway core delivered and smoke-tested. The three-sprint
+                        rolling velocity is <strong>37.3 points vs 39.5 planned</strong> — a 5.6% delivery shortfall. The underlying
+                        <strong>headcount gap is 10%</strong> (one open SDET role out of ten approved); the smaller delivery shortfall
+                        reflects partial coverage of the gap through overtime and reprioritisation.</p>
                     <p>Quality posture is <strong>Amber</strong>. Zero P1 defects open, seven P2 defects within the 7-day aging
                         threshold. Fraud module shows an early rise in defect inflow — likely the complexity of the new
                         risk-scoring rules — and is being front-loaded with exploratory testing in Sprint 3.</p>
@@ -866,7 +1000,8 @@
                         <li>Approve dedicated UAT environment ($18K / quarter)</li>
                         <li>Confirm SDET backfill or accept 10% velocity gap</li>
                         <li>Sign off on pilot customer list (5 enterprise clients)</li>
-                        <li>Approve PSD2 compliance audit scope for Sprint 7</li>
+                        <li>Confirm PCI-DSS 4.0 scope by end S3 (workshop Oct 24)</li>
+                        <li>Approve PSD2 audit scope by end S4 (separate compliance review)</li>
                     </ol>
                 </div>
             </div>
@@ -1071,7 +1206,7 @@
                             <th class="num">Stories</th>
                             <th class="num">Tasks</th>
                             <th class="num">TCs</th>
-                            <th class="num">Open Bugs</th>
+                            <th class="num">Open P1/P2 in epic</th>
                             <th style="min-width:160px">Progress</th>
                             <th>Target</th>
                         </tr>
@@ -1106,6 +1241,12 @@
                             <td class="num">7</td><td class="num">26</td><td class="num">82</td><td class="num">0</td>
                             <td><div class="tmd-mini-prog"><div class="fill" style="width:0%"></div></div><div class="tmd-pct">0%</div></td>
                             <td>S7</td>
+                        </tr>
+                        <tr style="background:var(--tmd-surface-alt); font-weight:600;">
+                            <td style="color:var(--tmd-navy); font-weight:700;">TOTAL</td>
+                            <td class="num">47</td><td class="num">184</td><td class="num">696</td>
+                            <td class="num" style="color:var(--tmd-crit);">7</td>
+                            <td colspan="2" style="font-size:0.8rem; color:var(--tmd-muted);">↑ 7 P1/P2 shown here. See §07 for the full defect inventory (24 open: 7 P2 + 11 P3 + 6 P4).</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1214,8 +1355,8 @@
                 </svg>
 
                 <div class="tmd-vel-stats">
-                    <div class="cell"><div class="k">Avg velocity (3-sprint)</div><div class="v">37.3<small>vs plan 39.5</small></div></div>
-                    <div class="cell"><div class="k">Capacity gap</div><div class="v">−10%<small>Open SDET role</small></div></div>
+                    <div class="cell"><div class="k">Velocity shortfall</div><div class="v">−5.6%<small>37.3 avg vs 39.5 planned</small></div></div>
+                    <div class="cell"><div class="k">Headcount gap</div><div class="v">−10%<small>1 of 10 roles open (SDET)</small></div></div>
                     <div class="cell"><div class="k">Points committed total</div><div class="v">434<small>GA by Sprint 11</small></div></div>
                     <div class="cell"><div class="k">Forecast confidence</div><div class="v">Medium<small>With UAT fix</small></div></div>
                 </div>
@@ -1321,10 +1462,30 @@
             </div>
 
             <div class="tmd-kpi-row">
-                <div class="tmd-kpi"><div class="k">Defect Removal Efficiency</div><div class="v">92.4%</div><div class="delta up">▲ 1.8 pts vs S1</div></div>
-                <div class="tmd-kpi"><div class="k">MTTR · P1 / P2</div><div class="v">2.3 d</div><div class="delta up">▲ Better than 3d target</div></div>
-                <div class="tmd-kpi"><div class="k">Reopen rate</div><div class="v">4.1%</div><div class="delta down">▼ 1 zombie bug in fraud</div></div>
-                <div class="tmd-kpi"><div class="k">Defect leakage</div><div class="v">0</div><div class="delta up">Pre-release</div></div>
+                <div class="tmd-kpi">
+                    <div class="k">Defect Removal Efficiency (DRE)</div>
+                    <div class="v">92.4%</div>
+                    <div class="def">Pre-prod defects ÷ total defects, rolling 90d</div>
+                    <div class="delta up">▲ 1.8 pts vs S1</div>
+                </div>
+                <div class="tmd-kpi">
+                    <div class="k">MTTR · P1 / P2</div>
+                    <div class="v">2.3 d</div>
+                    <div class="def">Mean Time to Resolve, elapsed calendar days from open → verified fix</div>
+                    <div class="delta up">▲ Better than 3d target</div>
+                </div>
+                <div class="tmd-kpi">
+                    <div class="k">Reopen rate</div>
+                    <div class="v">4.1%</div>
+                    <div class="def">Defects reopened ≥ 1× ÷ total closed, rolling 90d</div>
+                    <div class="delta down">▼ 1 zombie bug in fraud</div>
+                </div>
+                <div class="tmd-kpi">
+                    <div class="k">Defect leakage</div>
+                    <div class="v">0</div>
+                    <div class="def">Prod defects within 30d of release ÷ pre-release defects (pre-release = 0)</div>
+                    <div class="delta up">Pre-release</div>
+                </div>
             </div>
         </section>
 
@@ -1333,7 +1494,7 @@
             <div class="tmd-sec-head">
                 <span class="tmd-sec-num">08</span>
                 <h2>Resource breakdown</h2>
-                <span class="tmd-sec-sub">QE team · 9.5 FTE committed · 1 role open</span>
+                <span class="tmd-sec-sub">QE team · 10.5 approved · 9.5 filled · 1 open (SDET)</span>
             </div>
             <div class="tmd-res-grid">
                 <div class="tmd-panel">
@@ -1345,8 +1506,8 @@
                             <div><div class="tmd-util"><div class="fill" style="width:88%"></div></div></div>
                         </li>
                         <li>
-                            <div class="role">SDET / Automation<small>API &amp; UI framework, CI</small></div>
-                            <div class="count">2.5<br><small style="font-size:0.7rem;color:#991b1b;">(1 open)</small></div>
+                            <div class="role">SDET / Automation<small>API &amp; UI framework, CI · <strong style="color:#991b1b;">backfill in progress</strong></small></div>
+                            <div class="count">2.5<br><small style="font-size:0.7rem;color:var(--tmd-muted);font-weight:400;">of 3.5 approved</small><br><small style="font-size:0.7rem;color:#991b1b;font-weight:600;">1 open</small></div>
                             <div><div class="tmd-util"><div class="fill over" style="width:100%"></div></div></div>
                         </li>
                         <li>
@@ -1501,7 +1662,7 @@
             <div class="tmd-sec-head">
                 <span class="tmd-sec-num">11</span>
                 <h2>What steering needs to approve</h2>
-                <span class="tmd-sec-sub">4 decisions · 2 due this week</span>
+                <span class="tmd-sec-sub">5 decisions · 3 due this week (end S3)</span>
             </div>
             <div class="tmd-table-wrap">
                 <table class="tmd-table">
@@ -1510,9 +1671,10 @@
                     </thead>
                     <tbody>
                         <tr><td class="num">1</td><td>Dedicated UAT environment ($18K/qtr)</td><td><strong>End S3</strong></td><td>CFO + CTO</td><td>Sprint 8 regression at risk</td></tr>
-                        <tr><td class="num">2</td><td>SDET backfill — contractor vs FTE</td><td><strong>End S3</strong></td><td>CTO + HR</td><td>10% velocity gap persists</td></tr>
-                        <tr><td class="num">3</td><td>Pilot client list sign-off (top 5 of 7)</td><td>End S4</td><td>CEO + CPO</td><td>SOW signing slips; pilot date slips</td></tr>
-                        <tr><td class="num">4</td><td>PSD2 audit scope confirmation</td><td>End S4</td><td>Compliance Lead</td><td>Sprint 6/7 scope creep</td></tr>
+                        <tr><td class="num">2</td><td>SDET backfill — contractor vs FTE</td><td><strong>End S3</strong></td><td>CTO + HR</td><td>10% headcount gap persists</td></tr>
+                        <tr><td class="num">3</td><td><strong>PCI-DSS 4.0</strong> audit scope lock</td><td><strong>End S3</strong></td><td>Compliance Lead</td><td>S6 PCI-DSS test prep delayed</td></tr>
+                        <tr><td class="num">4</td><td>Pilot client list sign-off (top 5 of 7)</td><td>End S4</td><td>CEO + CPO</td><td>SOW signing slips; pilot date slips</td></tr>
+                        <tr><td class="num">5</td><td><strong>PSD2</strong> audit scope confirmation</td><td>End S4</td><td>Compliance Lead</td><td>S7 PSD2 test prep delayed</td></tr>
                     </tbody>
                 </table>
             </div>
