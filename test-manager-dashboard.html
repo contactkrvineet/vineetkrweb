@@ -182,6 +182,37 @@
         }
         @media (max-width: 720px) { .tmd-hero-meta { grid-template-columns: repeat(2, 1fr); } }
 
+        /* styles.css forces dark navy text on every section descendant (p, span, li...),
+           which makes the dark-blue hero/close/decision panels unreadable. Restore light text. */
+        body.tmd-page .tmd-hero :is(h1, .subhead, .byline, .byline strong, .byline span, .tmd-sample-note, .tmd-hero-meta .v) { color: #fff; }
+        body.tmd-page .tmd-hero .eyebrow,
+        body.tmd-page .tmd-hero .tmd-hero-meta .k { color: #a7cce8; }
+        body.tmd-page .tmd-hero .tmd-hero-meta .v small { color: #c0d6ea; }
+        body.tmd-page .tmd-hero .tmd-sample-note strong { color: #5eead4; }
+        body.tmd-page .tmd-hero .byline .dot { color: rgba(255,255,255,0.5); }
+        body.tmd-page section.tmd-hero .byline a:not(.btn):not([class*="button"]),
+        body.tmd-page section.tmd-hero .byline a:not(.btn):not([class*="button"]):hover { color: #fff; }
+        body.tmd-page section.tmd-release-decision {
+            background: linear-gradient(135deg, #0f1b3d 0%, #1b3a6b 100%);
+            color: #fff;
+            padding: 24px 28px;
+            margin: 0 0 48px;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(15,42,74,0.18);
+            border-top: 4px solid #5eead4;
+        }
+        body.tmd-page .tmd-close :is(h3, p) { color: #d7e5f2; }
+        body.tmd-page .tmd-close h3 { color: #fff; }
+        body.tmd-page .tmd-close .sig { color: #a7cce8; }
+        body.tmd-page .tmd-release-decision .tmd-rd-label,
+        body.tmd-page .tmd-release-decision .tmd-rd-conditions strong { color: #5eead4; }
+        body.tmd-page .tmd-release-decision .tmd-rd-verdict { color: #fbbf24; }
+        body.tmd-page .tmd-release-decision .tmd-rd-stat .k { color: #a7cce8; }
+        body.tmd-page .tmd-release-decision .tmd-rd-stat .v { color: #fff; }
+        body.tmd-page .tmd-release-decision .tmd-rd-stat .n { color: #d7e5f2; }
+        body.tmd-page .tmd-release-decision .tmd-rd-conditions li { color: #e6f0ff; }
+        body.tmd-page .tmd-release-decision .tmd-rd-conditions li::before { color: #5eead4; }
+
         /* Main container */
         .tmd-main { max-width: 1180px; margin: 0 auto; padding: 48px 24px 72px; color: var(--tmd-ink); }
 
