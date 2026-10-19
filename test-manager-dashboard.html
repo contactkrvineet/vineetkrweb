@@ -714,6 +714,75 @@
             color: #fca5a5; font-style: normal; font-weight: 700;
         }
 
+        /* Five-questions commitment block — anchor contract near the top */
+        .tmd-questions {
+            background: var(--tmd-surface);
+            border: 1px solid var(--tmd-rule);
+            border-top: 4px solid var(--tmd-accent);
+            border-radius: 10px;
+            padding: 22px 26px;
+            margin-bottom: 48px;
+            box-shadow: 0 2px 10px rgba(15, 42, 92, 0.08);
+        }
+        .tmd-questions-head {
+            margin: 0 0 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--tmd-rule);
+        }
+        .tmd-questions-label {
+            font-size: 0.72rem; letter-spacing: 1.5px;
+            text-transform: uppercase; font-weight: 700;
+            color: var(--tmd-accent);
+        }
+        .tmd-questions-head h3 {
+            margin: 6px 0 4px; font-size: 1.2rem;
+            color: var(--tmd-navy); font-weight: 700;
+            letter-spacing: -0.005em;
+        }
+        .tmd-questions-head p {
+            margin: 0; color: var(--tmd-muted);
+            font-size: 0.9rem; line-height: 1.55;
+        }
+        .tmd-questions-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+        @media (max-width: 960px) { .tmd-questions-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .tmd-questions-grid { grid-template-columns: 1fr; } }
+        .tmd-questions-grid .q {
+            padding: 14px 14px;
+            background: var(--tmd-surface-alt);
+            border: 1px solid var(--tmd-rule);
+            border-radius: 8px;
+        }
+        .tmd-questions-grid .q .n {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 26px; height: 26px;
+            background: var(--tmd-accent);
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 0.78rem;
+            font-weight: 700;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            margin-bottom: 8px;
+        }
+        .tmd-questions-grid .q .q-text {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--tmd-navy);
+            line-height: 1.35;
+            margin-bottom: 6px;
+        }
+        .tmd-questions-grid .q .q-ref {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--tmd-muted);
+            line-height: 1.45;
+            font-style: italic;
+        }
+
         /* My Test Manager Assessment — 30-second read */
         .tmd-assessment {
             background: var(--tmd-surface);
@@ -903,6 +972,44 @@
                 <div class="note">UAT environment unstable 2× in Sprint 2. Decision needed on dedicated env.</div>
             </div>
         </div>
+
+        <!-- ===== FIVE QUESTIONS THIS DASHBOARD ANSWERS (my commitment) ===== -->
+        <section class="tmd-questions">
+            <div class="tmd-questions-head">
+                <span class="tmd-questions-label">My reporting commitment</span>
+                <h3>Five questions every leader asks &mdash; this dashboard answers all of them</h3>
+                <p>If a section on this page isn&rsquo;t driving one of these five, I don&rsquo;t ship it. Each
+                    question below names the sections that answer it, so this block also doubles as a mini
+                    table of contents.</p>
+            </div>
+            <div class="tmd-questions-grid">
+                <div class="q">
+                    <span class="n">1</span>
+                    <span class="q-text">Where are we?</span>
+                    <span class="q-ref">RAG status row, §01 Executive summary, §03 Sprint 3 state</span>
+                </div>
+                <div class="q">
+                    <span class="n">2</span>
+                    <span class="q-text">Where are we heading?</span>
+                    <span class="q-ref">§02 Milestone roadmap, §05 Velocity &amp; forecast, §01B Forecast assumptions</span>
+                </div>
+                <div class="q">
+                    <span class="n">3</span>
+                    <span class="q-text">What is blocking us?</span>
+                    <span class="q-ref">RAG red/amber tiles, §07 Defect analytics, §09 Risk register</span>
+                </div>
+                <div class="q">
+                    <span class="n">4</span>
+                    <span class="q-text">What are we doing about it?</span>
+                    <span class="q-ref">§09 Risk mitigations, Release Decision conditions &amp; exit criteria</span>
+                </div>
+                <div class="q">
+                    <span class="n">5</span>
+                    <span class="q-text">What do we need from management?</span>
+                    <span class="q-ref">§01 Decisions needed, §11 Steering decisions (deadlines + owners)</span>
+                </div>
+            </div>
+        </section>
 
         <!-- ===== RELEASE DECISION PANEL (reviewer suggested) ===== -->
         <section class="tmd-release-decision">
