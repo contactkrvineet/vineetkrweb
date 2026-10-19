@@ -470,6 +470,40 @@
 
                 <h4 class="case-title">Legacy System Modernization & Microservices Testing</h4>
 
+                <!-- ========== Stakeholder summary (added per reviewer feedback) ========== -->
+                <div style="background:#f6f8fc;border:1px solid #e2e8f0;border-left:4px solid #0066cc;border-radius:10px;padding:20px 24px;margin:16px 0 28px;">
+                    <p style="margin:0 0 10px;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:#0066cc;">
+                        Data Migration · SQL Validation · Test Strategy
+                    </p>
+                    <p style="margin:0 0 14px;color:#1a2233;line-height:1.6;"><strong>Project context.</strong>
+                        A planned migration from a legacy mainframe reservation system to a target cloud-microservices
+                        platform required independent validation to establish that data had been transferred completely
+                        and accurately, with approved transformations preserved.</p>
+                    <div style="background:#eef4ff;border-radius:8px;padding:14px 16px;margin:0 0 14px;">
+                        <p style="margin:0 0 4px;font-size:0.72rem;letter-spacing:1.3px;text-transform:uppercase;font-weight:700;color:#0f2a5c;">Objective</p>
+                        <p style="margin:0;color:#1a2233;line-height:1.6;">Validate migrated data through <strong>SQL-based
+                            profiling, record-count reconciliation and field-level comparisons</strong>; investigate
+                            discrepancies and produce evidence to support migration acceptance.</p>
+                    </div>
+                    <p style="margin:0 0 8px;font-size:0.72rem;letter-spacing:1.3px;text-transform:uppercase;font-weight:700;color:#0f2a5c;">
+                        My hands-on contribution
+                    </p>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px;">
+                        <span style="background:#dcfce7;color:#166534;padding:5px 12px;border-radius:999px;font-size:0.82rem;font-weight:600;">Data profiling</span>
+                        <span style="background:#dcfce7;color:#166534;padding:5px 12px;border-radius:999px;font-size:0.82rem;font-weight:600;">Record-count reconciliation</span>
+                        <span style="background:#dcfce7;color:#166534;padding:5px 12px;border-radius:999px;font-size:0.82rem;font-weight:600;">Field-level validation</span>
+                        <span style="background:#dcfce7;color:#166534;padding:5px 12px;border-radius:999px;font-size:0.82rem;font-weight:600;">SQL analysis</span>
+                        <span style="background:#dcfce7;color:#166534;padding:5px 12px;border-radius:999px;font-size:0.82rem;font-weight:600;">Discrepancy investigation</span>
+                    </div>
+                    <a href="legacy-system-migration-test-plan.html"
+                        style="display:inline-block;background:#0066cc;color:#fff;padding:11px 22px;border-radius:999px;font-weight:600;text-decoration:none;font-size:0.92rem;">
+                        View the End-to-End Migration Test Plan →
+                    </a>
+                    <span style="display:block;margin-top:8px;font-size:0.78rem;color:#64748b;font-style:italic;">
+                        Separate page · phased execution table, repair / rerun / reconcile loop, recovery &amp; rollback, acceptance criteria.
+                    </span>
+                </div>
+
                 <div class="case-content">
                     <div class="challenge-section">
                         <h5>⚠️ Challenge</h5>
@@ -530,6 +564,15 @@
                             records with zero data loss. New system handles 3x transaction volume with 60% better
                             response times. Achieved seamless cutover with zero customer-facing downtime.</p>
                     </div>
+                </div>
+
+                <!-- Figures-attribution note (reviewer feedback) -->
+                <div style="margin:16px 0 0;padding:12px 16px;background:#fef3c7;border-left:3px solid #a16207;border-radius:6px;font-size:0.86rem;color:#78350f;line-height:1.55;">
+                    <strong style="color:#78350f;">About the headline figures.</strong>
+                    The specific numbers above (500M records, 99.99% accuracy, $1.2M savings, 60% performance uplift,
+                    200+ microservices) describe programme-level outcomes across the broader modernization. I will
+                    walk through attribution &mdash; what the whole programme delivered vs. what my QE workstream
+                    personally owned &mdash; in an interview.
                 </div>
 
                 <div class="skills-demonstrated">

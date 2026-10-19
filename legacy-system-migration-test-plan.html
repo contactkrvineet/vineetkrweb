@@ -302,6 +302,115 @@
         .tp-res-table tbody tr:last-child td { border-bottom: none; }
         .tp-res-table td strong { color: var(--tp-navy); }
 
+        /* Stakeholder execution table */
+        .tp-exec-head {
+            margin: 0 0 14px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--tp-rule);
+        }
+        .tp-exec-head .k {
+            font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase;
+            font-weight: 700; color: var(--tp-accent);
+        }
+        .tp-exec-head h2 {
+            margin: 6px 0 4px; font-size: 1.5rem; color: var(--tp-navy);
+            font-weight: 700; letter-spacing: -0.01em;
+        }
+        .tp-exec-head p {
+            margin: 0; color: var(--tp-muted); font-size: 0.94rem; line-height: 1.55;
+        }
+        .tp-exec-wrap {
+            background: var(--tp-surface);
+            border: 1px solid var(--tp-rule);
+            border-radius: 10px;
+            overflow-x: auto;
+            box-shadow: 0 2px 10px rgba(15, 42, 92, 0.08);
+            margin-bottom: 32px;
+        }
+        .tp-exec {
+            width: 100%; min-width: 820px;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        .tp-exec thead th {
+            background: #0f2a5c;
+            color: #fff;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 0.72rem;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .tp-exec tbody td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--tp-rule);
+            vertical-align: top;
+            line-height: 1.55;
+        }
+        .tp-exec tbody tr:last-child td { border-bottom: none; }
+        .tp-exec .phase {
+            font-weight: 700;
+            color: var(--tp-navy);
+            white-space: nowrap;
+            min-width: 150px;
+        }
+        .tp-exec .phase .n {
+            display: inline-block;
+            width: 24px; height: 24px;
+            background: var(--tp-accent);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.78rem;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .tp-exec .evidence {
+            color: var(--tp-good);
+            font-weight: 600;
+            min-width: 200px;
+        }
+
+        /* Failure-handling loop */
+        .tp-loop {
+            background: var(--tp-surface);
+            border: 1px solid var(--tp-rule);
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 10px rgba(15, 42, 92, 0.08);
+            overflow-x: auto;
+        }
+        .tp-loop-head {
+            margin: 0 0 16px;
+        }
+        .tp-loop-head .k {
+            font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase;
+            font-weight: 700; color: var(--tp-crit);
+        }
+        .tp-loop-head h3 {
+            margin: 6px 0 4px; font-size: 1.2rem; color: var(--tp-navy); font-weight: 700;
+        }
+        .tp-loop-head p {
+            margin: 0; color: var(--tp-muted); font-size: 0.9rem; line-height: 1.55;
+        }
+        .tp-loop-svg {
+            width: 100%; min-width: 820px; height: auto; display: block;
+            margin-top: 10px;
+        }
+        .tp-loop-note {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: var(--tp-warn-soft);
+            border-left: 3px solid var(--tp-warn);
+            border-radius: 6px;
+            font-size: 0.88rem; color: var(--tp-ink); line-height: 1.55;
+        }
+        .tp-loop-note strong { color: var(--tp-warn); font-weight: 700; }
+
         /* Cross-link */
         .tp-crosslink {
             margin-top: 48px;
@@ -385,6 +494,148 @@
     </section>
 
     <main class="tp-main">
+
+        <!-- ===== STAKEHOLDER EXECUTION TABLE (reviewer: start here) ===== -->
+        <div class="tp-exec-head">
+            <span class="k">Stakeholder View · 10 phases</span>
+            <h2>End-to-end execution at a glance</h2>
+            <p>What the team does, what evidence it produces, and how it decides whether to proceed. Deeper methodology
+                for each phase is in Sections 01&ndash;16 below.</p>
+        </div>
+        <div class="tp-exec-wrap">
+            <table class="tp-exec">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>What the team does</th>
+                        <th>Evidence / exit decision</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="phase"><span class="n">1</span>Assess</td>
+                        <td>Confirm scope, mappings, dependencies and risks.</td>
+                        <td class="evidence">Approved scope &amp; acceptance criteria</td>
+                    </tr>
+                    <tr>
+                        <td class="phase"><span class="n">2</span>Baseline</td>
+                        <td>Profile source data and capture expected counts and quality issues.</td>
+                        <td class="evidence">Source baseline &amp; profiling report</td>
+                    </tr>
+                    <tr>
+                        <td class="phase"><span class="n">3</span>Migrate</td>
+                        <td>Run the migration and capture logs, counts and rejected records.</td>
+                        <td class="evidence">Migration execution report</td>
+                    </tr>
+                    <tr>
+                        <td class="phase"><span class="n">4</span>Reconcile</td>
+                        <td>Compare counts, business keys, field values, relationships and aggregates.</td>
+                        <td class="evidence">Reconciliation report &amp; exceptions</td>
+                    </tr>
+                    <tr>
+                        <td class="phase"><span class="n">5</span>Investigate &amp; repair</td>
+                        <td>Find root causes; correct source data, mapping or migration logic through approved changes.</td>
+                        <td class="evidence">Defect records &amp; remediation evidence</td>
+                    </tr>
+                    <tr>
+                        <td class="phase"><span class="n">6</span>Rerun &amp; retest</td>
+                        <td>Repeat affected checks and regression tests after corrections.</td>
+                        <td class="evidence">Passing retest evidence or documented exceptions</td>
+                    </tr>
+                    <tr>
+                        <td class="phase"><span class="n">7</span>Recover</td>
+                        <td>Test restart, checkpoint, backup restoration and rollback / roll-forward where applicable.</td>
+                        <td class="evidence">Recovery results &amp; operational readiness</td>
+                    </tr>
+                    <tr>
+                        <td class="phase"><span class="n">8</span>Validate business flows</td>
+                        <td>Test critical workflows, integrations and downstream reports.</td>
+                        <td class="evidence">Functional &amp; integration results</td>
+                    </tr>
+                    <tr>
+                        <td class="phase"><span class="n">9</span>Decide</td>
+                        <td>Review remaining risks, acceptance criteria and sign-offs.</td>
+                        <td class="evidence">Go / no-go recommendation</td>
+                    </tr>
+                    <tr>
+                        <td class="phase"><span class="n">10</span>Verify after cutover</td>
+                        <td>Reconcile production data and monitor downstream processing.</td>
+                        <td class="evidence">Post-migration validation &amp; issue closure</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ===== FAILURE-HANDLING LOOP ===== -->
+        <div class="tp-loop">
+            <div class="tp-loop-head">
+                <span class="k">Repair &amp; Rerun Loop</span>
+                <h3>What happens when validation finds a discrepancy</h3>
+                <p>This loop is what makes a migration plan practical rather than a generic testing checklist. Every
+                    reconciliation failure runs through investigate &rarr; approved correction &rarr; rerun &rarr; reconcile
+                    again, with a logged outcome at the end.</p>
+            </div>
+            <svg class="tp-loop-svg" viewBox="0 0 1040 240" xmlns="http://www.w3.org/2000/svg"
+                font-family="Segoe UI, Tahoma, sans-serif">
+                <!-- Boxes -->
+                <g>
+                    <rect x="20" y="70" width="200" height="100" rx="10" fill="#eef4ff" stroke="#0066cc" stroke-width="2"/>
+                    <text x="120" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#0066cc" letter-spacing="1.2">STEP 1</text>
+                    <text x="120" y="123" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Run validation</text>
+                    <text x="120" y="142" text-anchor="middle" font-size="10.5" fill="#556078">Counts · Keys · Fields ·</text>
+                    <text x="120" y="156" text-anchor="middle" font-size="10.5" fill="#556078">Aggregates</text>
+
+                    <rect x="260" y="70" width="200" height="100" rx="10" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+                    <text x="360" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#a16207" letter-spacing="1.2">STEP 2</text>
+                    <text x="360" y="123" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Investigate</text>
+                    <text x="360" y="142" text-anchor="middle" font-size="10.5" fill="#556078">Source · Mapping ·</text>
+                    <text x="360" y="156" text-anchor="middle" font-size="10.5" fill="#556078">Transform · Batch</text>
+
+                    <rect x="500" y="70" width="200" height="100" rx="10" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+                    <text x="600" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#a16207" letter-spacing="1.2">STEP 3</text>
+                    <text x="600" y="123" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Apply approved</text>
+                    <text x="600" y="142" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">correction</text>
+                    <text x="600" y="160" text-anchor="middle" font-size="10.5" fill="#556078">Fix root cause &amp; rerun</text>
+
+                    <rect x="740" y="70" width="200" height="100" rx="10" fill="#dcfce7" stroke="#166534" stroke-width="2"/>
+                    <text x="840" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#166534" letter-spacing="1.2">STEP 4</text>
+                    <text x="840" y="123" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Reconcile again</text>
+                    <text x="840" y="142" text-anchor="middle" font-size="10.5" fill="#556078">Pass · log outcome</text>
+                    <text x="840" y="158" text-anchor="middle" font-size="10.5" fill="#556078">or escalate exception</text>
+                </g>
+
+                <!-- Arrows forward -->
+                <defs>
+                    <marker id="arrow-f" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#0f2a5c"/>
+                    </marker>
+                    <marker id="arrow-back" markerWidth="10" markerHeight="10" refX="2" refY="3" orient="auto">
+                        <path d="M8,0 L8,6 L0,3 z" fill="#991b1b"/>
+                    </marker>
+                </defs>
+                <path d="M 220 120 L 260 120" stroke="#0f2a5c" stroke-width="2" marker-end="url(#arrow-f)"/>
+                <path d="M 460 120 L 500 120" stroke="#0f2a5c" stroke-width="2" marker-end="url(#arrow-f)"/>
+                <path d="M 700 120 L 740 120" stroke="#0f2a5c" stroke-width="2" marker-end="url(#arrow-f)"/>
+
+                <!-- Loop-back arrow if still failing -->
+                <path d="M 840 170 Q 840 215 480 215 Q 120 215 120 170" stroke="#991b1b" stroke-width="2"
+                    stroke-dasharray="6,4" fill="none" marker-end="url(#arrow-back)"/>
+                <text x="480" y="233" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="700" letter-spacing="0.5">
+                    If still failing → investigate again
+                </text>
+
+                <!-- Top band -->
+                <text x="480" y="30" text-anchor="middle" font-size="10" fill="#556078" letter-spacing="1.5" font-weight="700">
+                    REPAIR &amp; RERUN LOOP · APPLIES TO EVERY DISCREPANCY SURFACED BY RECONCILIATION
+                </text>
+            </svg>
+            <div class="tp-loop-note">
+                <strong>Keep recovery and rollback as a separate branch.</strong> The loop above is for data defects
+                found by validation. Recovery &amp; rollback testing (Phase 7 in the table) is a different workstream
+                &mdash; it tests whether the migration itself can be safely resumed, restarted or reversed when
+                something at the system level fails. See Section 09 and Section 14 below.
+            </div>
+        </div>
 
         <!-- 1 -->
         <section class="tp-sec">
@@ -875,11 +1126,12 @@
         <!-- Cross-link back -->
         <aside class="tp-crosslink">
             <div>
-                <h3>View the migration testing case study</h3>
-                <p>The companion case study tells the project story and names the SQL-based validation activities I personally
-                    performed on the engagement that inspired this plan.</p>
+                <h3>Back to the migration case studies</h3>
+                <p>This test plan is the companion reference methodology for the Legacy System Modernization case study
+                    (hospitality / mainframe-to-microservices) and the Legacy System Migration project under Wealth
+                    Management.</p>
             </div>
-            <a href="legacy-system-migration-casestudy.html">Open the case study →</a>
+            <a href="casestudy.html">Open Case Studies →</a>
         </aside>
 
     </main>
