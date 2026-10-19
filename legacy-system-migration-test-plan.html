@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Legacy System Migration — End-to-End Test Plan (Reference Methodology) | Vineet Kumar</title>
+    <meta name="title" content="Legacy System Migration — End-to-End Test Plan | Vineet Kumar">
+    <meta name="description"
+        content="Reference end-to-end test plan for a legacy system migration — scope, risk, reconciliation, cutover readiness, go/no-go, management reporting. Companion to the migration case study.">
+    <meta name="keywords"
+        content="migration test plan, legacy system migration testing, data migration test strategy, record count reconciliation, field level reconciliation, cutover testing, go/no-go, release readiness, Test Manager, QE Manager">
+    <meta name="author" content="Vineet Kumar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.vineetkr.com/legacy-system-migration-test-plan.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vineetkr.com/legacy-system-migration-test-plan.html">
+    <meta property="og:title" content="Legacy System Migration — End-to-End Test Plan">
+    <meta property="og:description"
+        content="Reference end-to-end test plan for a legacy system migration — how I'd govern migration quality at Test Manager level.">
+    <meta property="og:image" content="https://www.vineetkr.com/vineet.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Legacy System Migration — End-to-End Test Plan">
+    <meta name="twitter:description"
+        content="Reference test-plan methodology for legacy migration programmes.">
+    <meta name="twitter:image" content="https://www.vineetkr.com/vineet.png">
+
+    <meta name="theme-color" content="#0066cc">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <style>
+        /* ============================================================
+           Legacy System Migration — Test Plan — page-specific styles
+           (shares visual language with the companion case study)
+           ============================================================ */
+        .lsmtp-page {
+            --tp-accent: #0066cc;
+            --tp-accent-dark: #004080;
+            --tp-navy: #0f2a5c;
+            --tp-ink: #1a2233;
+            --tp-muted: #556078;
+            --tp-faint: #8c93a8;
+            --tp-surface: #ffffff;
+            --tp-surface-alt: #f6f8fc;
+            --tp-rule: #e2e8f0;
+            --tp-rule-strong: #cbd5e1;
+            --tp-good: #166534;
+            --tp-good-soft: #dcfce7;
+            --tp-warn: #a16207;
+            --tp-warn-soft: #fef3c7;
+            --tp-crit: #991b1b;
+            --tp-crit-soft: #fee2e2;
+            --tp-ph: #92400e;
+            --tp-ph-soft: #fef3c7;
+            --tp-code-bg: #0f172a;
+            --tp-code-fg: #e6f0ff;
+            --tp-code-key: #93c5fd;
+            --tp-code-str: #fcd34d;
+            --tp-code-comment: #94a3b8;
+        }
+
+        /* Section reset */
+        .lsmtp-page section {
+            background: transparent;
+            box-shadow: none;
+            border: 0;
+            border-radius: 0;
+            margin: 0 auto;
+            padding: 0;
+            max-width: none;
+            animation: none;
+        }
+
+        /* Hero */
+        .lsmtp-page section.tp-hero {
+            background: linear-gradient(135deg, #0f1b3d 0%, #1b3a6b 55%, #0f6b7a 100%);
+            color: #fff;
+            padding: 56px 24px 48px;
+            overflow: hidden;
+        }
+        .tp-hero .container { max-width: 1120px; margin: 0 auto; padding: 0; }
+        body.lsmtp-page .tp-hero :is(h1, .lede, .eyebrow, .scope-note, .scope-note strong, .scope-note em) { color: #fff; }
+        .tp-hero .eyebrow {
+            font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+            color: #a7cce8 !important; margin-bottom: 10px; font-weight: 700;
+        }
+        .tp-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.2; letter-spacing: -0.01em;
+            margin: 0 0 12px; color: #fff; font-weight: 700;
+        }
+        .tp-hero .lede {
+            font-size: 1.05rem; color: #ffffff; max-width: 72ch;
+            line-height: 1.6; font-weight: 500; margin: 0 0 20px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        }
+        .tp-hero .scope-note {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(94,234,212,0.4);
+            border-left: 4px solid #5eead4;
+            padding: 14px 18px; border-radius: 10px;
+            font-size: 0.94rem; line-height: 1.6; max-width: 72ch;
+        }
+        body.lsmtp-page .tp-hero .scope-note strong { color: #5eead4 !important; font-weight: 700; }
+
+        /* Main container */
+        .tp-main {
+            max-width: 1120px; margin: 0 auto;
+            padding: 48px 24px 72px;
+            color: var(--tp-ink);
+        }
+
+        /* Section */
+        .tp-sec { margin-bottom: 48px; }
+        .tp-sec-head {
+            display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+            margin-bottom: 18px; padding-bottom: 10px;
+            border-bottom: 2px solid var(--tp-rule);
+        }
+        .tp-sec-num {
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 700;
+            color: var(--tp-accent);
+            background: var(--tp-surface-alt);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--tp-rule);
+        }
+        .tp-sec h2 {
+            flex: 1; min-width: 0; margin: 0;
+            font-size: 1.35rem; color: var(--tp-navy); font-weight: 700;
+            letter-spacing: -0.01em; line-height: 1.25;
+        }
+        .tp-sec-sub {
+            font-size: 0.82rem; color: var(--tp-muted); font-style: italic;
+        }
+        .tp-sec p { margin: 0 0 10px; line-height: 1.65; color: var(--tp-ink); max-width: 76ch; }
+        .tp-sec > p:last-child { margin-bottom: 0; }
+
+        /* Three-column: purpose / activities / evidence */
+        .tp-triplet {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+            margin-top: 14px;
+        }
+        @media (max-width: 820px) { .tp-triplet { grid-template-columns: 1fr; } }
+        .tp-triplet > div {
+            background: var(--tp-surface);
+            border: 1px solid var(--tp-rule);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+        .tp-triplet .k {
+            font-size: 0.68rem; letter-spacing: 1.3px; text-transform: uppercase;
+            font-weight: 700; color: var(--tp-accent);
+            margin-bottom: 6px; display: block;
+        }
+        .tp-triplet.purpose .k { color: var(--tp-accent); }
+        .tp-triplet.activities .k { color: var(--tp-navy); }
+        .tp-triplet.evidence .k { color: var(--tp-good); }
+        .tp-triplet p, .tp-triplet li {
+            font-size: 0.9rem; color: var(--tp-ink); line-height: 1.55; margin: 0;
+        }
+        .tp-triplet ul {
+            list-style: none; padding: 0; margin: 0;
+            display: grid; gap: 5px;
+        }
+        .tp-triplet li {
+            padding-left: 15px; position: relative;
+        }
+        .tp-triplet li::before {
+            content: "·"; position: absolute; left: 4px; font-weight: 700; color: var(--tp-accent);
+        }
+        .tp-triplet.evidence li::before { color: var(--tp-good); }
+        .tp-triplet.activities li::before { color: var(--tp-navy); }
+
+        /* Placeholder marker */
+        .tp-ph {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--tp-ph-soft);
+            border: 1px dashed var(--tp-warn);
+            border-radius: 4px;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.82rem;
+            color: var(--tp-ph);
+            font-weight: 600;
+        }
+        .tp-ph::before { content: "⚐ "; opacity: 0.8; }
+
+        /* Phase timeline (SVG container) */
+        .tp-timeline {
+            background: var(--tp-surface);
+            border: 1px solid var(--tp-rule);
+            border-radius: 10px;
+            padding: 24px;
+            overflow-x: auto;
+            margin: 18px 0;
+            box-shadow: 0 1px 3px rgba(15, 42, 92, 0.06);
+        }
+        .tp-timeline-svg { width: 100%; min-width: 820px; height: auto; display: block; }
+
+        /* SQL code */
+        .tp-code {
+            background: var(--tp-code-bg);
+            color: var(--tp-code-fg);
+            padding: 18px 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.86rem;
+            line-height: 1.55;
+            margin: 10px 0 16px;
+            box-shadow: 0 2px 8px rgba(15, 42, 92, 0.1);
+        }
+        body.lsmtp-page .tp-code,
+        body.lsmtp-page .tp-code pre,
+        body.lsmtp-page .tp-code code { color: var(--tp-code-fg); }
+        .tp-code pre { margin: 0; }
+        .tp-code .k { color: var(--tp-code-key); font-weight: 600; }
+        .tp-code .s { color: var(--tp-code-str); }
+        .tp-code .c { color: var(--tp-code-comment); font-style: italic; }
+        .tp-code-label {
+            display: inline-block;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--tp-warn);
+            background: var(--tp-warn-soft);
+            padding: 3px 10px; border-radius: 4px;
+            margin-bottom: 8px; font-weight: 700;
+        }
+
+        /* Criteria table (entry / exit) */
+        .tp-crit-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+            margin-top: 14px;
+        }
+        @media (max-width: 820px) { .tp-crit-grid { grid-template-columns: 1fr; } }
+        .tp-crit-grid .panel {
+            background: var(--tp-surface);
+            border: 1px solid var(--tp-rule);
+            border-radius: 8px;
+            padding: 16px 18px;
+        }
+        .tp-crit-grid .panel h4 {
+            margin: 0 0 10px; font-size: 1rem; color: var(--tp-navy); font-weight: 700;
+            padding-bottom: 8px; border-bottom: 1px solid var(--tp-rule);
+        }
+        .tp-crit-grid .panel.entry h4 { color: var(--tp-accent); }
+        .tp-crit-grid .panel.exit h4 { color: var(--tp-good); }
+        .tp-crit-grid .panel ul {
+            list-style: none; padding: 0; margin: 0;
+            display: grid; gap: 8px;
+        }
+        .tp-crit-grid .panel li {
+            padding-left: 20px; position: relative;
+            font-size: 0.92rem; color: var(--tp-ink); line-height: 1.5;
+        }
+        .tp-crit-grid .panel.entry li::before {
+            content: "▶"; position: absolute; left: 0; color: var(--tp-accent); font-size: 0.75rem; top: 3px;
+        }
+        .tp-crit-grid .panel.exit li::before {
+            content: "✓"; position: absolute; left: 0; color: var(--tp-good); font-weight: 700;
+        }
+
+        /* Resource table */
+        .tp-res-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            background: var(--tp-surface);
+            border: 1px solid var(--tp-rule);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+        .tp-res-table th, .tp-res-table td {
+            padding: 11px 14px; text-align: left;
+            border-bottom: 1px solid var(--tp-rule);
+            vertical-align: top;
+        }
+        .tp-res-table thead th {
+            background: var(--tp-surface-alt);
+            font-size: 0.72rem; letter-spacing: 1.2px; text-transform: uppercase;
+            color: var(--tp-muted); font-weight: 700;
+        }
+        .tp-res-table tbody tr:last-child td { border-bottom: none; }
+        .tp-res-table td strong { color: var(--tp-navy); }
+
+        /* Cross-link */
+        .tp-crosslink {
+            margin-top: 48px;
+            background: linear-gradient(135deg, #0f1b3d 0%, #1b3a6b 100%);
+            color: #fff;
+            padding: 28px 32px; border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 16px;
+            box-shadow: 0 6px 20px rgba(15, 42, 92, 0.18);
+        }
+        body.lsmtp-page .tp-crosslink :is(h3, p) { color: #fff; }
+        .tp-crosslink h3 { margin: 0 0 6px; font-size: 1.2rem; font-weight: 700; }
+        .tp-crosslink p { margin: 0; color: #d7e5f2 !important; max-width: 56ch; font-size: 0.94rem; line-height: 1.5; }
+        .tp-crosslink a {
+            display: inline-block;
+            background: #5eead4; color: #0f1b3d !important;
+            padding: 12px 22px; border-radius: 999px;
+            font-weight: 700; text-decoration: none;
+            font-size: 0.94rem; white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(94, 234, 212, 0.3);
+            transition: transform 0.15s ease;
+        }
+        .tp-crosslink a:hover { transform: translateY(-2px); }
+
+        @media print {
+            .tp-hero, .tp-crosslink {
+                background: #0f2a5c !important; color: #fff !important;
+                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+            .tp-sec, .tp-timeline { page-break-inside: avoid; }
+            .main-nav { display: none; }
+        }
+    </style>
+</head>
+
+<body class="portfolio-page lsmtp-page">
+    <header>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="vineet.png" alt="Vineet Kumar profile picture"
+                style="width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
+                <span>+1 437-428-2199 &nbsp;&nbsp;|&nbsp;&nbsp; contactkrvineet@gmail.com</span>
+            </div>
+        </div>
+        <nav class="main-nav" aria-label="Primary">
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="primary-nav">
+                <span class="menu-label">Menu</span>
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="casestudy.html" aria-current="page">Case Studies</a></li>
+                <li><a href="test-manager-dashboard.html">QE Dashboard</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="featuredproject.html">Featured Projects</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="tp-hero">
+        <div class="container">
+            <div class="eyebrow">Reference Methodology · Companion to the Migration Case Study</div>
+            <h1>Legacy System Migration — End-to-End Test Plan</h1>
+            <p class="lede">How I would plan, run and govern testing for a legacy source-to-target migration — scope through
+                go/no-go, with migration validation (profiling, record counts, field-level reconciliation) sitting inside the
+                broader programme.</p>
+            <div class="scope-note">
+                <strong>Scope label.</strong> This is a <strong>proposed reference methodology</strong>, not a claim that I
+                executed every one of these activities on the companion case-study project. The confirmed hands-on activities
+                from that project are called out on the <a href="legacy-system-migration-casestudy.html" style="color:#5eead4;">case study page</a>.
+                Everything else here is how I would set up migration quality end-to-end at Test Manager / QE Manager level.
+            </div>
+        </div>
+    </section>
+
+    <main class="tp-main">
+
+        <!-- 1 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">01</span>
+                <h2>Migration scope, assumptions, dependencies &amp; impact assessment</h2>
+                <span class="tp-sec-sub">What's in, what's out, what we depend on</span>
+            </div>
+            <p>Open the plan with a signed-off scope statement — in-scope entities, out-of-scope exclusions, named assumptions
+                (data freeze window, source read-access, mapping ownership) and the dependencies the migration validation
+                workstream cannot deliver without. The impact assessment names every downstream consumer that will see the
+                target data and the regression effort each one implies.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Make the boundary explicit so no team argues scope mid-cutover.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>In-scope entities inventory</li>
+                    <li>Out-of-scope list, with rationale</li>
+                    <li>Assumptions log, versioned</li>
+                    <li>Dependency map to source/ETL/target owners</li>
+                    <li>Downstream-impact catalogue</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Signed scope statement</li>
+                    <li>Assumptions register</li>
+                    <li>RACI for dependencies</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 2 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">02</span>
+                <h2>Risk assessment &amp; requirements traceability</h2>
+                <span class="tp-sec-sub">Rank the risks, trace the requirements</span>
+            </div>
+            <p>Score each in-scope entity for likelihood and business impact (data volume, mapping complexity, criticality,
+                history of source-side quality issues). Trace each business requirement, mapping rule and data-contract item to
+                the validation test(s) that will cover it. The traceability matrix becomes the "did we test what we promised"
+                evidence at exit.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Point validation effort at the highest-risk areas and prove coverage.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Entity-level risk score (impact × likelihood)</li>
+                    <li>Mapping-rule inventory</li>
+                    <li>Requirement → test traceability matrix</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Risk-ranked scope</li>
+                    <li>Traceability matrix</li>
+                    <li>Gap list &amp; mitigation plan</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 3 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">03</span>
+                <h2>Test objectives &amp; acceptance criteria</h2>
+                <span class="tp-sec-sub">What "done" looks like, in writing</span>
+            </div>
+            <p>State the test objectives first, then the measurable acceptance criteria. Separate <em>technical acceptance</em>
+                (counts reconcile, zero orphan rows, zero duplicate business keys, defined tolerance for known transformations)
+                from <em>business acceptance</em> (sign-off from each business-domain owner against sampled records).</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Remove ambiguity from the sign-off conversation.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Define per-entity acceptance criteria</li>
+                    <li>Define tolerance bands &amp; approved exceptions</li>
+                    <li>Separate technical from business sign-off</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Acceptance-criteria document</li>
+                    <li>Approved-tolerance register</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 4 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">04</span>
+                <h2>Test phases &amp; schedule</h2>
+                <span class="tp-sec-sub">Phased plan with gates</span>
+            </div>
+            <p>Phase the plan so each stage produces evidence the next depends on. The diagram below shows a typical six-phase
+                shape: Discovery and scope lock → Design and traceability → Source baseline (profiling) →
+                Rehearsal and reconciliation cycles → Cutover and verification → Hypercare.</p>
+            <div class="tp-timeline">
+                <svg class="tp-timeline-svg" viewBox="0 0 1080 240" xmlns="http://www.w3.org/2000/svg"
+                    font-family="Segoe UI, Tahoma, sans-serif">
+                    <!-- Baseline -->
+                    <line x1="40" y1="130" x2="1040" y2="130" stroke="#cbd5e1" stroke-width="2"/>
+
+                    <!-- Phase boxes -->
+                    <g>
+                        <!-- 1 Discovery -->
+                        <rect x="40" y="80" width="140" height="100" rx="8" fill="#f6f8fc" stroke="#0066cc" stroke-width="2"/>
+                        <text x="110" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#0066cc" letter-spacing="1">PHASE 1</text>
+                        <text x="110" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Discovery</text>
+                        <text x="110" y="145" text-anchor="middle" font-size="10" fill="#556078">Scope lock</text>
+                        <text x="110" y="160" text-anchor="middle" font-size="10" fill="#556078">Risk assess.</text>
+
+                        <!-- 2 Design -->
+                        <rect x="200" y="80" width="140" height="100" rx="8" fill="#f6f8fc" stroke="#0066cc" stroke-width="2"/>
+                        <text x="270" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#0066cc" letter-spacing="1">PHASE 2</text>
+                        <text x="270" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Design</text>
+                        <text x="270" y="145" text-anchor="middle" font-size="10" fill="#556078">Traceability</text>
+                        <text x="270" y="160" text-anchor="middle" font-size="10" fill="#556078">Test design</text>
+
+                        <!-- 3 Baseline -->
+                        <rect x="360" y="80" width="140" height="100" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="2"/>
+                        <text x="430" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#166534" letter-spacing="1">PHASE 3</text>
+                        <text x="430" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Source baseline</text>
+                        <text x="430" y="145" text-anchor="middle" font-size="10" fill="#556078">Profiling</text>
+                        <text x="430" y="160" text-anchor="middle" font-size="10" fill="#556078">Data-quality log</text>
+
+                        <!-- 4 Rehearsal -->
+                        <rect x="520" y="80" width="160" height="100" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="2"/>
+                        <text x="600" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#166534" letter-spacing="1">PHASE 4</text>
+                        <text x="600" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Rehearsal cycles</text>
+                        <text x="600" y="145" text-anchor="middle" font-size="10" fill="#556078">Record counts</text>
+                        <text x="600" y="160" text-anchor="middle" font-size="10" fill="#556078">Field recon.</text>
+
+                        <!-- 5 Cutover -->
+                        <rect x="700" y="80" width="160" height="100" rx="8" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+                        <text x="780" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#a16207" letter-spacing="1">PHASE 5</text>
+                        <text x="780" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Cutover</text>
+                        <text x="780" y="145" text-anchor="middle" font-size="10" fill="#556078">Dress rehearsal</text>
+                        <text x="780" y="160" text-anchor="middle" font-size="10" fill="#556078">Go/No-go</text>
+
+                        <!-- 6 Hypercare -->
+                        <rect x="880" y="80" width="160" height="100" rx="8" fill="#f6f8fc" stroke="#0066cc" stroke-width="2"/>
+                        <text x="960" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#0066cc" letter-spacing="1">PHASE 6</text>
+                        <text x="960" y="125" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">Hypercare</text>
+                        <text x="960" y="145" text-anchor="middle" font-size="10" fill="#556078">Post-cutover</text>
+                        <text x="960" y="160" text-anchor="middle" font-size="10" fill="#556078">Verification</text>
+
+                        <!-- Gate marker between Phase 4 and 5 -->
+                        <polygon points="684,70 696,82 684,94 672,82" fill="#a16207"/>
+                        <text x="684" y="60" text-anchor="middle" font-size="9" fill="#a16207" font-weight="700">GATE</text>
+                    </g>
+
+                    <!-- Timeline label -->
+                    <text x="540" y="30" text-anchor="middle" font-size="10" fill="#556078" letter-spacing="1.5" font-weight="700">
+                        TYPICAL PHASING — <tspan fill="#92400e">[Confirm: durations per phase]</tspan>
+                    </text>
+                    <text x="540" y="215" text-anchor="middle" font-size="10" fill="#556078">
+                        Validation (profiling, record counts, field reconciliation) concentrates in Phases 3–4; carries through Phase 5 as verification evidence.
+                    </text>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 5 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">05</span>
+                <h2>Data profiling &amp; source baseline</h2>
+                <span class="tp-sec-sub">Know the source before you compare the target</span>
+            </div>
+            <p>Profile the source first. Record completeness, cardinality, distributions, nulls, duplicates and known
+                data-quality issues against the mapping. The baseline becomes the frame of reference for every subsequent
+                reconciliation and prevents the "we found bugs after cutover that were in the source all along" conversation.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Establish ground truth before migration begins.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Per-entity completeness &amp; cardinality</li>
+                    <li>Null, duplicate, out-of-range inventories</li>
+                    <li>Mapping validation against observed data</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Profiling report per entity</li>
+                    <li>Pre-existing quality log with carry-forward decisions</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 6 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">06</span>
+                <h2>Record-count &amp; field-level reconciliation</h2>
+                <span class="tp-sec-sub">The core of migration validation</span>
+            </div>
+            <p>At each rehearsal cycle: compare row counts at the agreed grain, then field-level reconcile matched rows against
+                the mapping. Count matches alone are not acceptance evidence; every mismatch (and every <em>agreed</em> delta)
+                is logged with a reason. A field-level diff with zero rows against the agreed tolerance is the strongest
+                evidence this plan produces.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Prove the right rows arrived, with the right values.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Record-count reconciliation per entity</li>
+                    <li>Field-level diff on matched business keys</li>
+                    <li>Agreed-exception register per cycle</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Count-reconciliation report per cycle</li>
+                    <li>Field-level diff reports</li>
+                    <li>Exception log with disposition</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 7 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">07</span>
+                <h2>Referential-integrity &amp; business-rule validation</h2>
+                <span class="tp-sec-sub">Beyond individual rows</span>
+            </div>
+            <p>Row-level correctness is necessary but not sufficient. Check that parent-child relationships survived, that
+                lookup codes still resolve, and that domain rules (balances tie out, dates sequence correctly, enumerations
+                stay within the allowed set) still hold on the target side.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Catch "rows are right, data is wrong" bugs.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Orphan / dangling-reference probes</li>
+                    <li>Lookup-domain resolution tests</li>
+                    <li>Business-rule invariants (balances, sequences, enums)</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Referential-integrity report</li>
+                    <li>Business-rule compliance log</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 8 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">08</span>
+                <h2>Functional, integration, regression &amp; downstream validation</h2>
+                <span class="tp-sec-sub">End-to-end with the target in the loop</span>
+            </div>
+            <p>Once the target data holds, exercise it through the systems that consume it. Functional tests against the
+                applications; integration tests against the inbound/outbound interfaces; regression tests against any downstream
+                job that reads from the migrated store; sampled reports and operational workflows reviewed with business
+                owners.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Prove the target data works in the real flows.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Functional smoke &amp; targeted regression</li>
+                    <li>Interface / integration tests</li>
+                    <li>Downstream job verification</li>
+                    <li>Report / dashboard reconciliation vs source baseline</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Functional &amp; regression results</li>
+                    <li>Interface sign-off per partner</li>
+                    <li>Downstream reconciliation log</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 9 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">09</span>
+                <h2>Performance, security, resilience &amp; recovery</h2>
+                <span class="tp-sec-sub">Where applicable</span>
+            </div>
+            <p>Scope these to the migration's actual risk profile. A target platform that will serve the same load as the
+                source doesn't need a new load-test campaign; a replatform does. Security review covers access control on the
+                new store and any new data pathways. Resilience and recovery exercises prove the cutover is reversible.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Make sure the <em>new environment</em> is fit for the workload.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Performance baseline on target (where relevant)</li>
+                    <li>Access-control &amp; data-handling review</li>
+                    <li>Backup / restore / rollback drill</li>
+                    <li>Resilience tests on critical paths</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Perf test report with SLA mapping</li>
+                    <li>Security sign-off</li>
+                    <li>Rollback drill log</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 10 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">10</span>
+                <h2>Test data, environment &amp; access requirements</h2>
+                <span class="tp-sec-sub">Infrastructure for the validation workstream</span>
+            </div>
+            <p>Document the datasets, environments, credentials and read-permissions the validation team needs. A production-like
+                non-prod environment with a representative source snapshot is table-stakes; the plan names when it must be
+                available, who refreshes it, and how PII is handled.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Remove &ldquo;we couldn't test because we didn't have access&rdquo; as an excuse.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Environment plan with refresh cadence</li>
+                    <li>Test-data strategy (sampling, masking, synthesis)</li>
+                    <li>Access-request matrix per team member</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Env plan signed by DevOps/DBA</li>
+                    <li>Data strategy approved by security</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 11 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">11</span>
+                <h2>Resource &amp; responsibility model</h2>
+                <span class="tp-sec-sub">Who does what, who signs</span>
+            </div>
+            <table class="tp-res-table">
+                <thead>
+                    <tr><th style="min-width:160px">Role</th><th>Responsibility</th><th>Deliverable they sign</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Test Manager / QE Lead</strong></td><td>Plan, risk, acceptance evidence, release readiness report</td><td>Go/no-go recommendation</td></tr>
+                    <tr><td><strong>Validation SDET</strong></td><td>SQL profiling, reconciliation queries, exception log</td><td>Reconciliation report per cycle</td></tr>
+                    <tr><td><strong>Migration Engineer</strong></td><td>ETL authoring, mapping implementation, cutover</td><td>ETL run log, mapping change notes</td></tr>
+                    <tr><td><strong>Business Owner</strong></td><td>Scope sign-off, acceptance of sampled records</td><td>Business acceptance sign-off</td></tr>
+                    <tr><td><strong>DBA / Platform</strong></td><td>Environments, backup/restore, access</td><td>Env &amp; access sign-off</td></tr>
+                    <tr><td><strong>Release / Change Mgmt</strong></td><td>Cutover window, communications, rollback trigger</td><td>Cutover plan approval</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 12 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">12</span>
+                <h2>Example SQL validation queries</h2>
+                <span class="tp-sec-sub">Illustrative — not from any specific project</span>
+            </div>
+            <p>Representative query shapes the validation SDET would run. Schema and table names are fictional.</p>
+
+            <span class="tp-code-label">Row-count reconciliation with filters</span>
+            <div class="tp-code"><pre><span class="k">SELECT</span>  <span class="s">'customers'</span> <span class="k">AS</span> entity,
+        (<span class="k">SELECT</span> <span class="k">COUNT</span>(*) <span class="k">FROM</span> src_customers
+            <span class="k">WHERE</span> status <span class="k">IN</span> (<span class="s">'ACTIVE'</span>,<span class="s">'DORMANT'</span>)) <span class="k">AS</span> src_cnt,
+        (<span class="k">SELECT</span> <span class="k">COUNT</span>(*) <span class="k">FROM</span> tgt_customer)      <span class="k">AS</span> tgt_cnt;</pre></div>
+
+            <span class="tp-code-label">Field-level diff on matched business keys</span>
+            <div class="tp-code"><pre><span class="k">SELECT</span>  s.customer_id,
+        s.email       <span class="k">AS</span> src_email, t.email       <span class="k">AS</span> tgt_email,
+        s.updated_at  <span class="k">AS</span> src_updated, t.updated_at <span class="k">AS</span> tgt_updated
+<span class="k">FROM</span>    src_customers s
+<span class="k">JOIN</span>    tgt_customer  t <span class="k">ON</span> s.customer_id = t.customer_id
+<span class="k">WHERE</span>   <span class="k">COALESCE</span>(s.email, <span class="s">''</span>) &lt;&gt; <span class="k">COALESCE</span>(t.email, <span class="s">''</span>)
+   <span class="k">OR</span>   <span class="k">COALESCE</span>(s.updated_at, <span class="s">'1900-01-01'</span>) &lt;&gt;
+       <span class="k">COALESCE</span>(t.updated_at, <span class="s">'1900-01-01'</span>);</pre></div>
+
+            <span class="tp-code-label">Referential-integrity probe (orphans)</span>
+            <div class="tp-code"><pre><span class="k">SELECT</span>  o.order_id, o.customer_id
+<span class="k">FROM</span>    tgt_order o
+<span class="k">LEFT</span>   <span class="k">JOIN</span> tgt_customer c <span class="k">ON</span> o.customer_id = c.customer_id
+<span class="k">WHERE</span>   c.customer_id <span class="k">IS</span> <span class="k">NULL</span>;</pre></div>
+
+            <span class="tp-code-label">Business-rule invariant (balance tie-out)</span>
+            <div class="tp-code"><pre><span class="c">-- Sum of account balances by product line should match source control report</span>
+<span class="k">SELECT</span>  product_line, <span class="k">SUM</span>(current_balance) <span class="k">AS</span> tgt_total
+<span class="k">FROM</span>    tgt_account
+<span class="k">GROUP</span> <span class="k">BY</span> product_line
+<span class="k">ORDER</span> <span class="k">BY</span> product_line;</pre></div>
+
+            <span class="tp-code-label">Duplicate business-key detection</span>
+            <div class="tp-code"><pre><span class="k">SELECT</span>  customer_id, <span class="k">COUNT</span>(*) <span class="k">AS</span> occurrences
+<span class="k">FROM</span>    tgt_customer
+<span class="k">GROUP</span> <span class="k">BY</span> customer_id
+<span class="k">HAVING</span>  <span class="k">COUNT</span>(*) &gt; 1;</pre></div>
+        </section>
+
+        <!-- 13 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">13</span>
+                <h2>Defect management &amp; reconciliation reporting</h2>
+                <span class="tp-sec-sub">Make the exceptions legible to management</span>
+            </div>
+            <p>Classify every exception the moment it is logged: <em>mapping defect</em>, <em>transform defect</em>,
+                <em>source data-quality issue (pre-existing)</em>, <em>ETL implementation bug</em>, <em>test data issue</em>,
+                <em>approved exception</em>. Report trend lines on each class per rehearsal cycle so leadership sees whether
+                the migration is converging or diverging.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Convert raw query results into a decision-grade signal.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Exception classification</li>
+                    <li>Per-cycle trend reporting</li>
+                    <li>Defect burn-down vs cutover gate</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Weekly reconciliation report</li>
+                    <li>Defect scorecard by class and severity</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 14 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">14</span>
+                <h2>Migration rehearsal, cutover, rollback &amp; post-migration verification</h2>
+                <span class="tp-sec-sub">The cutover weekend</span>
+            </div>
+            <p>Rehearse the full cutover more than once in a production-like environment. Define the rollback trigger before
+                the real cutover window begins — specific thresholds on reconciliation failures, duplicate keys, orphan rows
+                or performance SLA breaches. Post-cutover verification runs a defined subset of the reconciliation suite
+                against the live target.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Make cutover a <em>practiced</em> operation, not a leap of faith.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Rehearsal cycles (count &amp; cadence <span class="tp-ph">[Confirm]</span>)</li>
+                    <li>Rollback trigger definition</li>
+                    <li>Cutover-weekend reconciliation subset</li>
+                    <li>Post-cutover verification plan</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Rehearsal results log</li>
+                    <li>Rollback decision tree (signed)</li>
+                    <li>Post-cutover sign-off report</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- 15 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">15</span>
+                <h2>Entry criteria, exit criteria &amp; go/no-go decisions</h2>
+                <span class="tp-sec-sub">Written, measurable, signed</span>
+            </div>
+            <div class="tp-crit-grid">
+                <div class="panel entry">
+                    <h4>Entry criteria (before each cycle)</h4>
+                    <ul>
+                        <li>Scope and mapping signed off for the entities in this cycle</li>
+                        <li>Source baseline / profiling complete for in-scope entities</li>
+                        <li>Target environment refreshed and accessible</li>
+                        <li>Previous cycle&rsquo;s exceptions triaged or formally accepted</li>
+                        <li>Test data, credentials and run plan ready</li>
+                    </ul>
+                </div>
+                <div class="panel exit">
+                    <h4>Exit criteria (before go-live)</h4>
+                    <ul>
+                        <li>Zero open P1 defects; P2 defects within agreed aging threshold</li>
+                        <li>Record counts reconcile within approved tolerance</li>
+                        <li>Field-level diff clean against approved exceptions</li>
+                        <li>Referential integrity &amp; business-rule invariants pass</li>
+                        <li>Downstream reports reconcile vs source baseline</li>
+                        <li>Rollback drill executed successfully in the last rehearsal</li>
+                        <li>Business and technical sign-offs filed by named owners</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top:14px;">Go/no-go is a <strong>Release Board decision</strong>, taken against the above exit criteria
+                plus the latest risk assessment. The validation workstream brings evidence; the board brings authority.</p>
+        </section>
+
+        <!-- 16 -->
+        <section class="tp-sec">
+            <div class="tp-sec-head">
+                <span class="tp-sec-num">16</span>
+                <h2>Management reporting &amp; risk escalation</h2>
+                <span class="tp-sec-sub">What leadership sees, and when</span>
+            </div>
+            <p>Keep the leadership view small and consistent across cycles. One page per week: RAG for the overall migration,
+                reconciliation trend lines (counts, field-level, exceptions), top three risks with owners and ETAs, and the
+                decisions needed this week. Escalate anything that threatens the go-live date the moment it crosses the agreed
+                threshold &mdash; waiting until the next status meeting erodes options.</p>
+            <div class="tp-triplet activities">
+                <div><span class="k">Purpose</span><p>Give leadership a decision-grade view of migration quality.</p></div>
+                <div><span class="k">Activities</span><ul>
+                    <li>Weekly one-page RAG report</li>
+                    <li>Reconciliation trend lines</li>
+                    <li>Risk register with owners &amp; ETAs</li>
+                    <li>Decisions-needed list, time-bound</li>
+                </ul></div>
+                <div><span class="k">Evidence / deliverables</span><ul>
+                    <li>Weekly steering pack</li>
+                    <li>Risk-escalation log</li>
+                    <li>Release-readiness report at exit</li>
+                </ul></div>
+            </div>
+        </section>
+
+        <!-- Cross-link back -->
+        <aside class="tp-crosslink">
+            <div>
+                <h3>View the migration testing case study</h3>
+                <p>The companion case study tells the project story and names the SQL-based validation activities I personally
+                    performed on the engagement that inspired this plan.</p>
+            </div>
+            <a href="legacy-system-migration-casestudy.html">Open the case study →</a>
+        </aside>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Vineet Kumar</p>
+        <p style="font-size:0.85rem;opacity:0.75;">Reference methodology. Specifics on how any individual project applied these
+            steps are kept on the companion case study page with placeholders marked where personal confirmation is required.</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/contactkrvineet" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Legacy System Migration — Data Validation, Data Reconciliation &amp; Quality Engineering | Vineet Kumar</title>
+    <meta name="title" content="Legacy System Migration — Data Validation &amp; Data Reconciliation | Vineet Kumar">
+    <meta name="description"
+        content="Case study of a legacy source-to-target migration: data profiling, record-count reconciliation and field-level validation. Hands-on quality engineering work by Vineet Kumar.">
+    <meta name="keywords"
+        content="legacy migration testing, data migration validation, data profiling, record-count reconciliation, field-level reconciliation, source to target validation, migration test plan, data integrity testing, Test Manager case study, QE Manager migration case study">
+    <meta name="author" content="Vineet Kumar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.vineetkr.com/legacy-system-migration-casestudy.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.vineetkr.com/legacy-system-migration-casestudy.html">
+    <meta property="og:title" content="Legacy System Migration — Data Validation &amp; Data Reconciliation">
+    <meta property="og:description"
+        content="How I validated data integrity during a source-to-target migration using data profiling, record-count reconciliation and field-level validation.">
+    <meta property="og:image" content="https://www.vineetkr.com/vineet.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Legacy System Migration — Data Validation &amp; Data Reconciliation">
+    <meta name="twitter:description"
+        content="Case study of a legacy migration: data profiling, record counts, field-level reconciliation.">
+    <meta name="twitter:image" content="https://www.vineetkr.com/vineet.png">
+
+    <meta name="theme-color" content="#0066cc">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <style>
+        /* ============================================================
+           Legacy System Migration case study — page-specific styles
+           ============================================================ */
+        .lsm-page {
+            --lsm-accent: #0066cc;
+            --lsm-accent-dark: #004080;
+            --lsm-navy: #0f2a5c;
+            --lsm-ink: #1a2233;
+            --lsm-muted: #556078;
+            --lsm-faint: #8c93a8;
+            --lsm-surface: #ffffff;
+            --lsm-surface-alt: #f6f8fc;
+            --lsm-rule: #e2e8f0;
+            --lsm-rule-strong: #cbd5e1;
+            --lsm-good: #166534;
+            --lsm-warn: #a16207;
+            --lsm-warn-soft: #fef3c7;
+            --lsm-crit: #991b1b;
+            --lsm-crit-soft: #fee2e2;
+            --lsm-ph: #92400e;
+            --lsm-ph-soft: #fef3c7;
+            --lsm-code-bg: #0f172a;
+            --lsm-code-fg: #e6f0ff;
+            --lsm-code-key: #93c5fd;
+            --lsm-code-str: #fcd34d;
+            --lsm-code-comment: #94a3b8;
+        }
+
+        /* Reset the global section rule from styles.css */
+        .lsm-page section {
+            background: transparent;
+            box-shadow: none;
+            border: 0;
+            border-radius: 0;
+            margin: 0 auto;
+            padding: 0;
+            max-width: none;
+            animation: none;
+        }
+
+        /* Hero */
+        .lsm-page section.lsm-hero {
+            background: linear-gradient(135deg, #0f1b3d 0%, #1b3a6b 55%, #0f6b7a 100%);
+            color: #fff;
+            padding: 56px 24px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .lsm-hero .container { max-width: 1120px; margin: 0 auto; padding: 0; }
+        body.lsm-page .lsm-hero :is(h1, .lede, .eyebrow, .scope-note, .scope-note strong, .scope-note em) { color: #fff; }
+        .lsm-hero .eyebrow {
+            font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+            color: #a7cce8 !important; margin-bottom: 10px; font-weight: 700;
+        }
+        .lsm-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.2; letter-spacing: -0.01em;
+            margin: 0 0 12px; color: #fff; font-weight: 700;
+        }
+        .lsm-hero .lede {
+            font-size: 1.05rem; color: #ffffff; max-width: 72ch;
+            line-height: 1.6; font-weight: 500; margin: 0 0 20px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        }
+        .lsm-hero .scope-note {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(94,234,212,0.4);
+            border-left: 4px solid #5eead4;
+            padding: 14px 18px; border-radius: 10px;
+            font-size: 0.94rem; line-height: 1.6; max-width: 72ch;
+        }
+        body.lsm-page .lsm-hero .scope-note strong { color: #5eead4 !important; font-weight: 700; }
+        body.lsm-page .lsm-hero .scope-note em { color: #fcd34d !important; font-style: italic; font-weight: 600; }
+
+        /* Main */
+        .lsm-main {
+            max-width: 1120px; margin: 0 auto;
+            padding: 48px 24px 72px;
+            color: var(--lsm-ink);
+        }
+
+        /* Objective callout (prominent) */
+        .lsm-objective {
+            background: linear-gradient(135deg, #0066cc 0%, #004080 100%);
+            color: #fff;
+            padding: 26px 28px; border-radius: 12px;
+            margin-bottom: 48px;
+            box-shadow: 0 6px 20px rgba(15, 42, 92, 0.18);
+        }
+        body.lsm-page .lsm-objective :is(.k, .quote) { color: #ffffff; }
+        .lsm-objective .k {
+            font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase;
+            font-weight: 700; color: #a7cce8 !important; margin-bottom: 10px; display: block;
+        }
+        .lsm-objective .quote {
+            font-size: 1.08rem; line-height: 1.65; font-weight: 500;
+            color: #ffffff !important; margin: 0;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+        }
+
+        /* Section */
+        .lsm-sec { margin-bottom: 56px; }
+        .lsm-sec-head {
+            display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+            margin-bottom: 20px; padding-bottom: 10px;
+            border-bottom: 2px solid var(--lsm-rule);
+        }
+        .lsm-sec-num {
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.75rem; letter-spacing: 1.5px; font-weight: 700;
+            color: var(--lsm-accent);
+        }
+        .lsm-sec h2 {
+            flex: 1; min-width: 0; margin: 0;
+            font-size: 1.5rem; color: var(--lsm-navy); font-weight: 700;
+            letter-spacing: -0.01em; line-height: 1.2;
+        }
+        .lsm-sec-sub {
+            font-size: 0.82rem; color: var(--lsm-muted); font-style: italic;
+        }
+        .lsm-lede {
+            font-size: 1rem; color: var(--lsm-muted); max-width: 76ch;
+            margin: 0 0 20px; line-height: 1.65;
+        }
+        .lsm-sec p { margin: 0 0 12px; line-height: 1.65; color: var(--lsm-ink); max-width: 76ch; }
+
+        /* Placeholder marker */
+        .lsm-ph {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--lsm-ph-soft);
+            border: 1px dashed var(--lsm-warn);
+            border-radius: 4px;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.82rem;
+            color: var(--lsm-ph);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+        .lsm-ph::before { content: "⚐ "; opacity: 0.8; }
+
+        /* Panels */
+        .lsm-panel {
+            background: var(--lsm-surface);
+            border: 1px solid var(--lsm-rule);
+            border-radius: 10px;
+            padding: 22px 24px;
+            box-shadow: 0 1px 3px rgba(15, 42, 92, 0.06);
+        }
+        .lsm-panel h3 {
+            margin: 0 0 12px; font-size: 1.1rem; color: var(--lsm-navy); font-weight: 700;
+        }
+        .lsm-panel p { color: var(--lsm-ink); line-height: 1.65; margin: 0 0 10px; }
+        .lsm-panel p:last-child { margin-bottom: 0; }
+
+        /* Risk list — two columns on desktop */
+        .lsm-risks {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px;
+            padding: 0; margin: 0 0 16px; list-style: none;
+        }
+        @media (max-width: 720px) { .lsm-risks { grid-template-columns: 1fr; } }
+        .lsm-risks li {
+            padding: 10px 14px 10px 36px;
+            background: var(--lsm-surface);
+            border: 1px solid var(--lsm-rule);
+            border-left: 3px solid var(--lsm-warn);
+            border-radius: 6px;
+            position: relative;
+            font-size: 0.94rem;
+            color: var(--lsm-ink); line-height: 1.5;
+        }
+        .lsm-risks li::before {
+            content: "⚠";
+            position: absolute; left: 12px; top: 10px;
+            color: var(--lsm-warn); font-weight: 700;
+        }
+        .lsm-risks li strong { color: var(--lsm-navy); font-weight: 700; display: block; margin-bottom: 2px; }
+
+        /* My Role checklist */
+        .lsm-role-list {
+            list-style: none; padding: 0; margin: 0;
+            display: grid; gap: 14px;
+            counter-reset: lsm-role;
+        }
+        .lsm-role-list li {
+            display: grid; grid-template-columns: 44px 1fr; gap: 14px;
+            counter-increment: lsm-role;
+            padding: 16px 18px;
+            background: var(--lsm-surface);
+            border: 1px solid var(--lsm-rule);
+            border-left: 4px solid var(--lsm-good);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(15, 42, 92, 0.06);
+        }
+        .lsm-role-list li::before {
+            content: counter(lsm-role);
+            width: 32px; height: 32px;
+            background: var(--lsm-good);
+            color: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.95rem;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+        }
+        .lsm-role-list h4 {
+            margin: 2px 0 6px; font-size: 1rem; color: var(--lsm-navy); font-weight: 700;
+        }
+        .lsm-role-list p { margin: 0; color: var(--lsm-muted); line-height: 1.55; font-size: 0.94rem; }
+        .lsm-role-list .badge-confirmed {
+            display: inline-block;
+            background: #dcfce7; color: var(--lsm-good);
+            padding: 2px 8px; border-radius: 4px;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+            margin-left: 8px;
+        }
+
+        /* SVG diagram wrapper */
+        .lsm-diagram {
+            background: var(--lsm-surface);
+            border: 1px solid var(--lsm-rule);
+            border-radius: 10px;
+            padding: 24px;
+            overflow-x: auto;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(15, 42, 92, 0.06);
+        }
+        .lsm-diagram-svg { width: 100%; min-width: 720px; height: auto; display: block; }
+        .lsm-diagram-caption {
+            margin-top: 14px; font-size: 0.82rem; color: var(--lsm-muted); font-style: italic;
+            text-align: center;
+        }
+
+        /* SQL code blocks */
+        .lsm-code {
+            background: var(--lsm-code-bg);
+            color: var(--lsm-code-fg);
+            padding: 18px 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            margin: 10px 0 16px;
+            box-shadow: 0 2px 8px rgba(15, 42, 92, 0.1);
+        }
+        body.lsm-page .lsm-code,
+        body.lsm-page .lsm-code pre,
+        body.lsm-page .lsm-code code { color: var(--lsm-code-fg); }
+        .lsm-code pre { margin: 0; }
+        .lsm-code .k { color: var(--lsm-code-key); font-weight: 600; }
+        .lsm-code .s { color: var(--lsm-code-str); }
+        .lsm-code .c { color: var(--lsm-code-comment); font-style: italic; }
+        .lsm-code-label {
+            display: inline-block;
+            font-family: "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--lsm-warn);
+            background: var(--lsm-warn-soft);
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        /* Methodology steps */
+        .lsm-method-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 820px) { .lsm-method-grid { grid-template-columns: 1fr; } }
+        .lsm-method-grid .lsm-panel h3 {
+            display: flex; align-items: center; gap: 10px;
+        }
+        .lsm-method-grid .lsm-panel h3::before {
+            content: "";
+            display: inline-block;
+            width: 10px; height: 10px;
+            background: var(--lsm-accent);
+            border-radius: 50%;
+        }
+        .lsm-method-grid .lsm-panel ul {
+            padding: 0; margin: 0; list-style: none;
+            display: grid; gap: 6px;
+        }
+        .lsm-method-grid .lsm-panel li {
+            padding-left: 18px; position: relative;
+            color: var(--lsm-ink); font-size: 0.92rem; line-height: 1.5;
+        }
+        .lsm-method-grid .lsm-panel li::before {
+            content: "▸"; position: absolute; left: 0; color: var(--lsm-accent); font-weight: 700;
+        }
+
+        /* Takeaways */
+        .lsm-takeaways {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;
+            list-style: none; padding: 0; margin: 0;
+        }
+        .lsm-takeaways li {
+            padding: 16px 18px;
+            background: var(--lsm-surface-alt);
+            border: 1px solid var(--lsm-rule);
+            border-top: 3px solid var(--lsm-accent);
+            border-radius: 8px;
+            font-size: 0.94rem; color: var(--lsm-ink); line-height: 1.55;
+        }
+        .lsm-takeaways li strong { display: block; color: var(--lsm-navy); font-weight: 700; margin-bottom: 6px; }
+
+        /* Governance labelled block */
+        .lsm-gov-note {
+            margin-top: 14px; padding: 14px 18px;
+            background: var(--lsm-warn-soft);
+            border-left: 3px solid var(--lsm-warn);
+            border-radius: 6px;
+            font-size: 0.92rem; color: var(--lsm-ink); line-height: 1.6;
+        }
+        .lsm-gov-note strong { color: var(--lsm-warn); font-weight: 700; }
+
+        /* Cross-link to test plan */
+        .lsm-crosslink {
+            margin-top: 48px;
+            background: linear-gradient(135deg, #0f1b3d 0%, #1b3a6b 100%);
+            color: #fff;
+            padding: 28px 32px; border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 16px;
+            box-shadow: 0 6px 20px rgba(15, 42, 92, 0.18);
+        }
+        body.lsm-page .lsm-crosslink :is(h3, p) { color: #fff; }
+        .lsm-crosslink h3 { margin: 0 0 6px; font-size: 1.2rem; font-weight: 700; }
+        .lsm-crosslink p { margin: 0; color: #d7e5f2 !important; max-width: 56ch; font-size: 0.94rem; line-height: 1.5; }
+        .lsm-crosslink a {
+            display: inline-block;
+            background: #5eead4; color: #0f1b3d !important;
+            padding: 12px 22px; border-radius: 999px;
+            font-weight: 700; text-decoration: none;
+            font-size: 0.94rem; white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(94, 234, 212, 0.3);
+            transition: transform 0.15s ease;
+        }
+        .lsm-crosslink a:hover { transform: translateY(-2px); }
+
+        @media print {
+            .lsm-hero, .lsm-objective, .lsm-crosslink {
+                background: #0f2a5c !important; color: #fff !important;
+                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+            .lsm-sec, .lsm-diagram, .lsm-panel { page-break-inside: avoid; }
+            .main-nav { display: none; }
+        }
+    </style>
+</head>
+
+<body class="portfolio-page lsm-page">
+    <header>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="vineet.png" alt="Vineet Kumar profile picture"
+                style="width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
+                <span>+1 437-428-2199 &nbsp;&nbsp;|&nbsp;&nbsp; contactkrvineet@gmail.com</span>
+            </div>
+        </div>
+        <nav class="main-nav" aria-label="Primary">
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="primary-nav">
+                <span class="menu-label">Menu</span>
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="casestudy.html" aria-current="page">Case Studies</a></li>
+                <li><a href="test-manager-dashboard.html">QE Dashboard</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="featuredproject.html">Featured Projects</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="lsm-hero">
+        <div class="container">
+            <div class="eyebrow">Case Study · Legacy System Migration</div>
+            <h1>Legacy System Migration — Data Validation, Data Reconciliation &amp; Quality Engineering</h1>
+            <p class="lede">A legacy source-to-target migration where I personally performed data profiling, record-count
+                reconciliation and field-level validation to help answer one question: <em>did the right data arrive, correctly,
+                in the right place?</em></p>
+            <div class="scope-note">
+                <strong>How to read this case study.</strong> This is a <em>real engagement</em>. Specific client, source and
+                target platform names, industry details, migration architecture, team size and final outcome are
+                <em>deliberately not stated</em> and are marked as placeholders throughout — I will confirm them individually in
+                an interview. Confirmed hands-on activities are called out explicitly. Governance, test-plan and management
+                content on the companion page are presented as <em>proposed methodology</em>, not as a claim that I executed
+                every activity.
+            </div>
+        </div>
+    </section>
+
+    <main class="lsm-main">
+
+        <!-- ===== OBJECTIVE (prominent) ===== -->
+        <div class="lsm-objective">
+            <span class="k">Project Objective</span>
+            <p class="quote">The objective was to validate the <strong>completeness, accuracy, and consistency</strong> of data
+                transferred from the source database to the target database through data profiling, record-count
+                reconciliation, and field-level validation. The validation activities were intended to identify discrepancies,
+                investigate variances, and provide evidence of data integrity against agreed requirements and transformation
+                rules.</p>
+        </div>
+
+        <!-- ===== A. PROJECT OVERVIEW ===== -->
+        <section class="lsm-sec">
+            <div class="lsm-sec-head">
+                <span class="lsm-sec-num">A</span>
+                <h2>Project overview</h2>
+                <span class="lsm-sec-sub">Context &amp; business situation</span>
+            </div>
+            <p>An existing <span class="lsm-ph">[Confirm: source system / platform &amp; version]</span> was planned to be
+                migrated to a <span class="lsm-ph">[Confirm: target system / platform &amp; version]</span>. The business driver
+                was <span class="lsm-ph">[Confirm: regulatory, modernization, consolidation, vendor change, cost, or other]</span>,
+                and the migration covered <span class="lsm-ph">[Confirm: scope — subset of tables, full database, specific
+                business domain]</span>.</p>
+            <p>Because downstream consumers &mdash; reports, operational workflows and integrated systems &mdash; depended on the
+                migrated data, <strong>data integrity became a primary quality concern</strong>. The migration workstream
+                required an independent QE validation stream to establish, with evidence, whether the data arriving in the target
+                matched expectations and transformation rules agreed with the business and the migration engineering team.</p>
+            <p>My engagement focused on the <strong>SQL-based validation</strong> part of that workstream: profiling the source,
+                reconciling record counts between source and target, and performing field-level reconciliation against the
+                agreed mapping.</p>
+        </section>
+
+        <!-- ===== C. RISKS ===== -->
+        <section class="lsm-sec">
+            <div class="lsm-sec-head">
+                <span class="lsm-sec-num">C</span>
+                <h2>Migration challenge &amp; quality risks</h2>
+                <span class="lsm-sec-sub">What a validation workstream must address</span>
+            </div>
+            <p class="lsm-lede">Any legacy migration carries a predictable set of data-quality risks. The list below shows the
+                risks a validation workstream should <em>plan to cover</em>. Which of these actually materialised on this
+                project &mdash; and how we investigated them &mdash; I describe behind the placeholders in sections D and F.</p>
+            <ul class="lsm-risks" aria-label="Typical migration quality risks">
+                <li><strong>Records missing from target</strong>Rows in the source that never arrived &mdash; filtered,
+                    dropped, or lost in-flight.</li>
+                <li><strong>Unexpected record-count differences</strong>Counts don&rsquo;t reconcile at expected grain.
+                    Agreed exclusions and transformations have to be accounted for first.</li>
+                <li><strong>Duplicate business keys</strong>Same key appearing more than once in either side; corrupts
+                    joins and downstream aggregates.</li>
+                <li><strong>Field-level mismatches</strong>Row exists in both sides but a given field disagrees &mdash; wrong
+                    value, wrong format, wrong casing.</li>
+                <li><strong>Incorrect transformations or mappings</strong>Mapping specification applied incorrectly, or
+                    the mapping itself is wrong against business intent.</li>
+                <li><strong>Null-handling and data-type differences</strong>Nulls in source becoming empty strings in
+                    target (or vice versa); precision, scale and date-type drift.</li>
+                <li><strong>Existing source-data quality issues</strong>Pre-existing dirty data that migrates faithfully but
+                    was never valid; needs explicit decision on carry-forward vs clean-up.</li>
+                <li><strong>Referential-integrity problems</strong>Child records in target with no parent; orphaned
+                    foreign keys; broken lookup chains.</li>
+                <li><strong>Incorrect business aggregates / reports</strong>Row-level data looks right but downstream
+                    sums, averages or counts are wrong because of grain, filter or join differences.</li>
+            </ul>
+            <div class="lsm-gov-note">
+                <strong>Illustrative, not exhaustive.</strong> Which of these risks were in scope for this project, and which
+                were formally planned for by other workstreams, is on the companion
+                <a href="legacy-system-migration-test-plan.html">End-to-End Migration Test Plan</a>.
+            </div>
+        </section>
+
+        <!-- ===== D. MY ROLE ===== -->
+        <section class="lsm-sec">
+            <div class="lsm-sec-head">
+                <span class="lsm-sec-num">D</span>
+                <h2>My role &amp; responsibilities</h2>
+                <span class="lsm-sec-sub">Confirmed hands-on contribution</span>
+            </div>
+            <p class="lsm-lede">The activities below are what <strong>I personally executed</strong> on this project. Items
+                beyond this list &mdash; migration architecture, ETL authoring, production cutover, programme management &mdash;
+                belong to other workstreams or roles.</p>
+            <ol class="lsm-role-list">
+                <li>
+                    <div>
+                        <h4>Hands-on data profiling <span class="badge-confirmed">Confirmed</span></h4>
+                        <p>I ran SQL queries against the source database to establish a baseline of what the data actually
+                            looked like &mdash; completeness, distributions, nulls, duplicates, out-of-range values &mdash;
+                            before any comparison with the target. Profiling results informed the mapping conversations and
+                            flagged pre-existing quality issues that needed an explicit carry-forward or clean-up decision.</p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>Source-to-target record-count validation <span class="badge-confirmed">Confirmed</span></h4>
+                        <p>I compared row counts between source and target at the grain agreed with the migration team
+                            &mdash; whole table, by business key, by load date, by partition. I did not treat a count match
+                            as proof of correctness; mismatches became investigation items with a specific root-cause
+                            question attached to each.</p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>Field-level data reconciliation <span class="badge-confirmed">Confirmed</span></h4>
+                        <p>I compared corresponding fields in matched source and target records against the agreed mapping
+                            and transformation rules. The reconciliation accounted for data-type differences, null handling,
+                            date and precision rules, and any business transformations expected on the path from source to
+                            target.</p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>Reviewing validation results &amp; investigating discrepancies
+                            <span class="badge-confirmed">Confirmed, to the extent noted below</span>
+                        </h4>
+                        <p>Where SQL profiling and reconciliation surfaced discrepancies, I investigated them against the
+                            source data, the mapping specification and (where applicable) the ETL behaviour, and worked with
+                            the migration engineering team on the specific items I raised.
+                            <span class="lsm-ph">[Confirm: ownership of defect triage, escalation path, final sign-off
+                            authority]</span>.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- ===== E. TECHNICAL EXECUTION ===== -->
+        <section class="lsm-sec">
+            <div class="lsm-sec-head">
+                <span class="lsm-sec-num">E</span>
+                <h2>Technical execution</h2>
+                <span class="lsm-sec-sub">Methodology behind each confirmed activity</span>
+            </div>
+
+            <!-- Diagram -->
+            <div class="lsm-diagram">
+                <svg class="lsm-diagram-svg" viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg"
+                    font-family="Segoe UI, Tahoma, sans-serif">
+                    <!-- Source -->
+                    <rect x="30" y="60" width="180" height="100" rx="10" fill="#f6f8fc" stroke="#0066cc" stroke-width="2"/>
+                    <text x="120" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">SOURCE SYSTEM</text>
+                    <text x="120" y="112" text-anchor="middle" font-size="11" fill="#556078" font-style="italic">
+                        [Confirm: platform]
+                    </text>
+                    <text x="120" y="134" text-anchor="middle" font-size="11" fill="#556078">Legacy database</text>
+                    <text x="120" y="150" text-anchor="middle" font-size="11" fill="#556078">tables &amp; records</text>
+
+                    <!-- Migration/transform layer -->
+                    <rect x="290" y="60" width="240" height="100" rx="10" fill="#eef4ff" stroke="#0f2a5c" stroke-width="2" stroke-dasharray="4,3"/>
+                    <text x="410" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">MIGRATION &amp; TRANSFORM</text>
+                    <text x="410" y="112" text-anchor="middle" font-size="11" fill="#556078" font-style="italic">
+                        [Confirm: tool / architecture]
+                    </text>
+                    <text x="410" y="134" text-anchor="middle" font-size="11" fill="#556078">Extract · Transform · Load</text>
+                    <text x="410" y="150" text-anchor="middle" font-size="11" fill="#556078">with mapping rules</text>
+
+                    <!-- Target -->
+                    <rect x="610" y="60" width="180" height="100" rx="10" fill="#f6f8fc" stroke="#0066cc" stroke-width="2"/>
+                    <text x="700" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2a5c">TARGET SYSTEM</text>
+                    <text x="700" y="112" text-anchor="middle" font-size="11" fill="#556078" font-style="italic">
+                        [Confirm: platform]
+                    </text>
+                    <text x="700" y="134" text-anchor="middle" font-size="11" fill="#556078">New database</text>
+                    <text x="700" y="150" text-anchor="middle" font-size="11" fill="#556078">tables &amp; records</text>
+
+                    <!-- Arrows -->
+                    <path d="M 210 110 L 290 110" stroke="#0066cc" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M 530 110 L 610 110" stroke="#0066cc" stroke-width="2" marker-end="url(#arrow)"/>
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                            <path d="M0,0 L0,6 L8,3 z" fill="#0066cc"/>
+                        </marker>
+                    </defs>
+
+                    <!-- Validation layer label -->
+                    <text x="410" y="200" text-anchor="middle" font-size="11" font-weight="700" fill="#166534" letter-spacing="1.5">
+                        QE VALIDATION — SQL-BASED, HANDS-ON
+                    </text>
+                    <line x1="120" y1="180" x2="120" y2="215" stroke="#166534" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <line x1="410" y1="208" x2="410" y2="215" stroke="#166534" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <line x1="700" y1="180" x2="700" y2="215" stroke="#166534" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+                    <!-- Three validation layers below -->
+                    <rect x="30" y="220" width="240" height="80" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+                    <text x="150" y="245" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">1. Data profiling</text>
+                    <text x="150" y="265" text-anchor="middle" font-size="10.5" fill="#1a2233">Baseline source quality:</text>
+                    <text x="150" y="280" text-anchor="middle" font-size="10.5" fill="#1a2233">nulls, duplicates, distributions</text>
+
+                    <rect x="290" y="220" width="240" height="80" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+                    <text x="410" y="245" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">2. Record-count reconciliation</text>
+                    <text x="410" y="265" text-anchor="middle" font-size="10.5" fill="#1a2233">Source vs target at agreed grain,</text>
+                    <text x="410" y="280" text-anchor="middle" font-size="10.5" fill="#1a2233">with filters &amp; exclusions</text>
+
+                    <rect x="550" y="220" width="240" height="80" rx="8" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+                    <text x="670" y="245" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">3. Field-level reconciliation</text>
+                    <text x="670" y="265" text-anchor="middle" font-size="10.5" fill="#1a2233">Matched rows on business key,</text>
+                    <text x="670" y="280" text-anchor="middle" font-size="10.5" fill="#1a2233">field-by-field against mapping</text>
+                </svg>
+                <p class="lsm-diagram-caption">Source → Transform → Target, with the three SQL-based validation layers I
+                    personally executed shown below the pipeline.</p>
+            </div>
+
+            <!-- Methodology detail per activity -->
+            <div class="lsm-method-grid">
+                <div class="lsm-panel">
+                    <h3>Data profiling</h3>
+                    <ul>
+                        <li>Establish data-quality baselines against the source</li>
+                        <li>Examine completeness, distributions and relevant anomalies</li>
+                        <li>Identify potential nulls, duplicates and invalid values where applicable</li>
+                        <li>Document pre-existing issues the migration cannot be expected to fix</li>
+                    </ul>
+                </div>
+                <div class="lsm-panel">
+                    <h3>Record-count reconciliation</h3>
+                    <ul>
+                        <li>Compare source and target populations at an appropriate level</li>
+                        <li>Account for agreed filters, exclusions and transformation rules</li>
+                        <li>Investigate differences rather than rely on matching totals</li>
+                        <li>Track the explanation (not just the delta) for every mismatch</li>
+                    </ul>
+                </div>
+                <div class="lsm-panel">
+                    <h3>Field-level reconciliation</h3>
+                    <ul>
+                        <li>Compare corresponding fields using suitable business keys</li>
+                        <li>Validate mappings and expected transformations</li>
+                        <li>Account for nulls, data types, precision, dates and business rules</li>
+                        <li>Classify discrepancies as mapping, transform, data-quality or source</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Illustrative SQL -->
+            <h3 style="margin:28px 0 10px; font-size:1.05rem; color:var(--lsm-navy);">Illustrative SQL &mdash; not actual project queries</h3>
+            <p class="lsm-lede">Query shapes a QE engineer would typically run during each layer. These are <strong>illustrative
+                examples</strong>, not the actual queries used on this project; schema and table names are fictional.</p>
+
+            <span class="lsm-code-label">Example 1 · profiling nulls &amp; distinct values</span>
+            <div class="lsm-code"><pre><span class="c">-- Profile a key source column: completeness, cardinality, distribution</span>
+<span class="k">SELECT</span>
+    <span class="k">COUNT</span>(*)                              <span class="k">AS</span> total_rows,
+    <span class="k">COUNT</span>(customer_id)                    <span class="k">AS</span> non_null_rows,
+    <span class="k">COUNT</span>(*) - <span class="k">COUNT</span>(customer_id)       <span class="k">AS</span> null_rows,
+    <span class="k">COUNT</span>(<span class="k">DISTINCT</span> customer_id)         <span class="k">AS</span> distinct_values,
+    <span class="k">MIN</span>(customer_id)                      <span class="k">AS</span> min_val,
+    <span class="k">MAX</span>(customer_id)                      <span class="k">AS</span> max_val
+<span class="k">FROM</span>   src_customers;</pre></div>
+
+            <span class="lsm-code-label">Example 2 · source vs target row-count reconciliation</span>
+            <div class="lsm-code"><pre><span class="c">-- Expect zero-row result if counts match at the agreed grain</span>
+<span class="k">WITH</span> src <span class="k">AS</span> (
+    <span class="k">SELECT</span> <span class="s">'customers'</span> <span class="k">AS</span> entity, <span class="k">COUNT</span>(*) <span class="k">AS</span> src_cnt <span class="k">FROM</span> src_customers
+    <span class="k">WHERE</span> status <span class="k">IN</span> (<span class="s">'ACTIVE'</span>, <span class="s">'DORMANT'</span>)      <span class="c">-- agreed migration filter</span>
+), tgt <span class="k">AS</span> (
+    <span class="k">SELECT</span> <span class="s">'customers'</span> <span class="k">AS</span> entity, <span class="k">COUNT</span>(*) <span class="k">AS</span> tgt_cnt <span class="k">FROM</span> tgt_customer
+)
+<span class="k">SELECT</span>  src.entity,
+        src.src_cnt,
+        tgt.tgt_cnt,
+        tgt.tgt_cnt - src.src_cnt <span class="k">AS</span> delta
+<span class="k">FROM</span>    src <span class="k">JOIN</span> tgt <span class="k">ON</span> src.entity = tgt.entity
+<span class="k">WHERE</span>   src.src_cnt &lt;&gt; tgt.tgt_cnt;</pre></div>
+
+            <span class="lsm-code-label">Example 3 · duplicate business-key check</span>
+            <div class="lsm-code"><pre><span class="c">-- Business key must be unique in target; any row returned = defect</span>
+<span class="k">SELECT</span>  customer_id, <span class="k">COUNT</span>(*) <span class="k">AS</span> occurrences
+<span class="k">FROM</span>    tgt_customer
+<span class="k">GROUP</span> <span class="k">BY</span> customer_id
+<span class="k">HAVING</span>  <span class="k">COUNT</span>(*) &gt; 1;</pre></div>
+
+            <span class="lsm-code-label">Example 4 · field-level reconciliation on matched keys</span>
+            <div class="lsm-code"><pre><span class="c">-- Join on the agreed business key; return any field-level mismatch</span>
+<span class="c">-- NULL-safe comparisons prevent false negatives when both sides are NULL</span>
+<span class="k">SELECT</span>  s.customer_id,
+        s.email       <span class="k">AS</span> src_email,
+        t.email       <span class="k">AS</span> tgt_email,
+        s.last_name   <span class="k">AS</span> src_lname,
+        t.last_name   <span class="k">AS</span> tgt_lname,
+        s.updated_at  <span class="k">AS</span> src_updated,
+        t.updated_at  <span class="k">AS</span> tgt_updated
+<span class="k">FROM</span>    src_customers s
+<span class="k">JOIN</span>    tgt_customer  t <span class="k">ON</span> s.customer_id = t.customer_id
+<span class="k">WHERE</span>   <span class="k">COALESCE</span>(s.email,      <span class="s">''</span>) &lt;&gt; <span class="k">COALESCE</span>(t.email,      <span class="s">''</span>)
+   <span class="k">OR</span>   <span class="k">COALESCE</span>(s.last_name,  <span class="s">''</span>) &lt;&gt; <span class="k">COALESCE</span>(t.last_name,  <span class="s">''</span>)
+   <span class="k">OR</span>   <span class="k">COALESCE</span>(s.updated_at, <span class="s">'1900-01-01'</span>) &lt;&gt;
+       <span class="k">COALESCE</span>(t.updated_at, <span class="s">'1900-01-01'</span>);</pre></div>
+
+            <span class="lsm-code-label">Example 5 · referential-integrity probe</span>
+            <div class="lsm-code"><pre><span class="c">-- Orphans: child rows in target whose parent didn't migrate</span>
+<span class="k">SELECT</span>  o.order_id, o.customer_id
+<span class="k">FROM</span>    tgt_order o
+<span class="k">LEFT</span>   <span class="k">JOIN</span> tgt_customer c <span class="k">ON</span> o.customer_id = c.customer_id
+<span class="k">WHERE</span>   c.customer_id <span class="k">IS</span> <span class="k">NULL</span>;</pre></div>
+        </section>
+
+        <!-- ===== F. RESULTS, EVIDENCE, LESSONS LEARNED ===== -->
+        <section class="lsm-sec">
+            <div class="lsm-sec-head">
+                <span class="lsm-sec-num">F</span>
+                <h2>Results, evidence &amp; lessons learned</h2>
+                <span class="lsm-sec-sub">To be confirmed with specifics</span>
+            </div>
+            <p class="lsm-lede">Validation generated structured evidence &mdash; profiling summaries, source-vs-target count
+                reconciliations, field-level diff reports and documented exceptions. Specific project numbers and the final
+                acceptance decision are intentionally held back here and marked for confirmation.</p>
+
+            <div class="lsm-panel">
+                <h3>Evidence produced during the engagement</h3>
+                <ul style="padding-left:20px; margin:0; line-height:1.65;">
+                    <li>Source-side profiling results across each in-scope entity (completeness, distributions, anomalies)</li>
+                    <li>Source-vs-target record-count reconciliation reports at the agreed grain, with filters applied</li>
+                    <li>Field-level reconciliation reports for matched rows against the mapping specification</li>
+                    <li>Documented exceptions &mdash; discrepancies, their classification and their investigation state</li>
+                </ul>
+            </div>
+
+            <h3 style="margin:24px 0 10px; font-size:1.05rem; color:var(--lsm-navy);">To confirm in interview</h3>
+            <ul style="padding-left:20px; margin:0 0 16px; line-height:1.75; color:var(--lsm-ink);">
+                <li>Tables / entities validated: <span class="lsm-ph">[Confirm: count]</span></li>
+                <li>Approximate record volume (if disclosable): <span class="lsm-ph">[Confirm: order of magnitude]</span></li>
+                <li>Types of discrepancies identified: <span class="lsm-ph">[Confirm: mapping, transform, data-quality,
+                    source-side]</span></li>
+                <li>How discrepancies were investigated / resolved: <span class="lsm-ph">[Confirm: triage path and
+                    collaborators]</span></li>
+                <li>Final acceptance outcome: <span class="lsm-ph">[Confirm: outcome &mdash; passed, conditional, deferred,
+                    etc.]</span></li>
+                <li>Lessons learned: <span class="lsm-ph">[Confirm: two or three specific lessons from this engagement]</span>
+                </li>
+            </ul>
+            <div class="lsm-gov-note">
+                <strong>Honesty note.</strong> I will not list numbers for these items on a public page without the evidence to
+                back them up. Evidence <em>produced</em> is not evidence of a <em>successful outcome</em>; the two are separate
+                claims and both need to be defensible.
+            </div>
+        </section>
+
+        <!-- ===== G. GOVERNANCE ===== -->
+        <section class="lsm-sec">
+            <div class="lsm-sec-head">
+                <span class="lsm-sec-num">G</span>
+                <h2>Quality governance &amp; business significance</h2>
+                <span class="lsm-sec-sub">Proposed practices, labelled</span>
+            </div>
+            <p>Data validation evidence does more than confirm individual records. In a migration programme it feeds
+                <strong>defect triage</strong>, <strong>risk assessment</strong>, <strong>acceptance decisions</strong> and
+                <strong>release-readiness reporting</strong> to leadership. Profiling results shape the mapping conversation;
+                reconciliation reports gate the next cut-over rehearsal; exception logs become the backlog for the
+                migration-engineering team and the business owners who sign off.</p>
+            <div class="lsm-gov-note">
+                <strong>Scope label.</strong> The governance activities above describe <em>proposed practices</em> &mdash; how
+                validation evidence <em>should</em> inform management decisions on a well-run migration. They are not a claim
+                that I personally owned release governance, defect triage authority, acceptance sign-off or stakeholder reporting
+                on this specific project unless confirmed in <span class="lsm-ph">[Confirm: governance scope]</span>.
+                The companion <a href="legacy-system-migration-test-plan.html">end-to-end test plan</a> expands this governance
+                layer at Test Manager level.
+            </div>
+        </section>
+
+        <!-- ===== H. KEY TAKEAWAYS ===== -->
+        <section class="lsm-sec">
+            <div class="lsm-sec-head">
+                <span class="lsm-sec-num">H</span>
+                <h2>Key takeaways</h2>
+                <span class="lsm-sec-sub">The value of combining these practices</span>
+            </div>
+            <ul class="lsm-takeaways">
+                <li><strong>SQL-based technical validation</strong>Hands-on queries beat opinions. The data either reconciles or
+                    it doesn&rsquo;t, and the reasons become inspectable.</li>
+                <li><strong>Structured reconciliation evidence</strong>Count matches, field-level diffs and exception logs
+                    become the audit trail a release decision rests on.</li>
+                <li><strong>Risk-based testing</strong>Scope validation effort against where mapping complexity, business
+                    criticality and historical data quality concentrate.</li>
+                <li><strong>Clear ownership of data discrepancies</strong>Every exception has a classification, an owner and a
+                    next step. &ldquo;Looks wrong&rdquo; is not a status.</li>
+                <li><strong>Evidence-based migration acceptance</strong>Acceptance decisions turn on documented evidence, not on
+                    whether the ETL job ran green.</li>
+            </ul>
+        </section>
+
+        <!-- ===== Cross-link to test plan ===== -->
+        <aside class="lsm-crosslink">
+            <div>
+                <h3>Explore the end-to-end migration test plan</h3>
+                <p>See how the migration validation work fits into a broader testing strategy covering scope, risk,
+                    reconciliation, resources, cutover readiness and release decisions.</p>
+            </div>
+            <a href="legacy-system-migration-test-plan.html">Open the test plan →</a>
+        </aside>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Vineet Kumar</p>
+        <p style="font-size:0.85rem;opacity:0.75;">Views and projects on this site are my own and do not represent my employer.
+            Case-study specifics generalised for client confidentiality; placeholders marked where personal confirmation is
+            required.</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/contactkrvineet" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
