@@ -67,11 +67,11 @@
             --lsm-crit-soft: #fee2e2;
             --lsm-ph: #92400e;
             --lsm-ph-soft: #fef3c7;
-            --lsm-code-bg: #0f172a;
-            --lsm-code-fg: #e6f0ff;
-            --lsm-code-key: #93c5fd;
-            --lsm-code-str: #fcd34d;
-            --lsm-code-comment: #94a3b8;
+            --lsm-code-bg: #0b1222;
+            --lsm-code-fg: #ffffff;
+            --lsm-code-key: #bfdbfe;
+            --lsm-code-str: #fde68a;
+            --lsm-code-comment: #cbd5e1;
         }
 
         /* Reset the global section rule from styles.css */
@@ -277,26 +277,29 @@
             text-align: center;
         }
 
-        /* SQL code blocks */
+        /* SQL code blocks — high contrast for readability on the dark background */
         .lsm-code {
             background: var(--lsm-code-bg);
             color: var(--lsm-code-fg);
-            padding: 18px 20px;
+            padding: 20px 22px;
             border-radius: 10px;
             overflow-x: auto;
             font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-            font-size: 0.88rem;
-            line-height: 1.55;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            font-weight: 500;
             margin: 10px 0 16px;
-            box-shadow: 0 2px 8px rgba(15, 42, 92, 0.1);
+            box-shadow: 0 2px 8px rgba(15, 42, 92, 0.12);
+            border: 1px solid rgba(255,255,255,0.08);
         }
+        /* body.lsm-page cascade prefix so these win over any inherited styles.css color */
         body.lsm-page .lsm-code,
         body.lsm-page .lsm-code pre,
         body.lsm-page .lsm-code code { color: var(--lsm-code-fg); }
-        .lsm-code pre { margin: 0; }
-        .lsm-code .k { color: var(--lsm-code-key); font-weight: 600; }
-        .lsm-code .s { color: var(--lsm-code-str); }
-        .lsm-code .c { color: var(--lsm-code-comment); font-style: italic; }
+        body.lsm-page .lsm-code pre { margin: 0; font-weight: 500; }
+        body.lsm-page .lsm-code .k { color: var(--lsm-code-key); font-weight: 700; }
+        body.lsm-page .lsm-code .s { color: var(--lsm-code-str); font-weight: 600; }
+        body.lsm-page .lsm-code .c { color: var(--lsm-code-comment); font-style: italic; font-weight: 500; }
         .lsm-code-label {
             display: inline-block;
             font-family: "SF Mono", Menlo, Consolas, monospace;

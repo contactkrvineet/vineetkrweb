@@ -66,11 +66,11 @@
             --tp-crit-soft: #fee2e2;
             --tp-ph: #92400e;
             --tp-ph-soft: #fef3c7;
-            --tp-code-bg: #0f172a;
-            --tp-code-fg: #e6f0ff;
-            --tp-code-key: #93c5fd;
-            --tp-code-str: #fcd34d;
-            --tp-code-comment: #94a3b8;
+            --tp-code-bg: #0b1222;
+            --tp-code-fg: #ffffff;
+            --tp-code-key: #bfdbfe;
+            --tp-code-str: #fde68a;
+            --tp-code-comment: #cbd5e1;
         }
 
         /* Section reset */
@@ -212,26 +212,29 @@
         }
         .tp-timeline-svg { width: 100%; min-width: 820px; height: auto; display: block; }
 
-        /* SQL code */
+        /* SQL code — high contrast for readability on the dark background */
         .tp-code {
             background: var(--tp-code-bg);
             color: var(--tp-code-fg);
-            padding: 18px 20px;
+            padding: 20px 22px;
             border-radius: 10px;
             overflow-x: auto;
-            font-family: "SF Mono", Menlo, Consolas, monospace;
-            font-size: 0.86rem;
-            line-height: 1.55;
+            font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            font-weight: 500;
             margin: 10px 0 16px;
-            box-shadow: 0 2px 8px rgba(15, 42, 92, 0.1);
+            box-shadow: 0 2px 8px rgba(15, 42, 92, 0.12);
+            border: 1px solid rgba(255,255,255,0.08);
         }
+        /* body.lsmtp-page cascade prefix so these win over any inherited styles.css color */
         body.lsmtp-page .tp-code,
         body.lsmtp-page .tp-code pre,
         body.lsmtp-page .tp-code code { color: var(--tp-code-fg); }
-        .tp-code pre { margin: 0; }
-        .tp-code .k { color: var(--tp-code-key); font-weight: 600; }
-        .tp-code .s { color: var(--tp-code-str); }
-        .tp-code .c { color: var(--tp-code-comment); font-style: italic; }
+        body.lsmtp-page .tp-code pre { margin: 0; font-weight: 500; }
+        body.lsmtp-page .tp-code .k { color: var(--tp-code-key); font-weight: 700; }
+        body.lsmtp-page .tp-code .s { color: var(--tp-code-str); font-weight: 600; }
+        body.lsmtp-page .tp-code .c { color: var(--tp-code-comment); font-style: italic; font-weight: 500; }
         .tp-code-label {
             display: inline-block;
             font-family: "SF Mono", Menlo, Consolas, monospace;
