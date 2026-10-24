@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>Dashboards &amp; Metrics for the Senior Test Manager | Vineet Kumar</title>
-    <meta name="title" content="Dashboards &amp; Metrics for the Senior Test Manager | Vineet Kumar">
+    <title>Dashboards &amp; Metrics | Vineet Kumar</title>
+    <meta name="title" content="Dashboards &amp; Metrics | Vineet Kumar">
     <meta name="description"
-        content="A hub of the dashboards a Senior Test Manager actually opens — governance, strategy, ROI, automation effort, test plan, release readiness, defect analytics, risk, reconciliation, pilot — demonstrated across one 6-month banking + payments modernization.">
+        content="A Test Manager&rsquo;s dashboards for a hypothetical 6-month banking + payments modernization — executive summary, three Test Manager decisions, programme governance, dashboards grid, and field-level KPI specs.">
     <meta name="keywords"
         content="Test Manager dashboards, QE metrics, Test Governance, Test Strategy, QE ROI, Automation Effort, Test Plan, Release Readiness, Defect Analytics, Risk Register, Reconciliation, Pilot Rollout, Banking payments modernization, Salesforce migration, AI in QE">
     <meta name="author" content="Vineet Kumar">
@@ -19,9 +19,9 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vineetkr.com/dashboards.html">
-    <meta property="og:title" content="Dashboards &amp; Metrics for the Senior Test Manager — Vineet Kumar">
+    <meta property="og:title" content="Dashboards &amp; Metrics &mdash; Vineet Kumar">
     <meta property="og:description"
-        content="The dashboards a Senior Test Manager keeps open — demonstrated across one 6-month banking + payments modernization with AI-enabled QE.">
+        content="A Test Manager&rsquo;s dashboards against one hypothetical banking + payments modernization &mdash; executive summary, decisions, governance, and AI-enabled QE.">
     <meta property="og:image" content="https://www.vineetkr.com/vineet.png">
 
     <meta name="theme-color" content="#0066cc">
@@ -423,10 +423,135 @@
             margin-top: 8px;
         }
 
+        /* ---- Executive summary (section 1) ---- */
+        .exec-strip { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        @media (min-width: 820px) {
+            .exec-strip { grid-template-columns: 1.1fr 1fr 1fr; }
+            .exec-strip > .exec-wide { grid-column: 1 / -1; }
+        }
+        .exec-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 18px 20px;
+            box-shadow: 0 4px 12px rgba(15,23,42,.05);
+        }
+        .exec-card .k {
+            display: block;
+            font-size: .72rem; letter-spacing: 1.6px; text-transform: uppercase;
+            color: #0369a1; font-weight: 700; margin-bottom: 8px;
+        }
+        .exec-card h3 { color: #0f2a5c; font-size: 1.05rem; margin: 0 0 8px; line-height: 1.3; }
+        .exec-card p { color: #334155; font-size: .92rem; line-height: 1.55; margin: 0 0 8px; }
+        .exec-card ul { margin: 6px 0 0; padding-left: 18px; color: #334155; font-size: .9rem; line-height: 1.6; }
+        .exec-card.rag-amber { border-left-color: #f59e0b; background: #fffbeb; }
+        .exec-card.rag-amber .k { color: #92400e; }
+        .exec-card.rag-amber .rag-pill {
+            display: inline-block; background: #f59e0b; color: #fff;
+            padding: 2px 10px; border-radius: 999px; font-size: .78rem; font-weight: 700;
+            margin-left: 6px; vertical-align: middle;
+        }
+        .exec-card.decisions { border-left-color: #be185d; }
+        .exec-card.decisions .k { color: #be185d; }
+        .exec-card.decisions .d-row {
+            padding: 8px 0; border-top: 1px dashed #e2e8f0;
+            color: #334155; font-size: .92rem; line-height: 1.55;
+        }
+        .exec-card.decisions .d-row:first-of-type { border-top: 0; padding-top: 0; }
+        .exec-card.decisions .d-tag {
+            display: inline-block; background: #fce7f3; color: #9d174d;
+            border-radius: 6px; padding: 2px 8px; font-size: .78rem; font-weight: 700;
+            margin-right: 8px;
+        }
+        .exec-card.decisions .d-row strong { color: #0f2a5c; }
+        .exec-card.decisions .d-meta { display: block; color: #64748b; font-size: .82rem; margin-top: 2px; }
+
+        /* ---- Decisions (section 2) ---- */
+        .scn-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-top: 4px solid #0f2a5c;
+            border-radius: 12px;
+            padding: 22px 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 12px rgba(15,23,42,.05);
+        }
+        .scn-card h3 { color: #0f2a5c; font-size: 1.15rem; margin: 0 0 12px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+        .scn-card h3 .scn-num {
+            background: #0f2a5c; color: #fff; font-size: .78rem; font-weight: 700;
+            padding: 3px 9px; border-radius: 999px;
+        }
+        .scn-grid {
+            display: grid; grid-template-columns: 1fr; gap: 12px;
+        }
+        @media (min-width: 820px) {
+            .scn-grid { grid-template-columns: 1fr 1fr; }
+            .scn-grid .scn-reco { grid-column: 1 / -1; }
+        }
+        .scn-row {
+            background: #f8fafc; border: 1px solid #e2e8f0;
+            border-left: 3px solid #94a3b8;
+            border-radius: 8px; padding: 10px 14px;
+        }
+        .scn-row .k {
+            display: block; font-size: .72rem; letter-spacing: 1.3px; text-transform: uppercase;
+            color: #475569; font-weight: 700; margin-bottom: 4px;
+        }
+        .scn-row p { margin: 0; color: #334155; font-size: .9rem; line-height: 1.55; }
+        .scn-row ul { margin: 4px 0 0; padding-left: 18px; color: #334155; font-size: .88rem; line-height: 1.55; }
+        .scn-row.sig { border-left-color: #ef4444; }
+        .scn-row.sig .k { color: #991b1b; }
+        .scn-row.ana { border-left-color: #3b82f6; }
+        .scn-row.ana .k { color: #1e40af; }
+        .scn-row.opt { border-left-color: #a855f7; }
+        .scn-row.opt .k { color: #6b21a8; }
+        .scn-reco {
+            background: #ecfdf5; border: 1px solid #a7f3d0;
+            border-left: 4px solid #10b981;
+            border-radius: 8px; padding: 12px 16px;
+        }
+        .scn-reco .k { color: #065f46; }
+        .scn-reco strong { color: #064e3b; }
+
+        /* ---- Programme governance (section 7) ---- */
+        .gov-grid {
+            display: grid; gap: 16px;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 980px) {
+            .gov-grid { grid-template-columns: 1fr 1fr 1fr; }
+        }
+        .gov-card {
+            background: #fff; border: 1px solid #e2e8f0;
+            border-top: 4px solid #0ea5e9; border-radius: 12px;
+            padding: 18px 20px;
+        }
+        .gov-card.sign { border-top-color: #a855f7; }
+        .gov-card.recov { border-top-color: #f59e0b; }
+        .gov-card h3 { color: #0f2a5c; font-size: 1.05rem; margin: 0 0 8px; }
+        .gov-card p { color: #334155; font-size: .9rem; line-height: 1.55; margin: 0 0 8px; }
+        .gov-card ol, .gov-card ul { margin: 6px 0 0; padding-left: 18px; color: #334155; font-size: .88rem; line-height: 1.6; }
+        .gov-card li strong { color: #0f2a5c; }
+
+        /* ---- AI evaluation example block ---- */
+        .ai-eval {
+            background: #0f172a; color: #e2e8f0;
+            border-radius: 12px; padding: 20px 22px; margin-top: 18px;
+            border: 1px solid rgba(94,234,212,.35);
+        }
+        .ai-eval h3 { color: #5eead4; margin: 0 0 10px; font-size: 1.1rem; }
+        .ai-eval p { color: #cbd5e1; font-size: .92rem; margin: 0 0 10px; line-height: 1.55; }
+        .ai-eval table { width: 100%; border-collapse: collapse; font-size: .88rem; margin-top: 8px; }
+        .ai-eval th, .ai-eval td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,.1); text-align: left; color: #e2e8f0; }
+        .ai-eval th { color: #94a3b8; font-size: .76rem; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 700; }
+        .ai-eval .note { color: #fde68a; font-size: .82rem; font-style: italic; margin-top: 10px; }
+
         @media (max-width: 760px) {
             .dash-hero h1 { font-size: 1.6rem; }
             .dash-sec { padding: 36px 16px; }
             .dash-sec h2 { font-size: 1.4rem; }
+            .scn-card { padding: 16px 18px; }
         }
     </style>
 </head>
@@ -467,12 +592,14 @@
          ============================================================ -->
     <section class="dash-hero">
         <div class="container">
-            <div class="eyebrow">Illustrative hub · Senior Test Manager · Updated 2026-10-24</div>
-            <h1>Dashboards &amp; Metrics for the Senior Test Manager</h1>
-            <p class="subhead">The dashboards I actually keep open between standup, Sprint Review and the steering
-                committee &mdash; demonstrated across <strong>one 6-month banking + payments modernization</strong>
-                (<em>PayStream Legacy&nbsp;&rarr;&nbsp;Cloud</em>), a 15-member team, a 13-sprint cadence, and an AI
-                QE pod. Each tile below answers one question a Test Manager is asked.</p>
+            <div class="eyebrow">Hypothetical case study &middot; Senior Test Manager &middot; Updated 2026-10-24</div>
+            <h1>Dashboards &amp; Metrics</h1>
+            <p class="subhead">Let&rsquo;s take a hypothetical case study &mdash; a 5-month banking + payments
+                modernization called <strong>PayStream Legacy&nbsp;&rarr;&nbsp;Cloud</strong>: a 15-member team,
+                an 11-sprint cadence, a legacy COBOL/Oracle core, a cloud-native rebuild on ISO&nbsp;20022, and an
+                AI&nbsp;QE pod. The dashboards below are the ones <em>I would use to govern it</em> &mdash; not an
+                operational diary &mdash; each one answering one question a Test Manager is asked in a steering
+                review.</p>
 
             <p class="byline">
                 <span>Created by</span>
@@ -486,11 +613,12 @@
             </p>
 
             <div class="dash-sample-note">
-                <strong>Illustrative only &mdash; no real client, release or metric.</strong> PayStream, the sprint
-                numbers (Demo232 onwards), the team, the Salesforce + payment-switch scope, every date, every KPI
-                target and every risk are <em>fabricated</em> to demonstrate how I structure Test Manager reporting
-                across a modernization programme. Use the structure as a Confluence / GitLab wiki template; replace
-                the numbers with your own.
+                <strong>Hypothetical case study &mdash; no real client, release or metric.</strong> PayStream, the
+                sprint numbers (Demo232 onwards), the team, the Salesforce + payment-switch scope, every date,
+                every KPI target and every risk are <em>fabricated</em> to demonstrate how I would structure Test
+                Manager reporting across a modernization programme. The programme name, GA date (2027-02-21) and
+                pilot date (2027-01-24) match the companion <a href="test-manager-dashboard.html" style="color:#5eead4;">Test
+                Governance Metrics</a> release dashboard so the two pages tell one aligned story.
             </div>
         </div>
     </section>
@@ -506,33 +634,240 @@
             </div>
             <div class="dash-glance-item">
                 <span class="dash-glance-k">Milestone (GA)</span>
-                <span class="dash-glance-v">2027-05-10 &mdash; 6 months out</span>
+                <span class="dash-glance-v">2027-02-21 &mdash; Sprint Demo242</span>
             </div>
             <div class="dash-glance-item">
                 <span class="dash-glance-k">Pilot (canary)</span>
-                <span class="dash-glance-v">2027-03-15 &mdash; Sprint Demo242</span>
+                <span class="dash-glance-v">2027-01-24 &mdash; Sprint Demo241</span>
             </div>
             <div class="dash-glance-item">
                 <span class="dash-glance-k">Cadence</span>
-                <span class="dash-glance-v">13 sprints &times; 2 weeks (Demo232 &rarr; Demo244)</span>
+                <span class="dash-glance-v">11 sprints &times; 2 weeks (Demo232 &rarr; Demo242) &middot; closing Sprint&nbsp;2</span>
             </div>
             <div class="dash-glance-item">
                 <span class="dash-glance-k">Team</span>
                 <span class="dash-glance-v">15 members &mdash; 8 Dev / 3 QA / 1 Lead / 1 SM / 1 DevOps / 1 PM</span>
             </div>
-            <div class="dash-glance-item">
-                <span class="dash-glance-k">Stack in scope</span>
-                <span class="dash-glance-v">COBOL + Oracle &rarr; Java + Postgres &middot; Salesforce Service Cloud &middot; ISO 20022 switch</span>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 1 — EXECUTIVE SUMMARY  (60-second view)
+         ============================================================ -->
+    <section class="dash-sec" id="exec" aria-labelledby="exec-h">
+        <div class="container">
+            <h2 id="exec-h"><span class="num">1</span> Executive summary &mdash; the 60-second view</h2>
+            <p class="lede">If a steering-committee member reads nothing else on this page, this is the slide they
+                get. Business problem, current health, my Test Manager read, decisions I need, and where the
+                evidence lives.</p>
+
+            <div class="exec-strip">
+                <article class="exec-card exec-wide">
+                    <span class="k">1 &middot; Business problem &amp; release objective</span>
+                    <p>The regulator has mandated compression of the overnight reconciliation window by Q2&nbsp;2027,
+                        and the legacy COBOL/Oracle payment core is on vendor runout with no defect-fix path. The
+                        programme replaces it with a cloud-native payments platform (Java + Postgres + Kafka,
+                        ISO&nbsp;20022) and moves ops to Salesforce Service Cloud, delivered as pilot on
+                        <strong>2027-01-24</strong> and GA on <strong>2027-02-21</strong> &mdash; 11 two-week
+                        sprints end-to-end.</p>
+                </article>
+
+                <article class="exec-card rag-amber">
+                    <span class="k">2 &middot; Programme health <span class="rag-pill">AMBER</span></span>
+                    <h3>On schedule &mdash; one specific exposure</h3>
+                    <p><strong>Scope:</strong> 48 stories across 4 epics, 2 sprints closed, 9 to go.
+                        <strong>Primary exposure:</strong> UAT environment instability &mdash; 2 outages last
+                        sprint, ~1.5 days of lost test execution.</p>
+                    <ul>
+                        <li>SDET staffing: 1 open seat (plan&nbsp;=&nbsp;4 QA incl. me)</li>
+                        <li>Compliance sign-off path TBD on 1 of 7 payment flows</li>
+                        <li>Pilot cohort selection draft complete; central-bank schema v3 pending</li>
+                    </ul>
+                </article>
+
+                <article class="exec-card">
+                    <span class="k">3 &middot; Test Manager assessment</span>
+                    <h3>Amber-conditional-Green, not Red</h3>
+                    <p>Delivery against baseline is on track. The risk I&rsquo;m carrying is <em>downstream
+                        regression confidence</em>, driven by environment stability &mdash; not velocity, not
+                        defect density. Today&rsquo;s evidence supports a <strong>conditional go</strong> on the
+                        Sprint&nbsp;8 regression gate, upgradable to a full go if D1 below lands by end of
+                        Sprint&nbsp;3.</p>
+                </article>
+
+                <article class="exec-card decisions exec-wide">
+                    <span class="k">4 &middot; Decisions required from leadership</span>
+                    <div class="d-row">
+                        <span class="d-tag">D1</span><strong>Approve dedicated UAT environment ($18K / qtr).</strong>
+                        Protects Sprint&nbsp;8 regression confidence; without it, pilot gate becomes a conditional
+                        go instead of a full go.
+                        <span class="d-meta">Owner: Head of Platform Engineering &middot; Due: end of Sprint&nbsp;3 (2026-11-01) &middot; Fallback: Option B in Scenario&nbsp;1 below.</span>
+                    </div>
+                    <div class="d-row">
+                        <span class="d-tag">D2</span><strong>Approve +1 SDET backfill (Payments QA).</strong>
+                        Covers perf-test sprint and intra-day reconciliation evidence build-out.
+                        <span class="d-meta">Owner: Programme Director + QE Director &middot; Due: Sprint&nbsp;4 start (2026-11-02) &middot; Escalation: pilot cohort shrinks if unfilled by Sprint&nbsp;6.</span>
+                    </div>
+                    <div class="d-row">
+                        <span class="d-tag">D3</span><strong>Confirm compliance sign-off model for payment flow F7.</strong>
+                        Needed so acceptance evidence can accumulate before pilot.
+                        <span class="d-meta">Owner: Compliance Officer &middot; Due: Sprint&nbsp;6 (2026-12-13) &middot; Trigger: scope F7 out of pilot cohort if unresolved by Sprint&nbsp;7.</span>
+                    </div>
+                </article>
+
+                <article class="exec-card exec-wide">
+                    <span class="k">5 &middot; Evidence &amp; supporting dashboards</span>
+                    <ul>
+                        <li><strong>UAT outages &amp; lost execution</strong> &rarr; <a href="#dash-release">Release Readiness</a> + <a href="#dash-risks">Risk Register</a> tiles.</li>
+                        <li><strong>Velocity &mdash; 2-sprint actual + 1-sprint forecast</strong> (labelled, not an &quot;actual 3-sprint rolling&quot;) &rarr; <a href="test-manager-dashboard.html">Test Governance Metrics</a>.</li>
+                        <li><strong>Perf baseline + 3x headroom</strong> once Sprint&nbsp;7 completes &rarr; <a href="#dash-nfr">Non-functional</a>.</li>
+                        <li><strong>Reconciliation signed-pack freshness</strong> and variance vs tolerance &rarr; <a href="#dash-recon">Reconciliation</a>.</li>
+                        <li><strong>AI agents &mdash; eval precision/recall and HITL override %</strong> &rarr; <a href="#dash-agents">AI QE Agents</a>.</li>
+                    </ul>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         SECTION 1 — THE PROGRAMME BEHIND THESE DASHBOARDS
+         SECTION 2 — MY DECISIONS AS TEST MANAGER (3 worked scenarios)
+         ============================================================ -->
+    <section class="dash-sec alt" id="decisions" aria-labelledby="dec-h">
+        <div class="container">
+            <h2 id="dec-h"><span class="num">2</span> My decisions as Test Manager &mdash; 3 worked scenarios</h2>
+            <p class="lede">A dashboard reports; a Test Manager <em>decides</em>. Three scenarios that would land
+                on this programme &mdash; each one with the signal, my analysis, the options I&rsquo;d put to
+                leadership, my recommendation, and the owner it goes to. All hypothetical.</p>
+
+            <!-- Scenario 1 -->
+            <article class="scn-card">
+                <h3><span class="scn-num">Scenario 1</span> UAT environment instability threatens Sprint&nbsp;8 regression readiness</h3>
+                <div class="scn-grid">
+                    <div class="scn-row sig">
+                        <span class="k">Signal</span>
+                        <p>2 UAT outages in Sprint&nbsp;2 &middot; ~1.5 days of test execution lost &middot; pass-rate
+                            dropping on the shared environment. Environment-health card is Red.</p>
+                    </div>
+                    <div class="scn-row ana">
+                        <span class="k">Analysis</span>
+                        <p>Infrastructure, not defect density. The Sprint&nbsp;8 regression suite needs a stable
+                            UAT by Sprint&nbsp;7 to produce defensible exit evidence. Shared environment contention
+                            is the root cause.</p>
+                    </div>
+                    <div class="scn-row opt">
+                        <span class="k">Options</span>
+                        <ul>
+                            <li><strong>A &mdash; Dedicated UAT environment</strong> ($18K/qtr). Preserves Sprint&nbsp;8 confidence.</li>
+                            <li><strong>B &mdash; Keep shared + 20% regression buffer</strong>, prioritize risk-based first.</li>
+                            <li><strong>C &mdash; Defer</strong>; accept conditional go at pilot gate.</li>
+                        </ul>
+                    </div>
+                    <div class="scn-row opt">
+                        <span class="k">Owner &amp; deadline</span>
+                        <p><strong>Decision owner:</strong> Head of Platform Engineering + Programme Director.<br>
+                            <strong>Deadline:</strong> End of Sprint&nbsp;3 (2026-11-01).<br>
+                            <strong>Escalation trigger:</strong> UAT stability not demonstrated by Sprint&nbsp;5.</p>
+                    </div>
+                    <div class="scn-row scn-reco">
+                        <span class="k">My recommendation</span>
+                        <p><strong>Option A.</strong> $18K/qtr is below the cost of a 1-sprint GA slip. If declined,
+                            I will formally lower the Sprint&nbsp;8 exit statement to &quot;conditional go, risk owned
+                            by Platform Engineering&quot; and re-plan the regression sequence to protect the top-5
+                            payment flows at the expense of the long tail.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Scenario 2 -->
+            <article class="scn-card">
+                <h3><span class="scn-num">Scenario 2</span> Reconciliation discrepancies remain before pilot</h3>
+                <div class="scn-grid">
+                    <div class="scn-row sig">
+                        <span class="k">Signal</span>
+                        <p>In Sprint&nbsp;8, 3 unresolved net-position mismatches above the 0.01% tolerance band.
+                            Reconciliation tile shows variance Red for 2 consecutive runs.</p>
+                    </div>
+                    <div class="scn-row ana">
+                        <span class="k">Analysis</span>
+                        <p>Two are transformation-rule gaps the team can close in Sprint&nbsp;9. One is a
+                            central-bank schema disagreement (ownership outside the team) &mdash; it will not close
+                            on our calendar.</p>
+                    </div>
+                    <div class="scn-row opt">
+                        <span class="k">Options</span>
+                        <ul>
+                            <li><strong>A &mdash; Hold pilot</strong> until all 3 close.</li>
+                            <li><strong>B &mdash; Pilot with cohort exclusion</strong> of the affected payment type; close the external item in parallel.</li>
+                            <li><strong>C &mdash; Pilot full scope</strong>; set a hard rollback trigger on the central-bank variance.</li>
+                        </ul>
+                    </div>
+                    <div class="scn-row opt">
+                        <span class="k">Evidence to proceed</span>
+                        <ul>
+                            <li>Signed exception register (per excluded payment type).</li>
+                            <li>Rollback drill completed in Sprint&nbsp;10 within RTO&nbsp;2h / RPO&nbsp;15min.</li>
+                            <li>Central-bank engagement log showing weekly contact + target close date.</li>
+                        </ul>
+                    </div>
+                    <div class="scn-row scn-reco">
+                        <span class="k">My recommendation</span>
+                        <p><strong>Option B.</strong> Hard-scope the pilot cohort. Full pilot (Option C) leaks risk
+                            I don&rsquo;t own; holding (Option A) blocks on an external item we can&rsquo;t
+                            accelerate. Decision owner: Programme Director + Compliance.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Scenario 3 -->
+            <article class="scn-card">
+                <h3><span class="scn-num">Scenario 3</span> AI-assisted test selection reduces execution time but risks missing defects</h3>
+                <div class="scn-grid">
+                    <div class="scn-row sig">
+                        <span class="k">Signal</span>
+                        <p>The risk-based-selection agent cuts the CI gate from 42&nbsp;min to 24&nbsp;min on
+                            an evaluation set. Measured recall vs full suite: 94% (6% miss rate on a 180-test eval).</p>
+                    </div>
+                    <div class="scn-row ana">
+                        <span class="k">Analysis</span>
+                        <p>A 6% miss at PR level is tolerable when the full suite still runs nightly. At the
+                            release gate the same miss rate is not acceptable &mdash; one leaked P1 at pilot
+                            could cost the GA date.</p>
+                    </div>
+                    <div class="scn-row opt">
+                        <span class="k">Options</span>
+                        <ul>
+                            <li><strong>A &mdash; PR level only</strong>; mandatory full suite at release gate.</li>
+                            <li><strong>B &mdash; All gates</strong>; auto-disable if nightly misses &gt; 1 real defect / month.</li>
+                            <li><strong>C &mdash; Advisory only</strong>; agent suggests, human still runs full suite.</li>
+                        </ul>
+                    </div>
+                    <div class="scn-row opt">
+                        <span class="k">Guardrails (whichever option)</span>
+                        <ul>
+                            <li>Eval set versioned and reviewed every 2 sprints.</li>
+                            <li>HITL overrides logged with reason; feed back into the eval set.</li>
+                            <li>One-switch disable at CI level.</li>
+                            <li>Release gate always runs the full suite until 3 consecutive pilots are clean.</li>
+                        </ul>
+                    </div>
+                    <div class="scn-row scn-reco">
+                        <span class="k">My recommendation</span>
+                        <p><strong>Option A + all 4 guardrails.</strong> Measurement: monthly precision/recall vs
+                            the versioned eval set, published on the <a href="#dash-agents">AI QE Agents</a>
+                            dashboard. Owner: SDET&nbsp;Lead + Dev&nbsp;Lead. Rollback trigger: 2 missed real
+                            defects in a rolling 30-day window.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3 — THE PROGRAMME BEHIND THESE DASHBOARDS
          ============================================================ -->
     <section class="dash-sec" id="programme" aria-labelledby="programme-h">
         <div class="container">
-            <h2 id="programme-h"><span class="num">1</span> The programme behind these dashboards</h2>
+            <h2 id="programme-h"><span class="num">3</span> The programme behind these dashboards</h2>
             <p class="lede">Every dashboard on this page is a slice of one hypothetical delivery. Imagining a single,
                 end-to-end programme is what forces each metric to earn its place &mdash; because an unanswered
                 question somewhere else is a defect waiting to be shipped.</p>
@@ -579,10 +914,11 @@
          ============================================================ -->
     <section class="dash-sec alt" id="breakdown" aria-labelledby="breakdown-h">
         <div class="container">
-            <h2 id="breakdown-h"><span class="num">2</span> Milestone &rarr; Epic &rarr; Story breakdown</h2>
-            <p class="lede">The 6-month milestone decomposes into <strong>4 epics</strong> and roughly
-                <strong>48 stories</strong>. Below is the top-level epic table and a representative story cut from
-                each epic &mdash; the shape I expect the backlog to take, not the full backlog.</p>
+            <h2 id="breakdown-h"><span class="num">4</span> Milestone &rarr; Epic &rarr; Story breakdown</h2>
+            <p class="lede">The 5-month milestone (Sprint&nbsp;1 kickoff 2026-09-21 &rarr; GA 2027-02-21) decomposes
+                into <strong>4 epics</strong> and roughly <strong>48 stories</strong>. Below is the top-level epic
+                table and a representative story cut from each epic &mdash; the shape I expect the backlog to take,
+                not the full backlog.</p>
 
             <h3 style="color:#0f2a5c;margin:18px 0 6px;">Epics</h3>
             <table class="dash-table" aria-label="Epic breakdown">
@@ -694,88 +1030,77 @@
          ============================================================ -->
     <section class="dash-sec" id="sprints" aria-labelledby="sprints-h">
         <div class="container">
-            <h2 id="sprints-h"><span class="num">3</span> Sprint cadence &mdash; Demo232 to Demo244</h2>
-            <p class="lede">Thirteen two-week sprints, named <strong>Sprint Demo232</strong> through
-                <strong>Sprint Demo244</strong>. Pilot (canary) rides Sprint Demo242; GA rides Sprint Demo244. Each
-                sprint has a theme &mdash; so the dashboards above have an easy &quot;what should look different this
-                sprint?&quot; check.</p>
+            <h2 id="sprints-h"><span class="num">5</span> Sprint cadence &mdash; Demo232 to Demo242</h2>
+            <p class="lede">Eleven two-week sprints, named <strong>Sprint Demo232</strong> through
+                <strong>Sprint Demo242</strong>. <strong>Pilot (canary) kickoff: 2027-01-24 &mdash; Sprint Demo241.
+                GA: 2027-02-21 &mdash; Sprint Demo242.</strong> Sprint 1 and Sprint 2 have closed; the current
+                sprint is Sprint&nbsp;3 (Demo234). Each sprint has a theme so the dashboards above have an easy
+                &ldquo;what should look different this sprint?&rdquo; check.</p>
 
             <div class="sprint-row">
-                <div class="sp-name">Sprint Demo232</div>
-                <div class="sp-dates">2026-11-10 &rarr; 11-24</div>
+                <div class="sp-name">Sprint Demo232 <span style="color:#64748b;font-weight:400;">&middot; Sprint 1</span></div>
+                <div class="sp-dates">2026-09-21 &rarr; 10-04 &middot; closed</div>
                 <div class="sp-theme">Foundations &mdash; environment bring-up, ISO 20022 schema contract tests, Salesforce sandbox provisioning.</div>
                 <div class="sp-check">Governance baseline</div>
             </div>
             <div class="sprint-row">
-                <div class="sp-name">Sprint Demo233</div>
-                <div class="sp-dates">2026-11-24 &rarr; 12-08</div>
-                <div class="sp-theme">AI triage agent MVP (QE-02); first data profile of source Oracle tables.</div>
+                <div class="sp-name">Sprint Demo233 <span style="color:#64748b;font-weight:400;">&middot; Sprint 2</span></div>
+                <div class="sp-dates">2026-10-05 &rarr; 10-18 &middot; closed</div>
+                <div class="sp-theme">AI triage agent MVP (QE-02); first data profile of source Oracle tables. 2 UAT outages &mdash; see Scenario&nbsp;1.</div>
                 <div class="sp-check">Automation Effort</div>
             </div>
-            <div class="sprint-row">
-                <div class="sp-name">Sprint Demo234</div>
-                <div class="sp-dates">2026-12-08 &rarr; 12-22</div>
-                <div class="sp-theme">pacs.008 happy-path + reject flows; first row-count reconciliation between Oracle &rarr; staging.</div>
+            <div class="sprint-row" style="border-left-color:#be185d;background:#fdf2f8;">
+                <div class="sp-name">Sprint Demo234 <span style="color:#be185d;font-weight:700;">&middot; Sprint 3 (current)</span></div>
+                <div class="sp-dates">2026-10-19 &rarr; 11-01 &middot; in flight</div>
+                <div class="sp-theme">pacs.008 happy-path + reject flows; first row-count reconciliation Oracle &rarr; staging. D1 UAT decision deadline.</div>
                 <div class="sp-check">Defect Analytics on</div>
             </div>
             <div class="sprint-row">
-                <div class="sp-name">Sprint Demo235</div>
-                <div class="sp-dates">2026-12-22 &rarr; 2027-01-05</div>
-                <div class="sp-theme">Field-level mapping validation for customer master; holiday freeze on prod.</div>
+                <div class="sp-name">Sprint Demo235 <span style="color:#64748b;font-weight:400;">&middot; Sprint 4</span></div>
+                <div class="sp-dates">2026-11-02 &rarr; 11-15</div>
+                <div class="sp-theme">Field-level mapping validation for customer master; Salesforce case routing (SF-03).</div>
                 <div class="sp-check">Reconciliation</div>
             </div>
             <div class="sprint-row">
-                <div class="sp-name">Sprint Demo236</div>
-                <div class="sp-dates">2027-01-05 &rarr; 01-19</div>
-                <div class="sp-theme">Salesforce case routing (SF-03); payment timeline event stream wired to Service Cloud.</div>
+                <div class="sp-name">Sprint Demo236 <span style="color:#64748b;font-weight:400;">&middot; Sprint 5</span></div>
+                <div class="sp-dates">2026-11-16 &rarr; 11-29</div>
+                <div class="sp-theme">Payment timeline event stream to Service Cloud; agent desktop usability pass.</div>
                 <div class="sp-check">Test Strategy review</div>
             </div>
             <div class="sprint-row">
-                <div class="sp-name">Sprint Demo237</div>
-                <div class="sp-dates">2027-01-19 &rarr; 02-02</div>
-                <div class="sp-theme">Settlement correctness end-to-end; perf baseline at 1x expected volume.</div>
+                <div class="sp-name">Sprint Demo237 <span style="color:#64748b;font-weight:400;">&middot; Sprint 6</span></div>
+                <div class="sp-dates">2026-11-30 &rarr; 12-13</div>
+                <div class="sp-theme">Settlement correctness end-to-end; perf baseline at 1x expected volume. D3 compliance decision deadline.</div>
                 <div class="sp-check">Perf + Governance</div>
             </div>
             <div class="sprint-row">
-                <div class="sp-name">Sprint Demo238</div>
-                <div class="sp-dates">2027-02-02 &rarr; 02-16</div>
-                <div class="sp-theme">Intra-day reconciliation report (PR-14); risk-based test selection live in CI (QE-06).</div>
+                <div class="sp-name">Sprint Demo238 <span style="color:#64748b;font-weight:400;">&middot; Sprint 7</span></div>
+                <div class="sp-dates">2026-12-14 &rarr; 12-27</div>
+                <div class="sp-theme">Intra-day reconciliation report (PR-14); risk-based test selection live in CI (QE-06). UAT stabilization confirmed.</div>
                 <div class="sp-check">ROI mid-point</div>
             </div>
             <div class="sprint-row">
-                <div class="sp-name">Sprint Demo239</div>
-                <div class="sp-dates">2027-02-16 &rarr; 03-02</div>
-                <div class="sp-theme">Reconciliation to regulator sandbox; agent-desktop usability pass.</div>
-                <div class="sp-check">Risk Register deep-dive</div>
+                <div class="sp-name">Sprint Demo239 <span style="color:#64748b;font-weight:400;">&middot; Sprint 8</span></div>
+                <div class="sp-dates">2026-12-28 &rarr; 2027-01-10</div>
+                <div class="sp-theme">Regression gate &mdash; full suite + risk-based selection reconciled; reconciliation to regulator sandbox; chaos tests.</div>
+                <div class="sp-check">Regression exit gate</div>
             </div>
             <div class="sprint-row">
-                <div class="sp-name">Sprint Demo240</div>
-                <div class="sp-dates">2027-03-02 &rarr; 03-16</div>
-                <div class="sp-theme">Rollback dress rehearsal (DM-11); failover + DR tabletop with ops.</div>
+                <div class="sp-name">Sprint Demo240 <span style="color:#64748b;font-weight:400;">&middot; Sprint 9</span></div>
+                <div class="sp-dates">2027-01-11 &rarr; 01-24</div>
+                <div class="sp-theme">Rollback dress rehearsal (DM-11); failover + DR tabletop; sign-off packs assembled; pilot cohort locked.</div>
                 <div class="sp-check">Release Readiness RAG</div>
             </div>
-            <div class="sprint-row">
-                <div class="sp-name">Sprint Demo241</div>
-                <div class="sp-dates">2027-03-16 &rarr; 03-30</div>
-                <div class="sp-theme">Pre-pilot hardening; feature-flag plumbing (SF-09); synthetic edge-case data at scale.</div>
-                <div class="sp-check">Pilot readiness</div>
-            </div>
             <div class="sprint-row pilot">
-                <div class="sp-name">Sprint Demo242 (Pilot)</div>
-                <div class="sp-dates">2027-03-30 &rarr; 04-13</div>
-                <div class="sp-theme">Canary 5% &rarr; 25% &rarr; 50% ramp; live reconciliation to regulator; feedback loop open.</div>
+                <div class="sp-name">Sprint Demo241 (Pilot) <span style="color:#92400e;font-weight:700;">&middot; Sprint 10</span></div>
+                <div class="sp-dates">2027-01-25 &rarr; 02-07 &middot; pilot kickoff 2027-01-24</div>
+                <div class="sp-theme">Canary 5% &rarr; 25% &rarr; 50% ramp; live reconciliation to regulator; feedback loop open; rollback trigger armed.</div>
                 <div class="sp-check">Pilot Rollout live</div>
             </div>
-            <div class="sprint-row">
-                <div class="sp-name">Sprint Demo243</div>
-                <div class="sp-dates">2027-04-13 &rarr; 04-27</div>
-                <div class="sp-theme">Pilot feedback bake-in; final perf + chaos run; sign-off packs assembled.</div>
-                <div class="sp-check">Go/No-Go pre-review</div>
-            </div>
             <div class="sprint-row ga">
-                <div class="sp-name">Sprint Demo244 (GA)</div>
-                <div class="sp-dates">2027-04-27 &rarr; 05-10</div>
-                <div class="sp-theme">General Availability cutover; dual-run with legacy for 72h; post-GA hyper-care.</div>
+                <div class="sp-name">Sprint Demo242 (GA) <span style="color:#065f46;font-weight:700;">&middot; Sprint 11</span></div>
+                <div class="sp-dates">2027-02-08 &rarr; 02-21 &middot; GA 2027-02-21</div>
+                <div class="sp-theme">General Availability cutover; dual-run with legacy for 72h; post-GA hyper-care; GA retro.</div>
                 <div class="sp-check">GA / Go-Live</div>
             </div>
         </div>
@@ -786,8 +1111,8 @@
          ============================================================ -->
     <section class="dash-sec alt" id="testing" aria-labelledby="testing-h">
         <div class="container">
-            <h2 id="testing-h"><span class="num">4</span> Testing types needed across the programme</h2>
-            <p class="lede">What the 3 QA + 1 SDET Lead actually run, mapped to the dashboards that will show the
+            <h2 id="testing-h"><span class="num">6</span> Testing types needed across the programme</h2>
+            <p class="lede">What the 3 QA + 1 SDET Lead would run, mapped to the dashboards that would show the
                 evidence. &quot;Done&quot; isn&rsquo;t a test type &mdash; it&rsquo;s a dashboard reading &quot;green
                 for N consecutive sprints&quot;.</p>
 
@@ -892,11 +1217,65 @@
     </section>
 
     <!-- ============================================================
-         SECTION 5 — WHERE AI SHOWS UP
+         SECTION 7 — PROGRAMME GOVERNANCE BEYOND TEST METRICS
          ============================================================ -->
-    <section class="dash-sec" id="ai" aria-labelledby="ai-h">
+    <section class="dash-sec" id="governance" aria-labelledby="gov-h">
         <div class="container">
-            <h2 id="ai-h"><span class="num">5</span> Where AI shows up across the programme</h2>
+            <h2 id="gov-h"><span class="num">7</span> Programme governance beyond test metrics</h2>
+            <p class="lede">Test metrics alone don&rsquo;t ship a banking release. These three views cover the
+                non-test levers a Test Manager owns the conversation on: dependencies on the critical path,
+                the sign-off layers between &ldquo;QA green&rdquo; and &ldquo;Go-Live approved&rdquo;, and the
+                recovery options when a gate slips.</p>
+
+            <div class="gov-grid">
+                <article class="gov-card">
+                    <h3>A &middot; Dependencies &amp; critical path</h3>
+                    <p>A dependency becomes a defect the moment it&rsquo;s late. Each one has an owner outside
+                        the delivery team and a sprint we need it by.</p>
+                    <ul>
+                        <li><strong>Regulator sandbox access</strong> &mdash; needed by Sprint&nbsp;4; owner: Compliance Liaison. Slip impact: intra-day reconciliation evidence delayed by 1 sprint.</li>
+                        <li><strong>Central-bank schema v3</strong> &mdash; needed by Sprint&nbsp;6; owner: Central-bank liaison. Slip impact: see Scenario&nbsp;2 (cohort exclusion).</li>
+                        <li><strong>Salesforce production org provisioning</strong> &mdash; needed by Sprint&nbsp;8; owner: Salesforce admin + Procurement. Slip impact: pilot cohort reduced to internal only.</li>
+                        <li><strong>Legacy data snapshot refresh</strong> &mdash; needed weekly from Sprint&nbsp;5; owner: DBA. Slip impact: reconciliation false positives.</li>
+                        <li><strong>Dedicated UAT environment</strong> &mdash; see D1 above; owner: Head of Platform Engineering.</li>
+                    </ul>
+                </article>
+
+                <article class="gov-card sign">
+                    <h3>B &middot; Business acceptance &amp; sign-off layers</h3>
+                    <p>&ldquo;All tests pass&rdquo; is not a release decision for a payment platform. Five layers,
+                        each with its own evidence pack and its own sign-off.</p>
+                    <ol>
+                        <li><strong>QA sign-off</strong> &mdash; SDET Lead. Evidence: regression + risk-based + automation pack.</li>
+                        <li><strong>Business UAT acceptance</strong> &mdash; Business Owner. Evidence: sampled payment set + agent-flow sign-off.</li>
+                        <li><strong>Operational readiness</strong> &mdash; Ops + SRE. Evidence: runbook drill + on-call rota + chaos results.</li>
+                        <li><strong>Security &amp; compliance</strong> &mdash; CISO + Compliance Officer. Evidence: SAST/DAST clean, pen-test closed, audit trail per decision.</li>
+                        <li><strong>Final release authority</strong> &mdash; Programme Director + Head of Payments. Evidence: all 4 above + the Executive summary above.</li>
+                    </ol>
+                </article>
+
+                <article class="gov-card recov">
+                    <h3>C &middot; Forecast confidence &amp; recovery options</h3>
+                    <p>If a gate slips, the <em>last conversation</em> to have is &ldquo;we missed&rdquo;. The
+                        first one is &ldquo;here are the levers&rdquo;.</p>
+                    <ul>
+                        <li><strong>Lever 1 &mdash; Defer lower-risk tests.</strong> Impact: coverage drops ~8% on long-tail flows; top-5 unaffected.</li>
+                        <li><strong>Lever 2 &mdash; Reallocate SDET capacity</strong> from EPIC-QE to EPIC-PR. Impact: AI pod work pauses for 2 sprints; manual regression stays at parity.</li>
+                        <li><strong>Lever 3 &mdash; Narrow pilot cohort.</strong> Impact: pilot evidence quality down; GA confidence hold.</li>
+                        <li><strong>Lever 4 &mdash; Request 2-week GA slip.</strong> Impact: regulator engagement; cost of 1 vendor-licence cycle; team morale.</li>
+                        <li><strong>Not an option &mdash; Skip the regression gate.</strong> Named explicitly, so it is not quietly chosen.</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 8 — WHERE AI SHOWS UP
+         ============================================================ -->
+    <section class="dash-sec alt" id="ai" aria-labelledby="ai-h">
+        <div class="container">
+            <h2 id="ai-h"><span class="num">8</span> Where AI shows up across the programme</h2>
             <p class="lede">Six AI agents, each with a clear job, a human in the loop, and a dashboard they
                 report to. &quot;AI in QE&quot; without a dashboard is a demo; with one, it&rsquo;s a decision.</p>
 
@@ -943,18 +1322,51 @@
                 See the <a href="agents.html">Agents</a> page for the architecture of these agents (prompts,
                 guardrails, evaluation set, HITL rules).
             </p>
+
+            <!-- Compact AI evaluation example -->
+            <div class="ai-eval">
+                <h3>&#128269; AI evaluation example &mdash; risk-based test selection (QE-06)</h3>
+                <p>What a credible &quot;AI in QE&quot; story looks like at Test Manager level: a versioned
+                    evaluation set, baseline vs AI-assisted, false positives and false negatives, human override
+                    rate, and the disable/rollback mechanism &mdash; all before the saving is claimed.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Baseline (full suite)</th>
+                            <th>AI-assisted selection</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Evaluation set</td><td>180 historical PRs with known defect labels (versioned v3)</td><td>Same 180 PRs</td></tr>
+                        <tr><td>Gate time (median)</td><td>42 min</td><td>24 min</td></tr>
+                        <tr><td>True positives (real defects caught)</td><td>50 / 50</td><td>47 / 50</td></tr>
+                        <tr><td>False negatives (missed real defects)</td><td>0</td><td>3 (6% miss rate)</td></tr>
+                        <tr><td>False positives (flagged clean PRs)</td><td>12</td><td>10</td></tr>
+                        <tr><td>Human override rate</td><td>n/a</td><td>8% of agent decisions overridden on review</td></tr>
+                        <tr><td>Disable / rollback</td><td>n/a</td><td>Single CI switch; full suite re-enables within 5 min</td></tr>
+                        <tr><td>Audit trail</td><td>CI logs</td><td>Agent decision + rationale + override logged per PR</td></tr>
+                    </tbody>
+                </table>
+                <p class="note">All figures are illustrative. The real decision &mdash; see Scenario 3 above &mdash;
+                    is to enable this agent at PR level only, keep the full suite at the release gate, and track
+                    these numbers monthly on the AI QE Agents dashboard. Any &quot;hours saved&quot; number
+                    presented to steering is <em>estimated</em> until measured over 2 sprints in production.</p>
+            </div>
         </div>
     </section>
 
     <!-- ============================================================
-         SECTION 6 — THE DASHBOARDS GRID
+         SECTION 9 — THE DASHBOARDS GRID
          ============================================================ -->
-    <section class="dash-sec alt" id="dashboards" aria-labelledby="boards-h">
+    <section class="dash-sec" id="dashboards" aria-labelledby="boards-h">
         <div class="container">
-            <h2 id="boards-h"><span class="num">6</span> The dashboards &mdash; twelve views I keep open</h2>
-            <p class="lede">Each tile answers one question. Tiles marked <strong>Live</strong> link to a working
-                sample page on this site; tiles marked <strong>Preview</strong> link to the field-level spec further
-                down &mdash; what the dashboard will show, which KPIs it reports, and where AI plugs in.</p>
+            <h2 id="boards-h"><span class="num">9</span> The dashboards &mdash; twelve views I would use to govern this programme</h2>
+            <p class="lede">Each tile answers one question a Test Manager is asked. Tiles marked
+                <strong>Live</strong> link to a working sample page on this site; tiles marked
+                <strong>Preview</strong> link to the field-level spec further down &mdash; what the dashboard would
+                show, which KPIs it reports (with denominator, time window, source of truth and owner), and where
+                AI plugs in.</p>
 
             <div class="board-grid">
 
@@ -1133,9 +1545,9 @@
     <!-- ============================================================
          SECTION 7 — FIELD SPECS (deep-dive anchors)
          ============================================================ -->
-    <section class="dash-sec" id="field-specs" aria-labelledby="specs-h">
+    <section class="dash-sec alt" id="field-specs" aria-labelledby="specs-h">
         <div class="container">
-            <h2 id="specs-h"><span class="num">7</span> What&rsquo;s inside each dashboard</h2>
+            <h2 id="specs-h"><span class="num">10</span> What&rsquo;s inside each dashboard</h2>
             <p class="lede">For the tiles that don&rsquo;t yet have a live sample page, this is the field-level
                 specification &mdash; the one question it answers, the KPIs it tracks, and where AI plugs in.</p>
 
@@ -1163,31 +1575,38 @@
                     automation / without the AI agent)&quot; using sprint-level data. The AI pod has its own
                     cost line &mdash; the ROI number is <em>net of agent spend</em>.</p>
                 <ul class="kpi-list">
-                    <li><strong>Manual-hours avoided</strong>Per sprint, split by automation vs AI pod.</li>
-                    <li><strong>Cycle-time delta</strong>Pre-release regression hours; before / now / target.</li>
-                    <li><strong>Pre-prod catch rate</strong>Defects caught before UAT / before prod.</li>
-                    <li><strong>$ / defect averted</strong>With formula and the inputs visible.</li>
-                    <li><strong>Payback period</strong>For AI pod cost; break-even sprint.</li>
+                    <li><strong>Manual-hours avoided</strong>Baseline: run time before automation. Per sprint, split by automation vs AI pod.</li>
+                    <li><strong>Cycle-time delta</strong>Pre-release regression hours; before / now / target; source: CI run logs.</li>
+                    <li><strong>Pre-prod catch rate</strong>Defects caught before UAT / defects found before + after UAT, same cohort.</li>
+                    <li><strong>$ / defect averted</strong>Illustrative; formula and inputs visible; <em>hypothetical, labelled</em>.</li>
+                    <li><strong>Payback period</strong>For AI pod cost (compute + eval-set labour); break-even sprint.</li>
+                    <li><strong>Velocity (for ROI context)</strong>2-sprint actual + 1-sprint forecast, labelled explicitly &mdash; <em>not</em> a 3-sprint rolling actual until Sprint&nbsp;4 completes.</li>
                 </ul>
                 <div class="where-ai"><strong>&#129302; AI:</strong> risk-based test selection shaves ~40% off
-                    gate-time without losing coverage &mdash; the dashboard reconciles the two numbers so steering
-                    doesn&rsquo;t have to.</div>
+                    gate-time on the evaluation set without losing coverage &mdash; the dashboard reconciles the
+                    two numbers so steering doesn&rsquo;t have to. All AI savings are shown as
+                    <em>estimated</em> unless a measured sprint-over-sprint delta is available.</div>
             </article>
 
             <article class="deep-card" id="dash-automation">
                 <h3>&#129302; Automation Effort</h3>
                 <p class="answers">Answers: Where is automation effort landing, and is it paying off?</p>
                 <p>Keeps the team honest about <em>new</em> vs <em>maintenance</em>. A sprint where 70%+ of QA
-                    time went to maintenance is a flag, not a surprise.</p>
+                    time went to maintenance is a flag, not a surprise. <strong>Every KPI shows its denominator
+                    and scope beside the number</strong> &mdash; cumulative regression automation % and
+                    sprint-level automation progress use different populations and must never share a cell.</p>
                 <ul class="kpi-list">
-                    <li><strong>New vs maintenance %</strong>Per sprint, per QA.</li>
-                    <li><strong>Flake rate</strong>Target &lt; 1.5%; shown by suite.</li>
-                    <li><strong>MTTR for broken tests</strong>Median + p90.</li>
-                    <li><strong>Pass-rate stability</strong>Rolling 10-run pass rate.</li>
-                    <li><strong>Suite runtime</strong>Full suite + risk-based smoke subset.</li>
+                    <li><strong>New vs maintenance %</strong>Denominator: QA hours logged this sprint. Scope: per QA, per epic.</li>
+                    <li><strong>Flake rate</strong>Denominator: total runs in the window. Target &lt; 1.5%; shown per suite.</li>
+                    <li><strong>MTTR for broken tests</strong>Median + p90; scope: in-scope automation suites only.</li>
+                    <li><strong>Pass-rate stability</strong>Rolling 10-run pass rate; scope: full suite vs risk-based subset labelled separately.</li>
+                    <li><strong>Cumulative regression automation %</strong>Denominator: all in-scope regression cases to date. Separate from the sprint-level number.</li>
+                    <li><strong>Sprint-level automation progress</strong>Denominator: automation stories planned this sprint. Separate from the cumulative number.</li>
+                    <li><strong>Suite runtime</strong>Full suite + risk-based smoke subset; label which gate each one runs at.</li>
                 </ul>
                 <div class="where-ai"><strong>&#129302; AI:</strong> the triage agent reclassifies failures as
-                    flake vs real-defect vs environment, feeding the flake-rate number automatically.</div>
+                    flake vs real-defect vs environment, feeding the flake-rate number automatically; the
+                    reclassification is reviewed every 2 sprints by a human.</div>
             </article>
 
             <article class="deep-card" id="dash-release">
@@ -1196,31 +1615,37 @@
                 <p>Four cards &mdash; <em>Functional</em>, <em>Data</em>, <em>Performance</em>,
                     <em>Operations</em> &mdash; each with a RAG, an owner, a cite-your-evidence link, and a
                     &quot;what would make this red&quot; sentence. Updated T-2 days before every steering
-                    committee.</p>
+                    committee. The dashboard makes the distinction between a <strong>provisional Test
+                    Manager recommendation</strong> and a <strong>formal release authorization</strong>
+                    unmistakable &mdash; a conditional go is not a go.</p>
                 <ul class="kpi-list">
-                    <li><strong>Gate RAG</strong>Functional / Data / Perf / Ops.</li>
+                    <li><strong>Gate RAG</strong>Functional / Data / Perf / Ops; each with evidence link.</li>
+                    <li><strong>Recommendation vs authorization</strong>Two separate signals: TM recommendation (provisional) and formal release authority sign-off (final).</li>
                     <li><strong>Open P1/P2</strong>With age bucket and owner.</li>
-                    <li><strong>Rollback drill freshness</strong>&lt; 1 sprint old at pilot.</li>
-                    <li><strong>Pilot error-budget burn</strong>Only visible during Sprint Demo242.</li>
-                    <li><strong>Dependencies</strong>External sign-offs waiting (regulator, vendor).</li>
+                    <li><strong>Rollback drill freshness</strong>&lt; 1 sprint old at pilot; target drill in Sprint Demo239 (Sprint 8).</li>
+                    <li><strong>Pilot error-budget burn</strong>Only visible during Sprint Demo241 (Pilot); 0.3% of pilot volume.</li>
+                    <li><strong>Dependencies</strong>External sign-offs waiting (regulator, vendor) &mdash; owners named.</li>
                 </ul>
                 <div class="where-ai"><strong>&#129302; AI:</strong> log clustering surfaces &quot;this incident
-                    looks like class X we closed in Sprint Demo239&quot; so the gate conversation is grounded.</div>
+                    looks like class X we closed in Sprint Demo238&quot; so the gate conversation is grounded.</div>
             </article>
 
             <article class="deep-card" id="dash-defects">
                 <h3>&#128030; Defect Analytics</h3>
                 <p class="answers">Answers: Where do defects come from, and where are they stuck?</p>
+                <p>Every metric here carries a definition, denominator, time window, source of truth, target and
+                    owner. A metric without those cannot be defended in a steering committee.</p>
                 <ul class="kpi-list">
-                    <li><strong>Aging matrix</strong>Severity &times; age-bucket; targets per bucket.</li>
-                    <li><strong>Injection vs detection phase</strong>Shift-left evidence.</li>
-                    <li><strong>Defect density</strong>By module; outliers highlighted.</li>
-                    <li><strong>Reopen %</strong>Rolling 4-sprint.</li>
-                    <li><strong>DRE</strong>Defect Removal Effectiveness per phase.</li>
-                    <li><strong>Top-5 themes</strong>Clustered from defect bodies by the triage agent.</li>
+                    <li><strong>Aging matrix</strong>Severity &times; age-bucket; target per bucket; source: defect tracker; owner: QA Lead.</li>
+                    <li><strong>Injection vs detection phase</strong>Shift-left evidence; measured on closed defects only; window: cohort-locked at release.</li>
+                    <li><strong>Defect density</strong>Defects / 1k lines-changed, per module; outliers highlighted; window: last 4 sprints.</li>
+                    <li><strong>Reopen %</strong>Reopened defects / closed defects in the same cohort; rolling 4 sprints; target &lt; 5%.</li>
+                    <li><strong>DRE (Defect Removal Efficiency)</strong>Numerator: defects found pre-release in a cohort. Denominator: pre-release + post-release defects in the same cohort. Observation window: 60 days post-release. Target: &gt; 90%.</li>
+                    <li><strong>Defect leakage</strong>Post-release defects / pre-release defects, same cohort, 60-day window. <strong>If pre-release = 0, show N/A</strong> and report the absolute post-release count separately &mdash; never divide by zero.</li>
+                    <li><strong>Top-5 themes</strong>Clustered from defect bodies by the triage agent; weekly; human-approved before publishing.</li>
                 </ul>
                 <div class="where-ai"><strong>&#129302; AI:</strong> clustering produces the top-5 themes;
-                    log-RCA agent attaches a candidate root cause to each new P1.</div>
+                    log-RCA agent attaches a candidate root cause to each new P1 for human confirmation.</div>
             </article>
 
             <article class="deep-card" id="dash-risks">
@@ -1302,9 +1727,9 @@
     <!-- ============================================================
          SECTION 8 — HOW TO USE
          ============================================================ -->
-    <section class="dash-sec alt" id="usage" aria-labelledby="usage-h">
+    <section class="dash-sec" id="usage" aria-labelledby="usage-h">
         <div class="container">
-            <h2 id="usage-h"><span class="num">8</span> How to use these dashboards</h2>
+            <h2 id="usage-h"><span class="num">11</span> How to use these dashboards</h2>
             <p class="lede">Audience &times; cadence &times; the moment they&rsquo;re opened. If a dashboard
                 doesn&rsquo;t have a weekly moment, it dies &mdash; so each one is anchored to a specific
                 ceremony.</p>
