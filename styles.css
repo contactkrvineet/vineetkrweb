@@ -2817,21 +2817,23 @@ section.transformation-section:nth-child(even) {
 .casestudy-page .btn-primary-large { background: #2f7bd9; color: #fff; }
 .casestudy-page .btn-secondary-large { border: 2px solid #6fb7ff; color: #bfe0ff; }
 
-/* Readable light cards for content sections on dark portfolio pages */
-.portfolio-page:not(.casestudy-page):not(.dash-page) main > section,
-.portfolio-page:not(.casestudy-page):not(.dash-page) body > section,
-.portfolio-page:not(.casestudy-page):not(.dash-page) > section {
+/* Readable light cards for content sections on dark portfolio pages.
+   .casestudy-page, .dash-page and .tmd-page manage their own section
+   backgrounds and text colors internally, so they opt out here. */
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) main > section,
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) body > section,
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) > section {
   background: #fff;
   color: #1f2a44;
 }
-.portfolio-page:not(.casestudy-page):not(.dash-page) main > section :is(h2, h3, h4, h5, p, li, label, td, span),
-.portfolio-page:not(.casestudy-page):not(.dash-page) > section :is(h2, h3, h4, h5, p, li, label, td, span) {
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) main > section :is(h2, h3, h4, h5, p, li, label, td, span),
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) > section :is(h2, h3, h4, h5, p, li, label, td, span) {
   color: #1f2a44;
 }
-.portfolio-page:not(.casestudy-page):not(.dash-page) main > section :is(h2),
-.portfolio-page:not(.casestudy-page):not(.dash-page) > section :is(h2) { color: #0b4a96; }
-.portfolio-page:not(.casestudy-page):not(.dash-page) main > section a:not(.btn):not([class*="button"]),
-.portfolio-page:not(.casestudy-page):not(.dash-page) > section a:not(.btn):not([class*="button"]) { color: #0b5cc0; }
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) main > section :is(h2),
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) > section :is(h2) { color: #0b4a96; }
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) main > section a:not(.btn):not([class*="button"]),
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) > section a:not(.btn):not([class*="button"]) { color: #0b5cc0; }
 .portfolio-page th { background: #0b4a96; color: #fff; }
 
 /* Bold text inside the dark homepage hero must stay light */

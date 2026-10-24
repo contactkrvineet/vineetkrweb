@@ -642,7 +642,7 @@
             </div>
             <div class="dash-glance-item">
                 <span class="dash-glance-k">Cadence</span>
-                <span class="dash-glance-v">11 sprints &times; 2 weeks (Demo232 &rarr; Demo242) &middot; closing Sprint&nbsp;2</span>
+                <span class="dash-glance-v">11 sprints &times; 2 weeks (Demo232 &rarr; Demo242) &middot; Sprint&nbsp;3 (Demo234) in flight</span>
             </div>
             <div class="dash-glance-item">
                 <span class="dash-glance-k">Team</span>
@@ -824,8 +824,10 @@
                 <div class="scn-grid">
                     <div class="scn-row sig">
                         <span class="k">Signal</span>
-                        <p>The risk-based-selection agent cuts the CI gate from 42&nbsp;min to 24&nbsp;min on
-                            an evaluation set. Measured recall vs full suite: 94% (6% miss rate on a 180-test eval).</p>
+                        <p>The risk-based-selection agent cuts the CI gate from 42&nbsp;min to 24&nbsp;min on an
+                            evaluation set of <strong>180 historical PRs containing 50 known real defects</strong>
+                            (plus 130 clean PRs). Measured recall on the real-defect denominator: <strong>47 of 50
+                            = 94%</strong> (3 missed real defects, all non-P1).</p>
                     </div>
                     <div class="scn-row ana">
                         <span class="k">Analysis</span>
@@ -854,8 +856,10 @@
                         <span class="k">My recommendation</span>
                         <p><strong>Option A + all 4 guardrails.</strong> Measurement: monthly precision/recall vs
                             the versioned eval set, published on the <a href="#dash-agents">AI QE Agents</a>
-                            dashboard. Owner: SDET&nbsp;Lead + Dev&nbsp;Lead. Rollback trigger: 2 missed real
-                            defects in a rolling 30-day window.</p>
+                            dashboard. Owner: SDET&nbsp;Lead + Dev&nbsp;Lead. <strong>Rollback triggers:</strong>
+                            severity-weighted miss score &gt;&nbsp;6 on the eval set, OR &gt;&nbsp;2 real defects
+                            leaked in a rolling 30-day window, OR a single P1 leak. The AI selection runs at PR
+                            level only; the release gate always runs the full suite.</p>
                     </div>
                 </div>
             </article>
@@ -1033,8 +1037,8 @@
             <h2 id="sprints-h"><span class="num">5</span> Sprint cadence &mdash; Demo232 to Demo242</h2>
             <p class="lede">Eleven two-week sprints, named <strong>Sprint Demo232</strong> through
                 <strong>Sprint Demo242</strong>. <strong>Pilot (canary) kickoff: 2027-01-24 &mdash; Sprint Demo241.
-                GA: 2027-02-21 &mdash; Sprint Demo242.</strong> Sprint 1 and Sprint 2 have closed; the current
-                sprint is Sprint&nbsp;3 (Demo234). Each sprint has a theme so the dashboards above have an easy
+                GA: 2027-02-21 &mdash; Sprint Demo242.</strong> Sprints 1 and 2 have closed; <strong>Sprint&nbsp;3
+                (Demo234) is in flight</strong>. Each sprint has a theme so the dashboards above have an easy
                 &ldquo;what should look different this sprint?&rdquo; check.</p>
 
             <div class="sprint-row">
@@ -1159,7 +1163,9 @@
 
                 <div class="ttype-card">
                     <h4><span class="ico">PF</span>Performance &amp; chaos</h4>
-                    <p>Baseline at 1x expected volume Sprint Demo237, 3x by Demo243; chaos: broker loss, dead-letter spike, DB failover.</p>
+                    <p>Baseline at 1x expected volume in Sprint Demo236 (Sprint 5); 2x by Demo238 (Sprint 7);
+                        3x by Demo240 (Sprint 9) so the pre-pilot sign-off pack is complete. Chaos: broker loss,
+                        dead-letter spike, DB failover.</p>
                     <ul>
                         <li>p95 latency &lt; 600ms at 3x</li>
                         <li>No message loss on broker loss</li>
@@ -1326,9 +1332,15 @@
             <!-- Compact AI evaluation example -->
             <div class="ai-eval">
                 <h3>&#128269; AI evaluation example &mdash; risk-based test selection (QE-06)</h3>
+                <p style="background:rgba(239,68,68,.18);border-left:3px solid #ef4444;padding:10px 14px;border-radius:6px;margin-bottom:14px;">
+                    <strong style="color:#fca5a5;">Positioning:</strong> the AI-assisted suite is an
+                    <em>additional, faster PR feedback mechanism</em> &mdash; <strong>not</strong> a replacement
+                    for the full-suite release gate. The release decision never rests on the AI selection alone.
+                </p>
                 <p>What a credible &quot;AI in QE&quot; story looks like at Test Manager level: a versioned
-                    evaluation set, baseline vs AI-assisted, false positives and false negatives, human override
-                    rate, and the disable/rollback mechanism &mdash; all before the saving is claimed.</p>
+                    evaluation set with a defined denominator, baseline vs AI-assisted, severity-weighted misses,
+                    confidence/uncertainty on each decision, human override rate, and the disable/rollback
+                    mechanism &mdash; all before the saving is claimed.</p>
                 <table>
                     <thead>
                         <tr>
@@ -1338,20 +1350,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Evaluation set</td><td>180 historical PRs with known defect labels (versioned v3)</td><td>Same 180 PRs</td></tr>
+                        <tr><td>Evaluation set (versioned v3)</td><td>180 historical PRs: 50 real defects + 130 clean</td><td>Same 180 PRs</td></tr>
+                        <tr><td>Recall denominator</td><td>50 known real defects</td><td>50 known real defects</td></tr>
                         <tr><td>Gate time (median)</td><td>42 min</td><td>24 min</td></tr>
-                        <tr><td>True positives (real defects caught)</td><td>50 / 50</td><td>47 / 50</td></tr>
-                        <tr><td>False negatives (missed real defects)</td><td>0</td><td>3 (6% miss rate)</td></tr>
-                        <tr><td>False positives (flagged clean PRs)</td><td>12</td><td>10</td></tr>
-                        <tr><td>Human override rate</td><td>n/a</td><td>8% of agent decisions overridden on review</td></tr>
+                        <tr><td>True positives (real defects caught)</td><td>50 / 50 = 100%</td><td>47 / 50 = 94%</td></tr>
+                        <tr><td>False negatives (missed real defects)</td><td>0</td><td>3 (all non-P1; 2 P2, 1 P3)</td></tr>
+                        <tr><td>Severity-weighted miss score</td><td>0</td><td>5 (P1=5pts, P2=2, P3=1; threshold &le;6)</td></tr>
+                        <tr><td>False positives (flagged clean PRs)</td><td>12 / 130</td><td>10 / 130</td></tr>
+                        <tr><td>Decision confidence</td><td>n/a</td><td>Low-confidence (&lt;0.75) PRs auto-escalate to full suite</td></tr>
+                        <tr><td>Human override rate</td><td>n/a</td><td>8% of agent decisions overridden; each with a reason</td></tr>
                         <tr><td>Disable / rollback</td><td>n/a</td><td>Single CI switch; full suite re-enables within 5 min</td></tr>
                         <tr><td>Audit trail</td><td>CI logs</td><td>Agent decision + rationale + override logged per PR</td></tr>
+                        <tr><td>Release gate</td><td>Full suite, every release</td><td>Full suite, every release (AI selection does NOT replace it)</td></tr>
                     </tbody>
                 </table>
                 <p class="note">All figures are illustrative. The real decision &mdash; see Scenario 3 above &mdash;
-                    is to enable this agent at PR level only, keep the full suite at the release gate, and track
-                    these numbers monthly on the AI QE Agents dashboard. Any &quot;hours saved&quot; number
-                    presented to steering is <em>estimated</em> until measured over 2 sprints in production.</p>
+                    is to enable this agent <strong>at PR level only</strong>, keep the full suite at the release
+                    gate, track these numbers monthly on the AI QE Agents dashboard, and auto-rollback if the
+                    severity-weighted miss score exceeds 6 or more than 2 real defects leak in a rolling 30-day
+                    window. Any &quot;hours saved&quot; number presented to steering is <em>estimated</em> until
+                    measured over 2 sprints in production.</p>
             </div>
         </div>
     </section>
@@ -1362,11 +1380,13 @@
     <section class="dash-sec" id="dashboards" aria-labelledby="boards-h">
         <div class="container">
             <h2 id="boards-h"><span class="num">9</span> The dashboards &mdash; twelve views I would use to govern this programme</h2>
-            <p class="lede">Each tile answers one question a Test Manager is asked. Tiles marked
-                <strong>Live</strong> link to a working sample page on this site; tiles marked
-                <strong>Preview</strong> link to the field-level spec further down &mdash; what the dashboard would
-                show, which KPIs it reports (with denominator, time window, source of truth and owner), and where
-                AI plugs in.</p>
+            <p class="lede">Each tile answers one question a Test Manager is asked. Tiles labelled
+                <strong style="background:#d1fae5;color:#065f46;padding:1px 7px;border-radius:4px;">Live sample</strong>
+                open a working HTML page on this site (interactive demo). Tiles labelled
+                <strong style="background:#fef3c7;color:#92400e;padding:1px 7px;border-radius:4px;">Field spec</strong>
+                jump to a design specification further down &mdash; what the dashboard would show, which KPIs it
+                reports (with denominator, time window, source of truth and owner), and where AI plugs in. No
+                guessing required which link opens a page and which opens a spec.</p>
 
             <div class="board-grid">
 
@@ -1386,7 +1406,7 @@
 
                 <!-- 2 Test Strategy -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#127919;</span>
                         <h3>Test Strategy</h3>
@@ -1400,7 +1420,7 @@
 
                 <!-- 3 ROI Calculator -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#128181;</span>
                         <h3>ROI Calculator</h3>
@@ -1414,7 +1434,7 @@
 
                 <!-- 4 Automation Effort -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#129302;</span>
                         <h3>Automation Effort</h3>
@@ -1442,7 +1462,7 @@
 
                 <!-- 6 Release Readiness -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#128737;</span>
                         <h3>Release Readiness (Go / No-Go)</h3>
@@ -1456,7 +1476,7 @@
 
                 <!-- 7 Defect Analytics -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#128030;</span>
                         <h3>Defect Analytics</h3>
@@ -1470,7 +1490,7 @@
 
                 <!-- 8 Risk Register -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#9888;</span>
                         <h3>Risk Register</h3>
@@ -1484,7 +1504,7 @@
 
                 <!-- 9 Reconciliation -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#128202;</span>
                         <h3>Reconciliation Dashboard</h3>
@@ -1498,7 +1518,7 @@
 
                 <!-- 10 Pilot Rollout -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#128640;</span>
                         <h3>Pilot Rollout</h3>
@@ -1512,7 +1532,7 @@
 
                 <!-- 11 Non-functional -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#9889;</span>
                         <h3>Non-functional (Perf &amp; Security)</h3>
@@ -1526,7 +1546,7 @@
 
                 <!-- 12 AI Agents Status -->
                 <article class="board-tile">
-                    <span class="status preview">Preview</span>
+                    <span class="status preview">Field spec</span>
                     <div class="tile-top">
                         <span class="ico" aria-hidden="true">&#129504;</span>
                         <h3>AI QE Agents &mdash; Status</h3>
@@ -1622,7 +1642,7 @@
                     <li><strong>Gate RAG</strong>Functional / Data / Perf / Ops; each with evidence link.</li>
                     <li><strong>Recommendation vs authorization</strong>Two separate signals: TM recommendation (provisional) and formal release authority sign-off (final).</li>
                     <li><strong>Open P1/P2</strong>With age bucket and owner.</li>
-                    <li><strong>Rollback drill freshness</strong>&lt; 1 sprint old at pilot; target drill in Sprint Demo239 (Sprint 8).</li>
+                    <li><strong>Rollback drill freshness</strong>&lt; 1 sprint old at pilot; target drill in Sprint Demo240 (Sprint 9) &mdash; matches the sprint cadence and the testing-types card.</li>
                     <li><strong>Pilot error-budget burn</strong>Only visible during Sprint Demo241 (Pilot); 0.3% of pilot volume.</li>
                     <li><strong>Dependencies</strong>External sign-offs waiting (regulator, vendor) &mdash; owners named.</li>
                 </ul>
