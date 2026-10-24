@@ -228,6 +228,37 @@
         }
         .sprint-row.pilot { border-left-color: #f59e0b; background: #fffbeb; }
         .sprint-row.ga { border-left-color: #10b981; background: #ecfdf5; }
+        /* Current sprint — restrained cyan accent + soft glow + pulsing dot */
+        .sprint-row.current {
+            border-left-color: #06b6d4;
+            border-left-width: 5px;
+            background: linear-gradient(90deg, #ecfeff 0%, #ffffff 60%);
+            box-shadow: 0 0 0 1px rgba(6,182,212,.3), 0 8px 22px rgba(6,182,212,.14);
+            position: relative;
+        }
+        .sprint-row.current::before {
+            content: "";
+            position: absolute;
+            top: 14px; left: -11px;
+            width: 10px; height: 10px;
+            background: #06b6d4;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(6,182,212,.25);
+            animation: dashSprintPulse 2s ease-in-out infinite;
+        }
+        @keyframes dashSprintPulse {
+            0%,100% { box-shadow: 0 0 0 4px rgba(6,182,212,.25); }
+            50%     { box-shadow: 0 0 0 7px rgba(6,182,212,.08); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .sprint-row.current::before { animation: none; }
+        }
+        .sprint-row.current .sp-name { color: #0e7490; }
+        .sprint-row.current .sp-check {
+            background: #cffafe;
+            color: #164e63;
+            font-weight: 700;
+        }
         .sprint-row .sp-name { font-weight: 700; color: #0f2a5c; }
         .sprint-row .sp-dates { color: #64748b; font-size: .85rem; }
         .sprint-row .sp-theme { color: #334155; }
@@ -1053,8 +1084,8 @@
                 <div class="sp-theme">AI triage agent MVP (QE-02); first data profile of source Oracle tables. 2 UAT outages &mdash; see Scenario&nbsp;1.</div>
                 <div class="sp-check">Automation Effort</div>
             </div>
-            <div class="sprint-row" style="border-left-color:#be185d;background:#fdf2f8;">
-                <div class="sp-name">Sprint Demo234 <span style="color:#be185d;font-weight:700;">&middot; Sprint 3 (current)</span></div>
+            <div class="sprint-row current">
+                <div class="sp-name">Sprint Demo234 <span style="color:#0e7490;font-weight:700;">&middot; Sprint 3 &middot; NOW</span></div>
                 <div class="sp-dates">2026-10-19 &rarr; 11-01 &middot; in flight</div>
                 <div class="sp-theme">pacs.008 happy-path + reject flows; first row-count reconciliation Oracle &rarr; staging. D1 UAT decision deadline.</div>
                 <div class="sp-check">Defect Analytics on</div>
