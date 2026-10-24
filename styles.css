@@ -1,3 +1,7 @@
+/* Load Inter (variable, 400–800) for the premium dark engineering refresh.
+   Pages already preconnect to fonts.googleapis.com. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 /* Core skills — plain pill list (replaces the old emoji+gradient block) */
 .skill-block {
   margin: 14px 0 6px 0;
@@ -79,15 +83,15 @@ section .skill-pills li:hover,
   font-size: 0.97rem;
   padding: 0.3rem 0.9rem;
   border-radius: 6px;
-  background: #e3eaf6;
-  color: #0066cc;
+  background: #e0f2fe;
+  color: #0e7490;
   text-decoration: none;
   margin-right: 0.5rem;
   transition: background 0.2s;
 }
 #knowledge-sharing .info-link:hover,
 #knowledge-sharing .info-link--alt:hover {
-  background: #d0e0f7;
+  background: #bae6fd;
 }
 /* Profile photo in case study header - small and left-aligned */
 .header-profile-section {
@@ -114,28 +118,47 @@ section .skill-pills li:hover,
    Tech Portfolio for Vineet Kumar
    ======================================== */
 
-/* CSS Variables for Easy Theme Management */
+/* ========================================
+   DESIGN TOKENS — Premium dark engineering
+   Deep navy + slate surfaces + restrained cyan + crisp Inter type.
+   Dark frame (nav / hero / footer / callouts); light content cards
+   stay for readability on dense pages.
+   ======================================== */
 :root {
-  /* Primary Colors */
-  --primary-color: #0066cc;
-  --primary-dark: #004080;
-  --primary-light: #4d94d9;
-  --secondary-color: #28a745;
-  --secondary-dark: #1e7e34;
+  /* Primary accent — restrained cyan (was indigo-blue #0066cc) */
+  --primary-color: #0e7490;   /* AA-contrast cyan on white; use for links / primary CTAs */
+  --primary-dark: #155e75;    /* hover + darker cyan */
+  --primary-light: #22d3ee;   /* bright cyan — hero accents on dark */
+  --accent-cyan: #06b6d4;     /* mid cyan — borders, underlines, pills */
+  --accent-cyan-glow: rgba(34, 211, 238, 0.35);
+
+  /* Deep navy & slate surfaces (dark frame) */
+  --navy-950: #060a16;
+  --navy-900: #0b1220;
+  --navy-800: #0f172a;
+  --navy-700: #1e293b;
+  --slate-700: #334155;
+  --slate-500: #64748b;
+  --slate-300: #cbd5e1;
+  --slate-100: #f1f5f9;
+
+  /* Secondary (kept for existing badges) */
+  --secondary-color: #10b981;  /* emerald — crisper than the old #28a745 */
+  --secondary-dark: #047857;
 
   /* Neutral Colors */
   --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-tertiary: #e9ecef;
-  --text-primary: #212529;
-  --text-secondary: #6c757d;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #e2e8f0;
+  --text-primary: #0f172a;     /* darker navy — crisper on white */
+  --text-secondary: #475569;
   --text-light: #ffffff;
 
-  /* Accent Colors */
-  --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --success: #28a745;
-  --warning: #ffc107;
-  --danger: #dc3545;
+  /* Accent gradient — recoloured to navy + cyan */
+  --accent-gradient: linear-gradient(135deg, #0e7490 0%, #0369a1 100%);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -144,27 +167,40 @@ section .skill-pills li:hover,
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
 
-  /* Typography */
-  --font-primary: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  --font-heading: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Typography — Inter for both; tabular numerals for metrics */
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
-  /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+  /* Shadows — slightly deeper to match the dark frame */
+  --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 6px 12px rgba(15, 23, 42, 0.10);
+  --shadow-lg: 0 14px 32px rgba(15, 23, 42, 0.14);
+  --shadow-xl: 0 24px 50px rgba(15, 23, 42, 0.22);
+  --shadow-glow: 0 0 0 1px rgba(34, 211, 238, 0.25), 0 10px 30px rgba(6, 182, 212, 0.18);
 
   /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
 
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
 }
+
+/* Opt metric numerals and KPI figures into tabular lining numbers so
+   values align column-to-column even in proportional contexts. */
+.metric-num,
+.stat-number,
+[class*="-glance-v"],
+[class*="-glance-k"],
+[class*="metric"],
+.tp-exec td,
+.dash-table td,
+.v, .k { font-variant-numeric: tabular-nums; }
 
 /* ========================================
    RESET & BASE STYLES
@@ -375,7 +411,7 @@ b {
 
 .btn-primary {
   background: #ffffff;
-  color: #1e3c72;
+  color: var(--navy-800);
   box-shadow: var(--shadow-md);
 }
 
@@ -508,8 +544,8 @@ header .skill-heading {
 }
 
 .tool-badge--sandbox {
-  background: #e3f2fd;
-  color: #0066cc;
+  background: #ecfeff;
+  color: #0e7490;
 }
 
 @media (max-width: 600px) {
@@ -534,13 +570,14 @@ header .skill-heading {
    ======================================== */
 
 header {
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 55%, var(--navy-700) 100%);
   color: var(--text-light);
   padding: var(--spacing-lg) var(--spacing-md);
   text-align: center;
   box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.14);
 }
 
 header::before {
@@ -918,7 +955,7 @@ section:nth-child(even) {
 
 /* Info Section / Knowledge Sharing - Compact Version */
 .info-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0e7490 0%, #0369a1 100%);
   color: var(--text-light);
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-lg);
@@ -1208,7 +1245,7 @@ section:nth-child(even) {
 .read-more-button:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  background: linear-gradient(135deg, var(--primary-dark), #003366);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
 }
 
 /* ========================================
@@ -1435,7 +1472,7 @@ section:nth-child(even) {
    ======================================== */
 
 footer {
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 100%);
   color: var(--text-light);
   text-align: center;
   padding: var(--spacing-lg) var(--spacing-md);
@@ -1443,7 +1480,8 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(34, 211, 238, 0.18);
   z-index: 1000;
 }
 
@@ -1533,7 +1571,7 @@ form button {
 form button:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
-  background: linear-gradient(135deg, var(--primary-dark), #003366);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
 }
 
 /* ========================================
@@ -2789,19 +2827,19 @@ section.transformation-section:nth-child(even) {
 .casestudy-page .case-study-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; }
 .casestudy-page .company-badge h3 { margin: 0; color: #0b2a55; }
 .casestudy-page .industry-tag { color: #52607a; font-size: 0.9rem; }
-.casestudy-page .impact-badge { background: #e3f0ff; color: #0b4a96; border-radius: 999px; padding: 0.3rem 0.85rem; font-weight: 700; font-size: 0.85rem; }
+.casestudy-page .impact-badge { background: #ecfeff; color: #164e63; border-radius: 999px; padding: 0.3rem 0.85rem; font-weight: 700; font-size: 0.85rem; }
 .casestudy-page .case-title { color: #0b2a55; font-size: 1.35rem; margin: 1rem 0; }
 .casestudy-page .case-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
 .casestudy-page .results-section { grid-column: 1 / -1; }
-.casestudy-page .case-content h5 { color: #0b4a96; font-size: 1.05rem; margin: 0 0 0.5rem; }
+.casestudy-page .case-content h5 { color: #164e63; font-size: 1.05rem; margin: 0 0 0.5rem; }
 .casestudy-page .case-content ul { padding-left: 1.2rem; margin: 0.5rem 0; }
 .casestudy-page .impact-statement { background: #eef5ff; border-left: 4px solid #2f7bd9; padding: 0.9rem 1rem; border-radius: 8px; margin-top: 1rem; }
 .casestudy-page .skills-demonstrated { margin-top: 1.25rem; }
 .casestudy-page .skills-demonstrated h5,
-.casestudy-page .skills-demonstrated h4 { color: #0b4a96; margin: 0 0 0.5rem; }
+.casestudy-page .skills-demonstrated h4 { color: #164e63; margin: 0 0 0.5rem; }
 .casestudy-page .skills-tags,
 .casestudy-page .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.casestudy-page .skill-tag { background: #e3f0ff; color: #0b4a96; border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.85rem; font-weight: 600; }
+.casestudy-page .skill-tag { background: #ecfeff; color: #164e63; border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.85rem; font-weight: 600; }
 .casestudy-page .technologies-section > .container > h2,
 .casestudy-page .cta-section h2 { color: #f2f7ff; text-align: center; }
 .casestudy-page .technologies-section > .container > p { color: #c5d3ea; text-align: center; }
@@ -2831,10 +2869,10 @@ section.transformation-section:nth-child(even) {
   color: #1f2a44;
 }
 .portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) main > section :is(h2),
-.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) > section :is(h2) { color: #0b4a96; }
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) > section :is(h2) { color: #164e63; }
 .portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) main > section a:not(.btn):not([class*="button"]),
-.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) > section a:not(.btn):not([class*="button"]) { color: #0b5cc0; }
-.portfolio-page th { background: #0b4a96; color: #fff; }
+.portfolio-page:not(.casestudy-page):not(.dash-page):not(.tmd-page) > section a:not(.btn):not([class*="button"]) { color: #0369a1; }
+.portfolio-page th { background: #164e63; color: #fff; }
 
 /* Bold text inside the dark homepage hero must stay light */
 .home-page .hero-tagline strong {
@@ -2866,10 +2904,10 @@ section.transformation-section:nth-child(even) {
 .arch-flow{list-style:none;margin:0 0 1.2rem;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;counter-reset:a}
 .arch-flow li{counter-increment:a;position:relative;padding:14px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);opacity:0;transform:translateY(12px);animation:archIn .5s ease forwards}
 .arch-flow li:nth-child(2){animation-delay:.15s}.arch-flow li:nth-child(3){animation-delay:.3s}.arch-flow li:nth-child(4){animation-delay:.45s}.arch-flow li:nth-child(5){animation-delay:.6s}.arch-flow li:nth-child(6){animation-delay:.75s}
-.arch-flow li::before{content:counter(a);display:block;width:24px;height:24px;line-height:24px;margin:0 auto 6px;border-radius:50%;background:linear-gradient(135deg,#4f7cff,#8a5cff);color:#fff;font-size:.8rem}
+.arch-flow li::before{content:counter(a);display:block;width:24px;height:24px;line-height:24px;margin:0 auto 6px;border-radius:50%;background:linear-gradient(135deg,#0e7490,#0369a1);color:#fff;font-size:.8rem}
 .arch-flow li b{display:block}.arch-flow li span{font-size:.82rem;opacity:.8}
 .arch-teaser-stats{font-size:.95rem}
-.arch-teaser-cta{display:inline-block;margin-top:.6rem;padding:10px 22px;border-radius:999px;background:linear-gradient(135deg,#4f7cff,#8a5cff);color:#fff;text-decoration:none;font-weight:600;box-shadow:0 0 0 0 rgba(111,140,255,.6);animation:archPulse 2.4s infinite}
+.arch-teaser-cta{display:inline-block;margin-top:.6rem;padding:10px 22px;border-radius:999px;background:linear-gradient(135deg,#0e7490,#0369a1);color:#fff;text-decoration:none;font-weight:600;box-shadow:0 0 0 0 rgba(34,211,238,.5);animation:archPulse 2.4s infinite}
 @keyframes archIn{to{opacity:1;transform:none}}
 @keyframes archPulse{70%{box-shadow:0 0 0 14px rgba(111,140,255,0)}100%{box-shadow:0 0 0 0 rgba(111,140,255,0)}}
 @media(prefers-reduced-motion:reduce){.arch-flow li{animation:none;opacity:1;transform:none}.arch-teaser-cta{animation:none}}
