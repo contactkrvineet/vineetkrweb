@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Dashboards &amp; Metrics for the Senior Test Manager | Vineet Kumar</title>
+    <meta name="title" content="Dashboards &amp; Metrics for the Senior Test Manager | Vineet Kumar">
+    <meta name="description"
+        content="A hub of the dashboards a Senior Test Manager actually opens — governance, strategy, ROI, automation effort, test plan, release readiness, defect analytics, risk, reconciliation, pilot — demonstrated across one 6-month banking + payments modernization.">
+    <meta name="keywords"
+        content="Test Manager dashboards, QE metrics, Test Governance, Test Strategy, QE ROI, Automation Effort, Test Plan, Release Readiness, Defect Analytics, Risk Register, Reconciliation, Pilot Rollout, Banking payments modernization, Salesforce migration, AI in QE">
+    <meta name="author" content="Vineet Kumar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.vineetkr.com/dashboards.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vineetkr.com/dashboards.html">
+    <meta property="og:title" content="Dashboards &amp; Metrics for the Senior Test Manager — Vineet Kumar">
+    <meta property="og:description"
+        content="The dashboards a Senior Test Manager keeps open — demonstrated across one 6-month banking + payments modernization with AI-enabled QE.">
+    <meta property="og:image" content="https://www.vineetkr.com/vineet.png">
+
+    <meta name="theme-color" content="#0066cc">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Google Analytics 4 — placeholder ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <style>
+        /* ============================================================
+           Dashboards hub — page-specific styles, scoped to .dash-page
+           ============================================================ */
+        .dash-page section { background: transparent; box-shadow: none; animation: none; }
+        .dash-page .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .dash-page a { word-break: normal; }
+
+        /* Hero — selector made specific enough to beat the .dash-page section reset above */
+        .dash-page section.dash-hero {
+            background: linear-gradient(135deg, #0f1b3d 0%, #1b3a6b 55%, #0f6b7a 100%);
+            color: #fff;
+            padding: 60px 20px 50px;
+        }
+        .dash-page .dash-hero .eyebrow {
+            font-size: .78rem; letter-spacing: 2px; text-transform: uppercase;
+            color: #5eead4; font-weight: 700; margin-bottom: 14px;
+        }
+        .dash-page .dash-hero h1 { color: #fff; font-size: 2.3rem; margin: 0 0 12px; line-height: 1.2; }
+        .dash-page .dash-hero .subhead { color: #cfe3ff; font-size: 1.08rem; max-width: 880px; line-height: 1.6; margin: 0 0 20px; }
+        .dash-page .dash-hero .subhead strong { color: #ffffff; }
+        .dash-page .dash-hero .subhead em { color: #e0f2fe; font-style: italic; }
+        .dash-page .dash-hero .byline { color: #cfe3ff; font-size: .9rem; margin: 0 0 22px; }
+        .dash-page .dash-hero .byline a { color: #5eead4; text-decoration: none; }
+        .dash-page .dash-hero .byline .dot { opacity: .6; margin: 0 8px; }
+        .dash-page .dash-hero .byline span { color: #cfe3ff; }
+        .dash-page .dash-sample-note {
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.22);
+            border-left: 4px solid #fbbf24;
+            border-radius: 10px;
+            padding: 14px 18px;
+            color: #e6f0ff;
+            font-size: .92rem;
+            line-height: 1.55;
+            max-width: 880px;
+        }
+        .dash-page .dash-sample-note strong { color: #fff; }
+        .dash-page .dash-sample-note em { color: #fde68a; font-style: italic; }
+
+        /* Programme at-a-glance strip */
+        .dash-page section.dash-glance {
+            background: #0b1326;
+            color: #e6f0ff;
+            padding: 24px 20px;
+        }
+        .dash-page .dash-glance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 14px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .dash-page .dash-glance-item {
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.16);
+            border-left: 3px solid #5eead4;
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+        .dash-page .dash-glance-k {
+            display: block;
+            font-size: .72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        .dash-page .dash-glance-v { color: #ffffff; font-weight: 700; font-size: 1rem; line-height: 1.4; display: block; }
+
+        /* Generic page section */
+        .dash-page section.dash-sec { padding: 48px 20px; background: #fff; }
+        .dash-page section.dash-sec.alt { background: #f7f9fc; }
+        .dash-sec h2 {
+            color: #0f2a5c;
+            font-size: 1.75rem;
+            margin: 0 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .dash-sec h2 .num {
+            background: #0f2a5c;
+            color: #fff;
+            font-size: .95rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+        .dash-sec .lede { color: #475569; font-size: 1.02rem; line-height: 1.6; max-width: 920px; margin: 0 0 24px; }
+
+        /* Context card for the case study */
+        .ctx-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #0e7490;
+            border-radius: 14px;
+            padding: 22px 24px;
+            box-shadow: 0 6px 18px rgba(15,23,42,.06);
+            margin-bottom: 20px;
+        }
+        .ctx-card h3 { color: #0f2a5c; font-size: 1.15rem; margin: 0 0 10px; }
+        .ctx-card p { margin: 0 0 10px; color: #334155; line-height: 1.6; }
+        .ctx-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .ctx-pills span {
+            background: #e0f2fe;
+            color: #0c4a6e;
+            border-radius: 999px;
+            padding: 4px 12px;
+            font-size: .82rem;
+            font-weight: 600;
+        }
+
+        /* Epic/story tables */
+        .dash-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 16px 0 24px;
+            font-size: .93rem;
+        }
+        .dash-table th {
+            background: #0f2a5c;
+            color: #fff;
+            text-align: left;
+            padding: 10px 12px;
+            font-size: .85rem;
+            letter-spacing: .4px;
+        }
+        .dash-table td {
+            padding: 10px 12px;
+            border-top: 1px solid #e2e8f0;
+            color: #334155;
+            vertical-align: top;
+        }
+        .dash-table tr:nth-child(odd) td { background: #f8fafc; }
+        .dash-table .epic-tag {
+            display: inline-block;
+            background: #ede9fe;
+            color: #5b21b6;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: .78rem;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        .dash-table .epic-tag.dm { background: #dbeafe; color: #1e40af; }
+        .dash-table .epic-tag.pr { background: #dcfce7; color: #166534; }
+        .dash-table .epic-tag.sf { background: #fef3c7; color: #92400e; }
+        .dash-table .epic-tag.qe { background: #fce7f3; color: #9d174d; }
+
+        /* Team grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 14px;
+            margin: 10px 0 10px;
+        }
+        .team-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-top: 3px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+        .team-card .role { color: #0f2a5c; font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+        .team-card .count { color: #0ea5e9; font-weight: 700; font-size: .9rem; margin-bottom: 6px; }
+        .team-card p { color: #475569; font-size: .9rem; line-height: 1.5; margin: 0; }
+
+        /* Sprint timeline */
+        .sprint-row {
+            display: grid;
+            grid-template-columns: 150px 160px 1fr 180px;
+            gap: 12px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #0ea5e9;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            font-size: .92rem;
+        }
+        .sprint-row.pilot { border-left-color: #f59e0b; background: #fffbeb; }
+        .sprint-row.ga { border-left-color: #10b981; background: #ecfdf5; }
+        .sprint-row .sp-name { font-weight: 700; color: #0f2a5c; }
+        .sprint-row .sp-dates { color: #64748b; font-size: .85rem; }
+        .sprint-row .sp-theme { color: #334155; }
+        .sprint-row .sp-check {
+            background: #eff6ff;
+            color: #1e40af;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: .78rem;
+            font-weight: 600;
+            align-self: start;
+        }
+        .sprint-row.pilot .sp-check { background: #fef3c7; color: #92400e; }
+        .sprint-row.ga .sp-check { background: #d1fae5; color: #065f46; }
+        @media (max-width: 760px) {
+            .sprint-row { grid-template-columns: 1fr; }
+        }
+
+        /* Testing types */
+        .ttype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+        }
+        .ttype-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px 18px;
+            box-shadow: 0 4px 12px rgba(15,23,42,.04);
+        }
+        .ttype-card h4 { color: #0f2a5c; font-size: 1.02rem; margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+        .ttype-card h4 .ico { background: #e0f2fe; color: #0369a1; border-radius: 8px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-size: .95rem; }
+        .ttype-card p { color: #475569; font-size: .92rem; line-height: 1.55; margin: 0; }
+        .ttype-card ul { margin: 8px 0 0; padding-left: 18px; color: #334155; font-size: .9rem; line-height: 1.55; }
+
+        /* AI block */
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+        }
+        .ai-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: #e6f0ff;
+            border-radius: 12px;
+            padding: 16px 18px;
+            border: 1px solid rgba(94,234,212,.3);
+        }
+        .ai-card h4 { color: #fff; margin: 0 0 8px; font-size: 1.02rem; display: flex; align-items: center; gap: 8px; }
+        .ai-card h4 .pill { background: #5eead4; color: #042f2e; border-radius: 6px; padding: 2px 8px; font-size: .72rem; font-weight: 700; }
+        .ai-card p { margin: 0 0 6px; font-size: .9rem; line-height: 1.55; color: #cfe3ff; }
+        .ai-card .where { font-size: .82rem; color: #94a3b8; }
+
+        /* Dashboard tiles grid */
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 18px;
+        }
+        .board-tile {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 20px 22px;
+            box-shadow: 0 6px 18px rgba(15,23,42,.06);
+            display: flex;
+            flex-direction: column;
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+        .board-tile:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(15,23,42,.12);
+        }
+        .board-tile .tile-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            padding-right: 92px;  /* leaves room for the absolute-positioned status badge */
+        }
+        .board-tile .ico {
+            width: 42px; height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg,#0ea5e9,#14b8a6);
+            color: #fff;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .board-tile h3 {
+            color: #0f2a5c; font-size: 1.1rem; margin: 0; line-height: 1.25;
+        }
+        .board-tile .question {
+            background: #f0fdfa;
+            color: #0f766e;
+            border-left: 3px solid #14b8a6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: .88rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .board-tile p { color: #475569; font-size: .92rem; line-height: 1.55; margin: 0 0 10px; flex-grow: 1; }
+        .board-tile .kpis { font-size: .82rem; color: #64748b; margin-bottom: 10px; }
+        .board-tile .kpis strong { color: #0f2a5c; }
+        .board-tile .tile-ai {
+            background: #0f172a;
+            color: #5eead4;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: .78rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .board-tile .tile-cta {
+            background: linear-gradient(135deg,#1e40af,#0369a1);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            font-size: .9rem;
+            align-self: flex-start;
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+        .board-tile .tile-cta.live { background: linear-gradient(135deg,#059669,#047857); }
+        .board-tile .tile-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,.2); }
+        .board-tile .status {
+            position: absolute;
+            top: 14px; right: 14px;
+            font-size: .72rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 999px;
+        }
+        .board-tile { position: relative; }
+        .board-tile .status.live { background: #d1fae5; color: #065f46; }
+        .board-tile .status.preview { background: #fef3c7; color: #92400e; }
+
+        /* Deep-dive sections (anchors) */
+        .deep-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 22px 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 12px rgba(15,23,42,.05);
+        }
+        .deep-card h3 { color: #0f2a5c; font-size: 1.2rem; margin: 0 0 8px; }
+        .deep-card .answers { color: #0f766e; font-weight: 600; font-size: .95rem; margin-bottom: 10px; }
+        .deep-card .kpi-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 10px 0; list-style: none; padding: 0; }
+        .deep-card .kpi-list li {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: .88rem;
+            color: #334155;
+        }
+        .deep-card .kpi-list li strong { color: #0f2a5c; display: block; margin-bottom: 2px; }
+        .deep-card .where-ai {
+            background: #0f172a;
+            color: #5eead4;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: .88rem;
+            margin-top: 10px;
+        }
+        .deep-card .where-ai strong { color: #fff; }
+
+        /* Usage table */
+        .usage-table th { background: #0e7490; }
+        .usage-table .aud-pm { color: #1e40af; font-weight: 700; }
+        .usage-table .aud-sc { color: #92400e; font-weight: 700; }
+        .usage-table .aud-eng { color: #0f766e; font-weight: 700; }
+
+        /* Links/CTAs */
+        .inline-cta {
+            display: inline-block;
+            background: linear-gradient(135deg,#0ea5e9,#14b8a6);
+            color: #fff !important;
+            padding: 10px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: .92rem;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 760px) {
+            .dash-hero h1 { font-size: 1.6rem; }
+            .dash-sec { padding: 36px 16px; }
+            .dash-sec h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+
+<body class="portfolio-page dash-page">
+    <header>
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="vineet.png" alt="Vineet Kumar profile picture"
+                style="width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:2px solid #263159;"
+                loading="lazy">
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">Vineet Kumar</h1>
+                <span>+1 437-428-2199 &nbsp;&nbsp;|&nbsp;&nbsp; contactkrvineet@gmail.com</span>
+            </div>
+        </div>
+        <nav class="main-nav" aria-label="Primary">
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="primary-nav">
+                <span class="menu-label">Menu</span>
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="cv.html">Resume</a></li>
+                <li><a href="casestudy.html">Case Studies</a></li>
+                <li><a href="dashboards.html" aria-current="page">Dashboards &amp; Metrics</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="featuredproject.html">Featured Projects</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="dash-hero">
+        <div class="container">
+            <div class="eyebrow">Illustrative hub · Senior Test Manager · Updated 2026-10-24</div>
+            <h1>Dashboards &amp; Metrics for the Senior Test Manager</h1>
+            <p class="subhead">The dashboards I actually keep open between standup, Sprint Review and the steering
+                committee &mdash; demonstrated across <strong>one 6-month banking + payments modernization</strong>
+                (<em>PayStream Legacy&nbsp;&rarr;&nbsp;Cloud</em>), a 15-member team, a 13-sprint cadence, and an AI
+                QE pod. Each tile below answers one question a Test Manager is asked.</p>
+
+            <p class="byline">
+                <span>Created by</span>
+                <strong style="color:#fff;">Vineet Kumar</strong>
+                <span class="dot">&middot;</span>
+                <a href="https://www.vineetkr.com/" target="_blank" rel="noopener">vineetkr.com</a>
+                <span class="dot">&middot;</span>
+                <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="dot">&middot;</span>
+                <span>&copy; 2026</span>
+            </p>
+
+            <div class="dash-sample-note">
+                <strong>Illustrative only &mdash; no real client, release or metric.</strong> PayStream, the sprint
+                numbers (Demo232 onwards), the team, the Salesforce + payment-switch scope, every date, every KPI
+                target and every risk are <em>fabricated</em> to demonstrate how I structure Test Manager reporting
+                across a modernization programme. Use the structure as a Confluence / GitLab wiki template; replace
+                the numbers with your own.
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         AT-A-GLANCE
+         ============================================================ -->
+    <section class="dash-glance">
+        <div class="dash-glance-grid">
+            <div class="dash-glance-item">
+                <span class="dash-glance-k">Programme</span>
+                <span class="dash-glance-v">PayStream Legacy &rarr; Cloud</span>
+            </div>
+            <div class="dash-glance-item">
+                <span class="dash-glance-k">Milestone (GA)</span>
+                <span class="dash-glance-v">2027-05-10 &mdash; 6 months out</span>
+            </div>
+            <div class="dash-glance-item">
+                <span class="dash-glance-k">Pilot (canary)</span>
+                <span class="dash-glance-v">2027-03-15 &mdash; Sprint Demo242</span>
+            </div>
+            <div class="dash-glance-item">
+                <span class="dash-glance-k">Cadence</span>
+                <span class="dash-glance-v">13 sprints &times; 2 weeks (Demo232 &rarr; Demo244)</span>
+            </div>
+            <div class="dash-glance-item">
+                <span class="dash-glance-k">Team</span>
+                <span class="dash-glance-v">15 members &mdash; 8 Dev / 3 QA / 1 Lead / 1 SM / 1 DevOps / 1 PM</span>
+            </div>
+            <div class="dash-glance-item">
+                <span class="dash-glance-k">Stack in scope</span>
+                <span class="dash-glance-v">COBOL + Oracle &rarr; Java + Postgres &middot; Salesforce Service Cloud &middot; ISO 20022 switch</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 1 — THE PROGRAMME BEHIND THESE DASHBOARDS
+         ============================================================ -->
+    <section class="dash-sec" id="programme" aria-labelledby="programme-h">
+        <div class="container">
+            <h2 id="programme-h"><span class="num">1</span> The programme behind these dashboards</h2>
+            <p class="lede">Every dashboard on this page is a slice of one hypothetical delivery. Imagining a single,
+                end-to-end programme is what forces each metric to earn its place &mdash; because an unanswered
+                question somewhere else is a defect waiting to be shipped.</p>
+
+            <div class="ctx-card">
+                <h3>Business situation</h3>
+                <p><strong>Legacy state.</strong> A regional bank runs its core payments ledger on a 22-year-old
+                    COBOL + Oracle system. Operations run cases from an in-house ticketing tool. Settlement is batch,
+                    overnight; reconciliation to the central bank is partially manual. Regulator has flagged the
+                    reconciliation window as a systemic risk and set a 12-month deadline.</p>
+                <p><strong>Target state.</strong> A cloud-native payments platform (Java + Postgres + Kafka) speaking
+                    ISO 20022, with Salesforce Service Cloud as the agent desktop for operations. Settlement moves
+                    from batch to near-real-time with intra-day reconciliation. AI augments triage, data validation
+                    and release decisions &mdash; <em>as explicit, auditable agents, not black-box automation</em>.</p>
+                <p><strong>Why now.</strong> Regulatory deadline, 25% cost base locked in legacy mainframe licensing,
+                    and no vendor-side defect fix path for the current switch.</p>
+
+                <div class="ctx-pills">
+                    <span>Banking core</span>
+                    <span>ISO 20022</span>
+                    <span>Salesforce Service Cloud</span>
+                    <span>Data migration</span>
+                    <span>Legacy COBOL/Oracle</span>
+                    <span>Regulatory reconciliation</span>
+                    <span>AI QE pod</span>
+                </div>
+            </div>
+
+            <div class="ctx-card">
+                <h3>Why this makes a good dashboard case study</h3>
+                <p>A banking modernization touches every surface a Senior Test Manager owns in a steering review:
+                    <strong>data integrity</strong> (migration + reconciliation), <strong>functional risk</strong>
+                    (payment correctness, rollback), <strong>operational risk</strong> (Salesforce case flow +
+                    agent desktop), <strong>release risk</strong> (pilot &rarr; GA ramp) and
+                    <strong>programme risk</strong> (velocity, defect aging, environment health). The same twelve
+                    dashboards you need here are the twelve you need on <em>any</em> modernization &mdash; so building
+                    them against this story keeps them honest.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2 — MILESTONE → EPIC → STORY
+         ============================================================ -->
+    <section class="dash-sec alt" id="breakdown" aria-labelledby="breakdown-h">
+        <div class="container">
+            <h2 id="breakdown-h"><span class="num">2</span> Milestone &rarr; Epic &rarr; Story breakdown</h2>
+            <p class="lede">The 6-month milestone decomposes into <strong>4 epics</strong> and roughly
+                <strong>48 stories</strong>. Below is the top-level epic table and a representative story cut from
+                each epic &mdash; the shape I expect the backlog to take, not the full backlog.</p>
+
+            <h3 style="color:#0f2a5c;margin:18px 0 6px;">Epics</h3>
+            <table class="dash-table" aria-label="Epic breakdown">
+                <thead>
+                    <tr>
+                        <th style="width:110px;">Epic ID</th>
+                        <th>Name &amp; objective</th>
+                        <th style="width:140px;">Stories</th>
+                        <th style="width:150px;">Lead role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="epic-tag dm">EPIC-DM</span></td>
+                        <td><strong>Data Migration.</strong> Move customer master + 11yr ledger from Oracle to Postgres with field-level mapping, chunked cutover and point-in-time rollback.</td>
+                        <td>~14 stories</td>
+                        <td>Dev Lead + QA (1)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="epic-tag pr">EPIC-PR</span></td>
+                        <td><strong>Payment Rail.</strong> ISO 20022 message handling, near-real-time settlement, intra-day reconciliation to the central bank.</td>
+                        <td>~16 stories</td>
+                        <td>Dev Lead + QA (1)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="epic-tag sf">EPIC-SF</span></td>
+                        <td><strong>Salesforce Integration.</strong> Service Cloud as agent desktop; case routing, SLAs, case-to-payment traceability; replaces in-house ticketing.</td>
+                        <td>~10 stories</td>
+                        <td>Dev + QA (1)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="epic-tag qe">EPIC-QE</span></td>
+                        <td><strong>QE AI Pod.</strong> Triage agent, risk-based test selection, reconciliation diff narrator, synthetic data generator. Underpins every other epic.</td>
+                        <td>~8 stories</td>
+                        <td>SDET Lead (me) + DevOps</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color:#0f2a5c;margin:18px 0 6px;">Representative stories (one slice per epic)</h3>
+            <table class="dash-table" aria-label="Representative stories">
+                <thead>
+                    <tr>
+                        <th style="width:110px;">Story</th>
+                        <th>Title</th>
+                        <th style="width:160px;">Owner</th>
+                        <th style="width:120px;">Sprint</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="epic-tag dm">DM-07</span></td><td>Reconcile customer master row counts between Oracle and Postgres per batch, with field-level diff on primary + 6 risk columns.</td><td>QA + 2 Devs</td><td>Demo235&ndash;236</td></tr>
+                    <tr><td><span class="epic-tag dm">DM-11</span></td><td>Rollback runbook: point-in-time restore of Postgres ledger with reconciliation checksum verification before go-live.</td><td>DevOps + Dev Lead</td><td>Demo240</td></tr>
+                    <tr><td><span class="epic-tag pr">PR-05</span></td><td>Reject pacs.008 messages missing BIC/IBAN with structured error codes; contract-tested against the central-bank schema.</td><td>QA + 2 Devs</td><td>Demo234</td></tr>
+                    <tr><td><span class="epic-tag pr">PR-14</span></td><td>Intra-day reconciliation job: produce a signed CSV of net positions, send to the regulator sandbox, surface mismatches above a 0.01% tolerance.</td><td>QA + 2 Devs</td><td>Demo238&ndash;239</td></tr>
+                    <tr><td><span class="epic-tag sf">SF-03</span></td><td>Case routing by payment status: &quot;Failed Settlement&quot; routes to a tier-2 queue with payment ID attached; SLA 2h.</td><td>QA + 1 Dev</td><td>Demo236</td></tr>
+                    <tr><td><span class="epic-tag sf">SF-09</span></td><td>Agent desktop surfaces payment timeline (Kafka events) alongside case; feature-flagged for canary cohort.</td><td>QA + 1 Dev</td><td>Demo241</td></tr>
+                    <tr><td><span class="epic-tag qe">QE-02</span></td><td>Triage agent clusters pipeline failures by stack-trace signature; proposes &quot;flake / env / real defect&quot; with cited evidence; human approves.</td><td>SDET Lead + DevOps</td><td>Demo233</td></tr>
+                    <tr><td><span class="epic-tag qe">QE-06</span></td><td>Risk-based test selection: given a diff + 90-day defect history, propose a &lt;30-min smoke set with coverage justification.</td><td>SDET Lead</td><td>Demo238</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="color:#0f2a5c;margin:24px 0 6px;">Team allocation &mdash; 15 members</h3>
+            <p class="lede" style="margin-bottom:14px;">Headcount budgeted up front, with named role on each epic.
+                A QA sits inside each delivery epic rather than behind a QA wall; the fourth QA capacity is my own
+                hands-on SDET time on the AI pod.</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="role">Project Manager</div>
+                    <div class="count">1 &times; cross-cutting</div>
+                    <p>Owns steering communications, budget, regulatory liaison. Reads the Release Readiness,
+                        Risk Register and Pilot Rollout dashboards weekly.</p>
+                </div>
+                <div class="team-card">
+                    <div class="role">Scrum Master</div>
+                    <div class="count">1 &times; cross-cutting</div>
+                    <p>Facilitates ceremonies for all 4 epics; owns the velocity + defect-aging trends on the
+                        Governance dashboard.</p>
+                </div>
+                <div class="team-card">
+                    <div class="role">Dev Lead</div>
+                    <div class="count">1 &times; cross-cutting</div>
+                    <p>Architecture, cutover plan, rollback sign-off. Primary engineering voice on steering;
+                        co-owns the Risk Register.</p>
+                </div>
+                <div class="team-card">
+                    <div class="role">Developers</div>
+                    <div class="count">8 &times; split by epic</div>
+                    <p>2 on EPIC-DM, 3 on EPIC-PR (biggest), 2 on EPIC-SF, 1 fractional on EPIC-QE. Daily
+                        standups per epic; cross-epic sync at Thursday-afternoon design review.</p>
+                </div>
+                <div class="team-card">
+                    <div class="role">QA (SDETs)</div>
+                    <div class="count">3 &times; embedded</div>
+                    <p>1 per delivery epic: Data Migration QA, Payments QA, Salesforce QA. I keep the fourth
+                        &quot;QA seat&quot; by doing the AI-pod SDET work myself.</p>
+                </div>
+                <div class="team-card">
+                    <div class="role">DevOps</div>
+                    <div class="count">1 &times; cross-cutting</div>
+                    <p>CI/CD, environment management, cutover automation, rollback drill. Owns the
+                        environment-health signal on the Governance dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3 — SPRINT CADENCE
+         ============================================================ -->
+    <section class="dash-sec" id="sprints" aria-labelledby="sprints-h">
+        <div class="container">
+            <h2 id="sprints-h"><span class="num">3</span> Sprint cadence &mdash; Demo232 to Demo244</h2>
+            <p class="lede">Thirteen two-week sprints, named <strong>Sprint Demo232</strong> through
+                <strong>Sprint Demo244</strong>. Pilot (canary) rides Sprint Demo242; GA rides Sprint Demo244. Each
+                sprint has a theme &mdash; so the dashboards above have an easy &quot;what should look different this
+                sprint?&quot; check.</p>
+
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo232</div>
+                <div class="sp-dates">2026-11-10 &rarr; 11-24</div>
+                <div class="sp-theme">Foundations &mdash; environment bring-up, ISO 20022 schema contract tests, Salesforce sandbox provisioning.</div>
+                <div class="sp-check">Governance baseline</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo233</div>
+                <div class="sp-dates">2026-11-24 &rarr; 12-08</div>
+                <div class="sp-theme">AI triage agent MVP (QE-02); first data profile of source Oracle tables.</div>
+                <div class="sp-check">Automation Effort</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo234</div>
+                <div class="sp-dates">2026-12-08 &rarr; 12-22</div>
+                <div class="sp-theme">pacs.008 happy-path + reject flows; first row-count reconciliation between Oracle &rarr; staging.</div>
+                <div class="sp-check">Defect Analytics on</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo235</div>
+                <div class="sp-dates">2026-12-22 &rarr; 2027-01-05</div>
+                <div class="sp-theme">Field-level mapping validation for customer master; holiday freeze on prod.</div>
+                <div class="sp-check">Reconciliation</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo236</div>
+                <div class="sp-dates">2027-01-05 &rarr; 01-19</div>
+                <div class="sp-theme">Salesforce case routing (SF-03); payment timeline event stream wired to Service Cloud.</div>
+                <div class="sp-check">Test Strategy review</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo237</div>
+                <div class="sp-dates">2027-01-19 &rarr; 02-02</div>
+                <div class="sp-theme">Settlement correctness end-to-end; perf baseline at 1x expected volume.</div>
+                <div class="sp-check">Perf + Governance</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo238</div>
+                <div class="sp-dates">2027-02-02 &rarr; 02-16</div>
+                <div class="sp-theme">Intra-day reconciliation report (PR-14); risk-based test selection live in CI (QE-06).</div>
+                <div class="sp-check">ROI mid-point</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo239</div>
+                <div class="sp-dates">2027-02-16 &rarr; 03-02</div>
+                <div class="sp-theme">Reconciliation to regulator sandbox; agent-desktop usability pass.</div>
+                <div class="sp-check">Risk Register deep-dive</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo240</div>
+                <div class="sp-dates">2027-03-02 &rarr; 03-16</div>
+                <div class="sp-theme">Rollback dress rehearsal (DM-11); failover + DR tabletop with ops.</div>
+                <div class="sp-check">Release Readiness RAG</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo241</div>
+                <div class="sp-dates">2027-03-16 &rarr; 03-30</div>
+                <div class="sp-theme">Pre-pilot hardening; feature-flag plumbing (SF-09); synthetic edge-case data at scale.</div>
+                <div class="sp-check">Pilot readiness</div>
+            </div>
+            <div class="sprint-row pilot">
+                <div class="sp-name">Sprint Demo242 (Pilot)</div>
+                <div class="sp-dates">2027-03-30 &rarr; 04-13</div>
+                <div class="sp-theme">Canary 5% &rarr; 25% &rarr; 50% ramp; live reconciliation to regulator; feedback loop open.</div>
+                <div class="sp-check">Pilot Rollout live</div>
+            </div>
+            <div class="sprint-row">
+                <div class="sp-name">Sprint Demo243</div>
+                <div class="sp-dates">2027-04-13 &rarr; 04-27</div>
+                <div class="sp-theme">Pilot feedback bake-in; final perf + chaos run; sign-off packs assembled.</div>
+                <div class="sp-check">Go/No-Go pre-review</div>
+            </div>
+            <div class="sprint-row ga">
+                <div class="sp-name">Sprint Demo244 (GA)</div>
+                <div class="sp-dates">2027-04-27 &rarr; 05-10</div>
+                <div class="sp-theme">General Availability cutover; dual-run with legacy for 72h; post-GA hyper-care.</div>
+                <div class="sp-check">GA / Go-Live</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4 — TESTING TYPES
+         ============================================================ -->
+    <section class="dash-sec alt" id="testing" aria-labelledby="testing-h">
+        <div class="container">
+            <h2 id="testing-h"><span class="num">4</span> Testing types needed across the programme</h2>
+            <p class="lede">What the 3 QA + 1 SDET Lead actually run, mapped to the dashboards that will show the
+                evidence. &quot;Done&quot; isn&rsquo;t a test type &mdash; it&rsquo;s a dashboard reading &quot;green
+                for N consecutive sprints&quot;.</p>
+
+            <div class="ttype-grid">
+                <div class="ttype-card">
+                    <h4><span class="ico">DM</span>Data migration validation</h4>
+                    <p>Source profiling, record-count reconciliation per table, field-level diff on primary + risk columns, transformation-rule assertions.</p>
+                    <ul>
+                        <li>Row count exact; business-key uniqueness</li>
+                        <li>Checksum per risk column (amount, BIC, status)</li>
+                        <li>Null-ratio drift &lt; 0.5%</li>
+                    </ul>
+                </div>
+
+                <div class="ttype-card">
+                    <h4><span class="ico">RC</span>Reconciliation (end-to-end + intra-day)</h4>
+                    <p>Net-position reconciliation between core ledger, payment switch and central-bank sandbox; signed CSV; tolerance 0.01%.</p>
+                    <ul>
+                        <li>Hourly intra-day job; T+0 close</li>
+                        <li>Variance &gt; tolerance opens a case automatically</li>
+                        <li>AI diff narrator explains the mismatch</li>
+                    </ul>
+                </div>
+
+                <div class="ttype-card">
+                    <h4><span class="ico">RB</span>Rollback / DR drills</h4>
+                    <p>Point-in-time restore of Postgres ledger, cross-check against legacy Oracle snapshot, dual-run cutback runbook.</p>
+                    <ul>
+                        <li>Scheduled drill at Sprint Demo240</li>
+                        <li>Rollback RTO &lt; 2h; RPO &lt; 15 min</li>
+                        <li>Automated reconciliation check post-restore</li>
+                    </ul>
+                </div>
+
+                <div class="ttype-card">
+                    <h4><span class="ico">FC</span>Functional &amp; contract</h4>
+                    <p>ISO 20022 schema contract tests; Salesforce case-flow BDD; payment correctness including reject paths.</p>
+                    <ul>
+                        <li>Contract tests gate every PR</li>
+                        <li>End-to-end payment: happy, reject, timeout, duplicate</li>
+                        <li>Case SLA assertions on routing</li>
+                    </ul>
+                </div>
+
+                <div class="ttype-card">
+                    <h4><span class="ico">PF</span>Performance &amp; chaos</h4>
+                    <p>Baseline at 1x expected volume Sprint Demo237, 3x by Demo243; chaos: broker loss, dead-letter spike, DB failover.</p>
+                    <ul>
+                        <li>p95 latency &lt; 600ms at 3x</li>
+                        <li>No message loss on broker loss</li>
+                        <li>Automatic failover within 30s</li>
+                    </ul>
+                </div>
+
+                <div class="ttype-card">
+                    <h4><span class="ico">SE</span>Security &amp; compliance</h4>
+                    <p>Threat model refresh; SAST/DAST in CI; audit of PII on new paths; penetration test pre-pilot.</p>
+                    <ul>
+                        <li>Zero critical SAST findings on main</li>
+                        <li>Pen test closed before Sprint Demo242</li>
+                        <li>Audit trail for every reconciliation decision</li>
+                    </ul>
+                </div>
+
+                <div class="ttype-card">
+                    <h4><span class="ico">PR</span>Pilot release (canary)</h4>
+                    <p>Feature-flagged ramp 5% &rarr; 25% &rarr; 50% &rarr; 100% over Sprint Demo242; auto-rollback on error-budget burn.</p>
+                    <ul>
+                        <li>Error budget: 0.3% of pilot volume</li>
+                        <li>Cohort selection excluded high-value accounts in week 1</li>
+                        <li>Rollback trigger wired to Pilot Rollout dashboard</li>
+                    </ul>
+                </div>
+
+                <div class="ttype-card">
+                    <h4><span class="ico">FB</span>Feedback loop</h4>
+                    <p>Pilot survey weekly, NPS from agents (Salesforce desktop), operations stand-up readout; telemetry on top-5 agent flows.</p>
+                    <ul>
+                        <li>Agent NPS &gt; 30 by end of pilot</li>
+                        <li>Top-5 case-resolution time &le; legacy</li>
+                        <li>All open feedback items triaged within 48h</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ctx-card" style="margin-top:20px;border-left-color:#5b21b6;">
+                <h3>How &quot;reconciliation&quot; and &quot;rollback&quot; actually surface to the steering committee</h3>
+                <p><strong>Reconciliation.</strong> The intra-day job writes a signed CSV. The Reconciliation
+                    dashboard shows net position by rail, variance against tolerance, and the top-5 unresolved
+                    mismatches with the AI diff narrator&rsquo;s explanation attached. Steering sees one number &mdash;
+                    &quot;variance within tolerance for 14 consecutive runs&quot; &mdash; not the CSV.</p>
+                <p><strong>Rollback.</strong> We don&rsquo;t promise a flawless cutover; we promise a credible
+                    cutback. The Pilot Rollout dashboard shows the rollback RTO/RPO measured in the Sprint
+                    Demo240 drill, the time it took, which runbook step was slowest, and the owner for the next
+                    drill. Steering sees &quot;drill completed within RTO, 1 action&quot; &mdash; and asks about the
+                    one action.</p>
+                <p><strong>Pilot &amp; feedback.</strong> Pilot ramp percent, error-budget burn, agent NPS and the
+                    top-5 feedback themes are the same card, so there&rsquo;s no &quot;green on numbers, red on
+                    sentiment&quot; blind spot.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 5 — WHERE AI SHOWS UP
+         ============================================================ -->
+    <section class="dash-sec" id="ai" aria-labelledby="ai-h">
+        <div class="container">
+            <h2 id="ai-h"><span class="num">5</span> Where AI shows up across the programme</h2>
+            <p class="lede">Six AI agents, each with a clear job, a human in the loop, and a dashboard they
+                report to. &quot;AI in QE&quot; without a dashboard is a demo; with one, it&rsquo;s a decision.</p>
+
+            <div class="ai-grid">
+                <div class="ai-card">
+                    <h4>Triage agent <span class="pill">QE-02</span></h4>
+                    <p>Clusters pipeline failures by stack-trace signature; proposes <em>flake / env / real
+                        defect</em> with cited evidence; a human approves before close.</p>
+                    <p class="where"><strong>Dashboards:</strong> Governance, Defect Analytics, Automation Effort.</p>
+                </div>
+                <div class="ai-card">
+                    <h4>Risk-based test selection <span class="pill">QE-06</span></h4>
+                    <p>Given a diff + 90-day defect history, proposes a &lt;30-min smoke set with a coverage
+                        justification. Full suite still runs nightly.</p>
+                    <p class="where"><strong>Dashboards:</strong> Automation Effort, ROI, Governance.</p>
+                </div>
+                <div class="ai-card">
+                    <h4>Reconciliation diff narrator <span class="pill">PR</span></h4>
+                    <p>Takes a numeric variance from the reconciliation job and produces a 3-line explanation
+                        with pointers to the responsible payment IDs and rules.</p>
+                    <p class="where"><strong>Dashboards:</strong> Reconciliation, Risk Register.</p>
+                </div>
+                <div class="ai-card">
+                    <h4>Synthetic data generator <span class="pill">DM/PR</span></h4>
+                    <p>Generates edge-case payments (currency corner cases, reject codes, out-of-order message
+                        pairs) with provenance for every row.</p>
+                    <p class="where"><strong>Dashboards:</strong> Automation Effort, Defect Analytics.</p>
+                </div>
+                <div class="ai-card">
+                    <h4>Log clustering + RCA draft <span class="pill">XC</span></h4>
+                    <p>Clusters application logs across the message path; drafts a root-cause narrative for the
+                        on-call to confirm.</p>
+                    <p class="where"><strong>Dashboards:</strong> Defect Analytics, Pilot Rollout.</p>
+                </div>
+                <div class="ai-card">
+                    <h4>Test case drafter <span class="pill">PLN</span></h4>
+                    <p>Reads a BRD / user story, drafts Gherkin scenarios with acceptance criteria and risk
+                        notes; QA edits before accepting.</p>
+                    <p class="where"><strong>Dashboards:</strong> Test Strategy, Test Plan.</p>
+                </div>
+            </div>
+
+            <p style="margin-top:16px;color:#334155;font-size:.95rem;">
+                See the <a href="agents.html">Agents</a> page for the architecture of these agents (prompts,
+                guardrails, evaluation set, HITL rules).
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 6 — THE DASHBOARDS GRID
+         ============================================================ -->
+    <section class="dash-sec alt" id="dashboards" aria-labelledby="boards-h">
+        <div class="container">
+            <h2 id="boards-h"><span class="num">6</span> The dashboards &mdash; twelve views I keep open</h2>
+            <p class="lede">Each tile answers one question. Tiles marked <strong>Live</strong> link to a working
+                sample page on this site; tiles marked <strong>Preview</strong> link to the field-level spec further
+                down &mdash; what the dashboard will show, which KPIs it reports, and where AI plugs in.</p>
+
+            <div class="board-grid">
+
+                <!-- 1 Test Governance Metrics -->
+                <article class="board-tile">
+                    <span class="status live">Live sample</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#128202;</span>
+                        <h3>Test Governance Metrics</h3>
+                    </div>
+                    <div class="question">&ldquo;Are we on track for this release?&rdquo;</div>
+                    <p>The release dashboard the way I present status to a steering committee &mdash; milestone roadmap, velocity, grooming &amp; test metrics, defect aging, resource breakdown, risk register.</p>
+                    <div class="kpis"><strong>KPIs:</strong> RAG, velocity trend, defect aging bucket, grooming &amp; test readiness, environment health.</div>
+                    <div class="tile-ai">&#129302; AI: triage agent + risk-based selection</div>
+                    <a href="test-manager-dashboard.html" class="tile-cta live">Open live sample &rarr;</a>
+                </article>
+
+                <!-- 2 Test Strategy -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#127919;</span>
+                        <h3>Test Strategy</h3>
+                    </div>
+                    <div class="question">&ldquo;How are we testing this programme &mdash; and why?&rdquo;</div>
+                    <p>Test levels, in/out of scope, entry/exit criteria per sprint, test environments, data strategy, tool stack and the four acceptance gates.</p>
+                    <div class="kpis"><strong>KPIs:</strong> coverage by layer, test type mix, environment uptime, data refresh SLA.</div>
+                    <div class="tile-ai">&#129302; AI: test case drafter from BRD</div>
+                    <a href="#dash-strategy" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+                <!-- 3 ROI Calculator -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#128181;</span>
+                        <h3>ROI Calculator</h3>
+                    </div>
+                    <div class="question">&ldquo;What did QE automation save this programme?&rdquo;</div>
+                    <p>Manual-hours avoided, release cycle time cut, defects caught pre-prod, and the net cost / benefit of the AI pod &mdash; with the formula visible.</p>
+                    <div class="kpis"><strong>KPIs:</strong> manual-hours avoided, cycle-time delta, pre-prod defect catch rate, $ / defect averted, payback period.</div>
+                    <div class="tile-ai">&#129302; AI: risk-based selection contribution</div>
+                    <a href="#dash-roi" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+                <!-- 4 Automation Effort -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#129302;</span>
+                        <h3>Automation Effort</h3>
+                    </div>
+                    <div class="question">&ldquo;Where is automation effort landing &mdash; and is it paying off?&rdquo;</div>
+                    <p>New automation vs maintenance split per sprint, flake rate, pass-rate stability, mean time to repair a broken test, scripts per QA.</p>
+                    <div class="kpis"><strong>KPIs:</strong> new vs maintenance %, flake rate, MTTR for tests, pass-rate stability, suite runtime.</div>
+                    <div class="tile-ai">&#129302; AI: triage + synthetic data generator</div>
+                    <a href="#dash-automation" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+                <!-- 5 Test Plan -->
+                <article class="board-tile">
+                    <span class="status live">Live sample</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#128203;</span>
+                        <h3>Test Plan</h3>
+                    </div>
+                    <div class="question">&ldquo;What&rsquo;s the plan, and did we execute it?&rdquo;</div>
+                    <p>The stakeholder-first test plan for the data-migration workstream &mdash; scope, approach, environments, entry/exit, dependencies, risks and sign-off.</p>
+                    <div class="kpis"><strong>KPIs:</strong> plan vs actual execution, blocked tests, sign-off state per gate.</div>
+                    <div class="tile-ai">&#129302; AI: case drafter + risk-based selection</div>
+                    <a href="legacy-system-migration-test-plan.html" class="tile-cta live">Open live sample &rarr;</a>
+                </article>
+
+                <!-- 6 Release Readiness -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#128737;</span>
+                        <h3>Release Readiness (Go / No-Go)</h3>
+                    </div>
+                    <div class="question">&ldquo;Can we ship? What&rsquo;s open?&rdquo;</div>
+                    <p>One RAG per gate (functional, data, performance, security, operations), outstanding risks, rollback readiness, pilot cohort state. Updated two days before every steering committee.</p>
+                    <div class="kpis"><strong>KPIs:</strong> gate RAG, open P1/P2 defects, rollback drill freshness, pilot error-budget burn.</div>
+                    <div class="tile-ai">&#129302; AI: log cluster + RCA draft</div>
+                    <a href="#dash-release" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+                <!-- 7 Defect Analytics -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#128030;</span>
+                        <h3>Defect Analytics</h3>
+                    </div>
+                    <div class="question">&ldquo;Where do defects come from &mdash; and where are they stuck?&rdquo;</div>
+                    <p>Defect aging matrix, injection vs detection phase, defect density by module, reopened-defect ratio, trend by severity.</p>
+                    <div class="kpis"><strong>KPIs:</strong> aging by severity, injection-phase ratio, reopen %, DRE, top-5 defect themes.</div>
+                    <div class="tile-ai">&#129302; AI: triage agent + log clustering</div>
+                    <a href="#dash-defects" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+                <!-- 8 Risk Register -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#9888;</span>
+                        <h3>Risk Register</h3>
+                    </div>
+                    <div class="question">&ldquo;What could stop us &mdash; and who owns it?&rdquo;</div>
+                    <p>Top-15 risks, probability &times; impact, owner, mitigation state, latest-mentioned date. Fed by the AI diff narrator for data risks and by SRE for perf/security.</p>
+                    <div class="kpis"><strong>KPIs:</strong> red/amber risks, mitigation freshness, &quot;risks mentioned 3+ steering reviews unchanged&quot;.</div>
+                    <div class="tile-ai">&#129302; AI: diff narrator pulls data risks</div>
+                    <a href="#dash-risks" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+                <!-- 9 Reconciliation -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#128202;</span>
+                        <h3>Reconciliation Dashboard</h3>
+                    </div>
+                    <div class="question">&ldquo;Did the right data land, and does it still balance?&rdquo;</div>
+                    <p>Row counts and field-level diffs source &rarr; target per table; net-position variance per rail with tolerance band; signed artifacts to the regulator sandbox.</p>
+                    <div class="kpis"><strong>KPIs:</strong> row-count delta, field diff %, variance vs tolerance, time to resolve mismatch, signed-pack freshness.</div>
+                    <div class="tile-ai">&#129302; AI: diff narrator</div>
+                    <a href="#dash-recon" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+                <!-- 10 Pilot Rollout -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#128640;</span>
+                        <h3>Pilot Rollout</h3>
+                    </div>
+                    <div class="question">&ldquo;How is the canary going &mdash; and can we roll back?&rdquo;</div>
+                    <p>Ramp % (5/25/50/100), error-budget burn, cohort composition, agent NPS, rollback RTO/RPO measured in last drill, top-5 feedback themes.</p>
+                    <div class="kpis"><strong>KPIs:</strong> ramp %, error-budget %, rollback RTO/RPO, agent NPS, open pilot feedback items.</div>
+                    <div class="tile-ai">&#129302; AI: log cluster + RCA for pilot incidents</div>
+                    <a href="#dash-pilot" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+                <!-- 11 Non-functional -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#9889;</span>
+                        <h3>Non-functional (Perf &amp; Security)</h3>
+                    </div>
+                    <div class="question">&ldquo;Will it stay up and stay safe at pilot scale?&rdquo;</div>
+                    <p>Latency p95/p99 at 1x/2x/3x volume; broker-loss and DB-failover chaos results; SAST/DAST findings; pen-test state; audit trail completeness.</p>
+                    <div class="kpis"><strong>KPIs:</strong> p95 at 3x, chaos failure recovery time, critical SAST open, DAST open, pen-test open.</div>
+                    <div class="tile-ai">&#129302; AI: log cluster correlates perf dips</div>
+                    <a href="#dash-nfr" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+                <!-- 12 AI Agents Status -->
+                <article class="board-tile">
+                    <span class="status preview">Preview</span>
+                    <div class="tile-top">
+                        <span class="ico" aria-hidden="true">&#129504;</span>
+                        <h3>AI QE Agents &mdash; Status</h3>
+                    </div>
+                    <div class="question">&ldquo;Are the agents earning their seat?&rdquo;</div>
+                    <p>Per-agent precision/recall on their eval set, HITL override rate, hours saved vs baseline, incidents attributable to agent decisions, cost per 1k decisions.</p>
+                    <div class="kpis"><strong>KPIs:</strong> eval-set precision, HITL override %, hours saved, cost / 1k decisions, incidents.</div>
+                    <div class="tile-ai">&#129302; AI: the agents themselves report in</div>
+                    <a href="#dash-agents" class="tile-cta">See field spec &rarr;</a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 7 — FIELD SPECS (deep-dive anchors)
+         ============================================================ -->
+    <section class="dash-sec" id="field-specs" aria-labelledby="specs-h">
+        <div class="container">
+            <h2 id="specs-h"><span class="num">7</span> What&rsquo;s inside each dashboard</h2>
+            <p class="lede">For the tiles that don&rsquo;t yet have a live sample page, this is the field-level
+                specification &mdash; the one question it answers, the KPIs it tracks, and where AI plugs in.</p>
+
+            <article class="deep-card" id="dash-strategy">
+                <h3>&#127919; Test Strategy</h3>
+                <p class="answers">Answers: How are we testing this programme, and why?</p>
+                <p>The strategy card has one tab per layer (unit, API/contract, UI, data, perf, security, chaos)
+                    with a per-sprint entry/exit, tool, environment and owner. The acceptance gates
+                    (functional, data integrity, performance, operational readiness) are visible with target
+                    thresholds, not vague adjectives.</p>
+                <ul class="kpi-list">
+                    <li><strong>Coverage by layer</strong>Target vs actual coverage %, trend over 4 sprints.</li>
+                    <li><strong>Test type mix</strong>% unit / contract / E2E / manual; alarm if E2E &gt; 25%.</li>
+                    <li><strong>Environment uptime</strong>Staging + regulator sandbox uptime, data refresh SLA.</li>
+                    <li><strong>Gate state</strong>Entry/exit per gate, who&rsquo;s the sign-off.</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> the test-case drafter proposes scenarios from
+                    BRDs; QA accepts, edits or rejects with a reason that feeds back into the agent&rsquo;s eval set.</div>
+            </article>
+
+            <article class="deep-card" id="dash-roi">
+                <h3>&#128181; ROI Calculator</h3>
+                <p class="answers">Answers: What did QE automation save this programme?</p>
+                <p>Open formulas, not black boxes. Each metric shows &quot;(cost today) vs (cost without the
+                    automation / without the AI agent)&quot; using sprint-level data. The AI pod has its own
+                    cost line &mdash; the ROI number is <em>net of agent spend</em>.</p>
+                <ul class="kpi-list">
+                    <li><strong>Manual-hours avoided</strong>Per sprint, split by automation vs AI pod.</li>
+                    <li><strong>Cycle-time delta</strong>Pre-release regression hours; before / now / target.</li>
+                    <li><strong>Pre-prod catch rate</strong>Defects caught before UAT / before prod.</li>
+                    <li><strong>$ / defect averted</strong>With formula and the inputs visible.</li>
+                    <li><strong>Payback period</strong>For AI pod cost; break-even sprint.</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> risk-based test selection shaves ~40% off
+                    gate-time without losing coverage &mdash; the dashboard reconciles the two numbers so steering
+                    doesn&rsquo;t have to.</div>
+            </article>
+
+            <article class="deep-card" id="dash-automation">
+                <h3>&#129302; Automation Effort</h3>
+                <p class="answers">Answers: Where is automation effort landing, and is it paying off?</p>
+                <p>Keeps the team honest about <em>new</em> vs <em>maintenance</em>. A sprint where 70%+ of QA
+                    time went to maintenance is a flag, not a surprise.</p>
+                <ul class="kpi-list">
+                    <li><strong>New vs maintenance %</strong>Per sprint, per QA.</li>
+                    <li><strong>Flake rate</strong>Target &lt; 1.5%; shown by suite.</li>
+                    <li><strong>MTTR for broken tests</strong>Median + p90.</li>
+                    <li><strong>Pass-rate stability</strong>Rolling 10-run pass rate.</li>
+                    <li><strong>Suite runtime</strong>Full suite + risk-based smoke subset.</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> the triage agent reclassifies failures as
+                    flake vs real-defect vs environment, feeding the flake-rate number automatically.</div>
+            </article>
+
+            <article class="deep-card" id="dash-release">
+                <h3>&#128737; Release Readiness (Go / No-Go)</h3>
+                <p class="answers">Answers: Can we ship? What&rsquo;s open?</p>
+                <p>Four cards &mdash; <em>Functional</em>, <em>Data</em>, <em>Performance</em>,
+                    <em>Operations</em> &mdash; each with a RAG, an owner, a cite-your-evidence link, and a
+                    &quot;what would make this red&quot; sentence. Updated T-2 days before every steering
+                    committee.</p>
+                <ul class="kpi-list">
+                    <li><strong>Gate RAG</strong>Functional / Data / Perf / Ops.</li>
+                    <li><strong>Open P1/P2</strong>With age bucket and owner.</li>
+                    <li><strong>Rollback drill freshness</strong>&lt; 1 sprint old at pilot.</li>
+                    <li><strong>Pilot error-budget burn</strong>Only visible during Sprint Demo242.</li>
+                    <li><strong>Dependencies</strong>External sign-offs waiting (regulator, vendor).</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> log clustering surfaces &quot;this incident
+                    looks like class X we closed in Sprint Demo239&quot; so the gate conversation is grounded.</div>
+            </article>
+
+            <article class="deep-card" id="dash-defects">
+                <h3>&#128030; Defect Analytics</h3>
+                <p class="answers">Answers: Where do defects come from, and where are they stuck?</p>
+                <ul class="kpi-list">
+                    <li><strong>Aging matrix</strong>Severity &times; age-bucket; targets per bucket.</li>
+                    <li><strong>Injection vs detection phase</strong>Shift-left evidence.</li>
+                    <li><strong>Defect density</strong>By module; outliers highlighted.</li>
+                    <li><strong>Reopen %</strong>Rolling 4-sprint.</li>
+                    <li><strong>DRE</strong>Defect Removal Effectiveness per phase.</li>
+                    <li><strong>Top-5 themes</strong>Clustered from defect bodies by the triage agent.</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> clustering produces the top-5 themes;
+                    log-RCA agent attaches a candidate root cause to each new P1.</div>
+            </article>
+
+            <article class="deep-card" id="dash-risks">
+                <h3>&#9888; Risk Register</h3>
+                <p class="answers">Answers: What could stop us, and who owns it?</p>
+                <ul class="kpi-list">
+                    <li><strong>Top-15 risks</strong>Probability &times; impact (1-5 each), owner, mitigation.</li>
+                    <li><strong>Mitigation freshness</strong>Days since last update; flag &gt; 14.</li>
+                    <li><strong>Stale-risk flag</strong>Risks unchanged in 3+ steering reviews.</li>
+                    <li><strong>Realized risks</strong>Risks that became incidents, with before/after cost.</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> the diff narrator from the reconciliation
+                    job writes an auto-draft risk whenever variance breaches tolerance &mdash; a human owner
+                    confirms it before it lands on the register.</div>
+            </article>
+
+            <article class="deep-card" id="dash-recon">
+                <h3>&#128202; Reconciliation Dashboard</h3>
+                <p class="answers">Answers: Did the right data land, and does it still balance?</p>
+                <ul class="kpi-list">
+                    <li><strong>Row-count delta</strong>Per table source &rarr; target per batch.</li>
+                    <li><strong>Field-level diff %</strong>On risk columns (amount, BIC, status, dates).</li>
+                    <li><strong>Variance vs tolerance</strong>Net position per rail per hour (tolerance 0.01%).</li>
+                    <li><strong>Time to resolve mismatch</strong>Median + worst-case.</li>
+                    <li><strong>Signed-pack freshness</strong>Last signed CSV to regulator sandbox.</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> the diff narrator reads a variance and
+                    produces a 3-line explanation, with linked payment IDs and rule references. Humans decide,
+                    but on signal, not noise.</div>
+            </article>
+
+            <article class="deep-card" id="dash-pilot">
+                <h3>&#128640; Pilot Rollout</h3>
+                <p class="answers">Answers: How is the canary going, and can we roll back?</p>
+                <ul class="kpi-list">
+                    <li><strong>Ramp %</strong>5 / 25 / 50 / 100 cohort state.</li>
+                    <li><strong>Error-budget burn</strong>Budget 0.3% of pilot volume.</li>
+                    <li><strong>Cohort composition</strong>By segment; high-value accounts excluded week 1.</li>
+                    <li><strong>Agent NPS</strong>Weekly; target &gt; 30.</li>
+                    <li><strong>Rollback RTO / RPO</strong>From last drill; target 2h / 15min.</li>
+                    <li><strong>Open feedback themes</strong>Top-5 with owner + due sprint.</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> log cluster + RCA agent for pilot incidents,
+                    always with human sign-off before customer comms.</div>
+            </article>
+
+            <article class="deep-card" id="dash-nfr">
+                <h3>&#9889; Non-functional (Performance &amp; Security)</h3>
+                <p class="answers">Answers: Will it stay up and stay safe at pilot scale?</p>
+                <ul class="kpi-list">
+                    <li><strong>Latency p95 / p99</strong>At 1x / 2x / 3x expected volume.</li>
+                    <li><strong>Throughput headroom</strong>Peak tested vs expected pilot peak.</li>
+                    <li><strong>Chaos results</strong>Broker loss, dead-letter spike, DB failover.</li>
+                    <li><strong>SAST / DAST open</strong>Criticals + highs with age.</li>
+                    <li><strong>Pen-test state</strong>Open findings pre-pilot.</li>
+                    <li><strong>Audit trail completeness</strong>% of reconciliation decisions with a trace.</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> log clustering correlates perf dips with
+                    deployment events; useful at the 2x / 3x step where root cause is rarely obvious.</div>
+            </article>
+
+            <article class="deep-card" id="dash-agents">
+                <h3>&#129504; AI QE Agents &mdash; Status</h3>
+                <p class="answers">Answers: Are the agents earning their seat?</p>
+                <ul class="kpi-list">
+                    <li><strong>Eval-set precision / recall</strong>Per agent per sprint.</li>
+                    <li><strong>HITL override %</strong>Humans overriding the agent &mdash; a quality signal.</li>
+                    <li><strong>Hours saved vs baseline</strong>Flows into ROI.</li>
+                    <li><strong>Incidents attributable to agent</strong>Red line; drives agent rollback.</li>
+                    <li><strong>Cost / 1k decisions</strong>Model + infra; part of ROI net.</li>
+                </ul>
+                <div class="where-ai"><strong>&#129302; AI:</strong> the agents report their own metrics;
+                    the dashboard is the audit trail. See <a href="agents.html" style="color:#5eead4;">Agents</a>
+                    for architecture.</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 8 — HOW TO USE
+         ============================================================ -->
+    <section class="dash-sec alt" id="usage" aria-labelledby="usage-h">
+        <div class="container">
+            <h2 id="usage-h"><span class="num">8</span> How to use these dashboards</h2>
+            <p class="lede">Audience &times; cadence &times; the moment they&rsquo;re opened. If a dashboard
+                doesn&rsquo;t have a weekly moment, it dies &mdash; so each one is anchored to a specific
+                ceremony.</p>
+
+            <table class="dash-table usage-table" aria-label="Dashboard usage by audience and cadence">
+                <thead>
+                    <tr>
+                        <th>Dashboard</th>
+                        <th>Primary audience</th>
+                        <th>Cadence</th>
+                        <th>Key moment it&rsquo;s opened</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Test Governance Metrics</td><td><span class="aud-sc">Steering + PM</span></td><td>Weekly</td><td>Steering committee readout; sprint review.</td></tr>
+                    <tr><td>Test Strategy</td><td><span class="aud-eng">QA + Dev Lead</span></td><td>Per sprint</td><td>Sprint planning entry / exit gate.</td></tr>
+                    <tr><td>ROI Calculator</td><td><span class="aud-sc">Steering + PM</span></td><td>Monthly</td><td>Programme financial review.</td></tr>
+                    <tr><td>Automation Effort</td><td><span class="aud-eng">SDET Lead + QA</span></td><td>Weekly</td><td>Retro, dependency planning.</td></tr>
+                    <tr><td>Test Plan</td><td><span class="aud-sc">PM + Steering</span></td><td>Milestone</td><td>Gate reviews; plan vs actuals.</td></tr>
+                    <tr><td>Release Readiness</td><td><span class="aud-sc">Steering + Ops</span></td><td>T-2 before Steering</td><td>Go / No-Go call.</td></tr>
+                    <tr><td>Defect Analytics</td><td><span class="aud-eng">QA + Dev Lead</span></td><td>Daily / weekly</td><td>Triage; sprint review.</td></tr>
+                    <tr><td>Risk Register</td><td><span class="aud-pm">PM + Steering</span></td><td>Weekly</td><td>Risk workshop; steering review.</td></tr>
+                    <tr><td>Reconciliation</td><td><span class="aud-eng">Data QA + Regulator liaison</span></td><td>Hourly / daily</td><td>Intra-day job; regulator submission.</td></tr>
+                    <tr><td>Pilot Rollout</td><td><span class="aud-sc">Steering + Ops + PM</span></td><td>Daily (during pilot)</td><td>Canary ramp decisions.</td></tr>
+                    <tr><td>Non-functional</td><td><span class="aud-eng">SRE + Security + QA</span></td><td>Per load test</td><td>Pre-pilot sign-off.</td></tr>
+                    <tr><td>AI Agents &mdash; Status</td><td><span class="aud-eng">SDET Lead + Dev Lead</span></td><td>Weekly</td><td>Agent eval review; rollback decisions.</td></tr>
+                </tbody>
+            </table>
+
+            <div class="ctx-card" style="margin-top:18px;border-left-color:#059669;">
+                <h3>Want a working template?</h3>
+                <p>The <a href="test-manager-dashboard.html">Test Governance Metrics</a> page is a complete HTML
+                    sample you can lift into Confluence, GitLab wiki or SharePoint &mdash; the layout, not the
+                    numbers. The <a href="legacy-system-migration-test-plan.html">Test Plan</a> is a
+                    stakeholder-first plan companion for the data-migration workstream.</p>
+                <p>If a dashboard above sounds useful but doesn&rsquo;t have a live sample yet, that just means
+                    I haven&rsquo;t published the template &mdash; the field spec is the honest, implementable
+                    version. Reach out if you want one adapted.</p>
+                <a href="contact.html" class="inline-cta">Contact &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vineet Kumar</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/vineet2311/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/contactkrvineet" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

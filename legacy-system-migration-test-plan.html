@@ -303,10 +303,15 @@
         .tp-res-table td strong { color: var(--tp-navy); }
 
         /* Stakeholder execution table */
+        /* Stakeholder-view heading sits in its own white card so it reads on the dark portfolio background */
         .tp-exec-head {
-            margin: 0 0 14px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--tp-rule);
+            background: var(--tp-surface);
+            border: 1px solid var(--tp-rule);
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+            padding: 18px 22px 14px;
+            margin: 0;
+            box-shadow: 0 2px 10px rgba(15, 42, 92, 0.08);
         }
         .tp-exec-head .k {
             font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase;
@@ -322,10 +327,11 @@
         .tp-exec-wrap {
             background: var(--tp-surface);
             border: 1px solid var(--tp-rule);
-            border-radius: 10px;
+            border-top: 2px solid var(--tp-rule);
+            border-radius: 0 0 10px 10px;
             overflow-x: auto;
             box-shadow: 0 2px 10px rgba(15, 42, 92, 0.08);
-            margin-bottom: 32px;
+            margin: 0 0 32px;
         }
         .tp-exec {
             width: 100%; min-width: 820px;
@@ -467,7 +473,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Me</a></li>
                 <li><a href="casestudy.html" aria-current="page">Case Studies</a></li>
-                <li><a href="test-manager-dashboard.html">QE Dashboard</a></li>
+                <li><a href="dashboards.html">Dashboards &amp; Metrics</a></li>
                 <li><a href="architecture.html">Architecture</a></li>
                 <li><a href="featuredproject.html">Featured Projects</a></li>
                 <li><a href="agents.html">Agents</a></li>
